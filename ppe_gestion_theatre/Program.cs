@@ -19,6 +19,12 @@ namespace ppe_gestion_theatre
             Application.Run(new Form1());
 
             // TEST TEST 
+
+            // Coucou les amis !
+
+            // tu l'as ?
+
+            // oui !
         }
     }
 }
