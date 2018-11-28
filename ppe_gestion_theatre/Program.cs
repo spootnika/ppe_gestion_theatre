@@ -21,10 +21,6 @@ namespace ppe_gestion_theatre
             // TEST TEST 
 
             // Coucou les amis !
-
-            // tu l'as ?
-
-            // oui !
         }
     }
 }
