@@ -17,14 +17,7 @@ namespace ppe_gestion_theatre
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
-
-            // TEST TEST 
             
-            // re test 
-
-            // Coucou les amis !
-
-            // c'est guigs
         }
     }
 }
