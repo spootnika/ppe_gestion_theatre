@@ -52,7 +52,6 @@
     <Compile Include="Spectator.cs" />
     <Compile Include="TheaterPiece.cs" />
     <Compile Include="Theme.cs" />
-    <Compile Include="ToHave.cs" />
     <Compile Include="WeekDays.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,6 +13,7 @@ namespace TheaterBO
         private DateTime priceRate_startTime; //pour avoir le format heure: var.ToString("HH:mm");
         private DateTime priceRate_endTime;
         private float priceRate_rate;
+        private List<WeekDays> priceRate_weekDays;
 
         public int PriceRate_id
         {
@@ -78,5 +79,7 @@ namespace TheaterBO
                 priceRate_rate = value;
             }
         }
+
+        public List<WeekDays> PriceRate_weekDays { get => priceRate_weekDays; set => priceRate_weekDays = value; }
     }
 }

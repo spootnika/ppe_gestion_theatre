@@ -13,6 +13,7 @@ namespace TheaterBO
         private string actor_firstName;
         private int actor_age;
         private Company actor_company;
+        private List<Nationality> actor_nationalities;
 
         public int Actor_id
         {
@@ -78,5 +79,7 @@ namespace TheaterBO
                 actor_company = value;
             }
         }
+
+        public List<Nationality> Actor_nationalities { get => actor_nationalities; set => actor_nationalities = value; }
     }
 }

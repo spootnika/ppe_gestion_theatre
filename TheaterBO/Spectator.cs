@@ -13,6 +13,8 @@ namespace TheaterBO
         private string spectator_firstname;
         private string spectator_email;
         private string spectator_phone;
+        private Show spectator_show;
+        private int spactator_seatsBooked;
 
         public int Spectator_id
         {
@@ -78,5 +80,8 @@ namespace TheaterBO
                 spectator_phone = value;
             }
         }
+
+        public int Spactator_seatsBooked { get => spactator_seatsBooked; set => spactator_seatsBooked = value; }
+        public Show Spectator_show { get => spectator_show; set => spectator_show = value; }
     }
 }
