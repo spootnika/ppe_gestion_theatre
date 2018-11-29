@@ -1,6 +1,6 @@
 ﻿namespace ppe_gestion_theatre
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

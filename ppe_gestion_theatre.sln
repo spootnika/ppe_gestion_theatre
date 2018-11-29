@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppe_gestion_theatre", "ppe_gestion_theatre\ppe_gestion_theatre.csproj", "{39056C79-89EA-46F5-98DC-2CEC5CDE0811}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheaterGUI", "ppe_gestion_theatre\TheaterGUI.csproj", "{39056C79-89EA-46F5-98DC-2CEC5CDE0811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheaterBLL", "TheaterBLL\TheaterBLL.csproj", "{58ECEC07-96DE-4ADB-AD8A-B001E3A73FBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheaterBO", "TheaterBO\TheaterBO.csproj", "{1880723E-6F1A-4127-A254-624EEE69AC06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheaterDAL", "TheaterDAL\TheaterDAL.csproj", "{AD3112D5-FC1D-4EA4-942B-65BB8CC12069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{39056C79-89EA-46F5-98DC-2CEC5CDE0811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39056C79-89EA-46F5-98DC-2CEC5CDE0811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39056C79-89EA-46F5-98DC-2CEC5CDE0811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58ECEC07-96DE-4ADB-AD8A-B001E3A73FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58ECEC07-96DE-4ADB-AD8A-B001E3A73FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58ECEC07-96DE-4ADB-AD8A-B001E3A73FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58ECEC07-96DE-4ADB-AD8A-B001E3A73FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1880723E-6F1A-4127-A254-624EEE69AC06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1880723E-6F1A-4127-A254-624EEE69AC06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1880723E-6F1A-4127-A254-624EEE69AC06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1880723E-6F1A-4127-A254-624EEE69AC06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD3112D5-FC1D-4EA4-942B-65BB8CC12069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD3112D5-FC1D-4EA4-942B-65BB8CC12069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD3112D5-FC1D-4EA4-942B-65BB8CC12069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD3112D5-FC1D-4EA4-942B-65BB8CC12069}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
