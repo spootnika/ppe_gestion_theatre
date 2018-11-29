@@ -64,5 +64,7 @@ namespace TheaterBO
                 user_isAdmin = value;
             }
         }
+
+
     }
 }
