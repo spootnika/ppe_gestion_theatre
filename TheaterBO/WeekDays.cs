@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TheaterBO
 {
-    public class Class1
+    public class WeekDays
     {
+        private int weekDays_id;
+        private string weekDays_name;
     }
 }
