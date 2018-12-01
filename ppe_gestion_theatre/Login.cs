@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheaterBLL;
 using TheaterBO;
 
 namespace ppe_gestion_theatre
@@ -28,7 +29,7 @@ namespace ppe_gestion_theatre
         {
             //string testPseudo = "Admin";
             //string testMdp = "abcd";
-            AppUser user = new AppUser();
+            AppUser user;
             user = ModuleLogin.GetUser(txtLogin.Text);
 
             // Vérification de l'existance du pseudo
@@ -38,7 +39,7 @@ namespace ppe_gestion_theatre
                 if (user.User_password == txtPassword.Text)
                 //if (testMdp == txtPassword.Text)
                 {
-                    LoginInfo currentUser = new LoginInfo(user);
+                    LoginInfo currentUser = ModuleLogin.CreateLoginInfo(user);
 
                     // Ouverture de la nouvelle fenêtre
                     Menu frmMenu = new Menu(currentUser);
