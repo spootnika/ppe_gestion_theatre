@@ -43,6 +43,16 @@
     <Compile Include="ModuleLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheaterBO\TheaterBO.csproj">
+      <Project>{1880723e-6f1a-4127-a254-624eee69ac06}</Project>
+      <Name>TheaterBO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheaterDAL\TheaterDAL.csproj">
+      <Project>{ad3112d5-fc1d-4ea4-942b-65bb8cc12069}</Project>
+      <Name>TheaterDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
