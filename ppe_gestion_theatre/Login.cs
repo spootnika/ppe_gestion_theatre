@@ -21,5 +21,16 @@ namespace ppe_gestion_theatre
         {
 
         }
+
+        // Au clic sur le bouton "valider" pour se connecter
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+
+            // Ouverture de la nouvelle fenêtre
+            Menu frmMenu;
+            frmMenu = new Menu();
+            this.Hide(); // le formulaire est caché
+            frmMenu.ShowDialog(); // ouverture du formulaire 
+        }
     }
 }
