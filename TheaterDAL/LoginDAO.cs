@@ -24,11 +24,12 @@ namespace TheaterDAL
 
 
         //retourne un utilisateur en fonction de son pseudo
-        public static LoginDAO GetUser(string pseudo)
+        public static AppUser GetUser(string pseudo)
         {
             int id;
             string password;
             bool isAdmin;
+     
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
@@ -36,16 +37,16 @@ namespace TheaterDAL
             cmd.CommandText = " SELECT * FROM AppUser WHERE user_pseudo == "+pseudo;
 
             SqlDataReader monReader = cmd.ExecuteReader();
-            while (monReader.Read())
-            {
-                id = Int32.Parse(monReader["user_id"].ToString());
-                password = monReader["user_password"].ToString();
-                isAdmin = (bool)monReader["user_isAdmin"];
-                unUtilisateurDAO = new AppUser(id, pseudo, password, isAdmin);
+         
+            id = Int32.Parse(monReader["user_id"].ToString());
+            password = monReader["user_password"].ToString();
+            isAdmin = (bool)monReader["user_isAdmin"];
+            AppUser unUtilisateur = new AppUser(id, pseudo, password, isAdmin);
 
-            }
-
-                return unUtilisateurDAO;
+            
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return unUtilisateur;
         }
        }
    }
