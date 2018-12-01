@@ -13,6 +13,15 @@ namespace TheaterBO
         private string company_city;
         private string company_region;
         private string company_artisticDirector;
+
+        public Company(int id, string name, string city, string region, string artisticDirector)
+        {
+            this.company_id = id;
+            this.company_name = name;
+            this.company_city = city;
+            this.company_region = region;
+            this.company_artisticDirector = artisticDirector;
+        }
         
         public int Company_id
         {

@@ -11,6 +11,12 @@ namespace TheaterBO
         private int theme_id;
         private string theme_name;
 
+        public Theme(int id, string name)
+        {
+            this.theme_id = id;
+            this.theme_name = name;
+        }
+
         public int Theme_id { get => theme_id; set => theme_id = value; }
         public string Theme_name { get => theme_name; set => theme_name = value; }
     }

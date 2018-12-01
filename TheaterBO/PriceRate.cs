@@ -15,6 +15,16 @@ namespace TheaterBO
         private float priceRate_rate;
         private List<WeekDays> priceRate_weekDays;
 
+        public PriceRate(int id, string name, DateTime startTime, DateTime endTime, float rate, List<WeekDays> weekDays)
+        {
+            this.priceRate_id = id;
+            this.priceRate_name = name;
+            this.priceRate_startTime = startTime;
+            this.priceRate_endTime = endTime;
+            this.priceRate_rate = rate;
+            this.priceRate_weekDays = weekDays;
+        }
+
         public int PriceRate_id
         {
             get

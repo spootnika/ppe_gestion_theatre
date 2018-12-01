@@ -18,6 +18,19 @@ namespace TheaterBO
         private PublicType theaterPiece_publicType;
         private Theme theaterPiece_theme;
 
+        public TheaterPiece(int id, string name, string description, float duration, float seatsPrice, Company company, Author author, PublicType publicType, Theme theme)
+        {
+            this.theaterPiece_id = id;
+            this.theaterPiece_name = name;
+            this.theaterPiece_description = description;
+            this.theaterPiece_duration = duration;
+            this.theaterPiece_seatsPrice = seatsPrice;
+            this.theaterPiece_company = company;
+            this.theaterPiece_author = author;
+            this.theaterPiece_publicType = publicType;
+            this.theaterPiece_theme = theme;
+        }
+
         public int TheaterPiece_id { get => theaterPiece_id; set => theaterPiece_id = value; }
         public string TheaterPiece_name { get => theaterPiece_name; set => theaterPiece_name = value; }
         public string TheaterPiece_description { get => theaterPiece_description; set => theaterPiece_description = value; }

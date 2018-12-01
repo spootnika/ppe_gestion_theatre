@@ -11,6 +11,12 @@ namespace TheaterBO
         private int publicType_id;
         private string publicType_name;
 
+        public PublicType(int id, string name)
+        {
+            this.publicType_id = id;
+            this.publicType_name = name;
+        }
+
         public int PublicType_id { get => publicType_id; set => publicType_id = value; }
         public string PublicType_name { get => publicType_name; set => publicType_name = value; }
     }

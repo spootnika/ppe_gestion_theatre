@@ -15,6 +15,16 @@ namespace TheaterBO
         private Company actor_company;
         private List<Nationality> actor_nationalities;
 
+        public Actor(int id, string lastname, string firstname, int age, Company company, List<Nationality> nationalities)
+        {
+            this.actor_id = id;
+            this.actor_lastName = lastname;
+            this.actor_firstName = firstname;
+            this.actor_age = age;
+            this.actor_company = company;
+            this.actor_nationalities = nationalities;
+        }
+
         public int Actor_id
         {
             get

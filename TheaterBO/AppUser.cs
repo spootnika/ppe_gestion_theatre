@@ -13,6 +13,14 @@ namespace TheaterBO
         private string user_password;
         private bool user_isAdmin;
 
+        public AppUser(int id, string pseudo, string password, bool isAdmin)
+        {
+            this.user_id = id;
+            this.user_pseudo = pseudo;
+            this.user_password = password;
+            this.user_isAdmin = isAdmin;
+        }
+
         public int User_id
         {
             get
