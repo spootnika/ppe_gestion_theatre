@@ -8,6 +8,7 @@ namespace TheaterBO
 {
     public class LoginInfo
     {
-        //login info à rajouter
+        // login info à rajouter
+        // username, isAdmin
     }
 }

@@ -16,7 +16,7 @@ namespace TheaterBLL
         // Définit la chaîne de connexion grâce à la méthode SetchaineConnexion de la DAL 
 
         // Méthode qui renvoit un objet User correspondant au pseudo passé en paramètre
-        // -> GetUtilisateur
+        // -> GetUser
 
         // Méthode qui créer un objet de LoginInfo avec les attributs de l'objet User passé en paramètre
         // -> CreateLoginInfo
