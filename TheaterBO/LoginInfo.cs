@@ -8,7 +8,16 @@ namespace TheaterBO
 {
     public class LoginInfo
     {
-        // login info à rajouter
-        // username, isAdmin
+        private string username;
+        private bool isAdmin;
+
+        public LoginInfo(AppUser currentUser)
+        {
+            this.username = currentUser.User_pseudo;
+            this.isAdmin = currentUser.User_isAdmin;
+        }
+
+        public string Username { get => username; set => username = value; }
+        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
     }
 }

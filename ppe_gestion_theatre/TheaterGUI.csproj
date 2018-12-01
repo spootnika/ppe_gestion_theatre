@@ -88,5 +88,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheaterBLL\TheaterBLL.csproj">
+      <Project>{58ecec07-96de-4adb-ad8a-b001e3a73fbc}</Project>
+      <Name>TheaterBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheaterBO\TheaterBO.csproj">
+      <Project>{1880723e-6f1a-4127-a254-624eee69ac06}</Project>
+      <Name>TheaterBO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheaterDAL\TheaterDAL.csproj">
+      <Project>{ad3112d5-fc1d-4ea4-942b-65bb8cc12069}</Project>
+      <Name>TheaterDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

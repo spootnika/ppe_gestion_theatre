@@ -7,14 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheaterBO;
 
 namespace ppe_gestion_theatre
 {
     public partial class Menu : Form
     {
-        public Menu()
+        public Menu(LoginInfo currentUser)
         {
             InitializeComponent();
+
+            if(currentUser.IsAdmin == false)
+            {
+                btnShow.Enabled = false;
+                btnSynthesis.Enabled = false;
+                btnTheaterPiece.Enabled = false;
+            }
         }
 
         private void lblConnect_Click(object sender, EventArgs e)
