@@ -27,19 +27,23 @@ namespace ppe_gestion_theatre
         // Au clic sur le bouton "valider" pour se connecter
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //string testPseudo = "Admin";
-            //string testMdp = "abcd";
+
+            lblError.ForeColor = Color.Transparent;
+            lblError.BackColor = Color.Transparent;
+            lblError.Text = "";
             AppUser user;
             user = ModuleLogin.GetUser(txtLogin.Text);
+            //user = new AppUser(2, "user", "1234", false);
+            //user = new AppUser(1, "admin", "1234", true);
 
-            // Vérification de l'existance du pseudo
-            if (user.User_pseudo == txtLogin.Text)
-            //if (testPseudo.ToLower() == txtLogin.Text.ToLower())
+            // Vérification de l'existance de l'utilisateur
+            if (user != null)
             {
+                // Vérification de la validité du mot de passe
                 if (user.User_password == txtPassword.Text)
-                //if (testMdp == txtPassword.Text)
                 {
                     LoginInfo currentUser = ModuleLogin.CreateLoginInfo(user);
+                    //LoginInfo currentUser = new LoginInfo(user);
 
                     // Ouverture de la nouvelle fenêtre
                     Menu frmMenu = new Menu(currentUser);
@@ -48,6 +52,7 @@ namespace ppe_gestion_theatre
                 }
                 else
                 {
+                    // Affichage d'un message d'erreur
                     lblError.ForeColor = Color.Red;
                     lblError.BackColor = Color.LightPink;
                     lblError.Text = "Le mot de passe est incorrect";
@@ -55,10 +60,16 @@ namespace ppe_gestion_theatre
             }
             else
             {
+                // Affichage d'un message d'erreur
                 lblError.ForeColor = Color.Red;
                 lblError.BackColor = Color.LightPink;
                 lblError.Text = "Ce pseudo est inconnu de la base de données.";
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -20,11 +20,10 @@ namespace TheaterBLL
         // Méthode qui renvoit un objet User correspondant au pseudo passé en paramètre
         public static AppUser GetUser(string pseudo)
         {
-            
+
         }
 
         // Méthode qui créer ET RENVOIE un objet de LoginInfo avec les attributs de l'objet User passé en paramètre
-        // -> CreateLoginInfo
         public static LoginInfo CreateLoginInfo(AppUser currentUser)
         {
 
