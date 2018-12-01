@@ -19,6 +19,7 @@ namespace TheaterBLL
         // -> GetUtilisateur
 
         // Méthode qui créer un objet de LoginInfo avec les attributs de l'objet User passé en paramètre
+        // -> CreateLoginInfo
 
     }
 }
