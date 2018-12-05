@@ -36,7 +36,16 @@ namespace TheaterBLL
         // Méthode qui renvoit un objet User correspondant au pseudo passé en paramètre
         public static AppUser GetUser(string pseudo)
         {
-            return LoginDAO.GetUser(pseudo);
+            AppUser unUtilisateur = LoginDAO.GetUser(pseudo);
+
+            if (unUtilisateur.User_id == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return unUtilisateur;
+            }
         }
 
         // Méthode qui créer ET RENVOIE un objet de LoginInfo avec les attributs de l'objet User passé en paramètre
