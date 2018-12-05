@@ -34,7 +34,7 @@ namespace TheaterDAL
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = " SELECT * FROM AppUser WHERE user_pseudo == "+pseudo;
+            cmd.CommandText = "SELECT * FROM AppUser WHERE user_pseudo = '" + pseudo + "'";
 
             SqlDataReader monReader = cmd.ExecuteReader();
          

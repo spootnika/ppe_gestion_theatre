@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheaterBLL;
 using TheaterBO;
+using System.Configuration;
 
 namespace ppe_gestion_theatre
 {
@@ -17,6 +18,7 @@ namespace ppe_gestion_theatre
         public Login()
         {
             InitializeComponent();
+            ModuleLogin.SetchaineConnexion(ConfigurationManager.ConnectionStrings["dbGestionTheatre"]);
         }
 
         private void label1_Click(object sender, EventArgs e)
