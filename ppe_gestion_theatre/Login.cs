@@ -34,6 +34,8 @@ namespace ppe_gestion_theatre
             lblError.BackColor = Color.Transparent;
             lblError.Text = "";
             AppUser user;
+
+            // récupération user 
             user = ModuleLogin.GetUser(txtLogin.Text);
             //user = new AppUser(2, "user", "1234", false);
             //user = new AppUser(1, "admin", "1234", true);
