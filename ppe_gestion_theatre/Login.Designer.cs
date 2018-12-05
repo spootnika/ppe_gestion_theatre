@@ -96,9 +96,6 @@
             // 
             // lblError
             // 
-            this.lblError.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblError.Location = new System.Drawing.Point(67, 142);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(180, 23);
