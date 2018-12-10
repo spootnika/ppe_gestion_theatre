@@ -42,7 +42,11 @@
   <ItemGroup>
     <Compile Include="ConnexionBD.cs" />
     <Compile Include="LoginDAO.cs" />
+    <Compile Include="PiecesTheatreDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepresentationsDAO.cs" />
+    <Compile Include="ReservationsDAO.cs" />
+    <Compile Include="SyntheseDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheaterBO\TheaterBO.csproj">
