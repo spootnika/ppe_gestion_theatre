@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheaterBLL
 {
-    class ModuleSynthese
+    public class ModuleSynthese
     {
     }
 }
