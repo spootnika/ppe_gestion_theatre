@@ -8,5 +8,11 @@ namespace TheaterBLL
 {
     public class ModulePiecesTheatre
     {
+        // objet BLL
+
+        // Accesseur en lecture objet BLL
+
+        // Récupère la liste des pièces de la DAO, renvoie la liste
+        // GetTheaterPieces()
     }
 }

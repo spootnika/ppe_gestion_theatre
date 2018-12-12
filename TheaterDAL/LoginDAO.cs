@@ -12,7 +12,7 @@ namespace TheaterDAL
     {
         private static LoginDAO unUtilisateurDAO;
 
-        // Accesseur en lecture, renvoi une instance
+        // Accesseur en lecture, renvoi une instance de LoginDAO
         public static LoginDAO GetUser()
         {
             if (unUtilisateurDAO == null)
