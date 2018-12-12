@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using TheaterBO;
+using System.Data;
 
 namespace TheaterDAL
 {
@@ -42,8 +43,11 @@ namespace TheaterDAL
             // initialisation et écriture d'une requête sql
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "SELECT * FROM AppUser WHERE user_pseudo = '" + pseudo + "'";
-
+            SqlParameter paramPseudo = new SqlParameter("@pseudo", SqlDbType.NChar);
+            paramPseudo.Value = pseudo;
+          
+            cmd.CommandText = "SELECT * FROM AppUser WHERE user_pseudo = @pseudo";
+            cmd.Parameters.Add(paramPseudo);
             // execution du reader
             monReader = cmd.ExecuteReader();
 
