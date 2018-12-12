@@ -22,7 +22,7 @@ namespace TheaterBO
             this.priceRate_startTime = startTime;
             this.priceRate_endTime = endTime;
             this.priceRate_rate = rate;
-            this.priceRate_weekDays = weekDays;
+            this.PriceRate_weekDays = weekDays;
         }
 
         public int PriceRate_id
@@ -90,6 +90,17 @@ namespace TheaterBO
             }
         }
 
-        public List<WeekDays> PriceRate_weekDays { get => priceRate_weekDays; set => priceRate_weekDays = value; }
+        public List<WeekDays> PriceRate_weekDays
+        {
+            get
+            {
+                return priceRate_weekDays;
+            }
+
+            set
+            {
+                priceRate_weekDays = value;
+            }
+        }
     }
 }

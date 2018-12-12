@@ -23,8 +23,8 @@ namespace TheaterBO
             this.spectator_firstname = firstname;
             this.spectator_email = email;
             this.spectator_phone = phone;
-            this.spectator_show = show;
-            this.spectator_seatsBooked = seatsBooked;
+            this.Spectator_show = show;
+            this.Spectator_seatsBooked = seatsBooked;
         }
 
         public int Spectator_id
@@ -92,7 +92,30 @@ namespace TheaterBO
             }
         }
 
-        public int Spectator_seatsBooked { get => spectator_seatsBooked; set => spectator_seatsBooked = value; }
-        public Show Spectator_show { get => spectator_show; set => spectator_show = value; }
+        public Show Spectator_show
+        {
+            get
+            {
+                return spectator_show;
+            }
+
+            set
+            {
+                spectator_show = value;
+            }
+        }
+
+        public int Spectator_seatsBooked
+        {
+            get
+            {
+                return spectator_seatsBooked;
+            }
+
+            set
+            {
+                spectator_seatsBooked = value;
+            }
+        }
     }
 }

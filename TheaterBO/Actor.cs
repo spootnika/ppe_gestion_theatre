@@ -22,7 +22,7 @@ namespace TheaterBO
             this.actor_firstName = firstname;
             this.actor_age = age;
             this.actor_company = company;
-            this.actor_nationalities = nationalities;
+            this.Actor_nationalities = nationalities;
         }
 
         public int Actor_id
@@ -90,6 +90,17 @@ namespace TheaterBO
             }
         }
 
-        public List<Nationality> Actor_nationalities { get => actor_nationalities; set => actor_nationalities = value; }
+        public List<Nationality> Actor_nationalities
+        {
+            get
+            {
+                return actor_nationalities;
+            }
+
+            set
+            {
+                actor_nationalities = value;
+            }
+        }
     }
 }

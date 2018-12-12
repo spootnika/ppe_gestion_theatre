@@ -13,11 +13,34 @@ namespace TheaterBO
 
         public Nationality(int id, string name)
         {
-            this.nationality_id = id;
-            this.nationality_name = name;
+            this.Nationality_id = id;
+            this.Nationality_name = name;
         }
 
-        public int Nationality_id { get => nationality_id; set => nationality_id = value; }
-        public string Nationality_name { get => nationality_name; set => nationality_name = value; }
+        public int Nationality_id
+        {
+            get
+            {
+                return nationality_id;
+            }
+
+            set
+            {
+                nationality_id = value;
+            }
+        }
+
+        public string Nationality_name
+        {
+            get
+            {
+                return nationality_name;
+            }
+
+            set
+            {
+                nationality_name = value;
+            }
+        }
     }
 }

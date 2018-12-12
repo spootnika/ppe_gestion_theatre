@@ -11,13 +11,38 @@ namespace TheaterBO
         private string username;
         private bool isAdmin;
 
-        public LoginInfo(AppUser currentUser)
+        public string Username
         {
-            this.username = currentUser.User_pseudo;
-            this.isAdmin = currentUser.User_isAdmin;
+            get
+            {
+                return username;
+            }
+
+            set
+            {
+                username = value;
+            }
         }
 
-        public string Username { get => username; set => username = value; }
-        public bool IsAdmin { get => isAdmin; set => isAdmin = value; }
+        public bool IsAdmin
+        {
+            get
+            {
+                return isAdmin;
+            }
+
+            set
+            {
+                isAdmin = value;
+            }
+        }
+
+        public LoginInfo(AppUser currentUser)
+        {
+            this.Username = currentUser.User_pseudo;
+            this.IsAdmin = currentUser.User_isAdmin;
+        }
+
+       
     }
 }

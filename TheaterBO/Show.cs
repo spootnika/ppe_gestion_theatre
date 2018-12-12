@@ -14,19 +14,80 @@ namespace TheaterBO
         private PriceRate show_priceRate;
         private TheaterPiece show_theaterPiece;
 
-        public Show(int id, DateTime dateTime, int seats, PriceRate priceRate, TheaterPiece theaterPiece)
+        public int Show_id
         {
-            this.show_id = id;
-            this.show_dateTime = dateTime;
-            this.show_seats = seats;
-            this.show_priceRate = priceRate;
-            this.show_theaterPiece = theaterPiece;
+            get
+            {
+                return show_id;
+            }
+
+            set
+            {
+                show_id = value;
+            }
         }
 
-        public int Show_id { get => show_id; set => show_id = value; }
-        public DateTime Show_dateTime { get => show_dateTime; set => show_dateTime = value; }
-        public int Show_seats { get => show_seats; set => show_seats = value; }
-        public PriceRate Show_priceRate { get => show_priceRate; set => show_priceRate = value; }
-        public TheaterPiece Show_theaterPiece { get => show_theaterPiece; set => show_theaterPiece = value; }
+        public DateTime Show_dateTime
+        {
+            get
+            {
+                return show_dateTime;
+            }
+
+            set
+            {
+                show_dateTime = value;
+            }
+        }
+
+        public int Show_seats
+        {
+            get
+            {
+                return show_seats;
+            }
+
+            set
+            {
+                show_seats = value;
+            }
+        }
+
+        public PriceRate Show_priceRate
+        {
+            get
+            {
+                return show_priceRate;
+            }
+
+            set
+            {
+                show_priceRate = value;
+            }
+        }
+
+        public TheaterPiece Show_theaterPiece
+        {
+            get
+            {
+                return show_theaterPiece;
+            }
+
+            set
+            {
+                show_theaterPiece = value;
+            }
+        }
+
+        public Show(int id, DateTime dateTime, int seats, PriceRate priceRate, TheaterPiece theaterPiece)
+        {
+            this.Show_id = id;
+            this.Show_dateTime = dateTime;
+            this.Show_seats = seats;
+            this.Show_priceRate = priceRate;
+            this.Show_theaterPiece = theaterPiece;
+        }
+
+      
     }
 }
