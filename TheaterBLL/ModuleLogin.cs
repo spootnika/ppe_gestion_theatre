@@ -38,6 +38,7 @@ namespace TheaterBLL
         {
             AppUser unUtilisateur = LoginDAO.GetUser(pseudo);
 
+            // Si l'utilisateur n'existe pas (id = 0), renvoie null sinon retourne l'utilisateur
             if (unUtilisateur.User_id == 0)
             {
                 return null;

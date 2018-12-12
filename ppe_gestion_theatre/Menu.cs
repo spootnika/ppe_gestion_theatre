@@ -17,6 +17,7 @@ namespace ppe_gestion_theatre
         {
             InitializeComponent();
 
+            // Si l'utilisateur n'est pas un admin, désactivation des boutons Représentations, Synthèse et Pièces de théâtre
             if(currentUser.IsAdmin == false)
             {
                 btnShow.Enabled = false;

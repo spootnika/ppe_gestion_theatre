@@ -34,6 +34,7 @@ namespace TheaterDAL
         {
         }
 
+        // Récupération de la chaine de connexion 
         public SqlConnection GetSqlConnexion()
         {
             if (maConnexion == null)
@@ -49,6 +50,8 @@ namespace TheaterDAL
             }
             return maConnexion;
         }
+
+        // Fermeture de la connexion
         public void CloseConnexion()
         {
             // Si la connexion est ouverte, on la ferme
