@@ -42,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModuleLogin.cs" />
+    <Compile Include="ModulePiecesTheatre.cs" />
+    <Compile Include="ModuleRepresentations.cs" />
+    <Compile Include="ModuleReservations.cs" />
+    <Compile Include="ModuleSynthese.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
