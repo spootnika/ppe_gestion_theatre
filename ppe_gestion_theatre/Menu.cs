@@ -35,6 +35,7 @@ namespace ppe_gestion_theatre
 
         }
 
+        // Arrêt du processus à la fermeture du formulaire
         private void Menu_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
