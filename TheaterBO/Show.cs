@@ -13,6 +13,7 @@ namespace TheaterBO
         private int show_seats;
         private PriceRate show_priceRate;
         private TheaterPiece show_theaterPiece;
+        private List<Spectator> show_spectators;
 
         public int Show_id
         {
@@ -79,13 +80,27 @@ namespace TheaterBO
             }
         }
 
-        public Show(int id, DateTime dateTime, int seats, PriceRate priceRate, TheaterPiece theaterPiece)
+        public List<Spectator> Show_spectators
+        {
+            get
+            {
+                return show_spectators;
+            }
+
+            set
+            {
+                show_spectators = value;
+            }
+        }
+
+        public Show(int id, DateTime dateTime, int seats, PriceRate priceRate, TheaterPiece theaterPiece, List<Spectator> spectators)
         {
             this.Show_id = id;
             this.Show_dateTime = dateTime;
             this.Show_seats = seats;
             this.Show_priceRate = priceRate;
             this.Show_theaterPiece = theaterPiece;
+            this.Show_spectators = spectators;
         }
 
       

@@ -10,11 +10,13 @@ namespace TheaterBO
     {
         private int theme_id;
         private string theme_name;
+        private List<TheaterPiece> theme_theaterPieces;
 
-        public Theme(int id, string name)
+        public Theme(int id, string name, List<TheaterPiece> theaterPieces)
         {
             this.Theme_id = id;
             this.Theme_name = name;
+            this.Theme_theaterPieces = theaterPieces;
         }
 
         public int Theme_id
@@ -40,6 +42,19 @@ namespace TheaterBO
             set
             {
                 theme_name = value;
+            }
+        }
+
+        public List<TheaterPiece> Theme_theaterPieces
+        {
+            get
+            {
+                return theme_theaterPieces;
+            }
+
+            set
+            {
+                theme_theaterPieces = value;
             }
         }
     }

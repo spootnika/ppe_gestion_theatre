@@ -10,11 +10,13 @@ namespace TheaterBO
     {
         private int publicType_id;
         private string publicType_name;
+        private List<TheaterPiece> publicType_theaterPieces;
 
-        public PublicType(int id, string name)
+        public PublicType(int id, string name, List<TheaterPiece> theaterPieces)
         {
             this.PublicType_id = id;
             this.PublicType_name = name;
+            this.PublicType_theaterPieces = theaterPieces;
         }
 
         public int PublicType_id
@@ -40,6 +42,19 @@ namespace TheaterBO
             set
             {
                 publicType_name = value;
+            }
+        }
+
+        public List<TheaterPiece> PublicType_theaterPieces
+        {
+            get
+            {
+                return publicType_theaterPieces;
+            }
+
+            set
+            {
+                publicType_theaterPieces = value;
             }
         }
     }

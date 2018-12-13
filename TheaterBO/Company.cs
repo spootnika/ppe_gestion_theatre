@@ -13,14 +13,16 @@ namespace TheaterBO
         private string company_city;
         private string company_region;
         private string company_artisticDirector;
+        private List<Actor> company_actors;
 
-        public Company(int id, string name, string city, string region, string artisticDirector)
+        public Company(int id, string name, string city, string region, string artisticDirector, List<Actor> actors)
         {
-            this.company_id = id;
-            this.company_name = name;
-            this.company_city = city;
-            this.company_region = region;
-            this.company_artisticDirector = artisticDirector;
+            this.Company_id = id;
+            this.Company_name = name;
+            this.Company_city = city;
+            this.Company_region = region;
+            this.Company_artisticDirector = artisticDirector;
+            this.Company_actors = actors;
         }
         
         public int Company_id
@@ -85,6 +87,17 @@ namespace TheaterBO
             set
             {
                 company_artisticDirector = value;
+            }
+        }
+
+        public List<Actor> Company_actors {
+            get
+            {
+                return company_actors;
+            }
+            set
+            {
+                company_actors = value;
             }
         }
     }
