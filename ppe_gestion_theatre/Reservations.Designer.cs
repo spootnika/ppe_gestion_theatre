@@ -60,6 +60,7 @@
             this.lblDureePiece = new System.Windows.Forms.Label();
             this.lblThemePiece = new System.Windows.Forms.Label();
             this.lblNomPiece = new System.Windows.Forms.Label();
+            this.btnMenu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeReservations)).BeginInit();
             this.grbDetails.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +70,7 @@
             this.lblTitre.AutoSize = true;
             this.lblTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitre.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblTitre.Location = new System.Drawing.Point(12, 9);
+            this.lblTitre.Location = new System.Drawing.Point(135, 12);
             this.lblTitre.Name = "lblTitre";
             this.lblTitre.Size = new System.Drawing.Size(426, 39);
             this.lblTitre.TabIndex = 0;
@@ -82,7 +83,7 @@
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAjouter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(577, 22);
+            this.btnAjouter.Location = new System.Drawing.Point(604, 22);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(160, 29);
             this.btnAjouter.TabIndex = 1;
@@ -425,12 +426,26 @@
             this.lblNomPiece.TabIndex = 0;
             this.lblNomPiece.Text = "Pièce :";
             // 
+            // btnMenu
+            // 
+            this.btnMenu.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenu.ForeColor = System.Drawing.Color.White;
+            this.btnMenu.Location = new System.Drawing.Point(19, 22);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(69, 29);
+            this.btnMenu.TabIndex = 5;
+            this.btnMenu.Text = "Menu";
+            this.btnMenu.UseVisualStyleBackColor = false;
+            // 
             // Reservations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(800, 764);
+            this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.grbDetails);
             this.Controls.Add(this.dgvListeReservations);
             this.Controls.Add(this.btnAjouter);
@@ -479,5 +494,6 @@
         private System.Windows.Forms.Label lblLeTheme;
         private System.Windows.Forms.Label lblLaPiece;
         private System.Windows.Forms.Button btnModifier;
+        private System.Windows.Forms.Button btnMenu;
     }
 }
