@@ -33,33 +33,33 @@
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.dgvListeReservations = new System.Windows.Forms.DataGridView();
             this.grbDetails = new System.Windows.Forms.GroupBox();
-            this.lblNomPiece = new System.Windows.Forms.Label();
-            this.lblThemePiece = new System.Windows.Forms.Label();
-            this.lblDureePiece = new System.Windows.Forms.Label();
-            this.lblTypePublicPiece = new System.Windows.Forms.Label();
-            this.lblNomReservation = new System.Windows.Forms.Label();
-            this.lblPrenomReservation = new System.Windows.Forms.Label();
-            this.lblNbPlacesReservation = new System.Windows.Forms.Label();
-            this.lblReprésentation = new System.Windows.Forms.Label();
-            this.lblCompagniePiece = new System.Windows.Forms.Label();
-            this.lblPrixFixe = new System.Windows.Forms.Label();
-            this.lblEmailReservation = new System.Windows.Forms.Label();
-            this.lblTelephoneReservation = new System.Windows.Forms.Label();
-            this.lblTotalPrix = new System.Windows.Forms.Label();
-            this.btnModifier = new System.Windows.Forms.Button();
-            this.lblLaPiece = new System.Windows.Forms.Label();
-            this.lblLeTheme = new System.Windows.Forms.Label();
-            this.lblLaDuree = new System.Windows.Forms.Label();
-            this.lblLeType = new System.Windows.Forms.Label();
-            this.lblLaRepresentation = new System.Windows.Forms.Label();
-            this.lblLaCompagnie = new System.Windows.Forms.Label();
-            this.lblLePrixFixe = new System.Windows.Forms.Label();
-            this.lblLeNom = new System.Windows.Forms.Label();
-            this.lblLePrenom = new System.Windows.Forms.Label();
-            this.lblLeNbPlaces = new System.Windows.Forms.Label();
-            this.lblLeEmail = new System.Windows.Forms.Label();
-            this.lblLeTelephone = new System.Windows.Forms.Label();
             this.lblLePrixTotal = new System.Windows.Forms.Label();
+            this.lblLeTelephone = new System.Windows.Forms.Label();
+            this.lblLeEmail = new System.Windows.Forms.Label();
+            this.lblLeNbPlaces = new System.Windows.Forms.Label();
+            this.lblLePrenom = new System.Windows.Forms.Label();
+            this.lblLeNom = new System.Windows.Forms.Label();
+            this.lblLePrixFixe = new System.Windows.Forms.Label();
+            this.lblLaCompagnie = new System.Windows.Forms.Label();
+            this.lblLaRepresentation = new System.Windows.Forms.Label();
+            this.lblLeType = new System.Windows.Forms.Label();
+            this.lblLaDuree = new System.Windows.Forms.Label();
+            this.lblLeTheme = new System.Windows.Forms.Label();
+            this.lblLaPiece = new System.Windows.Forms.Label();
+            this.btnModifier = new System.Windows.Forms.Button();
+            this.lblTotalPrix = new System.Windows.Forms.Label();
+            this.lblTelephoneReservation = new System.Windows.Forms.Label();
+            this.lblEmailReservation = new System.Windows.Forms.Label();
+            this.lblPrixFixe = new System.Windows.Forms.Label();
+            this.lblCompagniePiece = new System.Windows.Forms.Label();
+            this.lblReprésentation = new System.Windows.Forms.Label();
+            this.lblNbPlacesReservation = new System.Windows.Forms.Label();
+            this.lblPrenomReservation = new System.Windows.Forms.Label();
+            this.lblNomReservation = new System.Windows.Forms.Label();
+            this.lblTypePublicPiece = new System.Windows.Forms.Label();
+            this.lblDureePiece = new System.Windows.Forms.Label();
+            this.lblThemePiece = new System.Windows.Forms.Label();
+            this.lblNomPiece = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeReservations)).BeginInit();
             this.grbDetails.SuspendLayout();
             this.SuspendLayout();
@@ -152,148 +152,122 @@
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la réservation";
             // 
-            // lblNomPiece
+            // lblLePrixTotal
             // 
-            this.lblNomPiece.AutoSize = true;
-            this.lblNomPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomPiece.ForeColor = System.Drawing.Color.Black;
-            this.lblNomPiece.Location = new System.Drawing.Point(13, 32);
-            this.lblNomPiece.Name = "lblNomPiece";
-            this.lblNomPiece.Size = new System.Drawing.Size(56, 16);
-            this.lblNomPiece.TabIndex = 0;
-            this.lblNomPiece.Text = "Pièce :";
+            this.lblLePrixTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLePrixTotal.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblLePrixTotal.Location = new System.Drawing.Point(582, 264);
+            this.lblLePrixTotal.Name = "lblLePrixTotal";
+            this.lblLePrixTotal.Size = new System.Drawing.Size(167, 16);
+            this.lblLePrixTotal.TabIndex = 26;
             // 
-            // lblThemePiece
+            // lblLeTelephone
             // 
-            this.lblThemePiece.AutoSize = true;
-            this.lblThemePiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThemePiece.ForeColor = System.Drawing.Color.Black;
-            this.lblThemePiece.Location = new System.Drawing.Point(13, 59);
-            this.lblThemePiece.Name = "lblThemePiece";
-            this.lblThemePiece.Size = new System.Drawing.Size(64, 16);
-            this.lblThemePiece.TabIndex = 1;
-            this.lblThemePiece.Text = "Thème :";
+            this.lblLeTelephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeTelephone.ForeColor = System.Drawing.Color.Black;
+            this.lblLeTelephone.Location = new System.Drawing.Point(600, 229);
+            this.lblLeTelephone.Name = "lblLeTelephone";
+            this.lblLeTelephone.Size = new System.Drawing.Size(149, 16);
+            this.lblLeTelephone.TabIndex = 25;
             // 
-            // lblDureePiece
+            // lblLeEmail
             // 
-            this.lblDureePiece.AutoSize = true;
-            this.lblDureePiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDureePiece.ForeColor = System.Drawing.Color.Black;
-            this.lblDureePiece.Location = new System.Drawing.Point(13, 87);
-            this.lblDureePiece.Name = "lblDureePiece";
-            this.lblDureePiece.Size = new System.Drawing.Size(58, 16);
-            this.lblDureePiece.TabIndex = 2;
-            this.lblDureePiece.Text = "Durée :";
+            this.lblLeEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeEmail.ForeColor = System.Drawing.Color.Black;
+            this.lblLeEmail.Location = new System.Drawing.Point(590, 202);
+            this.lblLeEmail.Name = "lblLeEmail";
+            this.lblLeEmail.Size = new System.Drawing.Size(159, 16);
+            this.lblLeEmail.TabIndex = 24;
             // 
-            // lblTypePublicPiece
+            // lblLeNbPlaces
             // 
-            this.lblTypePublicPiece.AutoSize = true;
-            this.lblTypePublicPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypePublicPiece.ForeColor = System.Drawing.Color.Black;
-            this.lblTypePublicPiece.Location = new System.Drawing.Point(13, 115);
-            this.lblTypePublicPiece.Name = "lblTypePublicPiece";
-            this.lblTypePublicPiece.Size = new System.Drawing.Size(120, 16);
-            this.lblTypePublicPiece.TabIndex = 3;
-            this.lblTypePublicPiece.Text = "Type de public :";
+            this.lblLeNbPlaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeNbPlaces.ForeColor = System.Drawing.Color.Black;
+            this.lblLeNbPlaces.Location = new System.Drawing.Point(163, 264);
+            this.lblLeNbPlaces.Name = "lblLeNbPlaces";
+            this.lblLeNbPlaces.Size = new System.Drawing.Size(278, 16);
+            this.lblLeNbPlaces.TabIndex = 23;
             // 
-            // lblNomReservation
+            // lblLePrenom
             // 
-            this.lblNomReservation.AutoSize = true;
-            this.lblNomReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomReservation.ForeColor = System.Drawing.Color.Black;
-            this.lblNomReservation.Location = new System.Drawing.Point(13, 202);
-            this.lblNomReservation.Name = "lblNomReservation";
-            this.lblNomReservation.Size = new System.Drawing.Size(48, 16);
-            this.lblNomReservation.TabIndex = 4;
-            this.lblNomReservation.Text = "Nom :";
+            this.lblLePrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLePrenom.ForeColor = System.Drawing.Color.Black;
+            this.lblLePrenom.Location = new System.Drawing.Point(88, 229);
+            this.lblLePrenom.Name = "lblLePrenom";
+            this.lblLePrenom.Size = new System.Drawing.Size(353, 16);
+            this.lblLePrenom.TabIndex = 22;
             // 
-            // lblPrenomReservation
+            // lblLeNom
             // 
-            this.lblPrenomReservation.AutoSize = true;
-            this.lblPrenomReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrenomReservation.ForeColor = System.Drawing.Color.Black;
-            this.lblPrenomReservation.Location = new System.Drawing.Point(13, 229);
-            this.lblPrenomReservation.Name = "lblPrenomReservation";
-            this.lblPrenomReservation.Size = new System.Drawing.Size(69, 16);
-            this.lblPrenomReservation.TabIndex = 5;
-            this.lblPrenomReservation.Text = "Prénom :";
+            this.lblLeNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeNom.ForeColor = System.Drawing.Color.Black;
+            this.lblLeNom.Location = new System.Drawing.Point(67, 202);
+            this.lblLeNom.Name = "lblLeNom";
+            this.lblLeNom.Size = new System.Drawing.Size(374, 16);
+            this.lblLeNom.TabIndex = 21;
             // 
-            // lblNbPlacesReservation
+            // lblLePrixFixe
             // 
-            this.lblNbPlacesReservation.AutoSize = true;
-            this.lblNbPlacesReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNbPlacesReservation.ForeColor = System.Drawing.Color.Black;
-            this.lblNbPlacesReservation.Location = new System.Drawing.Point(13, 264);
-            this.lblNbPlacesReservation.Name = "lblNbPlacesReservation";
-            this.lblNbPlacesReservation.Size = new System.Drawing.Size(144, 16);
-            this.lblNbPlacesReservation.TabIndex = 6;
-            this.lblNbPlacesReservation.Text = "Nombre de places :";
+            this.lblLePrixFixe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLePrixFixe.ForeColor = System.Drawing.Color.Black;
+            this.lblLePrixFixe.Location = new System.Drawing.Point(539, 115);
+            this.lblLePrixFixe.Name = "lblLePrixFixe";
+            this.lblLePrixFixe.Size = new System.Drawing.Size(210, 16);
+            this.lblLePrixFixe.TabIndex = 20;
             // 
-            // lblReprésentation
+            // lblLaCompagnie
             // 
-            this.lblReprésentation.AutoSize = true;
-            this.lblReprésentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReprésentation.ForeColor = System.Drawing.Color.Black;
-            this.lblReprésentation.Location = new System.Drawing.Point(463, 32);
-            this.lblReprésentation.Name = "lblReprésentation";
-            this.lblReprésentation.Size = new System.Drawing.Size(122, 16);
-            this.lblReprésentation.TabIndex = 7;
-            this.lblReprésentation.Text = "Représentation :";
+            this.lblLaCompagnie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaCompagnie.ForeColor = System.Drawing.Color.Black;
+            this.lblLaCompagnie.Location = new System.Drawing.Point(564, 87);
+            this.lblLaCompagnie.Name = "lblLaCompagnie";
+            this.lblLaCompagnie.Size = new System.Drawing.Size(185, 16);
+            this.lblLaCompagnie.TabIndex = 19;
             // 
-            // lblCompagniePiece
+            // lblLaRepresentation
             // 
-            this.lblCompagniePiece.AutoSize = true;
-            this.lblCompagniePiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompagniePiece.ForeColor = System.Drawing.Color.Black;
-            this.lblCompagniePiece.Location = new System.Drawing.Point(463, 87);
-            this.lblCompagniePiece.Name = "lblCompagniePiece";
-            this.lblCompagniePiece.Size = new System.Drawing.Size(95, 16);
-            this.lblCompagniePiece.TabIndex = 8;
-            this.lblCompagniePiece.Text = "Compagnie :";
+            this.lblLaRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaRepresentation.ForeColor = System.Drawing.Color.Black;
+            this.lblLaRepresentation.Location = new System.Drawing.Point(591, 32);
+            this.lblLaRepresentation.Name = "lblLaRepresentation";
+            this.lblLaRepresentation.Size = new System.Drawing.Size(158, 43);
+            this.lblLaRepresentation.TabIndex = 18;
             // 
-            // lblPrixFixe
+            // lblLeType
             // 
-            this.lblPrixFixe.AutoSize = true;
-            this.lblPrixFixe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrixFixe.ForeColor = System.Drawing.Color.Black;
-            this.lblPrixFixe.Location = new System.Drawing.Point(463, 115);
-            this.lblPrixFixe.Name = "lblPrixFixe";
-            this.lblPrixFixe.Size = new System.Drawing.Size(70, 16);
-            this.lblPrixFixe.TabIndex = 9;
-            this.lblPrixFixe.Text = "Prix fixe :";
+            this.lblLeType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeType.ForeColor = System.Drawing.Color.Black;
+            this.lblLeType.Location = new System.Drawing.Point(139, 115);
+            this.lblLeType.Name = "lblLeType";
+            this.lblLeType.Size = new System.Drawing.Size(302, 16);
+            this.lblLeType.TabIndex = 17;
             // 
-            // lblEmailReservation
+            // lblLaDuree
             // 
-            this.lblEmailReservation.AutoSize = true;
-            this.lblEmailReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmailReservation.ForeColor = System.Drawing.Color.Black;
-            this.lblEmailReservation.Location = new System.Drawing.Point(463, 202);
-            this.lblEmailReservation.Name = "lblEmailReservation";
-            this.lblEmailReservation.Size = new System.Drawing.Size(121, 16);
-            this.lblEmailReservation.TabIndex = 10;
-            this.lblEmailReservation.Text = "Adresse e-mail :";
+            this.lblLaDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaDuree.ForeColor = System.Drawing.Color.Black;
+            this.lblLaDuree.Location = new System.Drawing.Point(77, 87);
+            this.lblLaDuree.Name = "lblLaDuree";
+            this.lblLaDuree.Size = new System.Drawing.Size(364, 16);
+            this.lblLaDuree.TabIndex = 16;
             // 
-            // lblTelephoneReservation
+            // lblLeTheme
             // 
-            this.lblTelephoneReservation.AutoSize = true;
-            this.lblTelephoneReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelephoneReservation.ForeColor = System.Drawing.Color.Black;
-            this.lblTelephoneReservation.Location = new System.Drawing.Point(463, 229);
-            this.lblTelephoneReservation.Name = "lblTelephoneReservation";
-            this.lblTelephoneReservation.Size = new System.Drawing.Size(131, 16);
-            this.lblTelephoneReservation.TabIndex = 11;
-            this.lblTelephoneReservation.Text = "N° de téléphone : ";
+            this.lblLeTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLeTheme.ForeColor = System.Drawing.Color.Black;
+            this.lblLeTheme.Location = new System.Drawing.Point(83, 59);
+            this.lblLeTheme.Name = "lblLeTheme";
+            this.lblLeTheme.Size = new System.Drawing.Size(358, 16);
+            this.lblLeTheme.TabIndex = 15;
             // 
-            // lblTotalPrix
+            // lblLaPiece
             // 
-            this.lblTotalPrix.AutoSize = true;
-            this.lblTotalPrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalPrix.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalPrix.Location = new System.Drawing.Point(463, 264);
-            this.lblTotalPrix.Name = "lblTotalPrix";
-            this.lblTotalPrix.Size = new System.Drawing.Size(113, 16);
-            this.lblTotalPrix.TabIndex = 12;
-            this.lblTotalPrix.Text = "Total à payer : ";
+            this.lblLaPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaPiece.ForeColor = System.Drawing.Color.Black;
+            this.lblLaPiece.Location = new System.Drawing.Point(75, 32);
+            this.lblLaPiece.Name = "lblLaPiece";
+            this.lblLaPiece.Size = new System.Drawing.Size(366, 16);
+            this.lblLaPiece.TabIndex = 14;
             // 
             // btnModifier
             // 
@@ -308,122 +282,148 @@
             this.btnModifier.Text = "Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
             // 
-            // lblLaPiece
+            // lblTotalPrix
             // 
-            this.lblLaPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaPiece.ForeColor = System.Drawing.Color.Black;
-            this.lblLaPiece.Location = new System.Drawing.Point(75, 32);
-            this.lblLaPiece.Name = "lblLaPiece";
-            this.lblLaPiece.Size = new System.Drawing.Size(366, 16);
-            this.lblLaPiece.TabIndex = 14;
+            this.lblTotalPrix.AutoSize = true;
+            this.lblTotalPrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrix.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalPrix.Location = new System.Drawing.Point(463, 264);
+            this.lblTotalPrix.Name = "lblTotalPrix";
+            this.lblTotalPrix.Size = new System.Drawing.Size(113, 16);
+            this.lblTotalPrix.TabIndex = 12;
+            this.lblTotalPrix.Text = "Total à payer : ";
             // 
-            // lblLeTheme
+            // lblTelephoneReservation
             // 
-            this.lblLeTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeTheme.ForeColor = System.Drawing.Color.Black;
-            this.lblLeTheme.Location = new System.Drawing.Point(83, 59);
-            this.lblLeTheme.Name = "lblLeTheme";
-            this.lblLeTheme.Size = new System.Drawing.Size(358, 16);
-            this.lblLeTheme.TabIndex = 15;
+            this.lblTelephoneReservation.AutoSize = true;
+            this.lblTelephoneReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelephoneReservation.ForeColor = System.Drawing.Color.Black;
+            this.lblTelephoneReservation.Location = new System.Drawing.Point(463, 229);
+            this.lblTelephoneReservation.Name = "lblTelephoneReservation";
+            this.lblTelephoneReservation.Size = new System.Drawing.Size(131, 16);
+            this.lblTelephoneReservation.TabIndex = 11;
+            this.lblTelephoneReservation.Text = "N° de téléphone : ";
             // 
-            // lblLaDuree
+            // lblEmailReservation
             // 
-            this.lblLaDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaDuree.ForeColor = System.Drawing.Color.Black;
-            this.lblLaDuree.Location = new System.Drawing.Point(77, 87);
-            this.lblLaDuree.Name = "lblLaDuree";
-            this.lblLaDuree.Size = new System.Drawing.Size(364, 16);
-            this.lblLaDuree.TabIndex = 16;
+            this.lblEmailReservation.AutoSize = true;
+            this.lblEmailReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmailReservation.ForeColor = System.Drawing.Color.Black;
+            this.lblEmailReservation.Location = new System.Drawing.Point(463, 202);
+            this.lblEmailReservation.Name = "lblEmailReservation";
+            this.lblEmailReservation.Size = new System.Drawing.Size(121, 16);
+            this.lblEmailReservation.TabIndex = 10;
+            this.lblEmailReservation.Text = "Adresse e-mail :";
             // 
-            // lblLeType
+            // lblPrixFixe
             // 
-            this.lblLeType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeType.ForeColor = System.Drawing.Color.Black;
-            this.lblLeType.Location = new System.Drawing.Point(139, 115);
-            this.lblLeType.Name = "lblLeType";
-            this.lblLeType.Size = new System.Drawing.Size(302, 16);
-            this.lblLeType.TabIndex = 17;
+            this.lblPrixFixe.AutoSize = true;
+            this.lblPrixFixe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrixFixe.ForeColor = System.Drawing.Color.Black;
+            this.lblPrixFixe.Location = new System.Drawing.Point(463, 115);
+            this.lblPrixFixe.Name = "lblPrixFixe";
+            this.lblPrixFixe.Size = new System.Drawing.Size(70, 16);
+            this.lblPrixFixe.TabIndex = 9;
+            this.lblPrixFixe.Text = "Prix fixe :";
             // 
-            // lblLaRepresentation
+            // lblCompagniePiece
             // 
-            this.lblLaRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaRepresentation.ForeColor = System.Drawing.Color.Black;
-            this.lblLaRepresentation.Location = new System.Drawing.Point(591, 32);
-            this.lblLaRepresentation.Name = "lblLaRepresentation";
-            this.lblLaRepresentation.Size = new System.Drawing.Size(158, 43);
-            this.lblLaRepresentation.TabIndex = 18;
+            this.lblCompagniePiece.AutoSize = true;
+            this.lblCompagniePiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompagniePiece.ForeColor = System.Drawing.Color.Black;
+            this.lblCompagniePiece.Location = new System.Drawing.Point(463, 87);
+            this.lblCompagniePiece.Name = "lblCompagniePiece";
+            this.lblCompagniePiece.Size = new System.Drawing.Size(95, 16);
+            this.lblCompagniePiece.TabIndex = 8;
+            this.lblCompagniePiece.Text = "Compagnie :";
             // 
-            // lblLaCompagnie
+            // lblReprésentation
             // 
-            this.lblLaCompagnie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaCompagnie.ForeColor = System.Drawing.Color.Black;
-            this.lblLaCompagnie.Location = new System.Drawing.Point(564, 87);
-            this.lblLaCompagnie.Name = "lblLaCompagnie";
-            this.lblLaCompagnie.Size = new System.Drawing.Size(185, 16);
-            this.lblLaCompagnie.TabIndex = 19;
+            this.lblReprésentation.AutoSize = true;
+            this.lblReprésentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReprésentation.ForeColor = System.Drawing.Color.Black;
+            this.lblReprésentation.Location = new System.Drawing.Point(463, 32);
+            this.lblReprésentation.Name = "lblReprésentation";
+            this.lblReprésentation.Size = new System.Drawing.Size(122, 16);
+            this.lblReprésentation.TabIndex = 7;
+            this.lblReprésentation.Text = "Représentation :";
             // 
-            // lblLePrixFixe
+            // lblNbPlacesReservation
             // 
-            this.lblLePrixFixe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLePrixFixe.ForeColor = System.Drawing.Color.Black;
-            this.lblLePrixFixe.Location = new System.Drawing.Point(539, 115);
-            this.lblLePrixFixe.Name = "lblLePrixFixe";
-            this.lblLePrixFixe.Size = new System.Drawing.Size(210, 16);
-            this.lblLePrixFixe.TabIndex = 20;
+            this.lblNbPlacesReservation.AutoSize = true;
+            this.lblNbPlacesReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNbPlacesReservation.ForeColor = System.Drawing.Color.Black;
+            this.lblNbPlacesReservation.Location = new System.Drawing.Point(13, 264);
+            this.lblNbPlacesReservation.Name = "lblNbPlacesReservation";
+            this.lblNbPlacesReservation.Size = new System.Drawing.Size(144, 16);
+            this.lblNbPlacesReservation.TabIndex = 6;
+            this.lblNbPlacesReservation.Text = "Nombre de places :";
             // 
-            // lblLeNom
+            // lblPrenomReservation
             // 
-            this.lblLeNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeNom.ForeColor = System.Drawing.Color.Black;
-            this.lblLeNom.Location = new System.Drawing.Point(67, 202);
-            this.lblLeNom.Name = "lblLeNom";
-            this.lblLeNom.Size = new System.Drawing.Size(374, 16);
-            this.lblLeNom.TabIndex = 21;
+            this.lblPrenomReservation.AutoSize = true;
+            this.lblPrenomReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrenomReservation.ForeColor = System.Drawing.Color.Black;
+            this.lblPrenomReservation.Location = new System.Drawing.Point(13, 229);
+            this.lblPrenomReservation.Name = "lblPrenomReservation";
+            this.lblPrenomReservation.Size = new System.Drawing.Size(69, 16);
+            this.lblPrenomReservation.TabIndex = 5;
+            this.lblPrenomReservation.Text = "Prénom :";
             // 
-            // lblLePrenom
+            // lblNomReservation
             // 
-            this.lblLePrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLePrenom.ForeColor = System.Drawing.Color.Black;
-            this.lblLePrenom.Location = new System.Drawing.Point(88, 229);
-            this.lblLePrenom.Name = "lblLePrenom";
-            this.lblLePrenom.Size = new System.Drawing.Size(353, 16);
-            this.lblLePrenom.TabIndex = 22;
+            this.lblNomReservation.AutoSize = true;
+            this.lblNomReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomReservation.ForeColor = System.Drawing.Color.Black;
+            this.lblNomReservation.Location = new System.Drawing.Point(13, 202);
+            this.lblNomReservation.Name = "lblNomReservation";
+            this.lblNomReservation.Size = new System.Drawing.Size(48, 16);
+            this.lblNomReservation.TabIndex = 4;
+            this.lblNomReservation.Text = "Nom :";
             // 
-            // lblLeNbPlaces
+            // lblTypePublicPiece
             // 
-            this.lblLeNbPlaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeNbPlaces.ForeColor = System.Drawing.Color.Black;
-            this.lblLeNbPlaces.Location = new System.Drawing.Point(163, 264);
-            this.lblLeNbPlaces.Name = "lblLeNbPlaces";
-            this.lblLeNbPlaces.Size = new System.Drawing.Size(278, 16);
-            this.lblLeNbPlaces.TabIndex = 23;
+            this.lblTypePublicPiece.AutoSize = true;
+            this.lblTypePublicPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTypePublicPiece.ForeColor = System.Drawing.Color.Black;
+            this.lblTypePublicPiece.Location = new System.Drawing.Point(13, 115);
+            this.lblTypePublicPiece.Name = "lblTypePublicPiece";
+            this.lblTypePublicPiece.Size = new System.Drawing.Size(120, 16);
+            this.lblTypePublicPiece.TabIndex = 3;
+            this.lblTypePublicPiece.Text = "Type de public :";
             // 
-            // lblLeEmail
+            // lblDureePiece
             // 
-            this.lblLeEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeEmail.ForeColor = System.Drawing.Color.Black;
-            this.lblLeEmail.Location = new System.Drawing.Point(590, 202);
-            this.lblLeEmail.Name = "lblLeEmail";
-            this.lblLeEmail.Size = new System.Drawing.Size(159, 16);
-            this.lblLeEmail.TabIndex = 24;
+            this.lblDureePiece.AutoSize = true;
+            this.lblDureePiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDureePiece.ForeColor = System.Drawing.Color.Black;
+            this.lblDureePiece.Location = new System.Drawing.Point(13, 87);
+            this.lblDureePiece.Name = "lblDureePiece";
+            this.lblDureePiece.Size = new System.Drawing.Size(58, 16);
+            this.lblDureePiece.TabIndex = 2;
+            this.lblDureePiece.Text = "Durée :";
             // 
-            // lblLeTelephone
+            // lblThemePiece
             // 
-            this.lblLeTelephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLeTelephone.ForeColor = System.Drawing.Color.Black;
-            this.lblLeTelephone.Location = new System.Drawing.Point(600, 229);
-            this.lblLeTelephone.Name = "lblLeTelephone";
-            this.lblLeTelephone.Size = new System.Drawing.Size(149, 16);
-            this.lblLeTelephone.TabIndex = 25;
+            this.lblThemePiece.AutoSize = true;
+            this.lblThemePiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThemePiece.ForeColor = System.Drawing.Color.Black;
+            this.lblThemePiece.Location = new System.Drawing.Point(13, 59);
+            this.lblThemePiece.Name = "lblThemePiece";
+            this.lblThemePiece.Size = new System.Drawing.Size(64, 16);
+            this.lblThemePiece.TabIndex = 1;
+            this.lblThemePiece.Text = "Thème :";
             // 
-            // lblLePrixTotal
+            // lblNomPiece
             // 
-            this.lblLePrixTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLePrixTotal.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblLePrixTotal.Location = new System.Drawing.Point(582, 264);
-            this.lblLePrixTotal.Name = "lblLePrixTotal";
-            this.lblLePrixTotal.Size = new System.Drawing.Size(167, 16);
-            this.lblLePrixTotal.TabIndex = 26;
+            this.lblNomPiece.AutoSize = true;
+            this.lblNomPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomPiece.ForeColor = System.Drawing.Color.Black;
+            this.lblNomPiece.Location = new System.Drawing.Point(13, 32);
+            this.lblNomPiece.Name = "lblNomPiece";
+            this.lblNomPiece.Size = new System.Drawing.Size(56, 16);
+            this.lblNomPiece.TabIndex = 0;
+            this.lblNomPiece.Text = "Pièce :";
             // 
             // Reservations
             // 
