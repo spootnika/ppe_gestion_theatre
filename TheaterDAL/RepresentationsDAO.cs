@@ -15,7 +15,7 @@ namespace TheaterDAL
         private static RepresentationsDAO uneRepresentationDAO;
 
         // Accesseur en lecture, renvoi une instance
-        public static RepresentationsDAO GetRepresentation()
+        public static RepresentationsDAO GetRepresentationDAO()
         {
             if (uneRepresentationDAO == null)
             {

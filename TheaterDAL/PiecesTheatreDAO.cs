@@ -14,7 +14,7 @@ namespace TheaterDAL
         private static PiecesTheatreDAO unePieceTheatreDAO;
 
         // Accesseur en lecture, renvoi une instance
-        public static PiecesTheatreDAO GetPieces()
+        public static PiecesTheatreDAO GetPiecesTheatreDAO()
         {
             if (unePieceTheatreDAO == null)
             {

@@ -44,8 +44,7 @@ namespace TheaterDAL
             SqlConnection maConnexion;
 
             // Récupération de la liste des représentations
-            List<Show> lesRepresentations;
-            lesRepresentations = GetShows();
+            List<Show> lesRepresentations = RepresentationsDAO.GetShows();
             
             // Connexion à la DB
             maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
