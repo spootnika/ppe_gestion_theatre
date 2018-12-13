@@ -53,12 +53,12 @@ namespace ppe_gestion_theatre
             PrixColumn.HeaderText = "Prix fixe";
 
             // Ajout des 6 en-têtes de colonne au datagridview
-            dgvListePiecesTheatre.Add(NomColumn);
-            dgvListePiecesTheatre.Add(AuteurColumn);
-            dgvListePiecesTheatre.Add(ThemeColumn);
-            dgvListePiecesTheatre.Add(PublicColumn);
-            dgvListePiecesTheatre.Add(DureeColumn);
-            dgvListePiecesTheatre.Add(PrixColumn);
+            dgvListePiecesTheatre.Rows.Add(NomColumn);
+            dgvListePiecesTheatre.Rows.Add(AuteurColumn);
+            dgvListePiecesTheatre.Rows.Add(ThemeColumn);
+            dgvListePiecesTheatre.Rows.Add(PublicColumn);
+            dgvListePiecesTheatre.Rows.Add(DureeColumn);
+            dgvListePiecesTheatre.Rows.Add(PrixColumn);
 
             // Définition du style apporté au datagridview
             dgvListePiecesTheatre.ColumnHeadersVisible = true;

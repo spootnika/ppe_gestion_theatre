@@ -52,6 +52,7 @@
             this.lblLaDescription = new System.Windows.Forms.Label();
             this.lblNationalite = new System.Windows.Forms.Label();
             this.lblLaNationalite = new System.Windows.Forms.Label();
+            this.btnMenu = new System.Windows.Forms.Button();
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).BeginInit();
             this.SuspendLayout();
@@ -268,7 +269,7 @@
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAjouter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(565, 34);
+            this.btnAjouter.Location = new System.Drawing.Point(586, 34);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(192, 29);
             this.btnAjouter.TabIndex = 8;
@@ -280,7 +281,7 @@
             this.lblTitre.AutoSize = true;
             this.lblTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitre.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblTitre.Location = new System.Drawing.Point(26, 21);
+            this.lblTitre.Location = new System.Drawing.Point(166, 21);
             this.lblTitre.Name = "lblTitre";
             this.lblTitre.Size = new System.Drawing.Size(357, 39);
             this.lblTitre.TabIndex = 7;
@@ -328,11 +329,25 @@
             this.lblLaNationalite.Size = new System.Drawing.Size(158, 16);
             this.lblLaNationalite.TabIndex = 23;
             // 
+            // btnMenu
+            // 
+            this.btnMenu.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenu.ForeColor = System.Drawing.Color.White;
+            this.btnMenu.Location = new System.Drawing.Point(25, 34);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(69, 29);
+            this.btnMenu.TabIndex = 9;
+            this.btnMenu.Text = "Menu";
+            this.btnMenu.UseVisualStyleBackColor = false;
+            // 
             // PiecesTheatre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 754);
+            this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnAjouter);
             this.Controls.Add(this.lblTitre);
             this.Controls.Add(this.grbDetails);
@@ -373,5 +388,6 @@
         private System.Windows.Forms.Label lblLaDescription;
         private System.Windows.Forms.Label lblLaNationalite;
         private System.Windows.Forms.Label lblNationalite;
+        private System.Windows.Forms.Button btnMenu;
     }
 }
