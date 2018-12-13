@@ -31,11 +31,11 @@ namespace TheaterDAL
         public static List<Show> GetShows()
         {
             //variables
-            int idShow = 0;
-            DateTime uneDateHeure = new DateTime(00, 00, 0000, 00, 00, 00); //besoin de date et heure
-            int nbPlaces = 0;
-            TheaterPiece laPiece = null; //besoin de nomPiece, durée 
-            PriceRate letaux = null; //calcul du prix pour date, heure, semaine
+            int idShow;
+            DateTime uneDateHeure; //besoin de date et heure
+            int nbPlaces;
+            TheaterPiece laPiece; //besoin de nomPiece, durée 
+            PriceRate letaux; //calcul du prix pour date, heure, semaine
             Show uneRepresentation=null;
     
             // Connexion à la BD
@@ -44,14 +44,10 @@ namespace TheaterDAL
             // Création d'une liste vide d'objets lesRepresentations
             List<Show> lesRepresentations = new List<Show>();
 
-            // Récupération de la liste des pièces de théâtre
-            List<TheaterPiece> lesPiecesDeTheatre = PiecesTheatreDAO.GetTheaterPieces();
-
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             cmd.CommandText = "SELECT * FROM Show";
 
-       
             SqlDataReader monReader = cmd.ExecuteReader();
             // Remplissage de la liste
             while (monReader.Read())
@@ -59,33 +55,16 @@ namespace TheaterDAL
                 idShow = Int32.Parse(monReader["show_id"].ToString());
                 uneDateHeure = (DateTime)monReader["show_dateTime"];
                 nbPlaces = Int32.Parse(monReader["show_seats"].ToString());
-                int idDutaux = Convert.ToInt32(monReader["show_priceRate"].ToString());
-                int idPiece= Convert.ToInt32(monReader["show_theaterPiece"].ToString());
-                // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
-                bool trouve = false;
-                int i = 0;
-                while (trouve == false && i < lesPiecesDeTheatre.Count)
-                {
-                    if (lesPiecesDeTheatre[i].TheaterPiece_id== idPiece)
-                    {
-                        // Si on l'a, on l'ajoute
-                        laPiece = lesPiecesDeTheatre[i];
-                        trouve = true;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }
-            }
+                letaux = (PriceRate)(monReader["show_priceRate"]);
+                laPiece = (TheaterPiece)(monReader["show_theaterPiece"]);
 
-            uneRepresentation = new Show(idShow, uneDateHeure,nbPlaces,letaux,laPiece);
-            lesRepresentations.Add(uneRepresentation);
+                uneRepresentation = new Show(idShow, uneDateHeure,nbPlaces,letaux,laPiece);
+                lesRepresentations.Add(uneRepresentation);
+            }
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
         }
-        
 
         //renvoie le nombre de places réservées pour une représentation
         public int GetSeatsBooks(int idRepresentation, int nbPlacesTotal)
@@ -277,13 +256,6 @@ namespace TheaterDAL
             maConnexion.Close();
             return lesRepresentations;
 
-        }
-
-        //GetPriceRateWeeksDays
-        public static List<PriceRate> GetPriceRateWeeksDays()
-        {
-
-            
         }
 
     }
