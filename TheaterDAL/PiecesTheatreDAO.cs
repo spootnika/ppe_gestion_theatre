@@ -35,8 +35,7 @@ namespace TheaterDAL
             Author leAuteur;
             PublicType leType;
             Theme leTheme;
-
-
+   
             TheaterPiece unePieceTheatre;
 
             // Connexion à la BD 

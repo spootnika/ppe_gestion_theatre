@@ -59,6 +59,7 @@
             this.btnTheaterPiece.TabIndex = 7;
             this.btnTheaterPiece.Text = "Pièces de théâtre";
             this.btnTheaterPiece.UseVisualStyleBackColor = false;
+            this.btnTheaterPiece.Click += new System.EventHandler(this.btnTheaterPiece_Click);
             // 
             // btnShow
             // 
