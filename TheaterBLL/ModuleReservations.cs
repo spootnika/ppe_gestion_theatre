@@ -3,16 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using TheaterBO; // Réference la couche BO
+using TheaterDAL; // Réference la couche DAL
 
 namespace TheaterBLL
 {
     public class ModuleReservations
     {
-        // objet BLL
 
-        // Accesseur en lecture objet BLL
+        private static ModuleReservations moduleReservation; // objet BLL
+
+        // Accesseur en lecture
+        public static ModuleReservations GetModuleReservation()
+        {
+            if (moduleReservation == null)
+            {
+                moduleReservation = new ModuleReservations();
+            }
+            return moduleReservation;
+        }
+
+
+
+        // Définit la chaîne de connexion grâce à la méthode SetchaineConnexion de la DAL 
+        public static void SetchaineConnexion(ConnectionStringSettings chset)
+        {
+            string chaine = chset.ConnectionString;
+            ConnexionBD.GetConnexionBD().SetchaineConnexion(chaine);
+        }
 
         // Récupère la liste des réservations de la DAO, renvoie la liste
-        // GetSpectators()
+        public static List<Show> GetSpectators()
+        {
+            List<Show> lesRepresentations = new List<Show>();
+
+            return lesRepresentations;
+        }
     }
 }

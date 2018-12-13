@@ -24,6 +24,7 @@ namespace TheaterBLL
             return modulePieceTheatre;
         }
 
+        // Récupère la liste des pièces de la DAO, renvoie la liste
         public static List<TheaterPiece> GetTheaterPieces()
         {
             return PiecesTheatreDAO.GetTheaterPieces();
@@ -36,7 +37,5 @@ namespace TheaterBLL
             ConnexionBD.GetConnexionBD().SetchaineConnexion(chaine);
         }
 
-        // Récupère la liste des pièces de la DAO, renvoie la liste
-        // GetTheaterPieces()
     }
 }
