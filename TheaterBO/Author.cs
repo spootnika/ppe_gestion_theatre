@@ -12,7 +12,6 @@ namespace TheaterBO
         private string author_lastname;
         private string author_firstname;
         private List<Nationality> author_nationalities;
-        private List<TheaterPiece> author_theaterPieces;
 
         public int Author_id
         {
@@ -65,27 +64,12 @@ namespace TheaterBO
                 author_nationalities = value;
             }
         }
-
-        public List<TheaterPiece> Author_theaterPieces
-        {
-            get
-            {
-                return author_theaterPieces;
-            }
-
-            set
-            {
-                author_theaterPieces = value;
-            }
-        }
-
-        public Author(int id, string lastname, string firstname, List<Nationality> nationalities, List<TheaterPiece> theaterPieces)
+        public Author(int id, string lastname, string firstname, List<Nationality> nationalities)
         {
             this.Author_id = id;
             this.Author_lastname = lastname;
             this.Author_firstname = firstname;
             this.Author_nationalities = nationalities;
-            this.Author_theaterPieces = theaterPieces;
         }
 
        

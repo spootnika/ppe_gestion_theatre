@@ -17,7 +17,6 @@ namespace TheaterBO
         private Author theaterPiece_author;
         private PublicType theaterPiece_publicType;
         private Theme theaterPiece_theme;
-        private List<Show> theaterPiece_shows;
 
         public int TheaterPiece_id
         {
@@ -135,22 +134,8 @@ namespace TheaterBO
                 theaterPiece_theme = value;
             }
         }
-
-
-        public List<Show> TheaterPiece_shows
-        {
-            get
-            {
-                return TheaterPiece_shows;
-            }
-
-            set
-            {
-                TheaterPiece_shows = value;
-            }
-        }
-
-        public TheaterPiece(int id, string name, string description, float duration, float seatsPrice, Company company, Author author, PublicType publicType, Theme theme, List<Show> shows)
+        
+        public TheaterPiece(int id, string name, string description, float duration, float seatsPrice, Company company, Author author, PublicType publicType, Theme theme)
         {
             this.TheaterPiece_id = id;
             this.TheaterPiece_name = name;
@@ -161,7 +146,6 @@ namespace TheaterBO
             this.TheaterPiece_author = author;
             this.TheaterPiece_publicType = publicType;
             this.TheaterPiece_theme = theme;
-            this.TheaterPiece_shows = shows;
         }
 
        

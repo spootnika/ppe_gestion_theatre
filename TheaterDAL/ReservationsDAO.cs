@@ -58,6 +58,7 @@ namespace TheaterDAL
             // Verification de la valeur du retour
 
             // Fermeture de la connexion
+            lesRepresentations = new Spectator();
 
             return lesReservations;
         }

@@ -10,13 +10,11 @@ namespace TheaterBO
     {
         private int weekDays_id;
         private string weekDays_name;
-        private List<PriceRate> weekDays_priceRates;
 
-        public WeekDays(int id, string name, List<PriceRate> priceRates)
+        public WeekDays(int id, string name)
         {
             this.WeekDays_id = id;
             this.WeekDays_name = name;
-            this.WeekDays_priceRates = priceRates;
         }
 
         public int WeekDays_id
@@ -42,19 +40,6 @@ namespace TheaterBO
             set
             {
                 weekDays_name = value;
-            }
-        }
-
-        public List<PriceRate> WeekDays_priceRates
-        {
-            get
-            {
-                return weekDays_priceRates;
-            }
-
-            set
-            {
-                weekDays_priceRates = value;
             }
         }
     }

@@ -14,9 +14,8 @@ namespace TheaterBO
         private DateTime priceRate_endTime;
         private float priceRate_rate;
         private List<WeekDays> priceRate_weekDays;
-        private List<Show> priceRate_shows;
 
-        public PriceRate(int id, string name, DateTime startTime, DateTime endTime, float rate, List<WeekDays> weekDays, List<Show> shows)
+        public PriceRate(int id, string name, DateTime startTime, DateTime endTime, float rate, List<WeekDays> weekDays)
         {
             this.priceRate_id = id;
             this.priceRate_name = name;
@@ -24,7 +23,6 @@ namespace TheaterBO
             this.priceRate_endTime = endTime;
             this.priceRate_rate = rate;
             this.PriceRate_weekDays = weekDays;
-            this.PriceRate_shows = shows;
         }
 
         public int PriceRate_id
@@ -102,19 +100,6 @@ namespace TheaterBO
             set
             {
                 priceRate_weekDays = value;
-            }
-        }
-
-        public List<Show> PriceRate_shows
-        {
-            get
-            {
-                return priceRate_shows;
-            }
-
-            set
-            {
-                priceRate_shows = value;
             }
         }
     }
