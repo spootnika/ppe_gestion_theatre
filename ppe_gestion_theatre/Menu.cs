@@ -14,6 +14,7 @@ namespace ppe_gestion_theatre
     public partial class Menu : Form
     {
         LoginInfo currentUser;
+
         public Menu(LoginInfo currentUser)
         {
             InitializeComponent();
@@ -50,6 +51,14 @@ namespace ppe_gestion_theatre
             Reservations frmReservations = new Reservations(this.currentUser);
             this.Hide(); // le formulaire est caché
             frmReservations.ShowDialog(); // ouverture du formulaire 
+        }
+
+        private void btnTheaterPiece_Click(object sender, EventArgs e)
+        {
+            // Ouverture de la nouvelle fenêtre
+            PiecesTheatre frmPieceTheatre = new PiecesTheatre(this.currentUser);
+            this.Hide(); // le formulaire est caché
+            frmPieceTheatre.ShowDialog(); // ouverture du formulaire 
         }
     }
 }
