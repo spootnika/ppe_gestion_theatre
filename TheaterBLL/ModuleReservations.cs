@@ -34,11 +34,11 @@ namespace TheaterBLL
         }
 
         // Récupère la liste des réservations de la DAO, renvoie la liste
-        public static List<Show> GetSpectators()
+        public static List<Spectator> GetSpectators()
         {
-            List<Show> lesRepresentations = new List<Show>();
+            List<Spectator> lesReservations = ReservationsDAO.GetSpectators();
 
-            return lesRepresentations;
+            return lesReservations;
         }
     }
 }

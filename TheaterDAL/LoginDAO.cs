@@ -46,7 +46,7 @@ namespace TheaterDAL
             SqlParameter paramPseudo = new SqlParameter("@pseudo", SqlDbType.NChar);
             paramPseudo.Value = pseudo;
           
-            cmd.CommandText = "SELECT * FROM AppUser WHERE user_pseudo == @pseudo";
+            cmd.CommandText = "SELECT * FROM AppUser WHERE user_pseudo = @pseudo";
             cmd.Parameters.Add(paramPseudo);
             // execution du reader
             monReader = cmd.ExecuteReader();

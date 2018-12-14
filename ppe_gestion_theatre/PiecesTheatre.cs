@@ -15,7 +15,7 @@ namespace ppe_gestion_theatre
 {
     public partial class PiecesTheatre : Form
     {
-        public PiecesTheatre()
+        public PiecesTheatre(LoginInfo currentUser)
         {
             InitializeComponent();
 
@@ -53,12 +53,12 @@ namespace ppe_gestion_theatre
             PrixColumn.HeaderText = "Prix fixe";
 
             // Ajout des 6 en-têtes de colonne au datagridview
-            dgvListePiecesTheatre.Add(NomColumn);
-            dgvListePiecesTheatre.Add(AuteurColumn);
-            dgvListePiecesTheatre.Add(ThemeColumn);
-            dgvListePiecesTheatre.Add(PublicColumn);
-            dgvListePiecesTheatre.Add(DureeColumn);
-            dgvListePiecesTheatre.Add(PrixColumn);
+            //dgvListePiecesTheatre.Add(NomColumn);
+            //dgvListePiecesTheatre.Add(AuteurColumn);
+            //dgvListePiecesTheatre.Add(ThemeColumn);
+            //dgvListePiecesTheatre.Add(PublicColumn);
+            //dgvListePiecesTheatre.Add(DureeColumn);
+            //dgvListePiecesTheatre.Add(PrixColumn);
 
             // Définition du style apporté au datagridview
             dgvListePiecesTheatre.ColumnHeadersVisible = true;

@@ -13,10 +13,11 @@ namespace ppe_gestion_theatre
 {
     public partial class Menu : Form
     {
+        LoginInfo test;
         public Menu(LoginInfo currentUser)
         {
             InitializeComponent();
-
+            test = currentUser;
             // Si l'utilisateur n'est pas un admin, désactivation des boutons Représentations, Synthèse et Pièces de théâtre
             if(currentUser.IsAdmin == false)
             {
@@ -24,6 +25,7 @@ namespace ppe_gestion_theatre
                 btnSynthesis.Enabled = false;
                 btnTheaterPiece.Enabled = false;
             }
+            
         }
 
         private void lblConnect_Click(object sender, EventArgs e)
@@ -40,6 +42,14 @@ namespace ppe_gestion_theatre
         private void Menu_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void btnBooking_Click(object sender, EventArgs e)
+        {
+            // Ouverture de la nouvelle fenêtre
+            Reservations frmReservations = new Reservations(this.test);
+            this.Hide(); // le formulaire est caché
+            frmReservations.ShowDialog(); // ouverture du formulaire 
         }
     }
 }

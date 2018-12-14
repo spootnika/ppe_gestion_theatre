@@ -77,7 +77,7 @@ namespace TheaterDAL
             cmd.Connection = maConnexion;
             SqlParameter paramid = new SqlParameter("@idShow", SqlDbType.NChar);
             paramid.Value = idRepresentation;
-            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show == @idShow";
+            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show = @idShow";
             cmd.Parameters.Add(paramid);
 
             SqlDataReader monReader = cmd.ExecuteReader();
@@ -92,7 +92,7 @@ namespace TheaterDAL
            
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = maConnexion;
-            cmd.CommandText = "SELECT * FROM Show WHERE show_id == @idShow";
+            cmd.CommandText = "SELECT * FROM Show WHERE show_id = @idShow";
             cmd2.Parameters.Add(paramid);
             SqlDataReader monReader2 = cmd2.ExecuteReader();
             while (monReader2.Read())
@@ -181,7 +181,7 @@ namespace TheaterDAL
             paramIdPiece.Value = idTheaterPiece;
 
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece==theaterPiece_id AND theaterPiece_id==@idPiece ";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece ";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
  
@@ -232,7 +232,7 @@ namespace TheaterDAL
             SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.NChar);
             paramDateFin.Value = dateFinChoisie;
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece==theaterPiece_id AND theaterPiece_id==@idPiece AND show_dateTime BETWEEN(@dateDeb AND @dateFin)";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece AND show_dateTime BETWEEN(@dateDeb AND @dateFin)";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
             cmd.Parameters.Add(paramDateDeb);
