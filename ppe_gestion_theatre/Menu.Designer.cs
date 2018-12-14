@@ -86,6 +86,7 @@
             this.btnBooking.TabIndex = 9;
             this.btnBooking.Text = "Réservation";
             this.btnBooking.UseVisualStyleBackColor = false;
+            this.btnBooking.Click += new System.EventHandler(this.btnBooking_Click);
             // 
             // btnSynthesis
             // 

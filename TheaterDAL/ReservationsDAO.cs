@@ -56,7 +56,7 @@ namespace TheaterDAL
             // Initialisation et écriture d'une requête SQL pour récupérer tous les spectators
             SqlCommand cmdSpectators = new SqlCommand();
             cmdSpectators.Connection = maConnexion;
-            cmdSpectators.CommandText = "SELECT * FROM Specator";
+            cmdSpectators.CommandText = "SELECT * FROM Spectator";
             
             // Initialisation et écriture d'une requête SQL pour récupérer la table To Book
             SqlCommand cmdToBook = new SqlCommand();

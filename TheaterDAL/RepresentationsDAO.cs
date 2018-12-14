@@ -36,8 +36,8 @@ namespace TheaterDAL
             int nbPlaces = 0;
             TheaterPiece laPiece = null; //besoin de nomPiece, durée 
             PriceRate letaux = null; //calcul du prix pour date, heure, semaine
-            Show uneRepresentation=null;
-    
+            Show uneRepresentation = null;
+
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
@@ -51,7 +51,7 @@ namespace TheaterDAL
             cmd.Connection = maConnexion;
             cmd.CommandText = "SELECT * FROM Show";
 
-       
+
             SqlDataReader monReader = cmd.ExecuteReader();
             // Remplissage de la liste
             while (monReader.Read())
@@ -60,13 +60,13 @@ namespace TheaterDAL
                 uneDateHeure = (DateTime)monReader["show_dateTime"];
                 nbPlaces = Int32.Parse(monReader["show_seats"].ToString());
                 int idDutaux = Convert.ToInt32(monReader["show_priceRate"].ToString());
-                int idPiece= Convert.ToInt32(monReader["show_theaterPiece"].ToString());
+                int idPiece = Convert.ToInt32(monReader["show_theaterPiece"].ToString());
                 // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
                 bool trouve = false;
                 int i = 0;
                 while (trouve == false && i < lesPiecesDeTheatre.Count)
                 {
-                    if (lesPiecesDeTheatre[i].TheaterPiece_id== idPiece)
+                    if (lesPiecesDeTheatre[i].TheaterPiece_id == idPiece)
                     {
                         // Si on l'a, on l'ajoute
                         laPiece = lesPiecesDeTheatre[i];
@@ -79,13 +79,13 @@ namespace TheaterDAL
                 }
             }
 
-            uneRepresentation = new Show(idShow, uneDateHeure,nbPlaces,letaux,laPiece);
+            uneRepresentation = new Show(idShow, uneDateHeure, nbPlaces, letaux, laPiece);
             lesRepresentations.Add(uneRepresentation);
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
         }
-        
+
 
         //renvoie le nombre de places réservées pour une représentation
         public int GetSeatsBooks(int idRepresentation, int nbPlacesTotal)
@@ -110,7 +110,7 @@ namespace TheaterDAL
             // Fermeture de la connexion
             maConnexion.Close();
 
-           
+
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = maConnexion;
             cmd.CommandText = "SELECT * FROM Show WHERE show_id == @idShow";
@@ -124,7 +124,7 @@ namespace TheaterDAL
             maConnexion.Close();
 
             nbPlacesRestantesPourUneRepresentation = nbPlacesTotal - nbPlacesRestantesPourUneRepresentation;
-            
+
             return nbPlacesRestantesPourUneRepresentation;
         }
 
@@ -148,7 +148,7 @@ namespace TheaterDAL
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             //paramètres
-            
+
             SqlParameter paramDateDeb = new SqlParameter("@dateDeb", SqlDbType.NChar);
             paramDateDeb.Value = dateDebutChoisie;
             SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.NChar);
@@ -205,7 +205,7 @@ namespace TheaterDAL
             cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece==theaterPiece_id AND theaterPiece_id==@idPiece ";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
- 
+
 
             SqlDataReader monReader = cmd.ExecuteReader();
             // Remplissage de la liste
@@ -283,7 +283,7 @@ namespace TheaterDAL
         public static List<PriceRate> GetPriceRateWeeksDays()
         {
 
-            
+
         }
 
     }

@@ -438,6 +438,7 @@
             this.btnMenu.TabIndex = 5;
             this.btnMenu.Text = "Menu";
             this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // Reservations
             // 
