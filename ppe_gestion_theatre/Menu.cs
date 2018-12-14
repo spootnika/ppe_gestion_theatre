@@ -13,11 +13,11 @@ namespace ppe_gestion_theatre
 {
     public partial class Menu : Form
     {
-        LoginInfo test;
+        LoginInfo currentUser;
         public Menu(LoginInfo currentUser)
         {
             InitializeComponent();
-            test = currentUser;
+            this.currentUser = currentUser;
             // Si l'utilisateur n'est pas un admin, désactivation des boutons Représentations, Synthèse et Pièces de théâtre
             if(currentUser.IsAdmin == false)
             {
@@ -47,7 +47,7 @@ namespace ppe_gestion_theatre
         private void btnBooking_Click(object sender, EventArgs e)
         {
             // Ouverture de la nouvelle fenêtre
-            Reservations frmReservations = new Reservations(this.test);
+            Reservations frmReservations = new Reservations(this.currentUser);
             this.Hide(); // le formulaire est caché
             frmReservations.ShowDialog(); // ouverture du formulaire 
         }
