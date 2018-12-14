@@ -31,22 +31,26 @@ namespace TheaterDAL
         public static List<Show> GetShows()
         {
             //variables
-            int idShow;
-            DateTime uneDateHeure; //besoin de date et heure
-            int nbPlaces;
-            TheaterPiece laPiece; //besoin de nomPiece, durée 
-            PriceRate letaux; //calcul du prix pour date, heure, semaine
-            Show uneRepresentation=null;
-    
+            int idShow = 0;
+            DateTime uneDateHeure = new DateTime(00, 00, 0000, 00, 00, 00); //besoin de date et heure
+            int nbPlaces = 0;
+            TheaterPiece laPiece = null; //besoin de nomPiece, durée 
+            PriceRate letaux = null; //calcul du prix pour date, heure, semaine
+            Show uneRepresentation = null;
+
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
             // Création d'une liste vide d'objets lesRepresentations
             List<Show> lesRepresentations = new List<Show>();
 
+            // Récupération de la liste des pièces de théâtre
+            List<TheaterPiece> lesPiecesDeTheatre = PiecesTheatreDAO.GetTheaterPieces();
+
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             cmd.CommandText = "SELECT * FROM Show";
+
 
             SqlDataReader monReader = cmd.ExecuteReader();
             // Remplissage de la liste
@@ -55,16 +59,33 @@ namespace TheaterDAL
                 idShow = Int32.Parse(monReader["show_id"].ToString());
                 uneDateHeure = (DateTime)monReader["show_dateTime"];
                 nbPlaces = Int32.Parse(monReader["show_seats"].ToString());
-                letaux = (PriceRate)(monReader["show_priceRate"]);
-                laPiece = (TheaterPiece)(monReader["show_theaterPiece"]);
-
-                uneRepresentation = new Show(idShow, uneDateHeure,nbPlaces,letaux,laPiece);
-                lesRepresentations.Add(uneRepresentation);
+                int idDutaux = Convert.ToInt32(monReader["show_priceRate"].ToString());
+                int idPiece = Convert.ToInt32(monReader["show_theaterPiece"].ToString());
+                // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
+                bool trouve = false;
+                int i = 0;
+                while (trouve == false && i < lesPiecesDeTheatre.Count)
+                {
+                    if (lesPiecesDeTheatre[i].TheaterPiece_id == idPiece)
+                    {
+                        // Si on l'a, on l'ajoute
+                        laPiece = lesPiecesDeTheatre[i];
+                        trouve = true;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
             }
+
+            uneRepresentation = new Show(idShow, uneDateHeure, nbPlaces, letaux, laPiece);
+            lesRepresentations.Add(uneRepresentation);
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
         }
+
 
         //renvoie le nombre de places réservées pour une représentation
         public int GetSeatsBooks(int idRepresentation, int nbPlacesTotal)
@@ -77,7 +98,7 @@ namespace TheaterDAL
             cmd.Connection = maConnexion;
             SqlParameter paramid = new SqlParameter("@idShow", SqlDbType.NChar);
             paramid.Value = idRepresentation;
-            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show = @idShow";
+            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show == @idShow";
             cmd.Parameters.Add(paramid);
 
             SqlDataReader monReader = cmd.ExecuteReader();
@@ -89,10 +110,10 @@ namespace TheaterDAL
             // Fermeture de la connexion
             maConnexion.Close();
 
-           
+
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = maConnexion;
-            cmd.CommandText = "SELECT * FROM Show WHERE show_id = @idShow";
+            cmd.CommandText = "SELECT * FROM Show WHERE show_id == @idShow";
             cmd2.Parameters.Add(paramid);
             SqlDataReader monReader2 = cmd2.ExecuteReader();
             while (monReader2.Read())
@@ -103,7 +124,7 @@ namespace TheaterDAL
             maConnexion.Close();
 
             nbPlacesRestantesPourUneRepresentation = nbPlacesTotal - nbPlacesRestantesPourUneRepresentation;
-            
+
             return nbPlacesRestantesPourUneRepresentation;
         }
 
@@ -127,7 +148,7 @@ namespace TheaterDAL
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             //paramètres
-            
+
             SqlParameter paramDateDeb = new SqlParameter("@dateDeb", SqlDbType.NChar);
             paramDateDeb.Value = dateDebutChoisie;
             SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.NChar);
@@ -181,10 +202,10 @@ namespace TheaterDAL
             paramIdPiece.Value = idTheaterPiece;
 
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece ";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece==theaterPiece_id AND theaterPiece_id==@idPiece ";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
- 
+
 
             SqlDataReader monReader = cmd.ExecuteReader();
             // Remplissage de la liste
@@ -232,7 +253,7 @@ namespace TheaterDAL
             SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.NChar);
             paramDateFin.Value = dateFinChoisie;
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece AND show_dateTime BETWEEN(@dateDeb AND @dateFin)";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece==theaterPiece_id AND theaterPiece_id==@idPiece AND show_dateTime BETWEEN(@dateDeb AND @dateFin)";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
             cmd.Parameters.Add(paramDateDeb);
@@ -255,6 +276,13 @@ namespace TheaterDAL
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
+
+        }
+
+        //GetPriceRateWeeksDays
+        public static List<PriceRate> GetPriceRateWeeksDays()
+        {
+
 
         }
 
