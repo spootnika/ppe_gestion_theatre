@@ -62,7 +62,7 @@ namespace TheaterDAL
 
             SqlCommand cmd5 = new SqlCommand();
             cmd5.Connection = maConnexion;
-            cmd5.CommandText = "SECLECT * FROM Public_Type";
+            cmd5.CommandText = "SECLECT * FROM company";
 
             SqlDataReader monReader = cmd.ExecuteReader();
             SqlDataReader monReader2 = cmd2.ExecuteReader();
@@ -98,6 +98,7 @@ namespace TheaterDAL
 
                 while (monReader2.Read())
                 {
+                    // 
                     leAuteur = (Author)monReader2["author_lastname"];
 
                     while (monReader3.Read())
