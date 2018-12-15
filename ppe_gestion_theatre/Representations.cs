@@ -17,5 +17,20 @@ namespace ppe_gestion_theatre
         {
             InitializeComponent();
         }
+
+        private void btnAjouter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitre_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLHeure_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
