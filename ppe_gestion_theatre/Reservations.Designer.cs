@@ -112,6 +112,7 @@
             this.dgvListeReservations.Name = "dgvListeReservations";
             this.dgvListeReservations.Size = new System.Drawing.Size(755, 294);
             this.dgvListeReservations.TabIndex = 3;
+            this.dgvListeReservations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListeReservations_CellClick);
             // 
             // grbDetails
             // 
@@ -161,6 +162,7 @@
             this.lblLePrixTotal.Name = "lblLePrixTotal";
             this.lblLePrixTotal.Size = new System.Drawing.Size(167, 16);
             this.lblLePrixTotal.TabIndex = 26;
+            this.lblLePrixTotal.Text = "0 €";
             // 
             // lblLeTelephone
             // 
@@ -215,6 +217,7 @@
             this.lblLePrixFixe.Name = "lblLePrixFixe";
             this.lblLePrixFixe.Size = new System.Drawing.Size(210, 16);
             this.lblLePrixFixe.TabIndex = 20;
+            this.lblLePrixFixe.Text = "€";
             // 
             // lblLaCompagnie
             // 
