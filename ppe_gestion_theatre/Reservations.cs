@@ -75,15 +75,7 @@ namespace ppe_gestion_theatre
             dgvListeReservations.Columns["reservation"].Visible = false;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void btnMenu_Click(object sender, EventArgs e)
         {

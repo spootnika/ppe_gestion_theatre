@@ -119,7 +119,7 @@
             this.btnAjouter.TabIndex = 7;
             this.btnAjouter.Text = "Ajouter une représentation";
             this.btnAjouter.UseVisualStyleBackColor = false;
-            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
+         //   this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // lblTitre
             // 
@@ -131,7 +131,7 @@
             this.lblTitre.Size = new System.Drawing.Size(478, 39);
             this.lblTitre.TabIndex = 8;
             this.lblTitre.Text = "Gestion des représentations";
-            this.lblTitre.Click += new System.EventHandler(this.lblTitre_Click);
+      //      this.lblTitre.Click += new System.EventHandler(this.lblTitre_Click);
             // 
             // dgvListeReservations
             // 
@@ -468,7 +468,7 @@
             this.lblLHeure.Name = "lblLHeure";
             this.lblLHeure.Size = new System.Drawing.Size(188, 16);
             this.lblLHeure.TabIndex = 28;
-            this.lblLHeure.Click += new System.EventHandler(this.lblLHeure_Click);
+           // this.lblLHeure.Click += new System.EventHandler(this.lblLHeure_Click);
             // 
             // lblLePrix
             // 

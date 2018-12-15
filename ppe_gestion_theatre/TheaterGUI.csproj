@@ -109,6 +109,9 @@
     <EmbeddedResource Include="Reservations.resx">
       <DependentUpon>Reservations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Synthese.resx">
+      <DependentUpon>Synthese.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -16,7 +16,9 @@ namespace ppe_gestion_theatre
 {
     public partial class PiecesTheatre : Form
     {
-        public PiecesTheatre()
+        LoginInfo currentUser;
+
+        public PiecesTheatre(LoginInfo currentUser)
         {
             InitializeComponent();
 
@@ -118,6 +120,11 @@ namespace ppe_gestion_theatre
         private void dgvListeReservations_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void PiecesTheatre_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
