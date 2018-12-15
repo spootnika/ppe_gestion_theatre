@@ -60,5 +60,21 @@ namespace ppe_gestion_theatre
             this.Hide(); // le formulaire est caché
             frmPieceTheatre.ShowDialog(); // ouverture du formulaire 
         }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            // Ouverture de la nouvelle fenêtre
+            Representations frmRepresentations = new Representations(this.currentUser);
+            this.Hide(); // le formulaire est caché
+            frmRepresentations.ShowDialog(); // ouverture du formulaire 
+        }
+
+        private void btnSynthesis_Click(object sender, EventArgs e)
+        {
+            // Ouverture de la nouvelle fenêtre
+            Synthese frmSynthese = new Synthese(this.currentUser);
+            this.Hide(); // le formulaire est caché
+            frmSynthese.ShowDialog(); // ouverture du formulaire 
+        }
     }
 }
