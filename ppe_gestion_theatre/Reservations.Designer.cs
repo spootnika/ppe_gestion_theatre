@@ -75,7 +75,7 @@
             this.lblTitre.Size = new System.Drawing.Size(426, 39);
             this.lblTitre.TabIndex = 0;
             this.lblTitre.Text = "Gestion des réservations";
-      //      this.lblTitre.Click += new System.EventHandler(this.label1_Click);
+            //this.lblTitre.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnAjouter
             // 
@@ -102,7 +102,7 @@
             this.btnSupprimer.TabIndex = 2;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
-         //   this.btnSupprimer.Click += new System.EventHandler(this.button2_Click);
+            //this.btnSupprimer.Click += new System.EventHandler(this.button2_Click);
             // 
             // dgvListeReservations
             // 
