@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.lblLaNationalite = new System.Windows.Forms.Label();
+            this.lblNationalite = new System.Windows.Forms.Label();
+            this.lblLaDescription = new System.Windows.Forms.Label();
             this.lblLePrixFixe = new System.Windows.Forms.Label();
             this.lblLaCompagnie = new System.Windows.Forms.Label();
             this.lblLeAuteur = new System.Windows.Forms.Label();
@@ -37,6 +40,7 @@
             this.lblLeTheme = new System.Windows.Forms.Label();
             this.lblLaPiece = new System.Windows.Forms.Label();
             this.btnModifier = new System.Windows.Forms.Button();
+            this.btnSupprimer = new System.Windows.Forms.Button();
             this.lblPrixFixe = new System.Windows.Forms.Label();
             this.lblCompagniePiece = new System.Windows.Forms.Label();
             this.lblAuteur = new System.Windows.Forms.Label();
@@ -48,10 +52,6 @@
             this.dgvListePiecesTheatre = new System.Windows.Forms.DataGridView();
             this.btnAjouter = new System.Windows.Forms.Button();
             this.lblTitre = new System.Windows.Forms.Label();
-            this.btnSupprimer = new System.Windows.Forms.Button();
-            this.lblLaDescription = new System.Windows.Forms.Label();
-            this.lblNationalite = new System.Windows.Forms.Label();
-            this.lblLaNationalite = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).BeginInit();
@@ -88,6 +88,35 @@
             this.grbDetails.TabIndex = 6;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la pièce de théatre";
+            // 
+            // lblLaNationalite
+            // 
+            this.lblLaNationalite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaNationalite.ForeColor = System.Drawing.Color.Black;
+            this.lblLaNationalite.Location = new System.Drawing.Point(555, 78);
+            this.lblLaNationalite.Name = "lblLaNationalite";
+            this.lblLaNationalite.Size = new System.Drawing.Size(158, 16);
+            this.lblLaNationalite.TabIndex = 23;
+            // 
+            // lblNationalite
+            // 
+            this.lblNationalite.AutoSize = true;
+            this.lblNationalite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNationalite.ForeColor = System.Drawing.Color.Black;
+            this.lblNationalite.Location = new System.Drawing.Point(457, 78);
+            this.lblNationalite.Name = "lblNationalite";
+            this.lblNationalite.Size = new System.Drawing.Size(91, 16);
+            this.lblNationalite.TabIndex = 22;
+            this.lblNationalite.Text = "Nationalité :";
+            // 
+            // lblLaDescription
+            // 
+            this.lblLaDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblLaDescription.Location = new System.Drawing.Point(112, 190);
+            this.lblLaDescription.Name = "lblLaDescription";
+            this.lblLaDescription.Size = new System.Drawing.Size(374, 86);
+            this.lblLaDescription.TabIndex = 21;
             // 
             // lblLePrixFixe
             // 
@@ -164,6 +193,19 @@
             this.btnModifier.TabIndex = 13;
             this.btnModifier.Text = "Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
+            // 
+            // btnSupprimer
+            // 
+            this.btnSupprimer.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupprimer.ForeColor = System.Drawing.Color.White;
+            this.btnSupprimer.Location = new System.Drawing.Point(366, 306);
+            this.btnSupprimer.Name = "btnSupprimer";
+            this.btnSupprimer.Size = new System.Drawing.Size(88, 27);
+            this.btnSupprimer.TabIndex = 2;
+            this.btnSupprimer.Text = "Supprimer";
+            this.btnSupprimer.UseVisualStyleBackColor = false;
             // 
             // lblPrixFixe
             // 
@@ -287,48 +329,6 @@
             this.lblTitre.TabIndex = 7;
             this.lblTitre.Text = "Gestion des théatres";
             // 
-            // btnSupprimer
-            // 
-            this.btnSupprimer.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(366, 306);
-            this.btnSupprimer.Name = "btnSupprimer";
-            this.btnSupprimer.Size = new System.Drawing.Size(88, 27);
-            this.btnSupprimer.TabIndex = 2;
-            this.btnSupprimer.Text = "Supprimer";
-            this.btnSupprimer.UseVisualStyleBackColor = false;
-            // 
-            // lblLaDescription
-            // 
-            this.lblLaDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaDescription.ForeColor = System.Drawing.Color.Black;
-            this.lblLaDescription.Location = new System.Drawing.Point(112, 190);
-            this.lblLaDescription.Name = "lblLaDescription";
-            this.lblLaDescription.Size = new System.Drawing.Size(374, 86);
-            this.lblLaDescription.TabIndex = 21;
-            // 
-            // lblNationalite
-            // 
-            this.lblNationalite.AutoSize = true;
-            this.lblNationalite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNationalite.ForeColor = System.Drawing.Color.Black;
-            this.lblNationalite.Location = new System.Drawing.Point(457, 78);
-            this.lblNationalite.Name = "lblNationalite";
-            this.lblNationalite.Size = new System.Drawing.Size(91, 16);
-            this.lblNationalite.TabIndex = 22;
-            this.lblNationalite.Text = "Nationalité :";
-            // 
-            // lblLaNationalite
-            // 
-            this.lblLaNationalite.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaNationalite.ForeColor = System.Drawing.Color.Black;
-            this.lblLaNationalite.Location = new System.Drawing.Point(555, 78);
-            this.lblLaNationalite.Name = "lblLaNationalite";
-            this.lblLaNationalite.Size = new System.Drawing.Size(158, 16);
-            this.lblLaNationalite.TabIndex = 23;
-            // 
             // btnMenu
             // 
             this.btnMenu.BackColor = System.Drawing.Color.SteelBlue;
@@ -341,6 +341,7 @@
             this.btnMenu.TabIndex = 9;
             this.btnMenu.Text = "Menu";
             this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // PiecesTheatre
             // 
