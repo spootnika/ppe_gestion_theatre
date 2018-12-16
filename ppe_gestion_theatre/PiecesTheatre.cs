@@ -16,14 +16,11 @@ namespace ppe_gestion_theatre
 {
     public partial class PiecesTheatre : Form
     {
+        LoginInfo currentUser;
+
         public PiecesTheatre(LoginInfo currentUser)
         {
             InitializeComponent();
-
-            List<TheaterPiece> lesPiecesTheatre = PiecesTheatreDAO.GetTheaterPieces()
-
-
-            this.currentUser = currentUser;
 
             // Blocage de la génération automatique des colonnes
             //dgvListePiecesTheatre.AutoGenerateColumns = false;
@@ -38,7 +35,7 @@ namespace ppe_gestion_theatre
 
             dt.Columns.Add(new DataColumn("auteur", typeof(string)));
             dgvListePiecesTheatre.Columns["Auteur"].HeaderText = "Auteur";
-
+            
             dt.Columns.Add(new DataColumn("public", typeof(string)));
             dgvListePiecesTheatre.Columns["Public"].HeaderText = "Type de public";
 
@@ -52,7 +49,7 @@ namespace ppe_gestion_theatre
             dgvListePiecesTheatre.Columns["Prix"].HeaderText = "Prix du siège";
 
             dgvListePiecesTheatre.ReadOnly = true;
-
+        
             #region test1-dgv
             // Création d'une en-tête de colonne pour la colonne 1
             //DataGridViewTextBoxColumn NomColumn = new DataGridViewTextBoxColumn();
@@ -94,12 +91,10 @@ namespace ppe_gestion_theatre
             #endregion
 
             //test dgv
-            foreach (TheaterPiece unePiece in lesPiecesTheatre)
+            foreach (TheaterPiece unePiece in PiecesTheatreDAO.GetTheaterPieces())
             {
-                dt.Rows.Add(unePiece, unePiece.TheaterPiece_name, unePiece.TheaterPiece_author.Author_firstname, unePiece.TheaterPiece_theme.Theme_name, unePiece.TheaterPiece_publicType.PublicType_name, unePiece.TheaterPiece_duration, unePiece.TheaterPiece_seatsPrice);
+                dt.Rows.Add(unePiece.TheaterPiece_name, unePiece.TheaterPiece_author.Author_firstname, unePiece.TheaterPiece_theme.Theme_name, unePiece.TheaterPiece_publicType.PublicType_name, unePiece.TheaterPiece_duration, unePiece.TheaterPiece_seatsPrice);
             }
-
-            dgvListePiecesTheatre.Columns["piece"].Visible = false;
 
             // Définition du style apporté au datagridview
             dgvListePiecesTheatre.ColumnHeadersVisible = true;
@@ -127,12 +122,9 @@ namespace ppe_gestion_theatre
 
         }
 
-        private void btnMenu_Click(object sender, EventArgs e)
+        private void PiecesTheatre_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Ouverture de la nouvelle fenêtre
-            Menu frmMenu = new Menu(currentUser);
-            this.Hide(); // le formulaire est caché
-            frmMenu.ShowDialog(); // ouverture du formulaire 
+            Environment.Exit(0);
         }
     }
 }

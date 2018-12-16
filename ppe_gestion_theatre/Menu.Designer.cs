@@ -73,6 +73,7 @@
             this.btnShow.TabIndex = 8;
             this.btnShow.Text = "Représentations";
             this.btnShow.UseVisualStyleBackColor = false;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // btnBooking
             // 
@@ -100,6 +101,7 @@
             this.btnSynthesis.TabIndex = 10;
             this.btnSynthesis.Text = "Synthèse";
             this.btnSynthesis.UseVisualStyleBackColor = false;
+            this.btnSynthesis.Click += new System.EventHandler(this.btnSynthesis_Click);
             // 
             // Menu
             // 

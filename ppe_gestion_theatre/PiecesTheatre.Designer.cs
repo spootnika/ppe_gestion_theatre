@@ -355,6 +355,7 @@
             this.Controls.Add(this.dgvListePiecesTheatre);
             this.Name = "PiecesTheatre";
             this.Text = "PiecesTheatre";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PiecesTheatre_FormClosing);
             this.grbDetails.ResumeLayout(false);
             this.grbDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).EndInit();
