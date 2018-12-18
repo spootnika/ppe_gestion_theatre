@@ -27,25 +27,28 @@ namespace TheaterDAL
         // Renvoie la liste des représentations
         // Utilise la DAO PiecesTheatres pour avoir la liste des pièces
         // besoin du taux (et donc des jours)
-
         public static List<Show> GetShows()
         {
             //variables
             int idShow = 0;
-            DateTime uneDateHeure = new DateTime(00, 00, 0000, 00, 00, 00); //besoin de date et heure
+            DateTime uneDateHeure = new DateTime(2018, 01, 01, 00, 00, 00); //besoin de date et heure
             int nbPlaces = 0;
             TheaterPiece laPiece = null; //besoin de nomPiece, durée 
             PriceRate letaux = null; //calcul du prix pour date, heure, semaine
             Show uneRepresentation = null;
 
-            // Connexion à la BD
-            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
             // Création d'une liste vide d'objets lesRepresentations
             List<Show> lesRepresentations = new List<Show>();
 
             // Récupération de la liste des pièces de théâtre
             List<TheaterPiece> lesPiecesDeTheatre = PiecesTheatreDAO.GetTheaterPieces();
+
+            // Récupération de la liste des taux
+            List<PriceRate> lesTaux = GetPriceRateWeeksDays();
+
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
@@ -61,6 +64,7 @@ namespace TheaterDAL
                 nbPlaces = Int32.Parse(monReader["show_seats"].ToString());
                 int idDutaux = Convert.ToInt32(monReader["show_priceRate"].ToString());
                 int idPiece = Convert.ToInt32(monReader["show_theaterPiece"].ToString());
+
                 // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
                 bool trouve = false;
                 int i = 0;
@@ -79,12 +83,12 @@ namespace TheaterDAL
                 }
                 bool trouve2= false;
                 int i2 = 0;
-                while (trouve2 == false && i2 < GetPriceRateWeeksDays().Count)
+                while (trouve2 == false && i2 < lesTaux.Count)
                 {
-                    if (GetPriceRateWeeksDays()[i2].PriceRate_id == idDutaux)
+                    if (lesTaux[i2].PriceRate_id == idDutaux)
                     {
                         // Si on l'a, on l'ajoute
-                        letaux = GetPriceRateWeeksDays()[i2];
+                        letaux = lesTaux[i2];
                         trouve2 = true;
                     }
                     else
@@ -96,6 +100,7 @@ namespace TheaterDAL
                 lesRepresentations.Add(uneRepresentation);
             }
 
+            monReader.Close();
            
             // Fermeture de la connexion
             maConnexion.Close();
@@ -108,34 +113,36 @@ namespace TheaterDAL
         {
             int nbPlacesRestantesPourUneRepresentation = 0;
             int nbPlacesReserveesPourUneRepresentation = 0;
+
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             SqlParameter paramid = new SqlParameter("@idShow", SqlDbType.NChar);
             paramid.Value = idRepresentation;
-            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show == @idShow";
+            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show = @idShow";
             cmd.Parameters.Add(paramid);
 
             SqlDataReader monReader = cmd.ExecuteReader();
             while (monReader.Read())
             {
-                nbPlacesReserveesPourUneRepresentation = Int32.Parse(monReader["seatsBooked"].ToString());
+                nbPlacesReserveesPourUneRepresentation += Int32.Parse(monReader["seatsBooked"].ToString());
 
             }
-            // Fermeture de la connexion
-            maConnexion.Close();
-
+            monReader.Close();
 
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = maConnexion;
-            cmd.CommandText = "SELECT * FROM Show WHERE show_id == @idShow";
+            cmd.CommandText = "SELECT * FROM Show WHERE show_id = @idShow";
             cmd2.Parameters.Add(paramid);
             SqlDataReader monReader2 = cmd2.ExecuteReader();
+
             while (monReader2.Read())
             {
                 nbPlacesTotal = Int32.Parse(monReader["show_seats"].ToString());
             }
+            monReader2.Close();
             // Fermeture de la connexion
             maConnexion.Close();
 
@@ -156,12 +163,15 @@ namespace TheaterDAL
             Show uneRepresentation;
             PriceRate letaux=null;
             TheaterPiece laPiece=null;
-            // Connexion à la BD
-            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             // Création d'une liste vide d'objets lesRepresentations
             List<Show> lesRepresentations = new List<Show>();
             // Récupération de la liste des pièces de théâtre
             List<TheaterPiece> lesPiecesDeTheatre = PiecesTheatreDAO.GetTheaterPieces();
+            // Récupération de la liste des taux
+            List<PriceRate> lesTaux = GetPriceRateWeeksDays();
+
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
@@ -187,7 +197,6 @@ namespace TheaterDAL
                 nbPlaces = Int32.Parse(monReader["show_seats"].ToString());
                 idtaux = Convert.ToInt32(monReader["show_priceRate"].ToString());
                 idPiece = Convert.ToInt32(monReader["show_theaterPiece"]);
-                nbPlaces = Int32.Parse(monReader["show_seats"].ToString());
               
                 // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
                 bool trouve = false;
@@ -208,12 +217,12 @@ namespace TheaterDAL
                 // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
                 bool trouve2 = false;
                 int i2 = 0;
-                while (trouve2 == false && i2 < GetPriceRateWeeksDays().Count)
+                while (trouve2 == false && i2 < lesTaux.Count)
                 {
-                    if (GetPriceRateWeeksDays()[i2].PriceRate_id == idtaux)
+                    if (lesTaux[i2].PriceRate_id == idtaux)
                     {
                         // Si on l'a, on l'ajoute
-                        letaux = GetPriceRateWeeksDays()[i2];
+                        letaux = lesTaux[i2];
                         trouve2 = true;
                     }
                     else
@@ -224,6 +233,7 @@ namespace TheaterDAL
                 uneRepresentation = new Show(idShow, uneDateHeure, nbPlaces, letaux, laPiece);
                 lesRepresentations.Add(uneRepresentation);
             }
+            monReader.Close();
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
@@ -243,13 +253,16 @@ namespace TheaterDAL
             PriceRate letaux=null; //calcul du prix pour date, heure, semaine
             Show uneRepresentation;
 
-            // Connexion à la BD
-            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             // Création d'une liste vide d'objets lesRepresentations
             List<Show> lesRepresentations = new List<Show>();
-
+            // Récupération de la liste des taux
+            List<PriceRate> lesTaux = GetPriceRateWeeksDays();
             // Récupération de la liste des pièces de théâtre
             List<TheaterPiece> lesPiecesDeTheatre = PiecesTheatreDAO.GetTheaterPieces();
+
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             //paramètre
@@ -257,7 +270,7 @@ namespace TheaterDAL
             paramIdPiece.Value = idTheaterPiece;
 
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece==theaterPiece_id AND theaterPiece_id==@idPiece ";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece ";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
 
@@ -290,12 +303,12 @@ namespace TheaterDAL
                 // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
                 bool trouve2 = false;
                 int i2 = 0;
-                while (trouve2 == false && i2 < GetPriceRateWeeksDays().Count)
+                while (trouve2 == false && i2 < lesTaux.Count)
                 {
-                    if (GetPriceRateWeeksDays()[i2].PriceRate_id == idTaux)
+                    if (lesTaux[i2].PriceRate_id == idTaux)
                     {
                         // Si on l'a, on l'ajoute
-                        letaux = GetPriceRateWeeksDays()[i2];
+                        letaux = lesTaux[i2];
                         trouve2 = true;
                     }
                     else
@@ -306,6 +319,7 @@ namespace TheaterDAL
                 uneRepresentation = new Show(idShow, uneDateHeure, nbPlaces, letaux, laPiece);
                 lesRepresentations.Add(uneRepresentation);
             }
+            monReader.Close();
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
@@ -326,6 +340,8 @@ namespace TheaterDAL
             Show uneRepresentation;
             // Récupération de la liste des pièces de théâtre
             List<TheaterPiece> lesPiecesDeTheatre = PiecesTheatreDAO.GetTheaterPieces();
+            // Récupération de la liste des taux
+            List<PriceRate> lesTaux = GetPriceRateWeeksDays();
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             // Création d'une liste vide d'objets lesRepresentations
@@ -342,7 +358,7 @@ namespace TheaterDAL
             SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.NChar);
             paramDateFin.Value = dateFinChoisie;
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece==theaterPiece_id AND theaterPiece_id==@idPiece AND show_dateTime BETWEEN(@dateDeb AND @dateFin)";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece AND show_dateTime BETWEEN(@dateDeb AND @dateFin)";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
             cmd.Parameters.Add(paramDateDeb);
@@ -376,12 +392,12 @@ namespace TheaterDAL
                 // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
                 bool trouve2 = false;
                 int i2 = 0;
-                while (trouve2 == false && i2 < GetPriceRateWeeksDays().Count)
+                while (trouve2 == false && i2 < lesTaux.Count)
                 {
-                    if (GetPriceRateWeeksDays()[i2].PriceRate_id == idTaux)
+                    if (lesTaux[i2].PriceRate_id == idTaux)
                     {
                         // Si on l'a, on l'ajoute
-                        letaux = GetPriceRateWeeksDays()[i2];
+                        letaux = lesTaux[i2];
                         trouve2 = true;
                     }
                     else
@@ -392,6 +408,7 @@ namespace TheaterDAL
                 uneRepresentation = new Show(idShow, uneDateHeure, nbPlaces, letaux, laPiece);
                 lesRepresentations.Add(uneRepresentation);
             }
+            monReader.Close();
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
@@ -402,67 +419,93 @@ namespace TheaterDAL
         public static List<PriceRate> GetPriceRateWeeksDays()
         {
             List<PriceRate> lesTaux = new List<PriceRate>();
-            List<WeekDays> lesSemaines = new List<WeekDays>();
+            List<WeekDays> lesJoursSemaine = new List<WeekDays>();
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
            //récupération de la liste des semaines
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = maConnexion;
-            cmd2.CommandText = "SELECT weekDays_id FROM Week_days, To_concern, Price_rate WHERE priceRate_id=toConcern_priceRate AND weekDays_id=toConcern_weekDays";
+            cmd2.CommandText = "SELECT * FROM Week_days";
             SqlDataReader monReader2 = cmd2.ExecuteReader();
-            int idSemaine;
-            WeekDays laSemaine=null;
+            int idJour;
+            string nomJour;
+            WeekDays leJour=null;
             // Remplissage de la liste
             while (monReader2.Read())
             {
-                idSemaine = Int32.Parse(monReader2["weekDays_id"].ToString());
-                bool trouve = false;
-                int i = 0;
-                while (trouve == false && i < lesSemaines.Count)
-                {
-                    if (lesSemaines[i].WeekDays_id == idSemaine)
-                    {
-                        // Si on l'a, on l'ajoute
-                         laSemaine = lesSemaines[i];
-                        trouve = true;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }
-                lesSemaines.Add(laSemaine);
+                idJour = Int32.Parse(monReader2["weekDays_id"].ToString());
+                nomJour = monReader2["weekDays_name"].ToString();
+
+                leJour = new WeekDays(idJour, nomJour);
+
+                lesJoursSemaine.Add(leJour);
             }
-          
-            // Fermeture de la connexion
-            maConnexion.Close();
+            monReader2.Close();
 
             //récupération de la liste des priceRate en fonction du jour de la semaine
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             int idTaux;
             string nomTaux;
-            DateTime debutHeure;
-            DateTime finHeure;
+            TimeSpan debutHeure;
+            TimeSpan finHeure;
             float tauxApplique;
             PriceRate leTaux;
+            List<WeekDays> lesJoursTaux = new List<WeekDays>();
             
-            cmd.CommandText = "SELECT priceRate_id, priceRate_name, priceRate_startTime, priceRate_endTime, priceRate_rate FROM Price_rate, To_concern, Week_days,  WHERE priceRate_id=toConcern_priceRate  AND weekDays_id=toConcern_weekDays";
+            cmd.CommandText = "SELECT * from Price_rate";
+
+            SqlCommand cmdConcern = new SqlCommand();
+            cmdConcern.Connection = maConnexion;
+            cmdConcern.CommandText = "SELECT * FROM To_concern";
+
             SqlDataReader monReader = cmd.ExecuteReader();
+            SqlDataReader readerConcern = cmdConcern.ExecuteReader();
+
             while (monReader.Read())
             {
                 idTaux = Int32.Parse(monReader["priceRate_id"].ToString());
                 nomTaux = monReader["priceRate_name"].ToString();
-                debutHeure = (DateTime)monReader["priceRate_startTime"];
-                finHeure = (DateTime)monReader["priceRate_endTime"];
+                debutHeure = (TimeSpan)monReader["priceRate_startTime"];
+                finHeure = (TimeSpan)monReader["priceRate_endTime"];
                 tauxApplique = float.Parse(monReader["priceRate_rate"].ToString());
-                leTaux = new PriceRate(idTaux, nomTaux, debutHeure, finHeure, tauxApplique, lesSemaines);
+
+                while (readerConcern.Read())
+                {
+                    int idConcernTaux = Int32.Parse(readerConcern["toConcern_priceRate"].ToString());
+                    
+                    if (idTaux == idConcernTaux)
+                    {
+                        int idConcernJour = Int32.Parse(readerConcern["toConcern_weekDays"].ToString());
+
+                        bool trouve = false;
+                        int ind = 0;
+
+                        while (trouve == false && ind < lesJoursSemaine.Count)
+                        {
+                            if(lesJoursSemaine[ind].WeekDays_id == idConcernJour)
+                            {
+                                lesJoursTaux.Add(lesJoursSemaine[ind]);
+                                trouve = true;
+                            }
+                            else
+                            {
+                                ind++;
+                            }
+                        }
+                    }
+                }
+                readerConcern.Close();
+                readerConcern = cmdConcern.ExecuteReader();
+
+                leTaux = new PriceRate(idTaux, nomTaux, debutHeure, finHeure, tauxApplique, lesJoursTaux);
                 lesTaux.Add(leTaux);
             }
+            readerConcern.Close();
+            monReader.Close();
             // Fermeture de la connexion
             maConnexion.Close();
             return lesTaux;
         }
-
     }
 }
