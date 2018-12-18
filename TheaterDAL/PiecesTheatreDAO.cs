@@ -23,13 +23,43 @@ namespace TheaterDAL
             return unePieceTheatreDAO;
         }
 
-        //public static List<Company> GetCompanies()
+        
+
+        //public static List<Company> GetCompagnies()
         //{
         //    List<Company> lesCompagnies = new List<Company>();
 
+        //    int id;
+        //    string name;
+        //    string city;
+        //    string region;
+        //    string artisticDirector;
 
+        //    Company uneCompagnie;
 
+        //    // Connexion à la BD 
+        //    SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.Connection = maConnexion;
+        //    cmd.CommandText = "SELECT * FROM Company";
+        //    SqlDataReader monReader = cmd.ExecuteReader();
+
+        //    while (monReader.Read())
+        //    {
+        //        id = Int32.Parse(monReader["company_id"].ToString());
+        //        name = monReader["company_name"].ToString();
+        //        city = monReader["company_city"].ToString();
+        //        region = monReader["company_region"].ToString());
+        //        artisticDirector = monReader["company_artisticDirector"].ToString();
+
+        //        uneCompagnie = new Company(id, name, city, region, artisticDirector);
+        //        lesCompagnies.Add(uneCompagnie);
+
+                
+        //    }
         //    return lesCompagnies;
+
         //}
 
         // Renvoie toutes les pièces de théâtre, liste
@@ -50,7 +80,7 @@ namespace TheaterDAL
    
             TheaterPiece unePieceTheatre;
 
-            List<Company> lesCompagnies = new List<Company>();
+            List<Company> lesCompagnies = new List<Company>(); //GetCompagnies();
             List<Author> lesAuteurs = new List<Author>();
             List<PublicType> lesTypes = new List<PublicType>();
             List<Theme> lesThemes = new List<Theme>();
@@ -110,7 +140,7 @@ namespace TheaterDAL
 
                 while (monReader5.Read())
                 {
-                    int company_id = Convert.ToInt32(monReader5["Company_id"].ToString());
+                    int company_id = Convert.ToInt32(monReader5["company_id"].ToString());
 
                     if (idCompagnie == company_id)
                     {
@@ -118,7 +148,7 @@ namespace TheaterDAL
                         bool trouve = false;
                         int i = 0;
 
-                        // On trouve dans la liste des show celui correspondant à l'id
+                        // On trouve dans la liste des compagnies celui correspondant à l'id
                         while (trouve == false && i < lesCompagnies.Count)
                         {
                             if (lesCompagnies[i].Company_id == idCompagnie)

@@ -93,7 +93,7 @@ namespace ppe_gestion_theatre
             //test dgv
             foreach (TheaterPiece unePiece in PiecesTheatreDAO.GetTheaterPieces())
             {
-                dt.Rows.Add(unePiece.TheaterPiece_name, unePiece.TheaterPiece_author.Author_firstname, unePiece.TheaterPiece_theme.Theme_name, unePiece.TheaterPiece_publicType.PublicType_name, unePiece.TheaterPiece_duration, unePiece.TheaterPiece_seatsPrice);
+                dt.Rows.Add(unePiece, unePiece.TheaterPiece_name, unePiece.TheaterPiece_author.Author_firstname, unePiece.TheaterPiece_theme.Theme_name, unePiece.TheaterPiece_publicType.PublicType_name, unePiece.TheaterPiece_duration, unePiece.TheaterPiece_seatsPrice);
             }
 
             // Définition du style apporté au datagridview
