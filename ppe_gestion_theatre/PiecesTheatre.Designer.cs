@@ -88,6 +88,7 @@
             this.grbDetails.TabIndex = 6;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la pièce de théatre";
+            
             // 
             // lblLaNationalite
             // 
@@ -303,7 +304,7 @@
             this.dgvListePiecesTheatre.Name = "dgvListePiecesTheatre";
             this.dgvListePiecesTheatre.Size = new System.Drawing.Size(755, 294);
             this.dgvListePiecesTheatre.TabIndex = 5;
-            this.dgvListePiecesTheatre.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListeReservations_CellContentClick);
+            this.dgvListePiecesTheatre.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListePiecesTheatre_CellContentClick);
             // 
             // btnAjouter
             // 
@@ -341,7 +342,7 @@
             this.btnMenu.TabIndex = 9;
             this.btnMenu.Text = "Menu";
             this.btnMenu.UseVisualStyleBackColor = false;
-            
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // PiecesTheatre
             // 
