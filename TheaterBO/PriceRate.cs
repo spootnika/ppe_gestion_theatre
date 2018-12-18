@@ -10,12 +10,12 @@ namespace TheaterBO
     {
         private int priceRate_id;
         private string priceRate_name;
-        private DateTime priceRate_startTime; //pour avoir le format heure: var.ToString("HH:mm");
-        private DateTime priceRate_endTime;
+        private TimeSpan priceRate_startTime; //pour avoir le format heure: var.ToString("HH:mm");
+        private TimeSpan priceRate_endTime;
         private float priceRate_rate;
         private List<WeekDays> priceRate_weekDays;
 
-        public PriceRate(int id, string name, DateTime startTime, DateTime endTime, float rate, List<WeekDays> weekDays)
+        public PriceRate(int id, string name, TimeSpan startTime, TimeSpan endTime, float rate, List<WeekDays> weekDays)
         {
             this.priceRate_id = id;
             this.priceRate_name = name;
@@ -51,7 +51,7 @@ namespace TheaterBO
             }
         }
 
-        public DateTime PriceRate_startTime
+        public TimeSpan PriceRate_startTime
         {
             get
             {
@@ -64,7 +64,7 @@ namespace TheaterBO
             }
         }
 
-        public DateTime PriceRate_endTime
+        public TimeSpan PriceRate_endTime
         {
             get
             {

@@ -23,243 +23,190 @@ namespace TheaterDAL
             return unePieceTheatreDAO;
         }
 
-        
-
-        //public static List<Company> GetCompagnies()
-        //{
-        //    List<Company> lesCompagnies = new List<Company>();
-
-        //    int id;
-        //    string name;
-        //    string city;
-        //    string region;
-        //    string artisticDirector;
-
-        //    Company uneCompagnie;
-
-        //    // Connexion à la BD 
-        //    SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
-
-        //    SqlCommand cmd = new SqlCommand();
-        //    cmd.Connection = maConnexion;
-        //    cmd.CommandText = "SELECT * FROM Company";
-        //    SqlDataReader monReader = cmd.ExecuteReader();
-
-        //    while (monReader.Read())
-        //    {
-        //        id = Int32.Parse(monReader["company_id"].ToString());
-        //        name = monReader["company_name"].ToString();
-        //        city = monReader["company_city"].ToString();
-        //        region = monReader["company_region"].ToString());
-        //        artisticDirector = monReader["company_artisticDirector"].ToString();
-
-        //        uneCompagnie = new Company(id, name, city, region, artisticDirector);
-        //        lesCompagnies.Add(uneCompagnie);
-
-                
-        //    }
-        //    return lesCompagnies;
-
-        //}
-
         // Renvoie toutes les pièces de théâtre, liste
         public static List<TheaterPiece> GetTheaterPieces()
         {
-            // Création d'une liste vide d'objet TheaterPiece
-            List<TheaterPiece> lesPiecesTheatre = new List<TheaterPiece>();
-
-            int id;
-            string nom;
-            string description;
-            float duree;
-            float prix;
-            Company laCompagnie;
-            Author leAuteur;
-            PublicType leType;
-            Theme leTheme;
+            int id = 0;
+            string nom = "";
+            string description = "";
+            float duree = 0;
+            float prix = 0;
+            Company laCompagnie = null;
+            Author leAuteur = null;
+            List<Nationality> lesNationalites = new List<Nationality>();
+            PublicType leType = null;
+            Theme leTheme = null;
    
             TheaterPiece unePieceTheatre;
-
-            List<Company> lesCompagnies = new List<Company>(); //GetCompagnies();
-            List<Author> lesAuteurs = new List<Author>();
-            List<PublicType> lesTypes = new List<PublicType>();
-            List<Theme> lesThemes = new List<Theme>();
-
 
             // Connexion à la BD 
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
+            // Création d'une liste vide d'objet TheaterPiece
+            List<TheaterPiece> lesTheatres = new List<TheaterPiece>();
+
+            SqlCommand cmdPiecesTheatre = new SqlCommand();
+            cmdPiecesTheatre.Connection = maConnexion;
+            cmdPiecesTheatre.CommandText = "SELECT * FROM Theater_piece";
+
+            SqlCommand cmdAuteur = new SqlCommand();
+            cmdAuteur.Connection = maConnexion;
+            cmdAuteur.CommandText = "SELECT * FROM Author";
+
+            SqlCommand cmdNationalites = new SqlCommand();
+            cmdNationalites.Connection = maConnexion;
+            cmdNationalites.CommandText = "SELECT * FROM Nationality";
+
+            SqlCommand cmdAuteurNationalite = new SqlCommand();
+            cmdAuteurNationalite.Connection = maConnexion;
+            cmdAuteurNationalite.CommandText = "SELECT * FROM To_be_of";
+
+            SqlCommand cmdTheme = new SqlCommand();
+            cmdTheme.Connection = maConnexion;
+            cmdTheme.CommandText = "SELECT * FROM Theme";
+
+            SqlCommand cmdTypePublic = new SqlCommand();
+            cmdTypePublic.Connection = maConnexion;
+            cmdTypePublic.CommandText = "SELECT * FROM Public_Type";
+
+            SqlCommand cmdCompagnie = new SqlCommand();
+            cmdCompagnie.Connection = maConnexion;
+            cmdCompagnie.CommandText = "SELECT * FROM Company";
+
+            SqlDataReader readerPiecesTheatre = cmdPiecesTheatre.ExecuteReader();
+            SqlDataReader readerAuteur = cmdAuteur.ExecuteReader();
+            SqlDataReader readerNationalites = cmdNationalites.ExecuteReader();
+            SqlDataReader readerTheme = cmdTheme.ExecuteReader();
+            SqlDataReader readerTypePublic = cmdTypePublic.ExecuteReader();
+            SqlDataReader readerAuteurNationalite = cmdAuteurNationalite.ExecuteReader();
+            SqlDataReader readerCompagnie = cmdCompagnie.ExecuteReader();
             
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = maConnexion;
-            cmd.CommandText = "SELECT * FROM Theater_piece";
-            SqlDataReader monReader = cmd.ExecuteReader();
-
-            SqlCommand cmd2 = new SqlCommand();
-            cmd2.Connection = maConnexion;
-            cmd2.CommandText = "SECLECT * FROM Author";
-            SqlDataReader monReader2 = cmd2.ExecuteReader();
-
-            SqlCommand cmd3 = new SqlCommand();
-            cmd3.Connection = maConnexion;
-            cmd3.CommandText = "SELECT * FROM Theme";
-            SqlDataReader monReader3 = cmd3.ExecuteReader();
-
-            SqlCommand cmd4 = new SqlCommand();
-            cmd4.Connection = maConnexion;
-            cmd4.CommandText = "SECLECT * FROM Public_Type";
-            SqlDataReader monReader4 = cmd4.ExecuteReader();
-
-            SqlCommand cmd5 = new SqlCommand();
-            cmd5.Connection = maConnexion;
-            cmd5.CommandText = "SECLECT * FROM Company";
-            SqlDataReader monReader5 = cmd5.ExecuteReader();
-
             // Remplissage de la liste
-            while (monReader.Read())
+            while (readerPiecesTheatre.Read())
             {
-                id = Int32.Parse(monReader["theaterPiece_id"].ToString());
-                nom = monReader["theaterPiece_name"].ToString();
-                description = monReader["theaterPiece_description"].ToString();
-                duree = float.Parse(monReader["theaterPiece_duration"].ToString());
-                prix = float.Parse(monReader["theaterPiece_seatsPrice"].ToString());
+                id = Int32.Parse(readerPiecesTheatre["theaterPiece_id"].ToString());
+                nom = readerPiecesTheatre["theaterPiece_name"].ToString();
+                description = readerPiecesTheatre["theaterPiece_description"].ToString();
+                duree = float.Parse(readerPiecesTheatre["theaterPiece_duration"].ToString());
+                prix = float.Parse(readerPiecesTheatre["theaterPiece_seatsPrice"].ToString());
+                int idDeLAuteur = Int32.Parse(readerPiecesTheatre["theaterPiece_author"].ToString());
+                int idDeLaCompagnie = Int32.Parse(readerPiecesTheatre["theaterPiece_company"].ToString());
+                int idDuTypePublic = Int32.Parse(readerPiecesTheatre["theaterPiece_publicType"].ToString());
+                int idDuTheme = Int32.Parse(readerPiecesTheatre["theaterPiece_theme"].ToString());
 
-                int idCompagnie = Convert.ToInt32(monReader["company_id"].ToString());
-                int idAuteur = Convert.ToInt32(monReader["author_id"].ToString());
-                int idTheme = Convert.ToInt32(monReader["theme_id"].ToString());
-                int idType = Convert.ToInt32(monReader["typePublic_id"].ToString());
-
-
-                // recupère id de la company dans la table piece de theatre
-                // apres un while du reader de la compagnie et dedans comparer les id (1 id de la compagnie de la table piece de theatre et id de la compagnie de la table company) + while a la suite des autres 
-                // si c'est ok
-
-
-
-
-                while (monReader5.Read())
+                // Company
+                while (readerCompagnie.Read())
                 {
-                    int company_id = Convert.ToInt32(monReader5["company_id"].ToString());
+                    int idCompagnie = Int32.Parse(readerCompagnie["company_id"].ToString());
 
-                    if (idCompagnie == company_id)
+                    if(idDeLaCompagnie == idCompagnie)
                     {
+                        string nomCompagnie = readerCompagnie["company_name"].ToString();
+                        string villeCompagnie = readerCompagnie["company_city"].ToString();
+                        string regionCompagnie = readerCompagnie["company_region"].ToString();
+                        string directeurArtistique = readerCompagnie["company_artisticDirector"].ToString();
 
-                        bool trouve = false;
-                        int i = 0;
-
-                        // On trouve dans la liste des compagnies celui correspondant à l'id
-                        while (trouve == false && i < lesCompagnies.Count)
-                        {
-                            if (lesCompagnies[i].Company_id == idCompagnie)
-                            {
-                                // Si on l'a, on l'ajoute
-                                laCompagnie = lesCompagnies[i];
-                                trouve = true;
-                            }
-                            else
-                            {
-                                i++;
-                            }
-                        }
+                        laCompagnie = new Company(idCompagnie, nomCompagnie, villeCompagnie, regionCompagnie, directeurArtistique);
                     }
                 }
+                readerCompagnie.Close();
+                readerCompagnie = cmdCompagnie.ExecuteReader();
 
-                while (monReader2.Read())
+                // Author
+                while (readerAuteur.Read())
                 {
-                    int author_id = Convert.ToInt32(monReader2["author_id"].ToString());
+                    int idAuteur = Int32.Parse(readerAuteur["author_id"].ToString());
 
-                    if (idAuteur == author_id)
+                    if (idDeLAuteur == idAuteur)
                     {
-                        bool trouve = false;
-                        int i = 0;
+                        string nomAuteur = readerAuteur["author_lastname"].ToString();
+                        string prenomAuteur = readerAuteur["author_firstname"].ToString();
 
-                        // On trouve dans la liste des show celui correspondant à l'id
-                        while (trouve == false && i < lesAuteurs.Count)
+                        List<int> lesIdsNationalites = new List<int>();
+
+                        while (readerAuteurNationalite.Read())
                         {
-                            if (lesAuteurs[i].Author_id == idAuteur)
+                            int idComparerAuteur = Int32.Parse(readerAuteurNationalite["toBeOf_author"].ToString());
+                            if (idAuteur == idComparerAuteur)
                             {
-                                // Si on l'a, on l'ajoute
-                                leAuteur = lesAuteurs[i];
-                                trouve = true;
-                            }
-                            else
-                            {
-                                i++;
+                                int idNatio = Int32.Parse(readerAuteurNationalite["toBeOf_nationality"].ToString());
+                                lesIdsNationalites.Add(idNatio);
                             }
                         }
-                    }
-                }
+                        readerAuteurNationalite.Close();
+                        readerAuteurNationalite = cmdAuteurNationalite.ExecuteReader();
 
-                while (monReader3.Read())
-                {
-                    int theme_id = Convert.ToInt32(monReader3["theme_id"].ToString());
-
-                    if (idTheme == theme_id)
-                    {
-                        bool trouve = false;
-                        int i = 0;
-
-                        // On trouve dans la liste des show celui correspondant à l'id
-                        while (trouve == false && i < lesThemes.Count)
+                        foreach (int unIdNatio in lesIdsNationalites)
                         {
-                            if (lesThemes[i].Theme_id == idTheme)
+                            while (readerNationalites.Read())
                             {
-                                // Si on l'a, on l'ajoute
-                                leTheme = lesThemes[i];
-                                trouve = true;
+                                int idNationalite = Int32.Parse(readerNationalites["nationality_id"].ToString());
+                                if (unIdNatio == idNationalite)
+                                {
+                                    Nationality laNationalite;
+                                    string nomNationalite = readerNationalites["nationality_name"].ToString();
+
+                                    laNationalite = new Nationality(idNationalite, nomNationalite);
+                                    lesNationalites.Add(laNationalite);
+                                }
+
                             }
-                            else
-                            {
-                                i++;
-                            }
+                            readerNationalites.Close();
+                            readerNationalites = cmdNationalites.ExecuteReader();
+                            
                         }
+
+                        leAuteur = new Author(idAuteur, nomAuteur, prenomAuteur, lesNationalites);
                     }
                 }
+                readerAuteur.Close();
+                readerAuteur = cmdAuteur.ExecuteReader();
 
-                while (monReader4.Read())
+                // Public type
+                while (readerTypePublic.Read())
                 {
-                    int type_id = Convert.ToInt32(monReader4["typePublic_id"].ToString());
+                    int idType = Int32.Parse(readerTypePublic["publicType_id"].ToString());
 
-                    if (idType == type_id)
+                    if (idType == idDuTypePublic)
                     {
-                        bool trouve = false;
-                        int i = 0;
+                        string nomType = readerTypePublic["publicType_name"].ToString();
 
-                        // On trouve dans la liste des show celui correspondant à l'id
-                        while (trouve == false && i < lesTypes.Count)
-                        {
-                            if (lesTypes[i].PublicType_id == idType)
-                            {
-                                // Si on l'a, on l'ajoute
-                                leType = lesTypes[i];
-                                trouve = true;
-                            }
-                            else
-                            {
-                                i++;
-                            }
-                        }
+                        leType = new PublicType(idType, nomType);
                     }
                 }
+                readerTypePublic.Close();
+                readerTypePublic = cmdTypePublic.ExecuteReader();
+
+                // Theme
+                while (readerTheme.Read())
+                {
+                    int idTheme = Int32.Parse(readerTheme["theme_id"].ToString());
+
+                    if (idTheme == idDuTheme)
+                    {
+                        string nomTheme = readerTheme["theme_name"].ToString();
+
+                        leTheme = new Theme(idTheme, nomTheme);
+                    }
+                }
+                readerTheme.Close();
+                readerTheme = cmdTheme.ExecuteReader();
 
                 unePieceTheatre = new TheaterPiece(id, nom, description, duree, prix, laCompagnie, leAuteur, leType, leTheme);
-                lesPiecesTheatre.Add(unePieceTheatre);
+                lesTheatres.Add(unePieceTheatre);
             }
-
-
-
-            monReader.Close();
-            monReader2.Close();
-            monReader3.Close();
-            monReader4.Close();
-            monReader5.Close();
-
+            readerCompagnie.Close();
+            readerAuteurNationalite.Close();
+            readerNationalites.Close();
+            readerAuteur.Close();
+            readerTypePublic.Close();
+            readerTheme.Close();
+            readerPiecesTheatre.Close();
 
             // Fermeture de la connexion
             maConnexion.Close();
 
-            return lesPiecesTheatre;
+            return lesTheatres;
               
         }
     }
