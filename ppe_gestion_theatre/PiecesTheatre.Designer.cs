@@ -312,11 +312,11 @@
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAjouter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(586, 34);
+            this.btnAjouter.Location = new System.Drawing.Point(664, 34);
             this.btnAjouter.Name = "btnAjouter";
-            this.btnAjouter.Size = new System.Drawing.Size(192, 29);
+            this.btnAjouter.Size = new System.Drawing.Size(112, 29);
             this.btnAjouter.TabIndex = 8;
-            this.btnAjouter.Text = "Ajouter une pieces théatre";
+            this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
             // 
             // lblTitre
@@ -324,7 +324,7 @@
             this.lblTitre.AutoSize = true;
             this.lblTitre.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitre.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblTitre.Location = new System.Drawing.Point(166, 21);
+            this.lblTitre.Location = new System.Drawing.Point(203, 24);
             this.lblTitre.Name = "lblTitre";
             this.lblTitre.Size = new System.Drawing.Size(357, 39);
             this.lblTitre.TabIndex = 7;

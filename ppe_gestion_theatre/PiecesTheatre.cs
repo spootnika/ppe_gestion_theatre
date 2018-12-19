@@ -109,6 +109,8 @@ namespace ppe_gestion_theatre
 
                 float prix = unePiece.TheaterPiece_seatsPrice;
 
+                
+                
                 dt.Rows.Add(unePiece, nomPiece, nomAuteur, typePublic, nomTheme, duree, prix);
             }
 
@@ -160,9 +162,7 @@ namespace ppe_gestion_theatre
 
                 // Ajout du nom de la pièce
                 lblLaPiece.Text = laPiece.TheaterPiece_name;
-
-
-
+                                
                 // Ajout du nom du theme
                 lblLeTheme.Text = laPiece.TheaterPiece_theme.Theme_name;
 
@@ -173,10 +173,13 @@ namespace ppe_gestion_theatre
                 lblLeType.Text = laPiece.TheaterPiece_publicType.PublicType_name;
 
                 // Ajout de l'auteur
+
                 lblLeAuteur.Text = laPiece.TheaterPiece_author.Author_firstname + " " + laPiece.TheaterPiece_author.Author_lastname;
 
                 // Ajout de la nationnalité
+                
                 //lblLaNationalite.Text = laPiece.TheaterPiece_author.Author_nationalities.
+
 
                 // Ajout du nom de la compagnie
                 lblLaCompagnie.Text = laPiece.TheaterPiece_company.Company_name;
