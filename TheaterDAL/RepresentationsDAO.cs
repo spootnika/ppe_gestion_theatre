@@ -109,7 +109,7 @@ namespace TheaterDAL
 
 
         //renvoie le nombre de places réservées pour une représentation
-        public int GetSeatsBooks(int idRepresentation, int nbPlacesTotal)
+        public static int GetSeatsBooked(int idRepresentation, int nbPlacesTotal)
         {
             int nbPlacesRestantesPourUneRepresentation = 0;
             int nbPlacesReserveesPourUneRepresentation = 0;
@@ -119,9 +119,10 @@ namespace TheaterDAL
 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
+            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show = @idShow";
+
             SqlParameter paramid = new SqlParameter("@idShow", SqlDbType.NChar);
             paramid.Value = idRepresentation;
-            cmd.CommandText = "SELECT * FROM To_book WHERE toBook_show = @idShow";
             cmd.Parameters.Add(paramid);
 
             SqlDataReader monReader = cmd.ExecuteReader();
@@ -134,19 +135,23 @@ namespace TheaterDAL
 
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = maConnexion;
-            cmd.CommandText = "SELECT * FROM Show WHERE show_id = @idShow";
-            cmd2.Parameters.Add(paramid);
+            cmd2.CommandText = "SELECT * FROM Show WHERE show_id = @idShow";
+
+            SqlParameter paramid2 = new SqlParameter("@idShow", SqlDbType.NChar);
+            paramid2.Value = idRepresentation;
+            cmd2.Parameters.Add(paramid2);
+
             SqlDataReader monReader2 = cmd2.ExecuteReader();
 
             while (monReader2.Read())
             {
-                nbPlacesTotal = Int32.Parse(monReader["show_seats"].ToString());
+                nbPlacesTotal = Int32.Parse(monReader2["show_seats"].ToString());
             }
             monReader2.Close();
             // Fermeture de la connexion
             maConnexion.Close();
 
-            nbPlacesRestantesPourUneRepresentation = nbPlacesTotal - nbPlacesRestantesPourUneRepresentation;
+            nbPlacesRestantesPourUneRepresentation = nbPlacesTotal - nbPlacesReserveesPourUneRepresentation;
 
             return nbPlacesRestantesPourUneRepresentation;
         }
