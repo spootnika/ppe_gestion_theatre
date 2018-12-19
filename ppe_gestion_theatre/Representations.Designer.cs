@@ -62,6 +62,7 @@
             this.cbChoixPiece = new System.Windows.Forms.ComboBox();
             this.lblLesPlacesRest = new System.Windows.Forms.Label();
             this.dgvListeRepresentations = new System.Windows.Forms.DataGridView();
+            this.btnReinitialiser = new System.Windows.Forms.Button();
             this.grbDetails.SuspendLayout();
             this.grbFiltres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeRepresentations)).BeginInit();
@@ -329,6 +330,7 @@
             // grbFiltres
             // 
             this.grbFiltres.BackColor = System.Drawing.Color.White;
+            this.grbFiltres.Controls.Add(this.btnReinitialiser);
             this.grbFiltres.Controls.Add(this.cbChoixPiece);
             this.grbFiltres.Controls.Add(this.dtpDateFin);
             this.grbFiltres.Controls.Add(this.dtpDateDeb);
@@ -354,12 +356,13 @@
             this.btnFiltrer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFiltrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrer.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnFiltrer.Location = new System.Drawing.Point(658, 43);
+            this.btnFiltrer.Location = new System.Drawing.Point(668, 60);
             this.btnFiltrer.Name = "btnFiltrer";
-            this.btnFiltrer.Size = new System.Drawing.Size(69, 29);
+            this.btnFiltrer.Size = new System.Drawing.Size(69, 26);
             this.btnFiltrer.TabIndex = 30;
             this.btnFiltrer.Text = "Filtrer";
             this.btnFiltrer.UseVisualStyleBackColor = false;
+            this.btnFiltrer.Click += new System.EventHandler(this.btnFiltrer_Click);
             // 
             // lblDateFin
             // 
@@ -424,17 +427,21 @@
             // 
             this.dtpDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDateDeb.Location = new System.Drawing.Point(327, 32);
+            this.dtpDateDeb.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
             this.dtpDateDeb.Name = "dtpDateDeb";
             this.dtpDateDeb.Size = new System.Drawing.Size(114, 22);
             this.dtpDateDeb.TabIndex = 31;
+            this.dtpDateDeb.Value = new System.DateTime(2018, 12, 19, 10, 1, 25, 0);
             // 
             // dtpDateFin
             // 
             this.dtpDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDateFin.Location = new System.Drawing.Point(478, 32);
+            this.dtpDateFin.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
             this.dtpDateFin.Name = "dtpDateFin";
             this.dtpDateFin.Size = new System.Drawing.Size(114, 22);
             this.dtpDateFin.TabIndex = 32;
+            this.dtpDateFin.Value = new System.DateTime(2018, 12, 19, 10, 2, 14, 0);
             // 
             // cbChoixPiece
             // 
@@ -463,6 +470,21 @@
             this.dgvListeRepresentations.Size = new System.Drawing.Size(743, 192);
             this.dgvListeRepresentations.TabIndex = 9;
             this.dgvListeRepresentations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListeRepresentations_CellClick_1);
+            // 
+            // btnReinitialiser
+            // 
+            this.btnReinitialiser.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnReinitialiser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReinitialiser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReinitialiser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReinitialiser.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnReinitialiser.Location = new System.Drawing.Point(576, 60);
+            this.btnReinitialiser.Name = "btnReinitialiser";
+            this.btnReinitialiser.Size = new System.Drawing.Size(86, 26);
+            this.btnReinitialiser.TabIndex = 34;
+            this.btnReinitialiser.Text = "Réinitialiser";
+            this.btnReinitialiser.UseVisualStyleBackColor = false;
+            this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
             // 
             // Representations
             // 
@@ -523,5 +545,6 @@
         private System.Windows.Forms.DateTimePicker dtpDateDeb;
         private System.Windows.Forms.Label lblLesPlacesRest;
         private System.Windows.Forms.DataGridView dgvListeRepresentations;
+        private System.Windows.Forms.Button btnReinitialiser;
     }
 }

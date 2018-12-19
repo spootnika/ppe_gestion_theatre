@@ -359,11 +359,11 @@ namespace TheaterDAL
             SqlParameter paramIdPiece = new SqlParameter("@idPiece", SqlDbType.NChar);
             paramIdPiece.Value = idTheaterPiece;
             SqlParameter paramDateDeb = new SqlParameter("@dateDeb", SqlDbType.NChar);
-            paramDateDeb.Value = dateDebutChoisie;
+            paramDateDeb.Value = dateDebutChoisie.ToString("yyyy-MM-dd");
             SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.NChar);
-            paramDateFin.Value = dateFinChoisie;
+            paramDateFin.Value = dateFinChoisie.ToString("yyyy-MM-dd");
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece AND show_dateTime BETWEEN(@dateDeb AND @dateFin)";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, Theater_piece WHERE show_theaterPiece = theaterPiece_id AND theaterPiece_id = @idPiece AND convert(date, show_dateTime) BETWEEN convert(date, @dateDeb) AND convert(date, @dateFin)";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
             cmd.Parameters.Add(paramDateDeb);
