@@ -18,6 +18,62 @@ namespace ppe_gestion_theatre
         public Representations(LoginInfo currentUser)
         {
             InitializeComponent();
+            this.currentUser = currentUser;
+
+            List<Show> lesRepresentations = ModuleRepresentations.GetShows();
+
+            // Blocage de la génération automatique des colonnes
+            //dgvListePiecesTheatre.AutoGenerateColumns = false;
+
+            DataTable dt = new DataTable();
+            dgvListeRepresentations.DataSource = dt;
+
+            dt.Columns.Add(new DataColumn("representation", typeof(Show)));
+
+            dt.Columns.Add(new DataColumn("nom", typeof(string)));
+            dgvListeRepresentations.Columns["Nom"].HeaderText = "Nom de la pièce";
+
+            dt.Columns.Add(new DataColumn("date", typeof(string)));
+            dgvListeRepresentations.Columns["Date"].HeaderText = "Date";
+
+            dt.Columns.Add(new DataColumn("heure", typeof(string)));
+            dgvListeRepresentations.Columns["Heure"].HeaderText = "Heure";
+
+            dt.Columns.Add(new DataColumn("places", typeof(int)));
+            dgvListeRepresentations.Columns["Places"].HeaderText = "Places";
+
+            dt.Columns.Add(new DataColumn("durée", typeof(float)));
+            dgvListeRepresentations.Columns["Durée"].HeaderText = "Durée";
+
+            dt.Columns.Add(new DataColumn("tarif", typeof(float)));
+            dgvListeRepresentations.Columns["Tarif"].HeaderText = "Tarif";
+
+            dgvListeRepresentations.ReadOnly = true;
+            
+
+            //test dgv
+            foreach (Show uneRepresentation in lesRepresentations)
+            {
+                string nomPiece = uneRepresentation.Show_theaterPiece.TheaterPiece_name;
+
+                DateTime dateHeure = uneRepresentation.Show_dateTime;
+
+                string date = dateHeure.ToString("dd/MM/yyyy");
+
+                string heure = dateHeure.ToString("HH:mm");
+
+                int places = uneRepresentation.Show_seats;
+
+                float duree = uneRepresentation.Show_theaterPiece.TheaterPiece_duration;
+
+                float prix = uneRepresentation.Show_theaterPiece.TheaterPiece_seatsPrice;
+
+                dt.Rows.Add(uneRepresentation, nomPiece, date, heure, places, duree, prix);
+            }
+
+
+            // La première colonne contenant l'objet ne sera pas visible
+            dgvListeRepresentations.Columns["representation"].Visible = false;
         }
 
         private void Representations_FormClosing(object sender, FormClosingEventArgs e)
@@ -31,6 +87,42 @@ namespace ppe_gestion_theatre
             Menu frmMenu = new Menu(currentUser);
             this.Hide(); // le formulaire est caché
             frmMenu.ShowDialog(); // ouverture du formulaire
+        }
+
+        private void dgvListeRepresentations_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int indexRow = dgvListeRepresentations.CurrentRow.Index;
+
+            if(dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+            {
+                Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
+
+                lblLaPiece.Text = laRepres.Show_theaterPiece.TheaterPiece_name;
+
+                lblLesPlaces.Text = laRepres.Show_seats.ToString();
+
+                lblLesPlacesRest.Text = "";
+
+                lblLaDate.Text = laRepres.Show_dateTime.ToString("dd/MM/yyyy");
+
+                lblLHeure.Text = laRepres.Show_dateTime.ToString("HH:mm");
+
+                lblLePrixFixe.Text = laRepres.Show_theaterPiece.TheaterPiece_seatsPrice.ToString() + " €";
+            }
+            else
+            {
+                lblLaPiece.Text = "";
+
+                lblLesPlaces.Text = "";
+
+                lblLesPlacesRest.Text = "";
+
+                lblLaDate.Text = "";
+
+                lblLHeure.Text = "";
+
+                lblLePrixFixe.Text = " €";
+            }
         }
     }
 }
