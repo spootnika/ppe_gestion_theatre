@@ -70,5 +70,13 @@ namespace TheaterBLL
             return lesRepresentationsFiltrees;
 
         }
+
+        // Renvoie le nombre de places restante pour une pièce
+        public static int GetRemainingSeats(Show laRepres)
+        {
+            int nbRestant = RepresentationsDAO.GetSeatsBooked(laRepres.Show_id, laRepres.Show_seats);
+
+            return nbRestant;
+        }
     }
 }

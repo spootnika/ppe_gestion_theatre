@@ -33,7 +33,6 @@ namespace TheaterDAL
             float prix = 0;
             Company laCompagnie = null;
             Author leAuteur = null;
-            List<Nationality> lesNationalites = new List<Nationality>();
             PublicType leType = null;
             Theme leTheme = null;
    
@@ -136,6 +135,7 @@ namespace TheaterDAL
                         readerAuteurNationalite.Close();
                         readerAuteurNationalite = cmdAuteurNationalite.ExecuteReader();
 
+                        List<Nationality> lesNationalites = new List<Nationality>();
                         foreach (int unIdNatio in lesIdsNationalites)
                         {
                             while (readerNationalites.Read())
