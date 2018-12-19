@@ -51,7 +51,7 @@ namespace TheaterDAL
 
             // Initialisation de deux readers
             SqlDataReader readerSpectators = null;
-            SqlDataReader readearToBook = null;
+            SqlDataReader readerToBook = null;
 
             // Initialisation et écriture d'une requête SQL pour récupérer tous les spectators
             SqlCommand cmdSpectators = new SqlCommand();
@@ -65,7 +65,7 @@ namespace TheaterDAL
 
             // Execution du reader spectators
             readerSpectators = cmdSpectators.ExecuteReader();
-            readearToBook = cmdToBook.ExecuteReader();
+            readerToBook = cmdToBook.ExecuteReader();
 
             // Verification de la valeur du retour
             if (readerSpectators.HasRows)
@@ -81,16 +81,16 @@ namespace TheaterDAL
                     telephone = readerSpectators["spectator_phone"].ToString();
                     
                     // Déclanchement du reader sur la table To Book pour récupérer la liaison avec le show et le nbPlaces
-                    while (readearToBook.Read())
+                    while (readerToBook.Read())
                     {
-                        int idSpect = Convert.ToInt32(readearToBook["toBook_spectator"].ToString());
+                        int idSpect = Convert.ToInt32(readerToBook["toBook_spectator"].ToString());
 
                         // Si l'id du spectateur de to book est égale à celui de la requête précédente
                         if (idSpect == id)
                         {
                             // on récupère l'id du show et le nb de places
-                            int idShow = Convert.ToInt32(readearToBook["toBook_show"].ToString());
-                            nbPlaces = Convert.ToInt32(readearToBook["seatsBooked"].ToString());
+                            int idShow = Convert.ToInt32(readerToBook["toBook_show"].ToString());
+                            nbPlaces = Convert.ToInt32(readerToBook["seatsBooked"].ToString());
 
                             bool trouve = false;
                             int i = 0;
@@ -111,6 +111,9 @@ namespace TheaterDAL
                             }
                         }
                     }
+                    readerToBook.Close();
+                    readerToBook = cmdToBook.ExecuteReader();
+
                     // Initialisation d'une nouvelle réservation et ajout dans la liste
                     uneReservation = new Spectator(id, nom, prenom, email, telephone, laRepresentation, nbPlaces);
                     lesReservations.Add(uneReservation);
@@ -119,7 +122,7 @@ namespace TheaterDAL
             }
 
             readerSpectators.Close();
-            readearToBook.Close();
+            readerToBook.Close();
 
             // Fermeture de la connexion
             maConnexion.Close();

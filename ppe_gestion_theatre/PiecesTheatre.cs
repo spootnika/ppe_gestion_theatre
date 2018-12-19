@@ -22,13 +22,17 @@ namespace ppe_gestion_theatre
         {
             InitializeComponent();
 
+            this.currentUser = currentUser;
+
+            List<TheaterPiece> lesPiecesTheatre = ModulePiecesTheatre.GetTheaterPieces();
+
             // Blocage de la génération automatique des colonnes
             //dgvListePiecesTheatre.AutoGenerateColumns = false;
 
             DataTable dt = new DataTable();
             dgvListePiecesTheatre.DataSource = dt;
 
-            dt.Columns.Add(new DataColumn("piece", typeof(PiecesTheatre)));
+            dt.Columns.Add(new DataColumn("piece", typeof(TheaterPiece)));
 
             dt.Columns.Add(new DataColumn("nom", typeof(string)));
             dgvListePiecesTheatre.Columns["Nom"].HeaderText = "Nom de la pièce";
@@ -42,7 +46,7 @@ namespace ppe_gestion_theatre
             dt.Columns.Add(new DataColumn("theme", typeof(string)));
             dgvListePiecesTheatre.Columns["Theme"].HeaderText = "Thème";
 
-            dt.Columns.Add(new DataColumn("durée", typeof(string)));
+            dt.Columns.Add(new DataColumn("durée", typeof(float)));
             dgvListePiecesTheatre.Columns["Durée"].HeaderText = "Durée";
 
             dt.Columns.Add(new DataColumn("prix", typeof(float)));
@@ -91,20 +95,26 @@ namespace ppe_gestion_theatre
             #endregion
 
             //test dgv
-            foreach (TheaterPiece unePiece in PiecesTheatreDAO.GetTheaterPieces())
+            foreach (TheaterPiece unePiece in lesPiecesTheatre)
             {
-                dt.Rows.Add(unePiece.TheaterPiece_name, unePiece.TheaterPiece_author.Author_firstname, unePiece.TheaterPiece_theme.Theme_name, unePiece.TheaterPiece_publicType.PublicType_name, unePiece.TheaterPiece_duration, unePiece.TheaterPiece_seatsPrice);
+                string nomPiece = unePiece.TheaterPiece_name;
+
+                string nomAuteur = unePiece.TheaterPiece_author.Author_firstname + " " + unePiece.TheaterPiece_author.Author_lastname;
+
+                string nomTheme = unePiece.TheaterPiece_theme.Theme_name;
+
+                string typePublic = unePiece.TheaterPiece_publicType.PublicType_name;
+
+                float duree = unePiece.TheaterPiece_duration;
+
+                float prix = unePiece.TheaterPiece_seatsPrice;
+
+                dt.Rows.Add(unePiece, nomPiece, nomAuteur, typePublic, nomTheme, duree, prix);
             }
 
-            // Définition du style apporté au datagridview
-            dgvListePiecesTheatre.ColumnHeadersVisible = true;
-            DataGridViewCellStyle columnHeaderStyle = new DataGridViewCellStyle();
-            columnHeaderStyle.BackColor = Color.Beige;
-            columnHeaderStyle.Font = new Font("Verdana", 10, FontStyle.Bold);
-            dgvListePiecesTheatre.ColumnHeadersDefaultCellStyle = columnHeaderStyle;
 
-            // Récupération de chaîne de connexion à la BD à l'ouverture du formulaire
-            ModulePiecesTheatre.SetchaineConnexion(ConfigurationManager.ConnectionStrings["dbGestionTheatre"]);
+            // La première colonne contenant l'objet ne sera pas visible
+            dgvListePiecesTheatre.Columns["piece"].Visible = false;
 
             // Création d'un objet List d'Utilisateur à afficher dans le datagridview
             //List<TheaterPiece> liste = new List<TheaterPiece>();
@@ -114,17 +124,103 @@ namespace ppe_gestion_theatre
             //dgvListePiecesTheatre.DataSource = liste;
 
             // Définit un style pour la bordure du formulaire
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
-        }
-
-        private void dgvListeReservations_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
+
+        
 
         private void PiecesTheatre_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            // Ouverture de la nouvelle fenêtre
+            Menu frmMenu = new Menu(currentUser);
+            this.Hide(); // le formulaire est caché
+            frmMenu.ShowDialog(); // ouverture du formulaire
+        }
+
+        private void dgvListePiecesTheatre_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void dgvListePiecesTheatre_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Récupération du numéro de la ligne (index)
+            int indexRow = dgvListePiecesTheatre.CurrentRow.Index;
+
+            // Si la ligne contient bien une valeur, on valorise les labels avec les valeurs correspondantes
+            if (dgvListePiecesTheatre.Rows[indexRow].Cells[0].Value != DBNull.Value)
+            {
+
+                // Récupération de l'objet TheaterPiece 
+                TheaterPiece laPiece = (TheaterPiece)dgvListePiecesTheatre.Rows[indexRow].Cells[0].Value;
+
+                // Ajout du nom de la pièce
+                lblLaPiece.Text = laPiece.TheaterPiece_name;
+
+
+
+                // Ajout du nom du theme
+                lblLeTheme.Text = laPiece.TheaterPiece_theme.Theme_name;
+
+                // Ajout de la durée
+                lblLaDuree.Text = laPiece.TheaterPiece_duration.ToString();
+
+                // Ajout du type
+                lblLeType.Text = laPiece.TheaterPiece_publicType.PublicType_name;
+
+                // Ajout de l'auteur
+                lblLeAuteur.Text = laPiece.TheaterPiece_author.Author_firstname + " " + laPiece.TheaterPiece_author.Author_lastname;
+
+                // Ajout de la nationnalité
+                lblLaNationalite.Text = "";
+                int indNat = 1;
+                foreach (Nationality laNationalite in laPiece.TheaterPiece_author.Author_nationalities)
+                {
+                    lblLaNationalite.Text += laNationalite.Nationality_name;
+
+                    if (indNat < laPiece.TheaterPiece_author.Author_nationalities.Count)
+                    {
+                        indNat++;
+                        lblLaNationalite.Text += ", ";
+                    }
+                }
+
+                // Ajout du nom de la compagnie
+                lblLaCompagnie.Text = laPiece.TheaterPiece_company.Company_name;
+
+                // Ajout du prix fixe
+                lblLePrixFixe.Text = laPiece.TheaterPiece_seatsPrice.ToString() + " €";
+
+                // Ajout de la description
+                lblLaDescription.Text = laPiece.TheaterPiece_description;
+
+            }
+            else // Si pas de valeur dans la cellule
+            {
+                // On valorise chaque label avec une valeur vide
+                lblLaPiece.Text = "";
+
+                lblLeTheme.Text = "";
+
+                lblLaDuree.Text = "";
+
+                lblLeAuteur.Text = "";
+
+                lblLeType.Text = "";
+
+                lblLaDescription.Text = "";
+
+                lblLaCompagnie.Text = "";
+
+                lblLePrixFixe.Text = "€";
+
+                lblLaNationalite.Text = "";
+
+            }
         }
     }
 }

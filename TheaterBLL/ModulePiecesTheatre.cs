@@ -27,7 +27,8 @@ namespace TheaterBLL
         // Récupère la liste des pièces de la DAO, renvoie la liste
         public static List<TheaterPiece> GetTheaterPieces()
         {
-            return PiecesTheatreDAO.GetTheaterPieces();
+            List<TheaterPiece> lesPiecesTheatre = PiecesTheatreDAO.GetTheaterPieces();
+            return lesPiecesTheatre;
         }
 
         // Définit la chaîne de connexion grâce à la méthode SetchaineConnexion de la DAL
