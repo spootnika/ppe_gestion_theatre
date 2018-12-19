@@ -144,6 +144,10 @@ namespace ppe_gestion_theatre
 
         private void dgvListePiecesTheatre_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
+
+        private void dgvListePiecesTheatre_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
             // Récupération du numéro de la ligne (index)
             int indexRow = dgvListePiecesTheatre.CurrentRow.Index;
 
@@ -157,7 +161,7 @@ namespace ppe_gestion_theatre
                 // Ajout du nom de la pièce
                 lblLaPiece.Text = laPiece.TheaterPiece_name;
 
-                
+
 
                 // Ajout du nom du theme
                 lblLeTheme.Text = laPiece.TheaterPiece_theme.Theme_name;
@@ -182,7 +186,7 @@ namespace ppe_gestion_theatre
 
                 // Ajout de la description
                 lblLaDescription.Text = laPiece.TheaterPiece_description;
-                
+
             }
             else // Si pas de valeur dans la cellule
             {
@@ -204,10 +208,8 @@ namespace ppe_gestion_theatre
                 lblLePrixFixe.Text = "€";
 
                 lblLaNationalite.Text = "";
-                               
+
             }
         }
-
-        
     }
 }

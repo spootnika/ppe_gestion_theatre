@@ -33,6 +33,11 @@
             this.lblTitre = new System.Windows.Forms.Label();
             this.dgvListeReservations = new System.Windows.Forms.DataGridView();
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.lblLePrix = new System.Windows.Forms.Label();
+            this.lblLHeure = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblLePrixTotal = new System.Windows.Forms.Label();
             this.lblLeTelephone = new System.Windows.Forms.Label();
             this.lblLeEmail = new System.Windows.Forms.Label();
@@ -59,10 +64,12 @@
             this.lblPlacesRestantes = new System.Windows.Forms.Label();
             this.lblPlaces = new System.Windows.Forms.Label();
             this.lblNomPiece = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblLHeure = new System.Windows.Forms.Label();
-            this.lblLePrix = new System.Windows.Forms.Label();
             this.grbFiltres = new System.Windows.Forms.GroupBox();
+            this.btnFiltrer = new System.Windows.Forms.Button();
+            this.lblDateFin = new System.Windows.Forms.Label();
+            this.lblDateDeb = new System.Windows.Forms.Label();
+            this.lblPiece = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -79,16 +86,9 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblPiece = new System.Windows.Forms.Label();
-            this.lblDateDeb = new System.Windows.Forms.Label();
-            this.lblDateFin = new System.Windows.Forms.Label();
-            this.btnFiltrer = new System.Windows.Forms.Button();
-            this.lblChoixPiece = new System.Windows.Forms.Label();
-            this.lblChoixDateDeb = new System.Windows.Forms.Label();
-            this.lblChoixDateFin = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.dtpDateDeb = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
+            this.cbChoixPiece = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeReservations)).BeginInit();
             this.grbDetails.SuspendLayout();
             this.grbFiltres.SuspendLayout();
@@ -106,6 +106,7 @@
             this.btnMenu.TabIndex = 6;
             this.btnMenu.Text = "Menu";
             this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // btnAjouter
             // 
@@ -119,7 +120,6 @@
             this.btnAjouter.TabIndex = 7;
             this.btnAjouter.Text = "Ajouter une représentation";
             this.btnAjouter.UseVisualStyleBackColor = false;
-         //   this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // lblTitre
             // 
@@ -131,7 +131,6 @@
             this.lblTitre.Size = new System.Drawing.Size(478, 39);
             this.lblTitre.TabIndex = 8;
             this.lblTitre.Text = "Gestion des représentations";
-      //      this.lblTitre.Click += new System.EventHandler(this.lblTitre_Click);
             // 
             // dgvListeReservations
             // 
@@ -184,6 +183,59 @@
             this.grbDetails.TabIndex = 10;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la représentation";
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.SteelBlue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(353, 172);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(88, 27);
+            this.button4.TabIndex = 31;
+            this.button4.Text = "Supprimer";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SteelBlue;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(272, 172);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 27);
+            this.button3.TabIndex = 30;
+            this.button3.Text = "Modifier";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // lblLePrix
+            // 
+            this.lblLePrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLePrix.ForeColor = System.Drawing.Color.Black;
+            this.lblLePrix.Location = new System.Drawing.Point(539, 103);
+            this.lblLePrix.Name = "lblLePrix";
+            this.lblLePrix.Size = new System.Drawing.Size(188, 16);
+            this.lblLePrix.TabIndex = 29;
+            // 
+            // lblLHeure
+            // 
+            this.lblLHeure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLHeure.ForeColor = System.Drawing.Color.Black;
+            this.lblLHeure.Location = new System.Drawing.Point(518, 71);
+            this.lblLHeure.Name = "lblLHeure";
+            this.lblLHeure.Size = new System.Drawing.Size(188, 16);
+            this.lblLHeure.TabIndex = 28;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(518, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(188, 16);
+            this.label1.TabIndex = 27;
             // 
             // lblLePrixTotal
             // 
@@ -451,40 +503,12 @@
             this.lblNomPiece.TabIndex = 0;
             this.lblNomPiece.Text = "Pièce :";
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(518, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 16);
-            this.label1.TabIndex = 27;
-            // 
-            // lblLHeure
-            // 
-            this.lblLHeure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLHeure.ForeColor = System.Drawing.Color.Black;
-            this.lblLHeure.Location = new System.Drawing.Point(518, 71);
-            this.lblLHeure.Name = "lblLHeure";
-            this.lblLHeure.Size = new System.Drawing.Size(188, 16);
-            this.lblLHeure.TabIndex = 28;
-           // this.lblLHeure.Click += new System.EventHandler(this.lblLHeure_Click);
-            // 
-            // lblLePrix
-            // 
-            this.lblLePrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLePrix.ForeColor = System.Drawing.Color.Black;
-            this.lblLePrix.Location = new System.Drawing.Point(539, 103);
-            this.lblLePrix.Name = "lblLePrix";
-            this.lblLePrix.Size = new System.Drawing.Size(188, 16);
-            this.lblLePrix.TabIndex = 29;
-            // 
             // grbFiltres
             // 
             this.grbFiltres.BackColor = System.Drawing.Color.White;
-            this.grbFiltres.Controls.Add(this.lblChoixDateFin);
-            this.grbFiltres.Controls.Add(this.lblChoixDateDeb);
-            this.grbFiltres.Controls.Add(this.lblChoixPiece);
+            this.grbFiltres.Controls.Add(this.cbChoixPiece);
+            this.grbFiltres.Controls.Add(this.dtpDateFin);
+            this.grbFiltres.Controls.Add(this.dtpDateDeb);
             this.grbFiltres.Controls.Add(this.btnFiltrer);
             this.grbFiltres.Controls.Add(this.lblDateFin);
             this.grbFiltres.Controls.Add(this.lblDateDeb);
@@ -514,6 +538,62 @@
             this.grbFiltres.TabIndex = 11;
             this.grbFiltres.TabStop = false;
             this.grbFiltres.Text = "Filtres";
+            // 
+            // btnFiltrer
+            // 
+            this.btnFiltrer.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnFiltrer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFiltrer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFiltrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrer.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnFiltrer.Location = new System.Drawing.Point(658, 43);
+            this.btnFiltrer.Name = "btnFiltrer";
+            this.btnFiltrer.Size = new System.Drawing.Size(69, 29);
+            this.btnFiltrer.TabIndex = 30;
+            this.btnFiltrer.Text = "Filtrer";
+            this.btnFiltrer.UseVisualStyleBackColor = false;
+            // 
+            // lblDateFin
+            // 
+            this.lblDateFin.AutoSize = true;
+            this.lblDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateFin.ForeColor = System.Drawing.Color.Black;
+            this.lblDateFin.Location = new System.Drawing.Point(447, 32);
+            this.lblDateFin.Name = "lblDateFin";
+            this.lblDateFin.Size = new System.Drawing.Size(25, 16);
+            this.lblDateFin.TabIndex = 29;
+            this.lblDateFin.Text = "au";
+            // 
+            // lblDateDeb
+            // 
+            this.lblDateDeb.AutoSize = true;
+            this.lblDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateDeb.ForeColor = System.Drawing.Color.Black;
+            this.lblDateDeb.Location = new System.Drawing.Point(293, 32);
+            this.lblDateDeb.Name = "lblDateDeb";
+            this.lblDateDeb.Size = new System.Drawing.Size(27, 16);
+            this.lblDateDeb.TabIndex = 28;
+            this.lblDateDeb.Text = "Du";
+            // 
+            // lblPiece
+            // 
+            this.lblPiece.AutoSize = true;
+            this.lblPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPiece.ForeColor = System.Drawing.Color.Black;
+            this.lblPiece.Location = new System.Drawing.Point(37, 32);
+            this.lblPiece.Name = "lblPiece";
+            this.lblPiece.Size = new System.Drawing.Size(56, 16);
+            this.lblPiece.TabIndex = 27;
+            this.lblPiece.Text = "Pièce :";
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DarkRed;
+            this.label5.Location = new System.Drawing.Point(582, 264);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(167, 16);
+            this.label5.TabIndex = 26;
             // 
             // label6
             // 
@@ -679,113 +759,27 @@
             this.label25.TabIndex = 4;
             this.label25.Text = "Nom :";
             // 
-            // label5
+            // dtpDateDeb
             // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.DarkRed;
-            this.label5.Location = new System.Drawing.Point(582, 264);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 16);
-            this.label5.TabIndex = 26;
+            this.dtpDateDeb.Location = new System.Drawing.Point(327, 32);
+            this.dtpDateDeb.Name = "dtpDateDeb";
+            this.dtpDateDeb.Size = new System.Drawing.Size(114, 26);
+            this.dtpDateDeb.TabIndex = 31;
             // 
-            // lblPiece
+            // dtpDateFin
             // 
-            this.lblPiece.AutoSize = true;
-            this.lblPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPiece.ForeColor = System.Drawing.Color.Black;
-            this.lblPiece.Location = new System.Drawing.Point(37, 32);
-            this.lblPiece.Name = "lblPiece";
-            this.lblPiece.Size = new System.Drawing.Size(56, 16);
-            this.lblPiece.TabIndex = 27;
-            this.lblPiece.Text = "Pièce :";
+            this.dtpDateFin.Location = new System.Drawing.Point(478, 32);
+            this.dtpDateFin.Name = "dtpDateFin";
+            this.dtpDateFin.Size = new System.Drawing.Size(114, 26);
+            this.dtpDateFin.TabIndex = 32;
             // 
-            // lblDateDeb
+            // cbChoixPiece
             // 
-            this.lblDateDeb.AutoSize = true;
-            this.lblDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateDeb.ForeColor = System.Drawing.Color.Black;
-            this.lblDateDeb.Location = new System.Drawing.Point(293, 32);
-            this.lblDateDeb.Name = "lblDateDeb";
-            this.lblDateDeb.Size = new System.Drawing.Size(27, 16);
-            this.lblDateDeb.TabIndex = 28;
-            this.lblDateDeb.Text = "Du";
-            // 
-            // lblDateFin
-            // 
-            this.lblDateFin.AutoSize = true;
-            this.lblDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateFin.ForeColor = System.Drawing.Color.Black;
-            this.lblDateFin.Location = new System.Drawing.Point(429, 32);
-            this.lblDateFin.Name = "lblDateFin";
-            this.lblDateFin.Size = new System.Drawing.Size(25, 16);
-            this.lblDateFin.TabIndex = 29;
-            this.lblDateFin.Text = "au";
-            // 
-            // btnFiltrer
-            // 
-            this.btnFiltrer.BackColor = System.Drawing.Color.LightCyan;
-            this.btnFiltrer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFiltrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiltrer.ForeColor = System.Drawing.Color.Black;
-            this.btnFiltrer.Location = new System.Drawing.Point(658, 43);
-            this.btnFiltrer.Name = "btnFiltrer";
-            this.btnFiltrer.Size = new System.Drawing.Size(69, 29);
-            this.btnFiltrer.TabIndex = 30;
-            this.btnFiltrer.Text = "Filtrer";
-            this.btnFiltrer.UseVisualStyleBackColor = false;
-            // 
-            // lblChoixPiece
-            // 
-            this.lblChoixPiece.AutoSize = true;
-            this.lblChoixPiece.Location = new System.Drawing.Point(100, 32);
-            this.lblChoixPiece.Name = "lblChoixPiece";
-            this.lblChoixPiece.Size = new System.Drawing.Size(133, 20);
-            this.lblChoixPiece.TabIndex = 31;
-            this.lblChoixPiece.Text = "liste des pièces";
-            // 
-            // lblChoixDateDeb
-            // 
-            this.lblChoixDateDeb.AutoSize = true;
-            this.lblChoixDateDeb.Location = new System.Drawing.Point(327, 32);
-            this.lblChoixDateDeb.Name = "lblChoixDateDeb";
-            this.lblChoixDateDeb.Size = new System.Drawing.Size(55, 20);
-            this.lblChoixDateDeb.TabIndex = 32;
-            this.lblChoixDateDeb.Text = "date1";
-            // 
-            // lblChoixDateFin
-            // 
-            this.lblChoixDateFin.AutoSize = true;
-            this.lblChoixDateFin.Location = new System.Drawing.Point(461, 32);
-            this.lblChoixDateFin.Name = "lblChoixDateFin";
-            this.lblChoixDateFin.Size = new System.Drawing.Size(55, 20);
-            this.lblChoixDateFin.TabIndex = 33;
-            this.lblChoixDateFin.Text = "date2";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.SteelBlue;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(272, 172);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 27);
-            this.button3.TabIndex = 30;
-            this.button3.Text = "Modifier";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.SteelBlue;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(353, 172);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 27);
-            this.button4.TabIndex = 31;
-            this.button4.Text = "Supprimer";
-            this.button4.UseVisualStyleBackColor = false;
+            this.cbChoixPiece.FormattingEnabled = true;
+            this.cbChoixPiece.Location = new System.Drawing.Point(100, 32);
+            this.cbChoixPiece.Name = "cbChoixPiece";
+            this.cbChoixPiece.Size = new System.Drawing.Size(187, 28);
+            this.cbChoixPiece.TabIndex = 33;
             // 
             // Representations
             // 
@@ -867,11 +861,11 @@
         private System.Windows.Forms.Label lblDateFin;
         private System.Windows.Forms.Label lblDateDeb;
         private System.Windows.Forms.Label lblPiece;
-        private System.Windows.Forms.Label lblChoixDateFin;
-        private System.Windows.Forms.Label lblChoixDateDeb;
-        private System.Windows.Forms.Label lblChoixPiece;
         private System.Windows.Forms.Button btnFiltrer;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox cbChoixPiece;
+        private System.Windows.Forms.DateTimePicker dtpDateFin;
+        private System.Windows.Forms.DateTimePicker dtpDateDeb;
     }
 }

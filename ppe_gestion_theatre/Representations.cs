@@ -24,5 +24,13 @@ namespace ppe_gestion_theatre
         {
             Environment.Exit(0);
         }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            // Ouverture de la nouvelle fenêtre
+            Menu frmMenu = new Menu(currentUser);
+            this.Hide(); // le formulaire est caché
+            frmMenu.ShowDialog(); // ouverture du formulaire
+        }
     }
 }
