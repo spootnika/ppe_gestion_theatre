@@ -95,7 +95,7 @@
             this.lblLaNationalite.ForeColor = System.Drawing.Color.Black;
             this.lblLaNationalite.Location = new System.Drawing.Point(555, 78);
             this.lblLaNationalite.Name = "lblLaNationalite";
-            this.lblLaNationalite.Size = new System.Drawing.Size(158, 16);
+            this.lblLaNationalite.Size = new System.Drawing.Size(185, 32);
             this.lblLaNationalite.TabIndex = 23;
             // 
             // lblNationalite

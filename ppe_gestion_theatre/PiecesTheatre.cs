@@ -176,7 +176,18 @@ namespace ppe_gestion_theatre
                 lblLeAuteur.Text = laPiece.TheaterPiece_author.Author_firstname + " " + laPiece.TheaterPiece_author.Author_lastname;
 
                 // Ajout de la nationnalité
-                //lblLaNationalite.Text = laPiece.TheaterPiece_author.Author_nationalities.
+                lblLaNationalite.Text = "";
+                int indNat = 1;
+                foreach (Nationality laNationalite in laPiece.TheaterPiece_author.Author_nationalities)
+                {
+                    lblLaNationalite.Text += laNationalite.Nationality_name;
+
+                    if (indNat < laPiece.TheaterPiece_author.Author_nationalities.Count)
+                    {
+                        indNat++;
+                        lblLaNationalite.Text += ", ";
+                    }
+                }
 
                 // Ajout du nom de la compagnie
                 lblLaCompagnie.Text = laPiece.TheaterPiece_company.Company_name;
