@@ -462,6 +462,7 @@
             this.dgvListeRepresentations.Name = "dgvListeRepresentations";
             this.dgvListeRepresentations.Size = new System.Drawing.Size(743, 192);
             this.dgvListeRepresentations.TabIndex = 9;
+            this.dgvListeRepresentations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListeRepresentations_CellClick_1);
             // 
             // Representations
             // 

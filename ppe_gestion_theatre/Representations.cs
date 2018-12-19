@@ -20,6 +20,12 @@ namespace ppe_gestion_theatre
             InitializeComponent();
             this.currentUser = currentUser;
 
+
+            // Remplissable de la comboBox avec les pièces de théâtre
+            cbChoixPiece.DataSource = ModulePiecesTheatre.GetTheaterPieces();
+            cbChoixPiece.DisplayMember = "theaterPiece_name";
+
+
             List<Show> lesRepresentations = ModuleRepresentations.GetShows();
 
             // Blocage de la génération automatique des colonnes
@@ -74,10 +80,6 @@ namespace ppe_gestion_theatre
 
             // La première colonne contenant l'objet ne sera pas visible
             dgvListeRepresentations.Columns["representation"].Visible = false;
-
-            // Remplissable de la comboBox avec les pièces de théâtre
-            cbChoixPiece.DataSource = ModulePiecesTheatre.GetTheaterPieces();
-            cbChoixPiece.DisplayMember = "theaterPiece_name";
         }
 
         private void Representations_FormClosing(object sender, FormClosingEventArgs e)
@@ -95,7 +97,43 @@ namespace ppe_gestion_theatre
 
         private void dgvListeRepresentations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+          
+        }
 
+        private void dgvListeRepresentations_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int indexRow = dgvListeRepresentations.CurrentRow.Index;
+
+            if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+            {
+                Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
+
+                lblLaPiece.Text = laRepres.Show_theaterPiece.TheaterPiece_name;
+
+                lblLesPlaces.Text = laRepres.Show_seats.ToString();
+
+                lblLesPlacesRest.Text = ModuleRepresentations.GetRemainingSeats(laRepres).ToString();
+
+                lblLaDate.Text = laRepres.Show_dateTime.ToString("dd/MM/yyyy");
+
+                lblLHeure.Text = laRepres.Show_dateTime.ToString("HH:mm");
+
+                lblLePrixFixe.Text = laRepres.Show_theaterPiece.TheaterPiece_seatsPrice.ToString() + " €";
+            }
+            else
+            {
+                lblLaPiece.Text = "";
+
+                lblLesPlaces.Text = "";
+
+                lblLesPlacesRest.Text = "";
+
+                lblLaDate.Text = "";
+
+                lblLHeure.Text = "";
+
+                lblLePrixFixe.Text = " €";
+            }
         }
     }
 }
