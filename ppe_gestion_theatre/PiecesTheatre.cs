@@ -24,14 +24,15 @@ namespace ppe_gestion_theatre
 
             this.currentUser = currentUser;
 
+            // Liste sui récupère la liste des pieces de théatre dans le ModulePiecesTheatre
             List<TheaterPiece> lesPiecesTheatre = ModulePiecesTheatre.GetTheaterPieces();
 
-            // Blocage de la génération automatique des colonnes
-            //dgvListePiecesTheatre.AutoGenerateColumns = false;
+           
 
             DataTable dt = new DataTable();
             dgvListePiecesTheatre.DataSource = dt;
 
+            // Ajout des colonnes necéssaires au tableau
             dt.Columns.Add(new DataColumn("piece", typeof(TheaterPiece)));
 
             dt.Columns.Add(new DataColumn("nom", typeof(string)));
@@ -94,7 +95,7 @@ namespace ppe_gestion_theatre
             //dgvListePiecesTheatre.Rows.Add(PrixColumn); 
             #endregion
 
-            //test dgv
+            // Pour chaque piece dans la liste lesPiecesTheatres, on affiche les données dans les colonnes 
             foreach (TheaterPiece unePiece in lesPiecesTheatre)
             {
                 string nomPiece = unePiece.TheaterPiece_name;
@@ -116,14 +117,7 @@ namespace ppe_gestion_theatre
             // La première colonne contenant l'objet ne sera pas visible
             dgvListePiecesTheatre.Columns["piece"].Visible = false;
 
-            // Création d'un objet List d'Utilisateur à afficher dans le datagridview
-            //List<TheaterPiece> liste = new List<TheaterPiece>();
-            //liste = ModulePiecesTheatre.GetTheaterPieces();
-
-            // Rattachement de la List à la source de données de DataGridView
-            //dgvListePiecesTheatre.DataSource = liste;
-
-            // Définit un style pour la bordure du formulaire
+            
 
         }
 
@@ -178,6 +172,8 @@ namespace ppe_gestion_theatre
                 // Ajout de la nationnalité
                 lblLaNationalite.Text = "";
                 int indNat = 1;
+
+                // on affiche la(es) nationalité(s) que possède l'auteur 
                 foreach (Nationality laNationalite in laPiece.TheaterPiece_author.Author_nationalities)
                 {
                     lblLaNationalite.Text += laNationalite.Nationality_name;
@@ -185,6 +181,7 @@ namespace ppe_gestion_theatre
                     if (indNat < laPiece.TheaterPiece_author.Author_nationalities.Count)
                     {
                         indNat++;
+                        // si plusieurs nationalité, les deux nationalités sont séparés d'un ","
                         lblLaNationalite.Text += ", ";
                     }
                 }

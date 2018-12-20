@@ -40,36 +40,44 @@ namespace TheaterDAL
             // Connexion à la BD 
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
-            // Création d'une liste vide d'objet TheaterPiece
-
+           
+            // Commande sql qui récupère les informations de la table Theatre_piece
             SqlCommand cmdPiecesTheatre = new SqlCommand();
             cmdPiecesTheatre.Connection = maConnexion;
             cmdPiecesTheatre.CommandText = "SELECT * FROM Theater_piece";
 
+            // Commande sql qui récupère les informations de la table Author
             SqlCommand cmdAuteur = new SqlCommand();
             cmdAuteur.Connection = maConnexion;
             cmdAuteur.CommandText = "SELECT * FROM Author";
 
+            // Commande sql qui récupère les informations de la table Nationality
             SqlCommand cmdNationalites = new SqlCommand();
             cmdNationalites.Connection = maConnexion;
             cmdNationalites.CommandText = "SELECT * FROM Nationality";
 
+            // Commande sql qui récupère les informations de la table To_be_of
             SqlCommand cmdAuteurNationalite = new SqlCommand();
             cmdAuteurNationalite.Connection = maConnexion;
             cmdAuteurNationalite.CommandText = "SELECT * FROM To_be_of";
 
+            // Commande sql qui récupère les informations de la table Theme
             SqlCommand cmdTheme = new SqlCommand();
             cmdTheme.Connection = maConnexion;
             cmdTheme.CommandText = "SELECT * FROM Theme";
 
+            // Commande sql qui récupère les informations de la table Public_Type
             SqlCommand cmdTypePublic = new SqlCommand();
             cmdTypePublic.Connection = maConnexion;
             cmdTypePublic.CommandText = "SELECT * FROM Public_Type";
 
+            // Commande sql qui récupère les informations de la table Company
             SqlCommand cmdCompagnie = new SqlCommand();
             cmdCompagnie.Connection = maConnexion;
             cmdCompagnie.CommandText = "SELECT * FROM Company";
 
+
+            // Execution des requetes 
             SqlDataReader readerPiecesTheatre = cmdPiecesTheatre.ExecuteReader();
             SqlDataReader readerAuteur = cmdAuteur.ExecuteReader();
             SqlDataReader readerNationalites = cmdNationalites.ExecuteReader();
@@ -79,6 +87,7 @@ namespace TheaterDAL
             SqlDataReader readerCompagnie = cmdCompagnie.ExecuteReader();
 
             // Remplissage de la liste
+            // Pieces de theatre
             while (readerPiecesTheatre.Read())
             {
                 nom = readerPiecesTheatre["theaterPiece_name"].ToString();
@@ -110,6 +119,7 @@ namespace TheaterDAL
                             laCompagnie = new Company(idCompagnie, nomCompagnie, villeCompagnie, regionCompagnie, directeurArtistique);
                         }
                     }
+                    // Fermeture reader
                     readerCompagnie.Close();
                     readerCompagnie = cmdCompagnie.ExecuteReader();
 
@@ -161,6 +171,7 @@ namespace TheaterDAL
                             leAuteur = new Author(idAuteur, nomAuteur, prenomAuteur, lesNationalites);
                         }
                     }
+                    // Fermeture reader
                     readerAuteur.Close();
                     readerAuteur = cmdAuteur.ExecuteReader();
 
@@ -191,12 +202,14 @@ namespace TheaterDAL
                             leTheme = new Theme(idTheme, nomTheme);
                         }
                     }
+                    // Fermeture reader
                     readerTheme.Close();
                     readerTheme = cmdTheme.ExecuteReader();
 
                     unePieceTheatre = new TheaterPiece(id, nom, description, duree, prix, laCompagnie, leAuteur, leType, leTheme);
                 }
             }
+            // Fermeture reader
             readerCompagnie.Close();
             readerAuteurNationalite.Close();
             readerNationalites.Close();
@@ -223,7 +236,8 @@ namespace TheaterDAL
             Author leAuteur = null;
             PublicType leType = null;
             Theme leTheme = null;
-   
+            
+            // Création objet TheaterPiece
             TheaterPiece unePieceTheatre;
 
             // Connexion à la BD 
@@ -232,34 +246,42 @@ namespace TheaterDAL
             // Création d'une liste vide d'objet TheaterPiece
             List<TheaterPiece> lesTheatres = new List<TheaterPiece>();
 
+            // Commande sql qui récupère les informations de la table Theater_piece
             SqlCommand cmdPiecesTheatre = new SqlCommand();
             cmdPiecesTheatre.Connection = maConnexion;
             cmdPiecesTheatre.CommandText = "SELECT * FROM Theater_piece";
 
+            // Commande sql qui récupère les informations de la table Author
             SqlCommand cmdAuteur = new SqlCommand();
             cmdAuteur.Connection = maConnexion;
             cmdAuteur.CommandText = "SELECT * FROM Author";
 
+            // Commande sql qui récupère les informations de la table Nationality
             SqlCommand cmdNationalites = new SqlCommand();
             cmdNationalites.Connection = maConnexion;
             cmdNationalites.CommandText = "SELECT * FROM Nationality";
 
+            // Commande sql qui récupère les informations de la table To_be_of
             SqlCommand cmdAuteurNationalite = new SqlCommand();
             cmdAuteurNationalite.Connection = maConnexion;
             cmdAuteurNationalite.CommandText = "SELECT * FROM To_be_of";
 
+            // Commande sql qui récupère les informations de la table Theme
             SqlCommand cmdTheme = new SqlCommand();
             cmdTheme.Connection = maConnexion;
             cmdTheme.CommandText = "SELECT * FROM Theme";
 
+            // Commande sql qui récupère les informations de la table Public_Type
             SqlCommand cmdTypePublic = new SqlCommand();
             cmdTypePublic.Connection = maConnexion;
             cmdTypePublic.CommandText = "SELECT * FROM Public_Type";
 
+            // Commande sql qui récupère les informations de la table Company
             SqlCommand cmdCompagnie = new SqlCommand();
             cmdCompagnie.Connection = maConnexion;
             cmdCompagnie.CommandText = "SELECT * FROM Company";
 
+            // Execution des requetes sql
             SqlDataReader readerPiecesTheatre = cmdPiecesTheatre.ExecuteReader();
             SqlDataReader readerAuteur = cmdAuteur.ExecuteReader();
             SqlDataReader readerNationalites = cmdNationalites.ExecuteReader();
@@ -296,6 +318,7 @@ namespace TheaterDAL
                         laCompagnie = new Company(idCompagnie, nomCompagnie, villeCompagnie, regionCompagnie, directeurArtistique);
                     }
                 }
+                // Fermeture reader
                 readerCompagnie.Close();
                 readerCompagnie = cmdCompagnie.ExecuteReader();
 
@@ -320,6 +343,7 @@ namespace TheaterDAL
                                 lesIdsNationalites.Add(idNatio);
                             }
                         }
+                        // Fermerure reader
                         readerAuteurNationalite.Close();
                         readerAuteurNationalite = cmdAuteurNationalite.ExecuteReader();
 
@@ -339,6 +363,7 @@ namespace TheaterDAL
                                 }
 
                             }
+                            // Fermeture reader
                             readerNationalites.Close();
                             readerNationalites = cmdNationalites.ExecuteReader();
                             
@@ -347,6 +372,7 @@ namespace TheaterDAL
                         leAuteur = new Author(idAuteur, nomAuteur, prenomAuteur, lesNationalites);
                     }
                 }
+                // Fermeture reader
                 readerAuteur.Close();
                 readerAuteur = cmdAuteur.ExecuteReader();
 
@@ -362,6 +388,7 @@ namespace TheaterDAL
                         leType = new PublicType(idType, nomType);
                     }
                 }
+                // Fermeture reader
                 readerTypePublic.Close();
                 readerTypePublic = cmdTypePublic.ExecuteReader();
 
@@ -377,12 +404,15 @@ namespace TheaterDAL
                         leTheme = new Theme(idTheme, nomTheme);
                     }
                 }
+                // Fermeture reader
                 readerTheme.Close();
                 readerTheme = cmdTheme.ExecuteReader();
 
                 unePieceTheatre = new TheaterPiece(id, nom, description, duree, prix, laCompagnie, leAuteur, leType, leTheme);
                 lesTheatres.Add(unePieceTheatre);
             }
+
+            // Fermeture reader
             readerCompagnie.Close();
             readerAuteurNationalite.Close();
             readerNationalites.Close();

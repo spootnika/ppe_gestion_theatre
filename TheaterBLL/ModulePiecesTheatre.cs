@@ -39,7 +39,6 @@ namespace TheaterBLL
         }
 
         // Renvoie une pièce à partir de son nom
-
         public static TheaterPiece GetOneTheaterPiece(string nomPiece)
         {
             return PiecesTheatreDAO.GetOneTheaterPiece(nomPiece);
