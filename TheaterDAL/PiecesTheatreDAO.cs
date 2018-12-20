@@ -94,7 +94,7 @@ namespace TheaterDAL
 
                 if (nom == nomPiece)
                 {
-
+                    
                     id = Int32.Parse(readerPiecesTheatre["theaterPiece_id"].ToString());
                     description = readerPiecesTheatre["theaterPiece_description"].ToString();
                     duree = float.Parse(readerPiecesTheatre["theaterPiece_duration"].ToString());
@@ -144,6 +144,7 @@ namespace TheaterDAL
                                     lesIdsNationalites.Add(idNatio);
                                 }
                             }
+                            // Fermeture reader
                             readerAuteurNationalite.Close();
                             readerAuteurNationalite = cmdAuteurNationalite.ExecuteReader();
 
@@ -163,6 +164,7 @@ namespace TheaterDAL
                                     }
 
                                 }
+                                // Fermeture reader
                                 readerNationalites.Close();
                                 readerNationalites = cmdNationalites.ExecuteReader();
 
@@ -187,6 +189,7 @@ namespace TheaterDAL
                             leType = new PublicType(idType, nomType);
                         }
                     }
+                    // Fermeture reader
                     readerTypePublic.Close();
                     readerTypePublic = cmdTypePublic.ExecuteReader();
 
