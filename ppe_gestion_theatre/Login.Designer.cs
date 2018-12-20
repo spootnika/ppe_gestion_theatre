@@ -123,7 +123,7 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblLogin);
             this.Name = "Login";
-            this.Text = "Form1";
+            this.Text = "Connexion";
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
