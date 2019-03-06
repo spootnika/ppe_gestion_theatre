@@ -48,7 +48,7 @@ namespace ppe_gestion_theatre
             dt.Columns.Add(new DataColumn("places", typeof(int)));
             dgvListeRepresentations.Columns["Places"].HeaderText = "Places";
 
-            dt.Columns.Add(new DataColumn("durée", typeof(float)));
+            dt.Columns.Add(new DataColumn("durée", typeof(string)));
             dgvListeRepresentations.Columns["Durée"].HeaderText = "Durée";
 
             dt.Columns.Add(new DataColumn("tarif", typeof(float)));
@@ -70,7 +70,11 @@ namespace ppe_gestion_theatre
 
                 int places = uneRepresentation.Show_seats;
 
-                float duree = uneRepresentation.Show_theaterPiece.TheaterPiece_duration;
+                double doubleConvertDuree = double.Parse(uneRepresentation.Show_theaterPiece.TheaterPiece_duration.ToString());
+
+                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+
+                string duree = convertDuree.ToString();
 
                 float prix = uneRepresentation.Show_theaterPiece.TheaterPiece_seatsPrice;
 
@@ -102,6 +106,8 @@ namespace ppe_gestion_theatre
 
         private void dgvListeRepresentations_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            dgvListeRepresentations.CurrentRow.Selected = true; 
+
             int indexRow = dgvListeRepresentations.CurrentRow.Index;
 
             if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)

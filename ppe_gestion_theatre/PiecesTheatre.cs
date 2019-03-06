@@ -47,7 +47,7 @@ namespace ppe_gestion_theatre
             dt.Columns.Add(new DataColumn("theme", typeof(string)));
             dgvListePiecesTheatre.Columns["Theme"].HeaderText = "Thème";
 
-            dt.Columns.Add(new DataColumn("durée", typeof(float)));
+            dt.Columns.Add(new DataColumn("durée", typeof(TimeSpan)));
             dgvListePiecesTheatre.Columns["Durée"].HeaderText = "Durée";
 
             dt.Columns.Add(new DataColumn("prix", typeof(float)));
@@ -105,8 +105,12 @@ namespace ppe_gestion_theatre
                 string nomTheme = unePiece.TheaterPiece_theme.Theme_name;
 
                 string typePublic = unePiece.TheaterPiece_publicType.PublicType_name;
+                
+                double doubleConvertDuree = double.Parse(unePiece.TheaterPiece_duration.ToString());
 
-                float duree = unePiece.TheaterPiece_duration;
+                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+
+                string duree = convertDuree.ToString();
 
                 float prix = unePiece.TheaterPiece_seatsPrice;
 
@@ -142,6 +146,8 @@ namespace ppe_gestion_theatre
 
         private void dgvListePiecesTheatre_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgvListePiecesTheatre.CurrentRow.Selected = true;
+
             // Récupération du numéro de la ligne (index)
             int indexRow = dgvListePiecesTheatre.CurrentRow.Index;
 
@@ -161,7 +167,12 @@ namespace ppe_gestion_theatre
                 lblLeTheme.Text = laPiece.TheaterPiece_theme.Theme_name;
 
                 // Ajout de la durée
-                lblLaDuree.Text = laPiece.TheaterPiece_duration.ToString();
+
+                double doubleConvertDuree = double.Parse(laPiece.TheaterPiece_duration.ToString());
+
+                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+                
+                lblLaDuree.Text = convertDuree.ToString();
 
                 // Ajout du type
                 lblLeType.Text = laPiece.TheaterPiece_publicType.PublicType_name;

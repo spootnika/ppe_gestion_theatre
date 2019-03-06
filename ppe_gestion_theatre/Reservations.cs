@@ -67,7 +67,11 @@ namespace ppe_gestion_theatre
                 string representation = uneReservation.Spectator_show.Show_dateTime.ToString("MM/dd/yyyy à H:mm");
 
                 // Durée de la pièce
-                string duree = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString();
+                double doubleConvertDuree = double.Parse(uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
+
+                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+
+                string duree = convertDuree.ToString();
 
                 // Thème de la pièce
                 string theme = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_theme.Theme_name;
@@ -104,6 +108,8 @@ namespace ppe_gestion_theatre
         // Affichage des détails au clic sur une cellule de la DGV
         private void dgvListeReservations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgvListeReservations.CurrentRow.Selected = true;
+
             // Récupération du numéro de la ligne (index)
             int indexRow = dgvListeReservations.CurrentRow.Index;
             
@@ -120,7 +126,12 @@ namespace ppe_gestion_theatre
                 lblLeTheme.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_theme.Theme_name;
 
                 // Ajout de la durée
-                lblLaDuree.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString();
+                double doubleConvertDuree = double.Parse(laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
+
+                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+
+                lblLaDuree.Text = convertDuree.ToString();
+                lblLaDuree.Text = 
 
                 // Ajout du type
                 lblLeType.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_publicType.PublicType_name;
