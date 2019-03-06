@@ -112,9 +112,10 @@ namespace ppe_gestion_theatre
 
             // Récupération du numéro de la ligne (index)
             int indexRow = dgvListeReservations.CurrentRow.Index;
-            
+
             // Si la ligne contient bien une valeur, on valorise les labels avec les valeurs correspondantes
-            if (dgvListeReservations.Rows[indexRow].Cells[0].Value != DBNull.Value) {
+            if (dgvListeReservations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+            {
 
                 // Récupération de l'objet réservation (spectator)
                 Spectator laReserv = (Spectator)dgvListeReservations.Rows[indexRow].Cells[0].Value;
@@ -131,7 +132,6 @@ namespace ppe_gestion_theatre
                 TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
 
                 lblLaDuree.Text = convertDuree.ToString();
-                lblLaDuree.Text = 
 
                 // Ajout du type
                 lblLeType.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_publicType.PublicType_name;
@@ -200,6 +200,143 @@ namespace ppe_gestion_theatre
                 lblLePrixTotal.Text = "0 €";
             }
 
-        } 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Affichage du formulaire d'ajout
+        private void btnAjouter_Click(object sender, EventArgs e)
+        {
+            grbDetails.Text = "Ajouter une réservation";
+
+            #region Affiche et cache les champs concernés
+            btnModifier.Visible = false;
+            btnSupprimer.Visible = false;
+            lblLaPiece.Visible = false;
+            lblLaRepresentation.Visible = false;
+            lblLeNom.Visible = false;
+            lblLePrenom.Visible = false;
+            lblLeNbPlaces.Visible = false;
+            lblLeEmail.Visible = false;
+            lblLeTelephone.Visible = false;
+
+            btnValiderAjout.Visible = true;
+            btnAnnulerAjout.Visible = true;
+            cmbPiece.Visible = true;
+            cmbDates.Visible = true;
+            cmbHeures.Visible = true;
+            txtNom.Visible = true;
+            txtPrenom.Visible = true;
+            txtNbPlaces.Visible = true;
+            txtEmail.Visible = true;
+            txtTelephone.Visible = true;
+            #endregion Affiche et cache les champs concernés
+
+            List<TheaterPiece> lesPieces = ModulePiecesTheatre.GetTheaterPieces();
+
+            foreach (var piece in lesPieces)
+            {
+                cmbPiece.Items.Add(piece.TheaterPiece_name);
+            }
+
+        }
+
+        private void btnAnnulerAjout_Click(object sender, EventArgs e)
+        {
+            grbDetails.Text = "Détails de la réservation";
+
+            #region Affiche et cache les champs concernés
+            btnValiderAjout.Visible = false;
+            btnAnnulerAjout.Visible = false;
+            cmbPiece.Visible = false;
+            cmbDates.Visible = false;
+            cmbHeures.Visible = false;
+            txtNom.Visible = false;
+            txtPrenom.Visible = false;
+            txtNbPlaces.Visible = false;
+            txtEmail.Visible = false;
+            txtTelephone.Visible = false;
+
+            btnModifier.Visible = true;
+            btnSupprimer.Visible = true;
+            lblLaPiece.Visible = true;
+            lblLaRepresentation.Visible = true;
+            lblLeNom.Visible = true;
+            lblLePrenom.Visible = true;
+            lblLeNbPlaces.Visible = true;
+            lblLeEmail.Visible = true;
+            lblLeTelephone.Visible = true;
+            #endregion Affiche et cache les champs concernés
+        }
+
+        private void cmbPiece_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbDates.Items.Clear();
+            if (cmbPiece.SelectedItem != null && cmbPiece.SelectedItem.ToString() != "")
+            {
+                TheaterPiece laPiece = ModulePiecesTheatre.GetOneTheaterPiece(cmbPiece.SelectedItem.ToString());
+
+                lblLeTheme.Text = laPiece.TheaterPiece_theme.Theme_name;
+                lblLaDuree.Text = laPiece.TheaterPiece_duration.ToString();
+                lblLeType.Text = laPiece.TheaterPiece_publicType.PublicType_name;
+                lblLaCompagnie.Text = laPiece.TheaterPiece_company.Company_name;
+                lblLePrixFixe.Text = laPiece.TheaterPiece_seatsPrice.ToString();
+
+                List<Show> lesRepresentations = ModuleRepresentations.GetFilterShows(laPiece.TheaterPiece_id);
+
+                if (lesRepresentations.Count > 0)
+                {
+                    foreach(var uneRep in lesRepresentations)
+                    {
+                        cmbDates.Items.Add(uneRep.Show_dateTime.ToString("dddd dd MMM yyyy"));
+                        cmbDates.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    cmbDates.Items.Add("Aucune date disponible");
+                    cmbDates.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                lblLeTheme.Text = "";
+                lblLaDuree.Text = "";
+                lblLeType.Text = "";
+                lblLaCompagnie.Text = "";
+                lblLePrixFixe.Text = "";
+            }
+        }
+
+        private void cmbDates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbHeures.Items.Clear();
+            if(cmbDates.SelectedItem != null && cmbDates.SelectedItem.ToString() != "" && cmbDates.SelectedItem.ToString() != "Aucune date disponible")
+            {
+                TheaterPiece laPiece = ModulePiecesTheatre.GetOneTheaterPiece(cmbPiece.SelectedItem.ToString());
+                List<Show> lesRepresentations = ModuleRepresentations.GetFilterShows(laPiece.TheaterPiece_id);
+                
+                foreach (var uneRep in lesRepresentations)
+                {
+                    if(uneRep.Show_dateTime.ToString("dddd dd MMM yyyy") == cmbDates.SelectedItem.ToString())
+                    {
+                        cmbHeures.Items.Add(uneRep.Show_dateTime.ToString("HH:mm"));
+                    }
+                }
+
+            }
+            else
+            {
+                cmbHeures.SelectedIndex = -1;
+            }
+        }
     }
 }

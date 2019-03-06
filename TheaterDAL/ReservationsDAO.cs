@@ -130,5 +130,35 @@ namespace TheaterDAL
             return lesReservations;
         }
 
+        // Ajout d'une nouvelle réservation
+        public static void AddSpectator(Spectator uneReservation)
+        {
+            SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            string reqAdd = "INSERT INTO Spectator (spectator_lastname, spectator_firstname, spectator_email, spectator_phone) VALUES (@lastname, @firstname, @email, @phone)";
+
+            SqlCommand commAdd = new SqlCommand(reqAdd, connexion);
+
+            commAdd.Parameters.Add(new SqlParameter("@lastname", System.Data.SqlDbType.VarChar, 255));
+            commAdd.Parameters.Add(new SqlParameter("@firstname", System.Data.SqlDbType.VarChar, 255));
+            commAdd.Parameters.Add(new SqlParameter("@email", System.Data.SqlDbType.VarChar, 255));
+            commAdd.Parameters.Add(new SqlParameter("@phone", System.Data.SqlDbType.VarChar, 255));
+
+            commAdd.Parameters["@lastname"].Value = uneReservation.Spectator_lastname;
+            commAdd.Parameters["@firstname"].Value = uneReservation.Spectator_firstname;
+            commAdd.Parameters["@email"].Value = uneReservation.Spectator_email;
+            commAdd.Parameters["@phone"].Value = uneReservation.Spectator_phone;
+
+            try
+            {
+                commAdd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                //Message box erreur
+            }
+
+            connexion.Close();
+        }
+
     }
 }
