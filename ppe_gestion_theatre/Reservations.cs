@@ -26,79 +26,7 @@ namespace ppe_gestion_theatre
             InitializeComponent();
             this.currentUser = currentUser;
 
-            // récupération de la liste des réservations
-            List<Spectator> lesReservations = ModuleReservations.GetSpectators();
-
-            // Structure de la dgv
-            DataTable table = new DataTable();
-            dgvListeReservations.DataSource = table;
-
-            // Ajout des colonnes de la table
-            table.Columns.Add(new DataColumn("reservation", typeof(Spectator)));
-
-            table.Columns.Add(new DataColumn("piece", typeof(string)));
-            dgvListeReservations.Columns["piece"].HeaderText = "Pièce";
-
-            table.Columns.Add(new DataColumn("representation", typeof(string)));
-            dgvListeReservations.Columns["representation"].HeaderText = "Représentation";
-
-            table.Columns.Add(new DataColumn("duree", typeof(string)));
-            dgvListeReservations.Columns["duree"].HeaderText = "Durée";
-
-            table.Columns.Add(new DataColumn("theme", typeof(string)));
-            dgvListeReservations.Columns["theme"].HeaderText = "Thème";
-
-            table.Columns.Add(new DataColumn("public", typeof(string)));
-            dgvListeReservations.Columns["public"].HeaderText = "Public";
-
-            table.Columns.Add(new DataColumn("nom", typeof(string)));
-            dgvListeReservations.Columns["nom"].HeaderText = "Nom";
-
-            table.Columns.Add(new DataColumn("places", typeof(string)));
-            dgvListeReservations.Columns["places"].HeaderText = "Places";
-
-            table.Columns.Add(new DataColumn("total", typeof(string)));
-            dgvListeReservations.Columns["total"].HeaderText = "Total";
-
-            dgvListeReservations.ReadOnly = true;
-
-            // Valorisation de la DGV avec les réservations
-            foreach (Spectator uneReservation in lesReservations)
-            {
-                // Nom de la pièce
-                string piece = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_name;
-
-                // Date et heure de la représentation
-                string representation = uneReservation.Spectator_show.Show_dateTime.ToString("MM/dd/yyyy à H:mm");
-
-                // Durée de la pièce
-                double doubleConvertDuree = double.Parse(uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
-
-                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
-
-                string duree = convertDuree.ToString();
-
-                // Thème de la pièce
-                string theme = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_theme.Theme_name;
-
-                // Type de public de la pièce
-                string typePublic = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_publicType.PublicType_name;
-
-                // Nom et prénom de la réservation 
-                string nom = uneReservation.Spectator_lastname;
-                int places = uneReservation.Spectator_seatsBooked;
-
-                // Calcul du prix total
-                float taux = uneReservation.Spectator_show.Show_priceRate.PriceRate_rate;
-                float prixHT = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_seatsPrice * places;
-                float total = prixHT + (prixHT * taux);
-
-                // Ajout de la ligne à la table
-                table.Rows.Add(uneReservation, piece, representation, duree, theme, typePublic, nom, places, total);
-            }
-
-            // La première colonne contenant l'objet ne sera pas visible
-            dgvListeReservations.Columns["reservation"].Visible = false;
+            LoadDataGridView();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -321,6 +249,7 @@ namespace ppe_gestion_theatre
                 lblLaCompagnie.Text = String.Empty;
                 lblLePrixFixe.Text = "€";
                 lblLePrixTotal.Text = "0 €";
+                LoadDataGridView();
                 dgvListeReservations.Refresh();
             }
         }
@@ -578,5 +507,82 @@ namespace ppe_gestion_theatre
             errNom.SetError(txtNbPlaces, "");
         }
         #endregion Error Provider
+
+        private void LoadDataGridView()
+        {
+            // récupération de la liste des réservations
+            List<Spectator> lesReservations = ModuleReservations.GetSpectators();
+
+            // Structure de la dgv
+            DataTable table = new DataTable();
+            dgvListeReservations.DataSource = table;
+
+            // Ajout des colonnes de la table
+            table.Columns.Add(new DataColumn("reservation", typeof(Spectator)));
+
+            table.Columns.Add(new DataColumn("piece", typeof(string)));
+            dgvListeReservations.Columns["piece"].HeaderText = "Pièce";
+
+            table.Columns.Add(new DataColumn("representation", typeof(string)));
+            dgvListeReservations.Columns["representation"].HeaderText = "Représentation";
+
+            table.Columns.Add(new DataColumn("duree", typeof(string)));
+            dgvListeReservations.Columns["duree"].HeaderText = "Durée";
+
+            table.Columns.Add(new DataColumn("theme", typeof(string)));
+            dgvListeReservations.Columns["theme"].HeaderText = "Thème";
+
+            table.Columns.Add(new DataColumn("public", typeof(string)));
+            dgvListeReservations.Columns["public"].HeaderText = "Public";
+
+            table.Columns.Add(new DataColumn("nom", typeof(string)));
+            dgvListeReservations.Columns["nom"].HeaderText = "Nom";
+
+            table.Columns.Add(new DataColumn("places", typeof(string)));
+            dgvListeReservations.Columns["places"].HeaderText = "Places";
+
+            table.Columns.Add(new DataColumn("total", typeof(string)));
+            dgvListeReservations.Columns["total"].HeaderText = "Total";
+
+            dgvListeReservations.ReadOnly = true;
+
+            // Valorisation de la DGV avec les réservations
+            foreach (Spectator uneReservation in lesReservations)
+            {
+                // Nom de la pièce
+                string piece = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_name;
+
+                // Date et heure de la représentation
+                string representation = uneReservation.Spectator_show.Show_dateTime.ToString("MM/dd/yyyy à H:mm");
+
+                // Durée de la pièce
+                double doubleConvertDuree = double.Parse(uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
+
+                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+
+                string duree = convertDuree.ToString();
+
+                // Thème de la pièce
+                string theme = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_theme.Theme_name;
+
+                // Type de public de la pièce
+                string typePublic = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_publicType.PublicType_name;
+
+                // Nom et prénom de la réservation 
+                string nom = uneReservation.Spectator_lastname;
+                int places = uneReservation.Spectator_seatsBooked;
+
+                // Calcul du prix total
+                float taux = uneReservation.Spectator_show.Show_priceRate.PriceRate_rate;
+                float prixHT = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_seatsPrice * places;
+                float total = prixHT + (prixHT * taux);
+
+                // Ajout de la ligne à la table
+                table.Rows.Add(uneReservation, piece, representation, duree, theme, typePublic, nom, places, total);
+            }
+
+            // La première colonne contenant l'objet ne sera pas visible
+            dgvListeReservations.Columns["reservation"].Visible = false;
+        }
     }
 }
