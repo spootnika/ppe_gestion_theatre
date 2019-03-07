@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using TheaterBO; // Réference la couche BO
 using TheaterDAL; // Réference la couche DAL
+using System.Text.RegularExpressions;
 
 namespace TheaterBLL
 {
@@ -23,8 +24,6 @@ namespace TheaterBLL
             }
             return moduleReservation;
         }
-
-
 
         // Définit la chaîne de connexion grâce à la méthode SetchaineConnexion de la DAL 
         public static void SetchaineConnexion(ConnectionStringSettings chset)
@@ -46,5 +45,110 @@ namespace TheaterBLL
         {
             ReservationsDAO.AddSpectator(uneReservation);
         }
+
+        #region Validation Champs
+        public static bool ValidChampTxt(string text, out string errMsg)
+        {
+            if (text.Length <= 0)
+            {
+                errMsg = "Ce champs est obligatoire !";
+                return false;
+            }
+            else
+            {
+                errMsg = String.Empty;
+                return true;
+            }
+        }
+
+        public static bool ValidChampEmail(string text, out string errMsg)
+        {
+            if (text.Length > 0)
+            {
+                int indMail = text.IndexOf("@");
+                if (indMail >= 0)
+                {
+                    string validEmail = text.Substring(indMail, text.Length - indMail);
+                    if (validEmail.IndexOf('.') > validEmail.IndexOf('@'))
+                    {
+                        errMsg = String.Empty;
+                        return true;
+                    }
+                    else
+                    {
+                        errMsg = "L'adresse email doit respecter le format suivant : \n exemple@mail.com";
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    errMsg = "L'adresse email doit respecter le format suivant : \n exemple@mail.com";
+                    return false;
+                }
+            }
+            else
+            {
+                errMsg = "Ce champs est obligatoire !";
+                return false;
+            }
+        }
+
+        public static bool ValidChampNb(string text, out string errMsg)
+        {
+            if (text.Length > 0)
+            {
+                int test;
+                if (int.TryParse(text, out test))
+                {
+                    errMsg = String.Empty;
+                    return true;
+                }
+                else
+                {
+                    errMsg = "Le numéro de téléphone doit être numérique !";
+                    return false;
+                }
+            }
+            else
+            {
+                errMsg = "Ce champs est obligatoire !";
+                return false;
+            }
+        }
+
+
+        public static bool ValidChampPhone(string text, out string errMsg)
+        {
+            if (text.Length > 0)
+            {
+                int test;
+                if (int.TryParse(text, out test))
+                {
+                    if (text.Length == 10)
+                    {
+                        errMsg = String.Empty;
+                        return true;
+                    }
+                    else
+                    {
+                        errMsg = "Le numéro doit être composé de 10 chiffres !";
+                        return false;
+                    }
+                }
+                else
+                {
+                    errMsg = "Le numéro de téléphone doit être numérique !";
+                    return false;
+                }
+            }
+            else
+            {
+                errMsg = "Ce champs est obligatoire !";
+                return false;
+            }
+
+        }
+        #endregion Validation Champs
     }
 }

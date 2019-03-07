@@ -26,6 +26,15 @@ namespace TheaterBO
             this.Spectator_show = show;
             this.Spectator_seatsBooked = seatsBooked;
         }
+        public Spectator(string lastname, string firstname, string email, string phone, Show show, int seatsBooked)
+        {
+            this.spectator_lastname = lastname;
+            this.spectator_firstname = firstname;
+            this.spectator_email = email;
+            this.spectator_phone = phone;
+            this.Spectator_show = show;
+            this.Spectator_seatsBooked = seatsBooked;
+        }
 
         public int Spectator_id
         {
