@@ -62,5 +62,11 @@ namespace TheaterBLL
             return PiecesTheatreDAO.GetOneTheaterPiece(nomPiece);
         }
 
+        // Ajoute une piece de theatre dans la DB
+        public static void AddTheaterPiece(TheaterPiece unePiece)
+        {
+            PiecesTheatreDAO.AddTheaterPiece(unePiece);
+        }
+
     }
 }

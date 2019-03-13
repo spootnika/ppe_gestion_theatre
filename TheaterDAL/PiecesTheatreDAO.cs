@@ -682,5 +682,42 @@ namespace TheaterDAL
             return lesCompagnies;
 
         }
+
+        // Ajout d'une nouvelle réservation
+        public static void AddTheaterPiece(TheaterPiece unePiece)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+                string reqAdd = "INSERT INTO Theater_piece (theaterPiece_name, theaterPiece_description, theaterPiece_duration, theaterPiece_seatsPrice, theaterPiece_company, theaterPiece_author, theaterPiece_publicType, theaterPiece_theme) " + "VALUES (@name, @description, @duration, @seatsPrice, @company, , @author, @publicType, @theme); SELECT SCOPE_IDENTITY()";
+
+                SqlCommand commAddPiece = new SqlCommand(reqAdd, connexion);
+
+                commAddPiece.Parameters.Add(new SqlParameter("@name", System.Data.SqlDbType.VarChar, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@description", System.Data.SqlDbType.VarChar, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@duration", System.Data.SqlDbType.Int, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@seatsPrice", System.Data.SqlDbType.Int, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@company", System.Data.SqlDbType.VarChar, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@author", System.Data.SqlDbType.VarChar, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@publicType", System.Data.SqlDbType.VarChar, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@theme", System.Data.SqlDbType.VarChar, 255));
+
+                commAddPiece.Parameters["@name"].Value = unePiece.TheaterPiece_name;
+                commAddPiece.Parameters["@description"].Value = unePiece.TheaterPiece_description;
+                commAddPiece.Parameters["@duration"].Value = unePiece.TheaterPiece_duration;
+                commAddPiece.Parameters["@seatsPrice"].Value = unePiece.TheaterPiece_seatsPrice;
+                commAddPiece.Parameters["@company"].Value = unePiece.TheaterPiece_company;
+                commAddPiece.Parameters["@author"].Value = unePiece.TheaterPiece_author;
+                commAddPiece.Parameters["@publicType"].Value = unePiece.TheaterPiece_publicType;
+                commAddPiece.Parameters["@theme"].Value = unePiece.TheaterPiece_theme;
+                
+            }
+            catch (Exception e)
+            {
+                //Message box erreur
+                string test = e.ToString();
+            }
+
+        }
     }
 }
