@@ -200,6 +200,11 @@ namespace ppe_gestion_theatre
                 lblLePrixTotal.Text = "0 €";
             }
 
-        } 
+        }
+
+        private void btnAjouter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
