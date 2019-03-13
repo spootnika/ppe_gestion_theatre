@@ -17,6 +17,10 @@ namespace ppe_gestion_theatre
     public partial class PiecesTheatre : Form
     {
         LoginInfo currentUser;
+        private Company laCompagnie;
+        private Author leAuteur;
+        private PublicType leTypePublic;
+        private Theme leTheme;
 
         public PiecesTheatre(LoginInfo currentUser)
         {
@@ -26,8 +30,6 @@ namespace ppe_gestion_theatre
 
             // Liste sui récupère la liste des pieces de théatre dans le ModulePiecesTheatre
             List<TheaterPiece> lesPiecesTheatre = ModulePiecesTheatre.GetTheaterPieces();
-
-
 
             DataTable dt = new DataTable();
             dgvListePiecesTheatre.DataSource = dt;
@@ -304,8 +306,8 @@ namespace ppe_gestion_theatre
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            // TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, textBoxDuree.Text, textBoxPrixFixe.Text, laRepres, int.Parse(txtNbPlaces.Text));
-            // ModuleReservations.AddSpectator(unePiece);
+            TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, textBoxDuree.Text, textBoxPrixFixe.Text, laCompagnie, leAuteur, leTypePublic, leTheme); /*int.Parse(text.Text)*/
+            ModulePiecesTheatre.AddTheaterPiece(unePiece);
         }
     }
 }

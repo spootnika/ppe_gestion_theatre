@@ -695,8 +695,8 @@ namespace TheaterDAL
 
                 commAddPiece.Parameters.Add(new SqlParameter("@name", System.Data.SqlDbType.VarChar, 255));
                 commAddPiece.Parameters.Add(new SqlParameter("@description", System.Data.SqlDbType.VarChar, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@duration", System.Data.SqlDbType.Int, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@seatsPrice", System.Data.SqlDbType.Int, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@duration", System.Data.SqlDbType.Float, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@seatsPrice", System.Data.SqlDbType.Float, 255));
                 commAddPiece.Parameters.Add(new SqlParameter("@company", System.Data.SqlDbType.VarChar, 255));
                 commAddPiece.Parameters.Add(new SqlParameter("@author", System.Data.SqlDbType.VarChar, 255));
                 commAddPiece.Parameters.Add(new SqlParameter("@publicType", System.Data.SqlDbType.VarChar, 255));
