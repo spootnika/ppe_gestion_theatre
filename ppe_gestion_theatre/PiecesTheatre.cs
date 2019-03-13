@@ -146,31 +146,6 @@ namespace ppe_gestion_theatre
 
         private void dgvListePiecesTheatre_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            grbDetails.Text = "Détails de la pièce de théatre";
-            lblLaPiece.Visible = true;
-            lblLeTheme.Visible = true;
-            lblLaDuree.Visible = true;
-            lblLeAuteur.Visible = true;
-            lblLeType.Visible = true;
-            lblLaDescription.Visible = true;
-            lblLaCompagnie.Visible = true;
-            lblLePrixFixe.Visible = true;
-            lblLaNationalite.Visible = true;
-
-            textBoxNomPiece.Visible = false;
-            textBoxPrixFixe.Visible = false;
-            textBoxDuree.Visible = false;
-            textBoxCommentaire.Visible = false;
-            comboBoxAuteur.Visible = false;
-            comboBoxCompagnie.Visible = false;
-            comboBoxTheme.Visible = false;
-            comboBoxPublic.Visible = false;
-
-            btnModifier.Visible = true;
-            btnSupprimer.Visible = true;
-            btnValider.Visible = false;
-            btnAnnuler.Visible = false;
-
             dgvListePiecesTheatre.CurrentRow.Selected = true;
 
             // Récupération du numéro de la ligne (index)
@@ -254,37 +229,6 @@ namespace ppe_gestion_theatre
                 lblLaNationalite.Text = "";
 
             }
-        }
-
-        private void btnAjouter_Click(object sender, EventArgs e)
-        {
-            grbDetails.Text = "Ajout d'une pièce de théatre";
-            lblLaPiece.Visible = false;
-            lblLeTheme.Visible = false;
-            lblLaDuree.Visible = false;
-            lblLeAuteur.Visible = false;
-            lblLeType.Visible = false;
-            lblLaDescription.Visible = false;
-            lblLaCompagnie.Visible = false;
-            lblLePrixFixe.Visible = false;
-            lblLaNationalite.Visible = false;
-
-            textBoxNomPiece.Visible = true;
-            textBoxPrixFixe.Visible = true;
-            textBoxDuree.Visible = true;
-            textBoxCommentaire.Visible = true;
-            comboBoxAuteur.Visible = true;
-            comboBoxCompagnie.Visible = true;
-            comboBoxTheme.Visible = true;
-            comboBoxPublic.Visible = true;
-
-            btnModifier.Visible = false;
-            btnSupprimer.Visible = false;
-            btnValider.Visible = true;
-            btnAnnuler.Visible = true;
-
-            Theme lesThemes = 
-            comboBoxTheme.DataSource = lesThemes;
         }
     }
 }
