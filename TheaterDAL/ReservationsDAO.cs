@@ -178,5 +178,12 @@ namespace TheaterDAL
             
         }
 
+        // Récupère le nombre de places prises pour une représentation
+        public static int GetNbPlacesRest(Show laRepresentation)
+        {
+
+            return 0;
+        }
+
     }
 }
