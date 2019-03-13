@@ -50,6 +50,7 @@ namespace TheaterBLL
             return lesRepresentationsFiltrees;
             
         }
+
         //surcharge s'il n'y a que la piece de choisie
         public static List<Show> GetFilterShows(int idPiece)
         {

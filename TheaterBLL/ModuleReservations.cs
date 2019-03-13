@@ -46,6 +46,12 @@ namespace TheaterBLL
             ReservationsDAO.AddSpectator(uneReservation);
         }
 
+        // Renvoie le nombre de place réservées pour une représentation
+        public static int GetNbPlacesReservees(Show laRepresentation)
+        {
+            return ReservationsDAO.GetNbPlacesReservees(laRepresentation);
+        }
+
         #region Validation Champs
         public static bool ValidChampTxt(string text, out string errMsg)
         {
@@ -94,19 +100,28 @@ namespace TheaterBLL
             }
         }
 
-        public static bool ValidChampNb(string text, out string errMsg)
+        public static bool ValidChampNb(string text, int nbPlacesRest, out string errMsg)
         {
             if (text.Length > 0)
             {
                 int test;
                 if (int.TryParse(text, out test))
                 {
-                    errMsg = String.Empty;
-                    return true;
+                    if(test <= nbPlacesRest)
+                    {
+                        errMsg = String.Empty;
+                        return true;
+                    }
+                    else
+                    {
+
+                        errMsg = "Il n'y a pas assez de places disponibles.";
+                        return false;
+                    }
                 }
                 else
                 {
-                    errMsg = "Le numéro de téléphone doit être numérique !";
+                    errMsg = "Veuillez entrer un nombre entier !";
                     return false;
                 }
             }
@@ -122,8 +137,8 @@ namespace TheaterBLL
         {
             if (text.Length > 0)
             {
-                int test;
-                if (int.TryParse(text, out test))
+                long test;
+                if (long.TryParse(text, out test))
                 {
                     if (text.Length == 10)
                     {

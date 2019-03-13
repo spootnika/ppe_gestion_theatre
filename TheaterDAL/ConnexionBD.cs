@@ -41,6 +41,7 @@ namespace TheaterDAL
             {
                 maConnexion = new SqlConnection();
             }
+            maConnexion.Close();
             maConnexion.ConnectionString = chaineConnexion;
 
             //Si la connexion est fermée, on l'ouvre
