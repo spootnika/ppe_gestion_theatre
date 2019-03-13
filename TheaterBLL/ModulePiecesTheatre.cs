@@ -31,6 +31,24 @@ namespace TheaterBLL
             return lesPiecesTheatre;
         }
 
+        public static List<Author> GetAuthors()
+        {
+            List<Author> lesAuteurs = PiecesTheatreDAO.GetAuthors();
+            return lesAuteurs;
+        }
+
+        public static List<Theme> GetThemes()
+        {
+            List<Theme> lesThemes = PiecesTheatreDAO.GetThemes();
+            return lesThemes;
+        }
+
+        public static List<Company> GetCompagnies()
+        {
+            List<Company> lesCompagnies = PiecesTheatreDAO.GetCompagnies();
+            return lesCompagnies;
+        }
+
         // Définit la chaîne de connexion grâce à la méthode SetchaineConnexion de la DAL
         public static void SetchaineConnexion(ConnectionStringSettings chset)
         {

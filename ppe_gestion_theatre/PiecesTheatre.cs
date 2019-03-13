@@ -27,7 +27,7 @@ namespace ppe_gestion_theatre
             // Liste sui récupère la liste des pieces de théatre dans le ModulePiecesTheatre
             List<TheaterPiece> lesPiecesTheatre = ModulePiecesTheatre.GetTheaterPieces();
 
-           
+
 
             DataTable dt = new DataTable();
             dgvListePiecesTheatre.DataSource = dt;
@@ -40,7 +40,7 @@ namespace ppe_gestion_theatre
 
             dt.Columns.Add(new DataColumn("auteur", typeof(string)));
             dgvListePiecesTheatre.Columns["Auteur"].HeaderText = "Auteur";
-            
+
             dt.Columns.Add(new DataColumn("public", typeof(string)));
             dgvListePiecesTheatre.Columns["Public"].HeaderText = "Type de public";
 
@@ -54,7 +54,7 @@ namespace ppe_gestion_theatre
             dgvListePiecesTheatre.Columns["Prix"].HeaderText = "Prix du siège";
 
             dgvListePiecesTheatre.ReadOnly = true;
-        
+
             #region test1-dgv
             // Création d'une en-tête de colonne pour la colonne 1
             //DataGridViewTextBoxColumn NomColumn = new DataGridViewTextBoxColumn();
@@ -105,7 +105,7 @@ namespace ppe_gestion_theatre
                 string nomTheme = unePiece.TheaterPiece_theme.Theme_name;
 
                 string typePublic = unePiece.TheaterPiece_publicType.PublicType_name;
-                
+
                 double doubleConvertDuree = double.Parse(unePiece.TheaterPiece_duration.ToString());
 
                 TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
@@ -121,11 +121,11 @@ namespace ppe_gestion_theatre
             // La première colonne contenant l'objet ne sera pas visible
             dgvListePiecesTheatre.Columns["piece"].Visible = false;
 
-            
+
 
         }
 
-        
+
 
         private void PiecesTheatre_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -196,7 +196,7 @@ namespace ppe_gestion_theatre
                 double doubleConvertDuree = double.Parse(laPiece.TheaterPiece_duration.ToString());
 
                 TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
-                
+
                 lblLaDuree.Text = convertDuree.ToString();
 
                 // Ajout du type
@@ -283,8 +283,23 @@ namespace ppe_gestion_theatre
             btnValider.Visible = true;
             btnAnnuler.Visible = true;
 
-            Theme lesThemes = 
+
+            List<Author> lesAuteurs = PiecesTheatreDAO.GetAuthors();
+            comboBoxAuteur.DataSource = lesAuteurs;
+            comboBoxAuteur.DisplayMember = "author_lastname";
+
+            List<Theme> lesThemes = PiecesTheatreDAO.GetThemes();
             comboBoxTheme.DataSource = lesThemes;
+            comboBoxTheme.DisplayMember = "theme_name";
+
+            List<PublicType> lesTypes = PiecesTheatreDAO.GetTypesPublic();
+            comboBoxPublic.DataSource = lesTypes;
+            comboBoxPublic.DisplayMember = "publicType_name";
+
+            List<Company> lesCompagnies = PiecesTheatreDAO.GetCompagnies();
+            comboBoxCompagnie.DataSource = lesCompagnies;
+            comboBoxCompagnie.DisplayMember = "company_name";
+
         }
     }
 }
