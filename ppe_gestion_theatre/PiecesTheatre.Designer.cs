@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.btnAnnuler = new System.Windows.Forms.Button();
+            this.btnValider = new System.Windows.Forms.Button();
+            this.comboBoxCompagnie = new System.Windows.Forms.ComboBox();
+            this.comboBoxPublic = new System.Windows.Forms.ComboBox();
+            this.comboBoxTheme = new System.Windows.Forms.ComboBox();
+            this.comboBoxAuteur = new System.Windows.Forms.ComboBox();
+            this.textBoxCommentaire = new System.Windows.Forms.TextBox();
             this.textBoxDuree = new System.Windows.Forms.TextBox();
             this.textBoxPrixFixe = new System.Windows.Forms.TextBox();
             this.textBoxNomPiece = new System.Windows.Forms.TextBox();
@@ -56,13 +63,6 @@
             this.btnAjouter = new System.Windows.Forms.Button();
             this.lblTitre = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
-            this.textBoxCommentaire = new System.Windows.Forms.TextBox();
-            this.comboBoxAuteur = new System.Windows.Forms.ComboBox();
-            this.comboBoxTheme = new System.Windows.Forms.ComboBox();
-            this.comboBoxPublic = new System.Windows.Forms.ComboBox();
-            this.comboBoxCompagnie = new System.Windows.Forms.ComboBox();
-            this.btnValider = new System.Windows.Forms.Button();
-            this.btnAnnuler = new System.Windows.Forms.Button();
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).BeginInit();
             this.SuspendLayout();
@@ -108,6 +108,83 @@
             this.grbDetails.TabIndex = 6;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la pièce de théatre";
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnuler.ForeColor = System.Drawing.Color.White;
+            this.btnAnnuler.Location = new System.Drawing.Point(378, 298);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(88, 27);
+            this.btnAnnuler.TabIndex = 37;
+            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.UseVisualStyleBackColor = false;
+            this.btnAnnuler.Visible = false;
+            // 
+            // btnValider
+            // 
+            this.btnValider.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnValider.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValider.ForeColor = System.Drawing.Color.White;
+            this.btnValider.Location = new System.Drawing.Point(297, 298);
+            this.btnValider.Name = "btnValider";
+            this.btnValider.Size = new System.Drawing.Size(75, 27);
+            this.btnValider.TabIndex = 36;
+            this.btnValider.Text = "Valider";
+            this.btnValider.UseVisualStyleBackColor = false;
+            this.btnValider.Visible = false;
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            // 
+            // comboBoxCompagnie
+            // 
+            this.comboBoxCompagnie.FormattingEnabled = true;
+            this.comboBoxCompagnie.Location = new System.Drawing.Point(558, 104);
+            this.comboBoxCompagnie.Name = "comboBoxCompagnie";
+            this.comboBoxCompagnie.Size = new System.Drawing.Size(164, 28);
+            this.comboBoxCompagnie.TabIndex = 35;
+            this.comboBoxCompagnie.Visible = false;
+            // 
+            // comboBoxPublic
+            // 
+            this.comboBoxPublic.FormattingEnabled = true;
+            this.comboBoxPublic.Location = new System.Drawing.Point(133, 136);
+            this.comboBoxPublic.Name = "comboBoxPublic";
+            this.comboBoxPublic.Size = new System.Drawing.Size(146, 28);
+            this.comboBoxPublic.TabIndex = 34;
+            this.comboBoxPublic.Visible = false;
+            // 
+            // comboBoxTheme
+            // 
+            this.comboBoxTheme.FormattingEnabled = true;
+            this.comboBoxTheme.Location = new System.Drawing.Point(77, 72);
+            this.comboBoxTheme.Name = "comboBoxTheme";
+            this.comboBoxTheme.Size = new System.Drawing.Size(155, 28);
+            this.comboBoxTheme.TabIndex = 33;
+            this.comboBoxTheme.Visible = false;
+            // 
+            // comboBoxAuteur
+            // 
+            this.comboBoxAuteur.FormattingEnabled = true;
+            this.comboBoxAuteur.Location = new System.Drawing.Point(523, 37);
+            this.comboBoxAuteur.Name = "comboBoxAuteur";
+            this.comboBoxAuteur.Size = new System.Drawing.Size(160, 28);
+            this.comboBoxAuteur.TabIndex = 32;
+            this.comboBoxAuteur.Visible = false;
+            // 
+            // textBoxCommentaire
+            // 
+            this.textBoxCommentaire.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCommentaire.Location = new System.Drawing.Point(115, 184);
+            this.textBoxCommentaire.Multiline = true;
+            this.textBoxCommentaire.Name = "textBoxCommentaire";
+            this.textBoxCommentaire.Size = new System.Drawing.Size(433, 92);
+            this.textBoxCommentaire.TabIndex = 30;
+            this.textBoxCommentaire.Visible = false;
             // 
             // textBoxDuree
             // 
@@ -388,82 +465,6 @@
             this.btnMenu.Text = "Menu";
             this.btnMenu.UseVisualStyleBackColor = false;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
-            // 
-            // textBoxCommentaire
-            // 
-            this.textBoxCommentaire.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCommentaire.Location = new System.Drawing.Point(115, 184);
-            this.textBoxCommentaire.Multiline = true;
-            this.textBoxCommentaire.Name = "textBoxCommentaire";
-            this.textBoxCommentaire.Size = new System.Drawing.Size(433, 92);
-            this.textBoxCommentaire.TabIndex = 30;
-            this.textBoxCommentaire.Visible = false;
-            // 
-            // comboBoxAuteur
-            // 
-            this.comboBoxAuteur.FormattingEnabled = true;
-            this.comboBoxAuteur.Location = new System.Drawing.Point(523, 37);
-            this.comboBoxAuteur.Name = "comboBoxAuteur";
-            this.comboBoxAuteur.Size = new System.Drawing.Size(160, 28);
-            this.comboBoxAuteur.TabIndex = 32;
-            this.comboBoxAuteur.Visible = false;
-            // 
-            // comboBoxTheme
-            // 
-            this.comboBoxTheme.FormattingEnabled = true;
-            this.comboBoxTheme.Location = new System.Drawing.Point(77, 72);
-            this.comboBoxTheme.Name = "comboBoxTheme";
-            this.comboBoxTheme.Size = new System.Drawing.Size(155, 28);
-            this.comboBoxTheme.TabIndex = 33;
-            this.comboBoxTheme.Visible = false;
-            // 
-            // comboBoxPublic
-            // 
-            this.comboBoxPublic.FormattingEnabled = true;
-            this.comboBoxPublic.Location = new System.Drawing.Point(133, 136);
-            this.comboBoxPublic.Name = "comboBoxPublic";
-            this.comboBoxPublic.Size = new System.Drawing.Size(146, 28);
-            this.comboBoxPublic.TabIndex = 34;
-            this.comboBoxPublic.Visible = false;
-            // 
-            // comboBoxCompagnie
-            // 
-            this.comboBoxCompagnie.FormattingEnabled = true;
-            this.comboBoxCompagnie.Location = new System.Drawing.Point(558, 104);
-            this.comboBoxCompagnie.Name = "comboBoxCompagnie";
-            this.comboBoxCompagnie.Size = new System.Drawing.Size(164, 28);
-            this.comboBoxCompagnie.TabIndex = 35;
-            this.comboBoxCompagnie.Visible = false;
-            // 
-            // btnValider
-            // 
-            this.btnValider.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnValider.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnValider.ForeColor = System.Drawing.Color.White;
-            this.btnValider.Location = new System.Drawing.Point(297, 298);
-            this.btnValider.Name = "btnValider";
-            this.btnValider.Size = new System.Drawing.Size(75, 27);
-            this.btnValider.TabIndex = 36;
-            this.btnValider.Text = "Valider";
-            this.btnValider.UseVisualStyleBackColor = false;
-            this.btnValider.Visible = false;
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnnuler.ForeColor = System.Drawing.Color.White;
-            this.btnAnnuler.Location = new System.Drawing.Point(378, 298);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(88, 27);
-            this.btnAnnuler.TabIndex = 37;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.UseVisualStyleBackColor = false;
-            this.btnAnnuler.Visible = false;
             // 
             // PiecesTheatre
             // 

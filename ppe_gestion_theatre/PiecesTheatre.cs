@@ -301,5 +301,11 @@ namespace ppe_gestion_theatre
             comboBoxCompagnie.DisplayMember = "company_name";
 
         }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            // TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, textBoxDuree.Text, textBoxPrixFixe.Text, laRepres, int.Parse(txtNbPlaces.Text));
+            // ModuleReservations.AddSpectator(unePiece);
+        }
     }
 }
