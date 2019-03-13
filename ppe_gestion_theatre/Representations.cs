@@ -255,5 +255,43 @@ namespace ppe_gestion_theatre
             // La première colonne contenant l'objet ne sera pas visible
             dgvListeRepresentations.Columns["representation"].Visible = false;
         }
+
+        //ajout d'un nouvel utilisateur
+        private void btnAjouter_Click(object sender, EventArgs e)
+        {
+            //on cache
+          //  grbDetails.Hide();
+            //quand on clique sur le bouton affichage des cases de saisie
+            grbAjoutRepresentation.Visible = true;
+
+            // Remplissable de la comboBox avec les pièces de théâtre
+            cbChoixPieceSaisieShow.DataSource = ModulePiecesTheatre.GetTheaterPieces();
+            cbChoixPieceSaisieShow.DisplayMember = "theaterPiece_name";
+
+            //mettre tout ça dans l'event clique sur le bouton ajouter
+             if(saisieDateShow.Text.Trim() != "" && saisieHeureShow.Text.Trim() != "" && saisiePlacesShow.Text.Trim() != "" && saisiePrixShow.Text.Trim() != "" && cbChoixPieceSaisieShow.Text.Trim() != "")
+             {     
+                //on récupère date saisie et heure à mettre en datetime         
+                string mesdates = saisieDateShow.ToString() + " " + saisieHeureShow.ToString();
+                DateTime parsedDate = DateTime.Parse(mesdates);
+                //on récupère nb places
+                int mesPlaces = int.Parse(saisiePlacesShow.ToString());
+                //on récupère prix
+                float monPrix = float.Parse(saisiePrixShow.ToString());
+                    //on vérifie l'heure pour voir dans quelle tranche de pricerate on va 
+                    //et on multiplie le prix*priceRate
+                //on récupère la pièce de théâtre
+                TheaterPiece maPiece = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text);
+                // Création de l'objet Show 
+            //    Show show = new Show(parsedDate, mesPlaces, monPrix, maPiece);
+                // Appel de la méthode CreerUtilisateur de la couche BLL
+             //   ModuleRepresentations.CreateShow(show);
+
+             }
+
+
+        }
+
+
     }
 }

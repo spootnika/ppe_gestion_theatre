@@ -32,6 +32,7 @@
             this.btnAjouter = new System.Windows.Forms.Button();
             this.lblTitre = new System.Windows.Forms.Label();
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.lblLesPlacesRest = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.lblLePrix = new System.Windows.Forms.Label();
@@ -51,21 +52,39 @@
             this.lblPlaces = new System.Windows.Forms.Label();
             this.lblNomPiece = new System.Windows.Forms.Label();
             this.grbFiltres = new System.Windows.Forms.GroupBox();
+            this.btnReinitialiser = new System.Windows.Forms.Button();
+            this.cbChoixPiece = new System.Windows.Forms.ComboBox();
+            this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateDeb = new System.Windows.Forms.DateTimePicker();
             this.btnFiltrer = new System.Windows.Forms.Button();
             this.lblDateFin = new System.Windows.Forms.Label();
             this.lblDateDeb = new System.Windows.Forms.Label();
             this.lblPiece = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dtpDateDeb = new System.Windows.Forms.DateTimePicker();
-            this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
-            this.cbChoixPiece = new System.Windows.Forms.ComboBox();
-            this.lblLesPlacesRest = new System.Windows.Forms.Label();
             this.dgvListeRepresentations = new System.Windows.Forms.DataGridView();
-            this.btnReinitialiser = new System.Windows.Forms.Button();
+            this.grbAjoutRepresentation = new System.Windows.Forms.GroupBox();
+            this.btnAnnulerAjout = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnValiderAjout = new System.Windows.Forms.Button();
+            this.saisiePlacesShow = new System.Windows.Forms.TextBox();
+            this.saisieDateShow = new System.Windows.Forms.TextBox();
+            this.saisieHeureShow = new System.Windows.Forms.TextBox();
+            this.saisiePrixShow = new System.Windows.Forms.TextBox();
+            this.cbChoixPieceSaisieShow = new System.Windows.Forms.ComboBox();
             this.grbDetails.SuspendLayout();
             this.grbFiltres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeRepresentations)).BeginInit();
+            this.grbAjoutRepresentation.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMenu
@@ -94,6 +113,7 @@
             this.btnAjouter.TabIndex = 7;
             this.btnAjouter.Text = "Ajouter une représentation";
             this.btnAjouter.UseVisualStyleBackColor = false;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // lblTitre
             // 
@@ -109,6 +129,7 @@
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.grbAjoutRepresentation);
             this.grbDetails.Controls.Add(this.lblLesPlacesRest);
             this.grbDetails.Controls.Add(this.button4);
             this.grbDetails.Controls.Add(this.button3);
@@ -136,6 +157,15 @@
             this.grbDetails.TabIndex = 10;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la représentation";
+            // 
+            // lblLesPlacesRest
+            // 
+            this.lblLesPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLesPlacesRest.ForeColor = System.Drawing.Color.Black;
+            this.lblLesPlacesRest.Location = new System.Drawing.Point(151, 117);
+            this.lblLesPlacesRest.Name = "lblLesPlacesRest";
+            this.lblLesPlacesRest.Size = new System.Drawing.Size(290, 16);
+            this.lblLesPlacesRest.TabIndex = 32;
             // 
             // button4
             // 
@@ -349,6 +379,50 @@
             this.grbFiltres.TabStop = false;
             this.grbFiltres.Text = "Filtres";
             // 
+            // btnReinitialiser
+            // 
+            this.btnReinitialiser.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnReinitialiser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReinitialiser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReinitialiser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReinitialiser.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnReinitialiser.Location = new System.Drawing.Point(576, 60);
+            this.btnReinitialiser.Name = "btnReinitialiser";
+            this.btnReinitialiser.Size = new System.Drawing.Size(86, 26);
+            this.btnReinitialiser.TabIndex = 34;
+            this.btnReinitialiser.Text = "Réinitialiser";
+            this.btnReinitialiser.UseVisualStyleBackColor = false;
+            this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
+            // 
+            // cbChoixPiece
+            // 
+            this.cbChoixPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbChoixPiece.FormattingEnabled = true;
+            this.cbChoixPiece.Location = new System.Drawing.Point(100, 32);
+            this.cbChoixPiece.Name = "cbChoixPiece";
+            this.cbChoixPiece.Size = new System.Drawing.Size(187, 24);
+            this.cbChoixPiece.TabIndex = 33;
+            // 
+            // dtpDateFin
+            // 
+            this.dtpDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDateFin.Location = new System.Drawing.Point(478, 32);
+            this.dtpDateFin.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
+            this.dtpDateFin.Name = "dtpDateFin";
+            this.dtpDateFin.Size = new System.Drawing.Size(114, 22);
+            this.dtpDateFin.TabIndex = 32;
+            this.dtpDateFin.Value = new System.DateTime(2018, 12, 19, 10, 2, 14, 0);
+            // 
+            // dtpDateDeb
+            // 
+            this.dtpDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDateDeb.Location = new System.Drawing.Point(327, 32);
+            this.dtpDateDeb.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
+            this.dtpDateDeb.Name = "dtpDateDeb";
+            this.dtpDateDeb.Size = new System.Drawing.Size(114, 22);
+            this.dtpDateDeb.TabIndex = 31;
+            this.dtpDateDeb.Value = new System.DateTime(2018, 12, 19, 10, 1, 25, 0);
+            // 
             // btnFiltrer
             // 
             this.btnFiltrer.BackColor = System.Drawing.Color.AliceBlue;
@@ -423,44 +497,6 @@
             this.button2.Text = "Supprimer";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // dtpDateDeb
-            // 
-            this.dtpDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDateDeb.Location = new System.Drawing.Point(327, 32);
-            this.dtpDateDeb.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
-            this.dtpDateDeb.Name = "dtpDateDeb";
-            this.dtpDateDeb.Size = new System.Drawing.Size(114, 22);
-            this.dtpDateDeb.TabIndex = 31;
-            this.dtpDateDeb.Value = new System.DateTime(2018, 12, 19, 10, 1, 25, 0);
-            // 
-            // dtpDateFin
-            // 
-            this.dtpDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDateFin.Location = new System.Drawing.Point(478, 32);
-            this.dtpDateFin.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
-            this.dtpDateFin.Name = "dtpDateFin";
-            this.dtpDateFin.Size = new System.Drawing.Size(114, 22);
-            this.dtpDateFin.TabIndex = 32;
-            this.dtpDateFin.Value = new System.DateTime(2018, 12, 19, 10, 2, 14, 0);
-            // 
-            // cbChoixPiece
-            // 
-            this.cbChoixPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbChoixPiece.FormattingEnabled = true;
-            this.cbChoixPiece.Location = new System.Drawing.Point(100, 32);
-            this.cbChoixPiece.Name = "cbChoixPiece";
-            this.cbChoixPiece.Size = new System.Drawing.Size(187, 24);
-            this.cbChoixPiece.TabIndex = 33;
-            // 
-            // lblLesPlacesRest
-            // 
-            this.lblLesPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLesPlacesRest.ForeColor = System.Drawing.Color.Black;
-            this.lblLesPlacesRest.Location = new System.Drawing.Point(151, 117);
-            this.lblLesPlacesRest.Name = "lblLesPlacesRest";
-            this.lblLesPlacesRest.Size = new System.Drawing.Size(290, 16);
-            this.lblLesPlacesRest.TabIndex = 32;
-            // 
             // dgvListeRepresentations
             // 
             this.dgvListeRepresentations.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -471,20 +507,206 @@
             this.dgvListeRepresentations.TabIndex = 9;
             this.dgvListeRepresentations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListeRepresentations_CellClick_1);
             // 
-            // btnReinitialiser
+            // grbAjoutRepresentation
             // 
-            this.btnReinitialiser.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnReinitialiser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnReinitialiser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReinitialiser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReinitialiser.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnReinitialiser.Location = new System.Drawing.Point(576, 60);
-            this.btnReinitialiser.Name = "btnReinitialiser";
-            this.btnReinitialiser.Size = new System.Drawing.Size(86, 26);
-            this.btnReinitialiser.TabIndex = 34;
-            this.btnReinitialiser.Text = "Réinitialiser";
-            this.btnReinitialiser.UseVisualStyleBackColor = false;
-            this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
+            this.grbAjoutRepresentation.BackColor = System.Drawing.Color.White;
+            this.grbAjoutRepresentation.Controls.Add(this.cbChoixPieceSaisieShow);
+            this.grbAjoutRepresentation.Controls.Add(this.saisiePrixShow);
+            this.grbAjoutRepresentation.Controls.Add(this.saisieHeureShow);
+            this.grbAjoutRepresentation.Controls.Add(this.saisieDateShow);
+            this.grbAjoutRepresentation.Controls.Add(this.saisiePlacesShow);
+            this.grbAjoutRepresentation.Controls.Add(this.btnValiderAjout);
+            this.grbAjoutRepresentation.Controls.Add(this.btnAnnulerAjout);
+            this.grbAjoutRepresentation.Controls.Add(this.label2);
+            this.grbAjoutRepresentation.Controls.Add(this.label5);
+            this.grbAjoutRepresentation.Controls.Add(this.label6);
+            this.grbAjoutRepresentation.Controls.Add(this.button7);
+            this.grbAjoutRepresentation.Controls.Add(this.button8);
+            this.grbAjoutRepresentation.Controls.Add(this.label10);
+            this.grbAjoutRepresentation.Controls.Add(this.label11);
+            this.grbAjoutRepresentation.Controls.Add(this.label12);
+            this.grbAjoutRepresentation.Controls.Add(this.label14);
+            this.grbAjoutRepresentation.Controls.Add(this.label15);
+            this.grbAjoutRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbAjoutRepresentation.ForeColor = System.Drawing.Color.SteelBlue;
+            this.grbAjoutRepresentation.Location = new System.Drawing.Point(0, 0);
+            this.grbAjoutRepresentation.Name = "grbAjoutRepresentation";
+            this.grbAjoutRepresentation.Size = new System.Drawing.Size(743, 206);
+            this.grbAjoutRepresentation.TabIndex = 12;
+            this.grbAjoutRepresentation.TabStop = false;
+            this.grbAjoutRepresentation.Text = "Nouvelle Représentation";
+            this.grbAjoutRepresentation.Visible = false;
+            // 
+            // btnAnnulerAjout
+            // 
+            this.btnAnnulerAjout.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnAnnulerAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAnnulerAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnulerAjout.ForeColor = System.Drawing.Color.White;
+            this.btnAnnulerAjout.Location = new System.Drawing.Point(472, 149);
+            this.btnAnnulerAjout.Name = "btnAnnulerAjout";
+            this.btnAnnulerAjout.Size = new System.Drawing.Size(75, 27);
+            this.btnAnnulerAjout.TabIndex = 30;
+            this.btnAnnulerAjout.Text = "Annuler";
+            this.btnAnnulerAjout.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(539, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(188, 16);
+            this.label2.TabIndex = 29;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DarkRed;
+            this.label5.Location = new System.Drawing.Point(582, 264);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(167, 16);
+            this.label5.TabIndex = 26;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(163, 264);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(278, 16);
+            this.label6.TabIndex = 23;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.SteelBlue;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(285, 306);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 27);
+            this.button7.TabIndex = 13;
+            this.button7.Text = "Modifier";
+            this.button7.UseVisualStyleBackColor = false;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.SteelBlue;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.ForeColor = System.Drawing.Color.White;
+            this.button8.Location = new System.Drawing.Point(366, 306);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(88, 27);
+            this.button8.TabIndex = 2;
+            this.button8.Text = "Supprimer";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(447, 115);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 16);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Prix fixe :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(447, 71);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 16);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Heure :";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(447, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 16);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Date :";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(13, 71);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(64, 16);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Places :";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(13, 32);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(56, 16);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Pièce :";
+            // 
+            // btnValiderAjout
+            // 
+            this.btnValiderAjout.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnValiderAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnValiderAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValiderAjout.ForeColor = System.Drawing.Color.White;
+            this.btnValiderAjout.Location = new System.Drawing.Point(585, 149);
+            this.btnValiderAjout.Name = "btnValiderAjout";
+            this.btnValiderAjout.Size = new System.Drawing.Size(75, 27);
+            this.btnValiderAjout.TabIndex = 31;
+            this.btnValiderAjout.Text = "Valider";
+            this.btnValiderAjout.UseVisualStyleBackColor = false;
+            // 
+            // saisiePlacesShow
+            // 
+            this.saisiePlacesShow.Location = new System.Drawing.Point(84, 71);
+            this.saisiePlacesShow.Name = "saisiePlacesShow";
+            this.saisiePlacesShow.Size = new System.Drawing.Size(100, 26);
+            this.saisiePlacesShow.TabIndex = 32;
+            // 
+            // saisieDateShow
+            // 
+            this.saisieDateShow.Location = new System.Drawing.Point(503, 32);
+            this.saisieDateShow.Name = "saisieDateShow";
+            this.saisieDateShow.Size = new System.Drawing.Size(100, 26);
+            this.saisieDateShow.TabIndex = 33;
+            // 
+            // saisieHeureShow
+            // 
+            this.saisieHeureShow.Location = new System.Drawing.Point(512, 71);
+            this.saisieHeureShow.Name = "saisieHeureShow";
+            this.saisieHeureShow.Size = new System.Drawing.Size(100, 26);
+            this.saisieHeureShow.TabIndex = 34;
+            // 
+            // saisiePrixShow
+            // 
+            this.saisiePrixShow.Location = new System.Drawing.Point(523, 109);
+            this.saisiePrixShow.Name = "saisiePrixShow";
+            this.saisiePrixShow.Size = new System.Drawing.Size(100, 26);
+            this.saisiePrixShow.TabIndex = 35;
+            // 
+            // cbChoixPieceSaisieShow
+            // 
+            this.cbChoixPieceSaisieShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbChoixPieceSaisieShow.FormattingEnabled = true;
+            this.cbChoixPieceSaisieShow.Location = new System.Drawing.Point(78, 32);
+            this.cbChoixPieceSaisieShow.Name = "cbChoixPieceSaisieShow";
+            this.cbChoixPieceSaisieShow.Size = new System.Drawing.Size(187, 24);
+            this.cbChoixPieceSaisieShow.TabIndex = 36;
             // 
             // Representations
             // 
@@ -504,6 +726,8 @@
             this.grbFiltres.ResumeLayout(false);
             this.grbFiltres.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeRepresentations)).EndInit();
+            this.grbAjoutRepresentation.ResumeLayout(false);
+            this.grbAjoutRepresentation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,5 +770,23 @@
         private System.Windows.Forms.Label lblLesPlacesRest;
         private System.Windows.Forms.DataGridView dgvListeRepresentations;
         private System.Windows.Forms.Button btnReinitialiser;
+        private System.Windows.Forms.GroupBox grbAjoutRepresentation;
+        private System.Windows.Forms.Button btnAnnulerAjout;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnValiderAjout;
+        private System.Windows.Forms.TextBox saisiePrixShow;
+        private System.Windows.Forms.TextBox saisieHeureShow;
+        private System.Windows.Forms.TextBox saisieDateShow;
+        private System.Windows.Forms.TextBox saisiePlacesShow;
+        private System.Windows.Forms.ComboBox cbChoixPieceSaisieShow;
     }
 }
