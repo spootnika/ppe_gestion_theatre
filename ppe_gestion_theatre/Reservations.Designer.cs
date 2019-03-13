@@ -78,6 +78,8 @@
             this.errNbPlaces = new System.Windows.Forms.ErrorProvider(this.components);
             this.errEmail = new System.Windows.Forms.ErrorProvider(this.components);
             this.errPhone = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblPlacesRest = new System.Windows.Forms.Label();
+            this.lblLesPlacesRest = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeReservations)).BeginInit();
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errNom)).BeginInit();
@@ -138,6 +140,8 @@
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.lblLesPlacesRest);
+            this.grbDetails.Controls.Add(this.lblPlacesRest);
             this.grbDetails.Controls.Add(this.cmbDates);
             this.grbDetails.Controls.Add(this.cmbHeures);
             this.grbDetails.Controls.Add(this.lblHeure);
@@ -187,7 +191,7 @@
             // 
             // cmbDates
             // 
-            this.cmbDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDates.FormattingEnabled = true;
             this.cmbDates.Location = new System.Drawing.Point(527, 24);
             this.cmbDates.Name = "cmbDates";
@@ -198,7 +202,7 @@
             // 
             // cmbHeures
             // 
-            this.cmbHeures.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbHeures.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbHeures.FormattingEnabled = true;
             this.cmbHeures.Location = new System.Drawing.Point(527, 55);
             this.cmbHeures.Name = "cmbHeures";
@@ -217,6 +221,7 @@
             this.lblHeure.Size = new System.Drawing.Size(58, 16);
             this.lblHeure.TabIndex = 36;
             this.lblHeure.Text = "Heure :";
+            this.lblHeure.Visible = false;
             // 
             // btnAnnulerAjout
             // 
@@ -250,7 +255,7 @@
             // 
             // txtTelephone
             // 
-            this.txtTelephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelephone.Location = new System.Drawing.Point(589, 226);
             this.txtTelephone.MaxLength = 10;
             this.txtTelephone.Name = "txtTelephone";
@@ -262,7 +267,7 @@
             // 
             // txtNbPlaces
             // 
-            this.txtNbPlaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNbPlaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNbPlaces.Location = new System.Drawing.Point(163, 261);
             this.txtNbPlaces.Name = "txtNbPlaces";
             this.txtNbPlaces.Size = new System.Drawing.Size(272, 22);
@@ -274,7 +279,7 @@
             // 
             // txtPrenom
             // 
-            this.txtPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrenom.Location = new System.Drawing.Point(89, 226);
             this.txtPrenom.Name = "txtPrenom";
             this.txtPrenom.Size = new System.Drawing.Size(346, 22);
@@ -285,7 +290,7 @@
             // 
             // txtNom
             // 
-            this.txtNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNom.Location = new System.Drawing.Point(70, 196);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(365, 22);
@@ -296,7 +301,7 @@
             // 
             // cmbPiece
             // 
-            this.cmbPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPiece.FormattingEnabled = true;
             this.cmbPiece.Location = new System.Drawing.Point(70, 29);
             this.cmbPiece.Name = "cmbPiece";
@@ -596,7 +601,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(604, 605);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(160, 22);
@@ -624,6 +629,28 @@
             // errPhone
             // 
             this.errPhone.ContainerControl = this;
+            // 
+            // lblPlacesRest
+            // 
+            this.lblPlacesRest.AutoSize = true;
+            this.lblPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlacesRest.ForeColor = System.Drawing.Color.Black;
+            this.lblPlacesRest.Location = new System.Drawing.Point(13, 141);
+            this.lblPlacesRest.Name = "lblPlacesRest";
+            this.lblPlacesRest.Size = new System.Drawing.Size(132, 16);
+            this.lblPlacesRest.TabIndex = 39;
+            this.lblPlacesRest.Text = "Places restantes :";
+            this.lblPlacesRest.Visible = false;
+            // 
+            // lblLesPlacesRest
+            // 
+            this.lblLesPlacesRest.AutoSize = true;
+            this.lblLesPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLesPlacesRest.ForeColor = System.Drawing.Color.Black;
+            this.lblLesPlacesRest.Location = new System.Drawing.Point(139, 141);
+            this.lblLesPlacesRest.Name = "lblLesPlacesRest";
+            this.lblLesPlacesRest.Size = new System.Drawing.Size(0, 16);
+            this.lblLesPlacesRest.TabIndex = 40;
             // 
             // Reservations
             // 
@@ -703,5 +730,7 @@
         private System.Windows.Forms.ErrorProvider errNbPlaces;
         private System.Windows.Forms.ErrorProvider errEmail;
         private System.Windows.Forms.ErrorProvider errPhone;
+        private System.Windows.Forms.Label lblLesPlacesRest;
+        private System.Windows.Forms.Label lblPlacesRest;
     }
 }

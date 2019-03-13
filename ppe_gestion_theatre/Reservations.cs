@@ -160,6 +160,7 @@ namespace ppe_gestion_theatre
             lblLeEmail.Visible = false;
             lblLeTelephone.Visible = false;
             dgvListeReservations.Enabled = false;
+            dgvListeReservations.ClearSelection();
 
             btnValiderAjout.Visible = true;
             btnAnnulerAjout.Visible = true;
@@ -172,6 +173,9 @@ namespace ppe_gestion_theatre
             txtEmail.Visible = true;
             txtTelephone.Visible = true;
             lblHeure.Visible = true;
+            lblPlacesRest.Visible = true;
+            lblLesPlacesRest.Visible = true;
+            lblLesPlacesRest.Text = "";
             #endregion Affiche et cache les champs concernés
 
             lblReprésentation.Text = "Dates : ";
@@ -180,6 +184,13 @@ namespace ppe_gestion_theatre
             lblLaDuree.Text = String.Empty;
             lblLeType.Text = String.Empty;
             lblLaCompagnie.Text = String.Empty;
+            lblLaPiece.Text = String.Empty;
+            lblLaRepresentation.Text = String.Empty; 
+            lblLeNom.Text = String.Empty;
+            lblLePrenom.Text = String.Empty;
+            lblLeNbPlaces.Text = String.Empty;
+            lblLeEmail.Text = String.Empty;
+            lblLeTelephone.Text = String.Empty;
             lblLePrixFixe.Text = "€";
             lblLePrixTotal.Text = "0 €";
 
@@ -229,6 +240,9 @@ namespace ppe_gestion_theatre
                 txtEmail.Visible = false;
                 txtTelephone.Visible = false;
                 lblHeure.Visible = false;
+                lblPlacesRest.Visible = false;
+                lblLesPlacesRest.Visible = false;
+                lblLesPlacesRest.Text = "";
 
                 btnModifier.Visible = true;
                 btnSupprimer.Visible = true;
@@ -262,7 +276,6 @@ namespace ppe_gestion_theatre
             if (rep == DialogResult.Yes)
             {
                 grbDetails.Text = "Détails de la réservation";
-                cmbPiece.Items.Clear();
                 cmbHeures.Items.Clear();
                 cmbDates.Items.Clear();
 
@@ -278,6 +291,9 @@ namespace ppe_gestion_theatre
                 txtEmail.Visible = false;
                 txtTelephone.Visible = false;
                 lblHeure.Visible = false;
+                lblPlacesRest.Visible = false;
+                lblLesPlacesRest.Visible = false;
+                lblLesPlacesRest.Text = "";
 
                 btnModifier.Visible = true;
                 btnSupprimer.Visible = true;
@@ -314,7 +330,7 @@ namespace ppe_gestion_theatre
                 lblLaDuree.Text = laPiece.TheaterPiece_duration.ToString();
                 lblLeType.Text = laPiece.TheaterPiece_publicType.PublicType_name;
                 lblLaCompagnie.Text = laPiece.TheaterPiece_company.Company_name;
-                lblLePrixFixe.Text = laPiece.TheaterPiece_seatsPrice.ToString();
+                lblLePrixFixe.Text = laPiece.TheaterPiece_seatsPrice.ToString()+" €";
 
                 lesRepresentations = ModuleRepresentations.GetFilterShows(laPiece.TheaterPiece_id);
 
