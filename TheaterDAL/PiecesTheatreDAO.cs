@@ -690,18 +690,18 @@ namespace TheaterDAL
             try
             {
                 SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
-                string reqAdd = "INSERT INTO Theater_piece (theaterPiece_name, theaterPiece_description, theaterPiece_duration, theaterPiece_seatsPrice, theaterPiece_company, theaterPiece_author, theaterPiece_publicType, theaterPiece_theme) " + "VALUES (@name, @description, @duration, @seatsPrice, @company, , @author, @publicType, @theme); SELECT SCOPE_IDENTITY()";
+                string reqAdd = "INSERT INTO Theater_piece (theaterPiece_name, theaterPiece_description, theaterPiece_duration, theaterPiece_seatsPrice, theaterPiece_company, theaterPiece_author, theaterPiece_publicType, theaterPiece_theme) VALUES (@name, @description, @duration, @seatsPrice, @company, @author, @publicType, @theme);";
 
                 SqlCommand commAddPiece = new SqlCommand(reqAdd, connexion);
 
                 commAddPiece.Parameters.Add(new SqlParameter("@name", System.Data.SqlDbType.VarChar, 255));
                 commAddPiece.Parameters.Add(new SqlParameter("@description", System.Data.SqlDbType.VarChar, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@duration", System.Data.SqlDbType.Float, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@seatsPrice", System.Data.SqlDbType.Float, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@company", System.Data.SqlDbType.Int, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@author", System.Data.SqlDbType.Int, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@publicType", System.Data.SqlDbType.Int, 255));
-                commAddPiece.Parameters.Add(new SqlParameter("@theme", System.Data.SqlDbType.Int, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@duration", System.Data.SqlDbType.Float));
+                commAddPiece.Parameters.Add(new SqlParameter("@seatsPrice", System.Data.SqlDbType.Float));
+                commAddPiece.Parameters.Add(new SqlParameter("@company", System.Data.SqlDbType.Int));
+                commAddPiece.Parameters.Add(new SqlParameter("@author", System.Data.SqlDbType.Int));
+                commAddPiece.Parameters.Add(new SqlParameter("@publicType", System.Data.SqlDbType.Int));
+                commAddPiece.Parameters.Add(new SqlParameter("@theme", System.Data.SqlDbType.Int));
 
                 commAddPiece.Parameters["@name"].Value = unePiece.TheaterPiece_name;
                 commAddPiece.Parameters["@description"].Value = unePiece.TheaterPiece_description;
@@ -713,8 +713,6 @@ namespace TheaterDAL
                 commAddPiece.Parameters["@theme"].Value = unePiece.TheaterPiece_theme.Theme_id;
 
                 commAddPiece.ExecuteNonQuery();
-
-                MessageBox.Show("zer");
 
                 connexion.Close();
 

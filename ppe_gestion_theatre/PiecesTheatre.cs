@@ -218,6 +218,53 @@ namespace ppe_gestion_theatre
 
             TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
             ModulePiecesTheatre.AddTheaterPiece(unePiece);
+
+            grbDetails.Text = "Détails de la pièce de théatre";
+            lblLaPiece.Visible = true;
+            lblLeTheme.Visible = true;
+            lblLaDuree.Visible = true;
+            lblLeAuteur.Visible = true;
+            lblLeType.Visible = true;
+            lblLaDescription.Visible = true;
+            lblLaCompagnie.Visible = true;
+            lblLePrixFixe.Visible = true;
+            lblLaNationalite.Visible = true;
+
+            textBoxNomPiece.Visible = false;
+            textBoxPrixFixe.Visible = false;
+            textBoxDuree.Visible = false;
+            textBoxCommentaire.Visible = false;
+            comboBoxAuteur.Visible = false;
+            comboBoxCompagnie.Visible = false;
+            comboBoxTheme.Visible = false;
+            comboBoxPublic.Visible = false;
+
+            btnModifier.Visible = true;
+            btnSupprimer.Visible = true;
+            btnValider.Visible = false;
+            btnAnnuler.Visible = false;
+
+            dgvListePiecesTheatre.CurrentRow.Selected = true;
+
+            // On valorise chaque label avec une valeur vide
+            lblLaPiece.Text = "";
+
+            lblLeTheme.Text = "";
+
+            lblLaDuree.Text = "";
+
+            lblLeAuteur.Text = "";
+
+            lblLeType.Text = "";
+
+            lblLaDescription.Text = "";
+
+            lblLaCompagnie.Text = "";
+
+            lblLePrixFixe.Text = "€";
+
+            lblLaNationalite.Text = "";
+
             ListePiece();
             // MessageBox.Show("zer");
 
@@ -324,6 +371,65 @@ namespace ppe_gestion_theatre
         private void PiecesTheatre_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void grbDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            var rep = MessageBox.Show("Êtes vous sûr de vouloir annuler l'ajout de cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (rep == DialogResult.Yes)
+            {
+                grbDetails.Text = "Détails de la pièce de théatre";
+
+                #region Affiche et cache les champs concernés
+                lblLaPiece.Visible = true;
+                lblLeTheme.Visible = true;
+                lblLaDuree.Visible = true;
+                lblLeAuteur.Visible = true;
+                lblLeType.Visible = true;
+                lblLaDescription.Visible = true;
+                lblLaCompagnie.Visible = true;
+                lblLePrixFixe.Visible = true;
+                lblLaNationalite.Visible = true;
+
+                textBoxNomPiece.Visible = false;
+                textBoxPrixFixe.Visible = false;
+                textBoxDuree.Visible = false;
+                textBoxCommentaire.Visible = false;
+                comboBoxAuteur.Visible = false;
+                comboBoxCompagnie.Visible = false;
+                comboBoxTheme.Visible = false;
+                comboBoxPublic.Visible = false;
+
+                btnModifier.Visible = true;
+                btnSupprimer.Visible = true;
+                btnValider.Visible = false;
+                btnAnnuler.Visible = false;
+                #endregion Affiche et cache les champs concernés
+
+                lblLaPiece.Text = "";
+
+                lblLeTheme.Text = "";
+
+                lblLaDuree.Text = "";
+
+                lblLeAuteur.Text = "";
+
+                lblLeType.Text = "";
+
+                lblLaDescription.Text = "";
+
+                lblLaCompagnie.Text = "";
+
+                lblLePrixFixe.Text = "0 €";
+
+                lblLaNationalite.Text = "";
+            }
         }
     }
 }

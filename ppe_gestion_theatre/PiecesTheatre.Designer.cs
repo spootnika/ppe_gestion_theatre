@@ -108,6 +108,7 @@
             this.grbDetails.TabIndex = 6;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la pièce de théatre";
+            this.grbDetails.Enter += new System.EventHandler(this.grbDetails_Enter);
             // 
             // btnAnnuler
             // 
@@ -122,6 +123,7 @@
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = false;
             this.btnAnnuler.Visible = false;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // btnValider
             // 
@@ -150,16 +152,16 @@
             // comboBoxPublic
             // 
             this.comboBoxPublic.FormattingEnabled = true;
-            this.comboBoxPublic.Location = new System.Drawing.Point(133, 136);
+            this.comboBoxPublic.Location = new System.Drawing.Point(133, 134);
             this.comboBoxPublic.Name = "comboBoxPublic";
-            this.comboBoxPublic.Size = new System.Drawing.Size(146, 28);
+            this.comboBoxPublic.Size = new System.Drawing.Size(155, 28);
             this.comboBoxPublic.TabIndex = 34;
             this.comboBoxPublic.Visible = false;
             // 
             // comboBoxTheme
             // 
             this.comboBoxTheme.FormattingEnabled = true;
-            this.comboBoxTheme.Location = new System.Drawing.Point(77, 72);
+            this.comboBoxTheme.Location = new System.Drawing.Point(133, 71);
             this.comboBoxTheme.Name = "comboBoxTheme";
             this.comboBoxTheme.Size = new System.Drawing.Size(155, 28);
             this.comboBoxTheme.TabIndex = 33;
@@ -168,7 +170,7 @@
             // comboBoxAuteur
             // 
             this.comboBoxAuteur.FormattingEnabled = true;
-            this.comboBoxAuteur.Location = new System.Drawing.Point(523, 37);
+            this.comboBoxAuteur.Location = new System.Drawing.Point(558, 37);
             this.comboBoxAuteur.Name = "comboBoxAuteur";
             this.comboBoxAuteur.Size = new System.Drawing.Size(160, 28);
             this.comboBoxAuteur.TabIndex = 32;
@@ -188,25 +190,25 @@
             // 
             // textBoxDuree
             // 
-            this.textBoxDuree.Location = new System.Drawing.Point(74, 104);
+            this.textBoxDuree.Location = new System.Drawing.Point(133, 104);
             this.textBoxDuree.Name = "textBoxDuree";
-            this.textBoxDuree.Size = new System.Drawing.Size(189, 26);
+            this.textBoxDuree.Size = new System.Drawing.Size(155, 26);
             this.textBoxDuree.TabIndex = 26;
             this.textBoxDuree.Visible = false;
             // 
             // textBoxPrixFixe
             // 
-            this.textBoxPrixFixe.Location = new System.Drawing.Point(533, 136);
+            this.textBoxPrixFixe.Location = new System.Drawing.Point(558, 136);
             this.textBoxPrixFixe.Name = "textBoxPrixFixe";
-            this.textBoxPrixFixe.Size = new System.Drawing.Size(189, 26);
+            this.textBoxPrixFixe.Size = new System.Drawing.Size(164, 26);
             this.textBoxPrixFixe.TabIndex = 25;
             this.textBoxPrixFixe.Visible = false;
             // 
             // textBoxNomPiece
             // 
-            this.textBoxNomPiece.Location = new System.Drawing.Point(69, 39);
+            this.textBoxNomPiece.Location = new System.Drawing.Point(133, 39);
             this.textBoxNomPiece.Name = "textBoxNomPiece";
-            this.textBoxNomPiece.Size = new System.Drawing.Size(189, 26);
+            this.textBoxNomPiece.Size = new System.Drawing.Size(155, 26);
             this.textBoxNomPiece.TabIndex = 24;
             this.textBoxNomPiece.Visible = false;
             // 
