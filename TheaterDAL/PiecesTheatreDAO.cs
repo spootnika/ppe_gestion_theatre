@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TheaterBO; // Référence à la couche BO
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace TheaterDAL
 {
@@ -712,6 +713,8 @@ namespace TheaterDAL
                 commAddPiece.Parameters["@theme"].Value = unePiece.TheaterPiece_theme.Theme_id;
 
                 commAddPiece.ExecuteNonQuery();
+
+                MessageBox.Show("zer");
 
                 connexion.Close();
 
