@@ -211,62 +211,72 @@ namespace ppe_gestion_theatre
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            leAuteur = comboBoxAuteur.SelectedItem as Author;
-            laCompagnie = comboBoxCompagnie.SelectedItem as Company;
-            leTypePublic = comboBoxPublic.SelectedItem as PublicType;
-            leTheme = comboBoxTheme.SelectedItem as Theme;
+            if (textBoxNomPiece.Text == String.Empty || textBoxDuree.Text == String.Empty || textBoxPrixFixe.Text == String.Empty)
+            {
+                errorProviderDuree.SetError(textBoxDuree, "Ce champ est requis !");
+                errorProviderNomPiece.SetError(textBoxNomPiece, "Ce champ est requis !");
+                errorProviderPrixFixe.SetError(textBoxPrixFixe, "Ce champ est requis !");
+            }
+            else
+            {
+                leAuteur = comboBoxAuteur.SelectedItem as Author;
+                laCompagnie = comboBoxCompagnie.SelectedItem as Company;
+                leTypePublic = comboBoxPublic.SelectedItem as PublicType;
+                leTheme = comboBoxTheme.SelectedItem as Theme;
 
-            TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
-            ModulePiecesTheatre.AddTheaterPiece(unePiece);
+                TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
+                ModulePiecesTheatre.AddTheaterPiece(unePiece);
 
-            grbDetails.Text = "Détails de la pièce de théatre";
-            lblLaPiece.Visible = true;
-            lblLeTheme.Visible = true;
-            lblLaDuree.Visible = true;
-            lblLeAuteur.Visible = true;
-            lblLeType.Visible = true;
-            lblLaDescription.Visible = true;
-            lblLaCompagnie.Visible = true;
-            lblLePrixFixe.Visible = true;
-            lblLaNationalite.Visible = true;
+                grbDetails.Text = "Détails de la pièce de théatre";
+                lblLaPiece.Visible = true;
+                lblLeTheme.Visible = true;
+                lblLaDuree.Visible = true;
+                lblLeAuteur.Visible = true;
+                lblLeType.Visible = true;
+                lblLaDescription.Visible = true;
+                lblLaCompagnie.Visible = true;
+                lblLePrixFixe.Visible = true;
+                lblLaNationalite.Visible = true;
 
-            textBoxNomPiece.Visible = false;
-            textBoxPrixFixe.Visible = false;
-            textBoxDuree.Visible = false;
-            textBoxCommentaire.Visible = false;
-            comboBoxAuteur.Visible = false;
-            comboBoxCompagnie.Visible = false;
-            comboBoxTheme.Visible = false;
-            comboBoxPublic.Visible = false;
+                textBoxNomPiece.Visible = false;
+                textBoxPrixFixe.Visible = false;
+                textBoxDuree.Visible = false;
+                textBoxCommentaire.Visible = false;
+                comboBoxAuteur.Visible = false;
+                comboBoxCompagnie.Visible = false;
+                comboBoxTheme.Visible = false;
+                comboBoxPublic.Visible = false;
 
-            btnModifier.Visible = true;
-            btnSupprimer.Visible = true;
-            btnValider.Visible = false;
-            btnAnnuler.Visible = false;
+                btnModifier.Visible = true;
+                btnSupprimer.Visible = true;
+                btnValider.Visible = false;
+                btnAnnuler.Visible = false;
 
-            dgvListePiecesTheatre.CurrentRow.Selected = true;
+                dgvListePiecesTheatre.CurrentRow.Selected = true;
 
-            // On valorise chaque label avec une valeur vide
-            lblLaPiece.Text = "";
+                // On valorise chaque label avec une valeur vide
+                lblLaPiece.Text = "";
 
-            lblLeTheme.Text = "";
+                lblLeTheme.Text = "";
 
-            lblLaDuree.Text = "";
+                lblLaDuree.Text = "";
 
-            lblLeAuteur.Text = "";
+                lblLeAuteur.Text = "";
 
-            lblLeType.Text = "";
+                lblLeType.Text = "";
 
-            lblLaDescription.Text = "";
+                lblLaDescription.Text = "";
 
-            lblLaCompagnie.Text = "";
+                lblLaCompagnie.Text = "";
 
-            lblLePrixFixe.Text = "€";
+                lblLePrixFixe.Text = "€";
 
-            lblLaNationalite.Text = "";
+                lblLaNationalite.Text = "";
 
-            ListePiece();
-            // MessageBox.Show("zer");
+                ListePiece();
+                // MessageBox.Show("zer");
+
+            }
 
         }
 
@@ -380,7 +390,7 @@ namespace ppe_gestion_theatre
 
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
-            var rep = MessageBox.Show("Êtes vous sûr de vouloir annuler l'ajout de cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            var rep = MessageBox.Show("Êtes vous sûr de vouloir annuler l'ajout de cette pièce de théatre ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
             if (rep == DialogResult.Yes)
             {

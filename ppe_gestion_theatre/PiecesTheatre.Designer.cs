@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grbDetails = new System.Windows.Forms.GroupBox();
             this.btnAnnuler = new System.Windows.Forms.Button();
             this.btnValider = new System.Windows.Forms.Button();
@@ -63,8 +64,14 @@
             this.btnAjouter = new System.Windows.Forms.Button();
             this.lblTitre = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
+            this.errorProviderNomPiece = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderDuree = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderPrixFixe = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNomPiece)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDuree)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPrixFixe)).BeginInit();
             this.SuspendLayout();
             // 
             // grbDetails
@@ -468,6 +475,18 @@
             this.btnMenu.UseVisualStyleBackColor = false;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
+            // errorProviderNomPiece
+            // 
+            this.errorProviderNomPiece.ContainerControl = this;
+            // 
+            // errorProviderDuree
+            // 
+            this.errorProviderDuree.ContainerControl = this;
+            // 
+            // errorProviderPrixFixe
+            // 
+            this.errorProviderPrixFixe.ContainerControl = this;
+            // 
             // PiecesTheatre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,6 +504,9 @@
             this.grbDetails.ResumeLayout(false);
             this.grbDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNomPiece)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDuree)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPrixFixe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -527,5 +549,8 @@
         private System.Windows.Forms.ComboBox comboBoxAuteur;
         private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.Button btnValider;
+        private System.Windows.Forms.ErrorProvider errorProviderNomPiece;
+        private System.Windows.Forms.ErrorProvider errorProviderDuree;
+        private System.Windows.Forms.ErrorProvider errorProviderPrixFixe;
     }
 }
