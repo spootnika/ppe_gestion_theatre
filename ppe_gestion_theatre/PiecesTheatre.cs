@@ -321,6 +321,9 @@ namespace ppe_gestion_theatre
             dgvListePiecesTheatre.Columns["piece"].Visible = false;
         }
 
+        private void PiecesTheatre_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
