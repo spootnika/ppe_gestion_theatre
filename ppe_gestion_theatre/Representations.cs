@@ -276,16 +276,16 @@ namespace ppe_gestion_theatre
                 DateTime parsedDate = DateTime.Parse(mesdates);
                 //on récupère nb places
                 int mesPlaces = int.Parse(saisiePlacesShow.ToString());
-                //on récupère prix
+                //on affiche le prix
                 float monPrix = float.Parse(saisiePrixShow.ToString());
                     //on vérifie l'heure pour voir dans quelle tranche de pricerate on va 
                     //et on multiplie le prix*priceRate
                 //on récupère la pièce de théâtre
                 TheaterPiece maPiece = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text);
                 // Création de l'objet Show 
-            //    Show show = new Show(parsedDate, mesPlaces, monPrix, maPiece);
+                Show show = new Show(parsedDate, mesPlaces, maPiece);
                 // Appel de la méthode CreerUtilisateur de la couche BLL
-             //   ModuleRepresentations.CreateShow(show);
+                ModuleRepresentations.CreateShow(show);
 
              }
 
