@@ -306,8 +306,15 @@ namespace ppe_gestion_theatre
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, textBoxDuree.Text, textBoxPrixFixe.Text, laCompagnie, leAuteur, leTypePublic, leTheme); /*int.Parse(text.Text)*/
+            leAuteur = comboBoxAuteur.SelectedItem as Author;
+            laCompagnie = comboBoxCompagnie.SelectedItem as Company;
+            leTypePublic = comboBoxPublic.SelectedItem as PublicType;
+            leTheme = comboBoxTheme.SelectedItem as Theme;
+
+            TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
             ModulePiecesTheatre.AddTheaterPiece(unePiece);
+
+
         }
     }
 }
