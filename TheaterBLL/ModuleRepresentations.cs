@@ -30,11 +30,6 @@ namespace TheaterBLL
             ConnexionBD.GetConnexionBD().SetchaineConnexion(chaine);
         }
 
-        // création d'une nouvelle représentation 
-        public static int CreateShow(Show show)
-        {
-            return RepresentationsDAO.AddShow(show);
-        }
 
         // Récupère la liste des représentations de la DAO, renvoie la liste
         // GetShows()

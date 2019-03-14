@@ -107,23 +107,6 @@ namespace TheaterDAL
             return lesRepresentations;
         }
 
-        //ajout d'une représentation
-        public static int AddShow(Show uneRepresentation)
-        {
-            int nb;
-
-            // Connexion à la BD
-            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = maConnexion;        
-            cmd.CommandText = "INSERT INTO Show(show_dateTime,show_seats,show_priceRate,show_theaterPiece) values('" + uneRepresentation.Show_dateTime + "','" + uneRepresentation.Show_seats + "','" + uneRepresentation.Show_priceRate + "','" + uneRepresentation.Show_theaterPiece + "');";
-            nb = cmd.ExecuteNonQuery();
-
-            // Fermeture de la connexion
-            maConnexion.Close();
-
-            return nb;
-        }
 
         //renvoie le nombre de places réservées pour une représentation
         public static int GetSeatsBooked(int idRepresentation, int nbPlacesTotal)
