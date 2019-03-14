@@ -52,6 +52,12 @@ namespace TheaterBLL
             return ReservationsDAO.GetNbPlacesReservees(laRepresentation);
         }
 
+        // Suppression d'une réservation
+        public static string DeleteReservation(Spectator laReservation)
+        {
+            return ReservationsDAO.DeleteSpectator(laReservation);
+        }
+
         #region Validation Champs
         public static bool ValidChampTxt(string text, out string errMsg)
         {

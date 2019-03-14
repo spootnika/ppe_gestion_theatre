@@ -135,7 +135,11 @@ namespace TheaterDAL
         {
             try
             {
+                // Ouverture connaxion
                 SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+                // Requête SQL ajout table Spectator
+                // SELECT SCOPE_IDENTITY() : renvoie l'id de la ligne qui vient d'être ajoutée
                 string reqAdd = "INSERT INTO Spectator (spectator_lastname, spectator_firstname, spectator_email, spectator_phone) VALUES (@lastname, @firstname, @email, @phone); SELECT SCOPE_IDENTITY()";
 
                 SqlCommand commAddSpec = new SqlCommand(reqAdd, connexion);
@@ -150,8 +154,10 @@ namespace TheaterDAL
                 commAddSpec.Parameters["@email"].Value = uneReservation.Spectator_email;
                 commAddSpec.Parameters["@phone"].Value = uneReservation.Spectator_phone;
 
+                // Exécution de la requête et récupération de l'id de la ligne qui vient d'être ajoutée
                 int idSpec = Convert.ToInt32(commAddSpec.ExecuteScalar());
 
+                // Requête SQL ajout table To_Book
                 string reqAddBook = "INSERT INTO To_book (toBook_spectator, toBook_show, seatsBooked) VALUES (@spectator, @show, @seatsBooked)";
                 connexion.Close();
 
@@ -166,8 +172,10 @@ namespace TheaterDAL
                 commAddBook.Parameters["@show"].Value = uneReservation.Spectator_show.Show_id;
                 commAddBook.Parameters["@seatsBooked"].Value = uneReservation.Spectator_seatsBooked;
 
+                // Execution de la requête
                 commAddBook.ExecuteNonQuery();
 
+                // Connexion fermée
                 connexionBook.Close();
             }
             catch (Exception e)
@@ -181,11 +189,14 @@ namespace TheaterDAL
         // Récupère le nombre de places prises pour une représentation
         public static int GetNbPlacesReservees(Show laRepresentation)
         {
+            // Initialisation de la variable à un nombre négatif
             int nbPlacesReservees = -1;
             try
             {
+                // Connexion DB
                 SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
+                // Requête SQL select nbplaces
                 string reqPlacesRest = "SELECT SUM(seatsBooked) AS 'Nb Places Reservees' FROM To_book, Show WHERE toBook_show = show_id AND show_id = @idShow;";
 
                 SqlCommand commPlacesRest = new SqlCommand(reqPlacesRest, connexion);
@@ -210,8 +221,37 @@ namespace TheaterDAL
 
             }
 
+            // Retourne le nombre de places réservées
             return nbPlacesReservees;
         }
 
+        // Suppression d'une réservation
+        public static string DeleteSpectator(Spectator laReservation)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+                string reqDelSpec = "DELETE FROM To_book WHERE toBook_spectator = @idSpec ; DELETE FROM Spectator WHERE spectator_id = @idSpec; ";
+
+                SqlCommand commDelSpec = new SqlCommand(reqDelSpec, connexion);
+
+                commDelSpec.Parameters.Add(new SqlParameter("@idSpec", System.Data.SqlDbType.Int));
+                commDelSpec.Parameters["@idSpec"].Value = laReservation.Spectator_id;
+
+                commDelSpec.ExecuteNonQuery();
+
+                connexion.Close();
+
+                return "Suppression effectuée";
+
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
     }
+
 }

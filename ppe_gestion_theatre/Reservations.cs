@@ -28,6 +28,8 @@ namespace ppe_gestion_theatre
             this.currentUser = currentUser;
 
             LoadDataGridView();
+
+            dgvListeReservations.ClearSelection();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -120,7 +122,7 @@ namespace ppe_gestion_theatre
                 lblLaCompagnie.Text = String.Empty;
 
                 lblLePrixFixe.Text = "€";
-                
+
 
                 lblLeNom.Text = String.Empty;
 
@@ -210,7 +212,7 @@ namespace ppe_gestion_theatre
                     idPieces.Add(uneRep.Show_theaterPiece.TheaterPiece_id);
             }
 
-            foreach(var unePiece in lesPieces)
+            foreach (var unePiece in lesPieces)
             {
                 if (idPieces.Contains(unePiece.TheaterPiece_id))
                     lesPiecesTriees.Add(unePiece);
@@ -437,7 +439,8 @@ namespace ppe_gestion_theatre
                     }
                     else
                     {
-                        lblLesPlacesRest.Text = uneRep.Show_seats.ToString();
+                        nbPlacesRest = uneRep.Show_seats;
+                        lblLesPlacesRest.Text = nbPlacesRest.ToString();
                     }
                 }
             }
@@ -604,7 +607,7 @@ namespace ppe_gestion_theatre
                 string piece = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_name;
 
                 // Date et heure de la représentation
-                string representation = uneReservation.Spectator_show.Show_dateTime.ToString("MM/dd/yyyy à H:mm");
+                string representation = uneReservation.Spectator_show.Show_dateTime.ToString("dd/MM/yyyy à H:mm");
 
                 // Durée de la pièce
                 double doubleConvertDuree = double.Parse(uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
@@ -637,6 +640,268 @@ namespace ppe_gestion_theatre
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Au click sur le bouton supprimer
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            var rep = MessageBox.Show("Êtes vous sûr de vouloir supprimmer cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (rep == DialogResult.Yes)
+            {
+                int indexRow = dgvListeReservations.CurrentRow.Index;
+                Spectator laReserv = (Spectator)dgvListeReservations.Rows[indexRow].Cells[0].Value;
+
+                string message = ModuleReservations.DeleteReservation(laReserv);
+
+                MessageBox.Show(message);
+
+                // On valorise chaque label avec une valeur vide
+                lblLaPiece.Text = String.Empty;
+
+                lblLeTheme.Text = String.Empty;
+
+                lblLaDuree.Text = String.Empty;
+
+                lblLeType.Text = String.Empty;
+
+                lblLaRepresentation.Text = String.Empty;
+
+                lblLaCompagnie.Text = String.Empty;
+
+                lblLePrixFixe.Text = "€";
+
+
+                lblLeNom.Text = String.Empty;
+
+                lblLePrenom.Text = String.Empty;
+
+                lblLeNbPlaces.Text = String.Empty;
+
+                lblLeEmail.Text = String.Empty;
+
+                lblLeTelephone.Text = String.Empty;
+
+                lblLePrixTotal.Text = "0 €";
+
+                LoadDataGridView();
+            }
+
+        }
+
+        private void cmbHeures_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        // clique sur le bouton Edition
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            if (dgvListeReservations.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Veuillez sélectionner une réservation");
+            }
+            else
+            {
+                int indexRow = dgvListeReservations.CurrentRow.Index;
+
+                // Si la ligne contient bien une valeur, on valorise les labels avec les valeurs correspondantes
+                if (dgvListeReservations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+                {
+                    Spectator laReserv = (Spectator)dgvListeReservations.Rows[indexRow].Cells[0].Value;
+
+                    grbDetails.Text = "Modifier une réservation";
+
+                    #region Affiche et cache les champs concernés
+                    btnModifier.Visible = false;
+                    btnSupprimer.Visible = false;
+                    lblLaPiece.Visible = false;
+                    lblLaRepresentation.Visible = false;
+                    lblLeNom.Visible = false;
+                    lblLePrenom.Visible = false;
+                    lblLeNbPlaces.Visible = false;
+                    lblLeEmail.Visible = false;
+                    lblLeTelephone.Visible = false;
+                    dgvListeReservations.Enabled = false;
+                    dgvListeReservations.ClearSelection();
+
+                    btnValiderEdition.Visible = true;
+                    btnAnnulerEdition.Visible = true;
+                    cmbPiece.Visible = true;
+                    cmbDates.Visible = true;
+                    cmbHeures.Visible = true;
+                    txtNom.Visible = true;
+                    txtPrenom.Visible = true;
+                    txtNbPlaces.Visible = true;
+                    txtEmail.Visible = true;
+                    txtTelephone.Visible = true;
+                    lblHeure.Visible = true;
+                    lblPlacesRest.Visible = true;
+                    lblLesPlacesRest.Visible = true;
+                    lblLesPlacesRest.Text = "";
+                    lblLePrixReel.Visible = true;
+                    lblPrixReel.Visible = true;
+                    #endregion Affiche et cache les champs concernés
+
+                    lblReprésentation.Text = "Dates : ";
+
+                    lblLeTheme.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_theme.Theme_name;
+
+                    double doubleConvertDuree = double.Parse(laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
+                    TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+                    lblLaDuree.Text = convertDuree.ToString();
+
+                    lblLeType.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_publicType.PublicType_name;
+                    lblLaCompagnie.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_company.Company_name;
+
+                    lblLaPiece.Text = String.Empty;
+                    lblLaRepresentation.Text = String.Empty;
+
+                    lblLeNom.Text = String.Empty;
+                    lblLePrenom.Text = String.Empty;
+                    lblLeNbPlaces.Text = String.Empty;
+                    lblLeEmail.Text = String.Empty;
+                    lblLeTelephone.Text = String.Empty;
+
+                    txtEmail.Text = laReserv.Spectator_email;
+                    txtNbPlaces.Text = laReserv.Spectator_seatsBooked.ToString();
+                    txtNom.Text = laReserv.Spectator_lastname;
+                    txtPrenom.Text = laReserv.Spectator_firstname;
+                    txtTelephone.Text = laReserv.Spectator_phone;
+
+
+                    List<TheaterPiece> lesPieces = ModulePiecesTheatre.GetTheaterPieces();
+
+                    List<Show> lesReps = ModuleRepresentations.GetShows();
+                    List<int> idPieces = new List<int>();
+                    List<TheaterPiece> lesPiecesTriees = new List<TheaterPiece>();
+                    foreach (var uneRep in lesReps)
+                    {
+                        if (!idPieces.Contains(uneRep.Show_theaterPiece.TheaterPiece_id))
+                            idPieces.Add(uneRep.Show_theaterPiece.TheaterPiece_id);
+                    }
+
+                    foreach (var unePiece in lesPieces)
+                    {
+                        if (idPieces.Contains(unePiece.TheaterPiece_id))
+                            lesPiecesTriees.Add(unePiece);
+                    }
+
+                    cmbPiece.DataSource = lesPiecesTriees;
+                    cmbPiece.DisplayMember = "theaterPiece_name";
+
+                    int ind = 0;
+                    bool trouve = false;
+                    while(trouve == false && ind <= cmbPiece.Items.Count)
+                    {
+                        TheaterPiece itemPiece = cmbPiece.Items[ind] as TheaterPiece;
+                        if (itemPiece.TheaterPiece_id == laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_id)
+                        {
+                            cmbPiece.SelectedIndex = ind;
+                            trouve = true;
+                        }
+                        else
+                        {
+                            ind++;
+                        }
+                    }
+
+                    string date = laReserv.Spectator_show.Show_dateTime.ToString("dd/MM/yyyy");
+                    ind = 0;
+                    trouve = false;
+                    while (trouve == false && ind <= cmbDates.Items.Count)
+                    {
+                        if (date == cmbDates.Items[ind].ToString())
+                        {
+                            cmbDates.SelectedIndex = ind;
+                            trouve = true;
+                        }
+                        else
+                        {
+                            ind++;
+                        }
+                    }
+
+
+                    string heure = laReserv.Spectator_show.Show_dateTime.ToString("HH:mm");
+                    ind = 0;
+                    trouve = false;
+                    while (trouve == false && ind <= cmbHeures.Items.Count)
+                    {
+                        if (heure == cmbHeures.Items[ind].ToString())
+                        {
+                            cmbHeures.SelectedIndex = ind;
+                            trouve = true;
+                        }
+                        else
+                        {
+                            ind++;
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner une réservation");
+                }
+            }
+        }
+
+        // Clique bouton annuler édition
+        private void btnAnnulerEdition_Click(object sender, EventArgs e)
+        {
+            var rep = MessageBox.Show("Êtes vous sûr de vouloir annuler l'édition de cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (rep == DialogResult.Yes)
+            {
+                grbDetails.Text = "Détails de la réservation";
+                cmbHeures.Items.Clear();
+                cmbDates.Items.Clear();
+
+                #region Affiche et cache les champs concernés
+                btnValiderAjout.Visible = false;
+                btnAnnulerAjout.Visible = false;
+                cmbPiece.Visible = false;
+                cmbDates.Visible = false;
+                cmbHeures.Visible = false;
+                txtNom.Visible = false;
+                txtPrenom.Visible = false;
+                txtNbPlaces.Visible = false;
+                txtEmail.Visible = false;
+                txtTelephone.Visible = false;
+                lblHeure.Visible = false;
+                lblPlacesRest.Visible = false;
+                lblLesPlacesRest.Visible = false;
+                lblLesPlacesRest.Text = "";
+                lblLePrixReel.Visible = false;
+                lblPrixReel.Visible = false;
+
+                btnModifier.Visible = true;
+                btnSupprimer.Visible = true;
+                lblLaPiece.Visible = true;
+                lblLaRepresentation.Visible = true;
+                lblLeNom.Visible = true;
+                lblLePrenom.Visible = true;
+                lblLeNbPlaces.Visible = true;
+                lblLeEmail.Visible = true;
+                lblLeTelephone.Visible = true;
+                dgvListeReservations.Enabled = true;
+                #endregion Affiche et cache les champs concernés
+
+                lblReprésentation.Text = "Représentation :";
+                lblLeTheme.Text = String.Empty;
+                lblLaDuree.Text = String.Empty;
+                lblLeType.Text = String.Empty;
+                lblLaCompagnie.Text = String.Empty;
+                lblLePrixFixe.Text = "€";
+                lblLePrixTotal.Text = "0 €";
+            }
+
+        }
+
+        // Validation de l'édition
+        private void btnValiderEdition_Click(object sender, EventArgs e)
         {
 
         }
