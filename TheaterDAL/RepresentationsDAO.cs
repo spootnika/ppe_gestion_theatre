@@ -387,14 +387,18 @@ namespace TheaterDAL
             cmd.Connection = maConnexion;
             //paramètres
 
-            SqlParameter paramIdPiece = new SqlParameter("@idPiece", SqlDbType.NChar);
+            SqlParameter paramIdPiece = new SqlParameter("@idPiece", SqlDbType.Int);
             paramIdPiece.Value = idTheaterPiece;
-            SqlParameter paramDateDeb = new SqlParameter("@dateDeb", SqlDbType.NChar);
-            paramDateDeb.Value = dateDebutChoisie.ToString("yyyy-MM-dd");
-            SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.NChar);
-            paramDateFin.Value = dateFinChoisie.ToString("yyyy-MM-dd");
+            SqlParameter paramDateDeb = new SqlParameter("@dateDeb", SqlDbType.VarChar);
+            string date1;
+            date1 = dateDebutChoisie.ToString("yyyy/MM/dd");
+            paramDateDeb.Value = date1;
+            SqlParameter paramDateFin = new SqlParameter("@dateFin", SqlDbType.VarChar);
+            string date2;
+            date2 = dateFinChoisie.ToString("yyyy/MM/dd");
+            paramDateFin.Value = date2;
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, Theater_piece WHERE show_theaterPiece = theaterPiece_id AND theaterPiece_id = @idPiece AND convert(date, show_dateTime) BETWEEN convert(date, @dateDeb) AND convert(date, @dateFin)";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, Theater_piece WHERE show_theaterPiece = theaterPiece_id AND theaterPiece_id = @idPiece AND CAST(show_dateTime as DATE) BETWEEN @dateDeb AND @dateFin";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
             cmd.Parameters.Add(paramDateDeb);

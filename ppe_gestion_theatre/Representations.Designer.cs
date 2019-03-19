@@ -85,6 +85,7 @@
             this.dgvListeRepresentations = new System.Windows.Forms.DataGridView();
             this.errorProviderFormatHeure = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderFormatPlaces = new System.Windows.Forms.ErrorProvider(this.components);
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.grbDetails.SuspendLayout();
             this.grbAjoutRepresentation.SuspendLayout();
             this.grbFiltres.SuspendLayout();
@@ -830,5 +831,6 @@
         private System.Windows.Forms.DateTimePicker saisieDateShow;
         private System.Windows.Forms.ErrorProvider errorProviderFormatHeure;
         private System.Windows.Forms.ErrorProvider errorProviderFormatPlaces;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
