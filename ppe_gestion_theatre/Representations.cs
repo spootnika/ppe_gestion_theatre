@@ -200,7 +200,7 @@ namespace ppe_gestion_theatre
 
         private void dgvListeRepresentations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            afficherRepresentations();
+          
         }
 
         private void dgvListeRepresentations_CellClick_1(object sender, DataGridViewCellEventArgs e)
