@@ -12,7 +12,7 @@ namespace TheaterBLL
     public class ModuleRepresentations
     {
         // objet BL
-        private static ModuleRepresentations moduleRepresentations; 
+        private static ModuleRepresentations moduleRepresentations;
 
         // Accesseur en lecture objet BLL
         public static ModuleRepresentations GetModuleRepresentations()
@@ -57,7 +57,7 @@ namespace TheaterBLL
 
 
             return lesRepresentationsFiltrees;
-            
+
         }
         //surcharge s'il n'y a que la piece de choisie
         public static List<Show> GetFilterShows(int idPiece)

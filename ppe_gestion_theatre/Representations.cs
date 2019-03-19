@@ -18,29 +18,30 @@ namespace ppe_gestion_theatre
         LoginInfo currentUser;
         #region errorProvider messages
         private bool ValidHeure(string heureSaisie, out string errorMessage)
-        { 
-             CultureInfo culture;
-             culture = CultureInfo.CreateSpecificCulture("fr-FR");
-             DateTime maDate;
+        {
+            CultureInfo culture;
+            culture = CultureInfo.CreateSpecificCulture("fr-FR");
+            DateTime maDate;
             DateTime HeureDebut = DateTime.Parse("14:00", culture);
-          //  DateTime HeureFin = DateTime.Parse("23:59", culture);
+            //  DateTime HeureFin = DateTime.Parse("23:59", culture);
             DateTimeStyles styles;
-             styles= DateTimeStyles.None;
+            styles = DateTimeStyles.None;
             bool retConv = DateTime.TryParse(heureSaisie, culture, styles, out maDate);
             if (heureSaisie.Trim() == "")
             {
-                errorMessage= "Veuillez entrer une heure pour la représentation.";
-            }else if (maDate.TimeOfDay < HeureDebut.TimeOfDay)
+                errorMessage = "Veuillez entrer une heure pour la représentation.";
+            }
+            else if (maDate.TimeOfDay < HeureDebut.TimeOfDay)
             {
                 errorMessage = "Il ne peut y avoir de représentation avant 14h.";
                 retConv = false;
             }
             else
             {
-                errorMessage= "Veuillez entrer l'heure au fomat HH:mm.";
+                errorMessage = "Veuillez entrer l'heure au fomat HH:mm.";
             }
-           
-            return retConv;          
+
+            return retConv;
         }
         private bool ValidPlaces(string nbPlacesSaisie, out string errorMessage)
         {
@@ -119,7 +120,7 @@ namespace ppe_gestion_theatre
         {
             InitializeComponent();
             this.currentUser = currentUser;
-           
+
             // Remplissable de la comboBox avec les pièces de théâtre
             cbChoixPiece.DataSource = ModulePiecesTheatre.GetTheaterPieces();
             cbChoixPiece.DisplayMember = "theaterPiece_name";
@@ -154,7 +155,7 @@ namespace ppe_gestion_theatre
             dgvListeRepresentations.Columns["Tarif"].HeaderText = "Tarif";
 
             dgvListeRepresentations.ReadOnly = true;
-            
+
 
             //test dgv
             foreach (Show uneRepresentation in lesRepresentations)
@@ -200,12 +201,12 @@ namespace ppe_gestion_theatre
 
         private void dgvListeRepresentations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+
         }
 
         private void dgvListeRepresentations_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            dgvListeRepresentations.CurrentRow.Selected = true; 
+            dgvListeRepresentations.CurrentRow.Selected = true;
 
             int indexRow = dgvListeRepresentations.CurrentRow.Index;
 
@@ -244,7 +245,7 @@ namespace ppe_gestion_theatre
         private void btnFiltrer_Click(object sender, EventArgs e)
         {
             List<Show> lesRepresentations = ModuleRepresentations.GetFilterShows(ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPiece.Text).TheaterPiece_id, dtpDateDeb.Value, dtpDateFin.Value);
-            
+
             DataTable dt = new DataTable();
             dgvListeRepresentations.DataSource = dt;
 
@@ -299,10 +300,10 @@ namespace ppe_gestion_theatre
         {
 
             afficherRepresentations();
-            
+
         }
 
-      
+
         private void btnAjouter_Click(object sender, EventArgs e)
         {
             //quand on clique sur le bouton affichage des cases de saisie
@@ -312,12 +313,12 @@ namespace ppe_gestion_theatre
             cbChoixPieceSaisieShow.DataSource = ModulePiecesTheatre.GetTheaterPieces();
             cbChoixPieceSaisieShow.DisplayMember = "theaterPiece_name";
 
-           
+
         }
 
         private void btnValiderAjout_Click(object sender, EventArgs e)
         {
-            
+
             if (saisieDateShow.Text.Trim() != "" && saisieHeureShow.Text.Trim() != "" && saisiePlacesShow.Text.Trim() != "" && cbChoixPieceSaisieShow.Text.Trim() != "")
             {
                 //on récupère date saisie et heure à mettre en datetime         
@@ -327,13 +328,13 @@ namespace ppe_gestion_theatre
                 List<PriceRate> Lestaux = new List<PriceRate>();
                 Lestaux = ModuleRepresentations.GetPriceRate();
                 List<PriceRate> LestauxdansLHeure = new List<PriceRate>();
-                PriceRate monTaux=null;
+                PriceRate monTaux = null;
                 foreach (PriceRate unTaux in Lestaux)
                 {
-                    TimeSpan debutHeure= unTaux.PriceRate_startTime;   
+                    TimeSpan debutHeure = unTaux.PriceRate_startTime;
                     TimeSpan finHeure = unTaux.PriceRate_endTime;
                     TimeSpan monHeure = TimeSpan.Parse(saisieHeureShow.Text.ToString());
-                    if (debutHeure <= monHeure && monHeure<= finHeure)
+                    if (debutHeure <= monHeure && monHeure <= finHeure)
                     {
                         LestauxdansLHeure.Add(unTaux);
                     }
@@ -343,14 +344,14 @@ namespace ppe_gestion_theatre
 
                 foreach (PriceRate unTaux in LestauxdansLHeure)
                 {
-                    foreach(WeekDays unJour in unTaux.PriceRate_weekDays)
+                    foreach (WeekDays unJour in unTaux.PriceRate_weekDays)
                     {
                         if (unJour.WeekDays_id == monJour)
                         {
                             monTaux = unTaux;
                         }
                     }
-                    
+
                 }
                 //on récupère nb places
                 int mesPlaces = int.Parse(saisiePlacesShow.Text.ToString());
@@ -358,10 +359,10 @@ namespace ppe_gestion_theatre
                 TheaterPiece maPiece = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text);
 
                 // Création de l'objet Show 
-               Show show = new Show(parsedDate,mesPlaces, monTaux, maPiece);
+                Show show = new Show(parsedDate, mesPlaces, monTaux, maPiece);
 
                 //récupérer les datetime de toutes représentations 
-                bool trouve=false;
+                bool trouve = false;
                 List<Show> lesRepresentations = ModuleRepresentations.GetShows();
                 //s'il existe déjà une représentation à la date afficher message d'erreur
                 foreach (Show uneRepresentation in lesRepresentations)
@@ -374,7 +375,8 @@ namespace ppe_gestion_theatre
                 if (trouve == true)
                 {
                     MessageBox.Show("Vous ne pouvez pas ajouter 2 représentations au même moment.", "Ajout de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }else
+                }
+                else
                 {
                     DialogResult result1 = MessageBox.Show("Etes vous sur de vouloir ajouter cette représentation ?", "Ajout de la représentation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result1 == DialogResult.Yes)
@@ -385,7 +387,7 @@ namespace ppe_gestion_theatre
                         grbAjoutRepresentation.Visible = false;
                         afficherRepresentations();
                     }
-                }                           
+                }
 
             }
 
@@ -405,7 +407,7 @@ namespace ppe_gestion_theatre
             {
                 lblPrixFixeAjoutRep.Text = maPiece.TheaterPiece_seatsPrice.ToString() + " €";
             }
-          
+
         }
 
         private void saisieDateShow_ValueChanged(object sender, EventArgs e)
@@ -450,7 +452,7 @@ namespace ppe_gestion_theatre
                     float prixReel = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text).TheaterPiece_seatsPrice * monTaux.PriceRate_rate;
                     lblPrixrel.Text = prixReel.ToString() + " €";
                 }
-              
+
             }
         }
 
@@ -461,7 +463,7 @@ namespace ppe_gestion_theatre
             DateTime parsedDate;
             bool retConv = DateTime.TryParse(mesdates, out parsedDate);
             if (retConv == true && saisieDateShow.Text.Trim() != "" && saisieHeureShow.Text.Trim() != "")
-            {    
+            {
                 //on vérifie l'heure pour voir dans quelle tranche de pricerate on va 
                 List<PriceRate> Lestaux = new List<PriceRate>();
                 Lestaux = ModuleRepresentations.GetPriceRate();
@@ -510,7 +512,7 @@ namespace ppe_gestion_theatre
                 saisieHeureShow.Select(0, saisieHeureShow.Text.Length);
                 errorProviderFormatHeure.SetError(saisieHeureShow, error);
             }
-     
+
         }
 
         private void saisieHeureShow_Validated(object sender, EventArgs e)
@@ -524,7 +526,7 @@ namespace ppe_gestion_theatre
         }
 
         private void saisiePlacesShow_Validating(object sender, CancelEventArgs e)
-        {          
+        {
             string error = "";
             if (ValidPlaces(saisiePlacesShow.Text, out error) == false)
             {
