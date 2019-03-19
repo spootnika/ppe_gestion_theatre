@@ -306,7 +306,7 @@ namespace TheaterDAL
             paramIdPiece.Value = idTheaterPiece;
 
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece ";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, Theater_piece WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece ";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
 

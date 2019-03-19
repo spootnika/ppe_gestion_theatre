@@ -28,11 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTitre = new System.Windows.Forms.Label();
             this.btnAjouter = new System.Windows.Forms.Button();
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.dgvListeReservations = new System.Windows.Forms.DataGridView();
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.lblLesPlacesRest = new System.Windows.Forms.Label();
+            this.lblPlacesRest = new System.Windows.Forms.Label();
+            this.cmbDates = new System.Windows.Forms.ComboBox();
+            this.cmbHeures = new System.Windows.Forms.ComboBox();
+            this.lblHeure = new System.Windows.Forms.Label();
+            this.btnAnnulerAjout = new System.Windows.Forms.Button();
+            this.btnValiderAjout = new System.Windows.Forms.Button();
+            this.txtTelephone = new System.Windows.Forms.TextBox();
+            this.txtNbPlaces = new System.Windows.Forms.TextBox();
+            this.txtPrenom = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
+            this.cmbPiece = new System.Windows.Forms.ComboBox();
             this.lblLePrixTotal = new System.Windows.Forms.Label();
             this.lblLeTelephone = new System.Windows.Forms.Label();
             this.lblLeEmail = new System.Windows.Forms.Label();
@@ -61,8 +74,21 @@
             this.lblThemePiece = new System.Windows.Forms.Label();
             this.lblNomPiece = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.errNom = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errPrenom = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errNbPlaces = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errEmail = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errPhone = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblPrixReel = new System.Windows.Forms.Label();
+            this.lblLePrixReel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeReservations)).BeginInit();
             this.grbDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errNom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPrenom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errNbPlaces)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPhone)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitre
@@ -83,7 +109,7 @@
             this.btnAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAjouter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjouter.ForeColor = System.Drawing.Color.White;
-            this.btnAjouter.Location = new System.Drawing.Point(604, 22);
+            this.btnAjouter.Location = new System.Drawing.Point(647, 22);
             this.btnAjouter.Name = "btnAjouter";
             this.btnAjouter.Size = new System.Drawing.Size(160, 29);
             this.btnAjouter.TabIndex = 1;
@@ -96,7 +122,7 @@
             this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(366, 306);
+            this.btnSupprimer.Location = new System.Drawing.Point(397, 306);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(88, 27);
             this.btnSupprimer.TabIndex = 2;
@@ -110,13 +136,27 @@
             this.dgvListeReservations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListeReservations.Location = new System.Drawing.Point(19, 78);
             this.dgvListeReservations.Name = "dgvListeReservations";
-            this.dgvListeReservations.Size = new System.Drawing.Size(755, 294);
+            this.dgvListeReservations.Size = new System.Drawing.Size(788, 294);
             this.dgvListeReservations.TabIndex = 3;
             this.dgvListeReservations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListeReservations_CellClick);
             // 
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.lblLePrixReel);
+            this.grbDetails.Controls.Add(this.lblPrixReel);
+            this.grbDetails.Controls.Add(this.lblLesPlacesRest);
+            this.grbDetails.Controls.Add(this.lblPlacesRest);
+            this.grbDetails.Controls.Add(this.cmbDates);
+            this.grbDetails.Controls.Add(this.cmbHeures);
+            this.grbDetails.Controls.Add(this.lblHeure);
+            this.grbDetails.Controls.Add(this.btnAnnulerAjout);
+            this.grbDetails.Controls.Add(this.btnValiderAjout);
+            this.grbDetails.Controls.Add(this.txtTelephone);
+            this.grbDetails.Controls.Add(this.txtNbPlaces);
+            this.grbDetails.Controls.Add(this.txtPrenom);
+            this.grbDetails.Controls.Add(this.txtNom);
+            this.grbDetails.Controls.Add(this.cmbPiece);
             this.grbDetails.Controls.Add(this.lblLePrixTotal);
             this.grbDetails.Controls.Add(this.lblLeTelephone);
             this.grbDetails.Controls.Add(this.lblLeEmail);
@@ -149,10 +189,153 @@
             this.grbDetails.ForeColor = System.Drawing.Color.SteelBlue;
             this.grbDetails.Location = new System.Drawing.Point(19, 406);
             this.grbDetails.Name = "grbDetails";
-            this.grbDetails.Size = new System.Drawing.Size(755, 346);
+            this.grbDetails.Size = new System.Drawing.Size(788, 346);
             this.grbDetails.TabIndex = 4;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la réservation";
+            // 
+            // lblLesPlacesRest
+            // 
+            this.lblLesPlacesRest.AutoSize = true;
+            this.lblLesPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLesPlacesRest.ForeColor = System.Drawing.Color.Black;
+            this.lblLesPlacesRest.Location = new System.Drawing.Point(139, 141);
+            this.lblLesPlacesRest.Name = "lblLesPlacesRest";
+            this.lblLesPlacesRest.Size = new System.Drawing.Size(0, 16);
+            this.lblLesPlacesRest.TabIndex = 40;
+            // 
+            // lblPlacesRest
+            // 
+            this.lblPlacesRest.AutoSize = true;
+            this.lblPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlacesRest.ForeColor = System.Drawing.Color.Black;
+            this.lblPlacesRest.Location = new System.Drawing.Point(13, 141);
+            this.lblPlacesRest.Name = "lblPlacesRest";
+            this.lblPlacesRest.Size = new System.Drawing.Size(132, 16);
+            this.lblPlacesRest.TabIndex = 39;
+            this.lblPlacesRest.Text = "Places restantes :";
+            this.lblPlacesRest.Visible = false;
+            // 
+            // cmbDates
+            // 
+            this.cmbDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDates.FormattingEnabled = true;
+            this.cmbDates.Location = new System.Drawing.Point(527, 24);
+            this.cmbDates.Name = "cmbDates";
+            this.cmbDates.Size = new System.Drawing.Size(218, 24);
+            this.cmbDates.TabIndex = 38;
+            this.cmbDates.Visible = false;
+            this.cmbDates.SelectedIndexChanged += new System.EventHandler(this.cmbDates_SelectedIndexChanged);
+            // 
+            // cmbHeures
+            // 
+            this.cmbHeures.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbHeures.FormattingEnabled = true;
+            this.cmbHeures.Location = new System.Drawing.Point(527, 55);
+            this.cmbHeures.Name = "cmbHeures";
+            this.cmbHeures.Size = new System.Drawing.Size(218, 24);
+            this.cmbHeures.TabIndex = 37;
+            this.cmbHeures.Visible = false;
+            this.cmbHeures.SelectedValueChanged += new System.EventHandler(this.cmbHeures_SelectedValueChanged);
+            // 
+            // lblHeure
+            // 
+            this.lblHeure.AutoSize = true;
+            this.lblHeure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeure.ForeColor = System.Drawing.Color.Black;
+            this.lblHeure.Location = new System.Drawing.Point(463, 59);
+            this.lblHeure.Name = "lblHeure";
+            this.lblHeure.Size = new System.Drawing.Size(58, 16);
+            this.lblHeure.TabIndex = 36;
+            this.lblHeure.Text = "Heure :";
+            this.lblHeure.Visible = false;
+            // 
+            // btnAnnulerAjout
+            // 
+            this.btnAnnulerAjout.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnAnnulerAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAnnulerAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnulerAjout.ForeColor = System.Drawing.Color.White;
+            this.btnAnnulerAjout.Location = new System.Drawing.Point(397, 306);
+            this.btnAnnulerAjout.Name = "btnAnnulerAjout";
+            this.btnAnnulerAjout.Size = new System.Drawing.Size(88, 27);
+            this.btnAnnulerAjout.TabIndex = 35;
+            this.btnAnnulerAjout.Text = "Annuler";
+            this.btnAnnulerAjout.UseVisualStyleBackColor = false;
+            this.btnAnnulerAjout.Visible = false;
+            this.btnAnnulerAjout.Click += new System.EventHandler(this.btnAnnulerAjout_Click);
+            // 
+            // btnValiderAjout
+            // 
+            this.btnValiderAjout.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnValiderAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnValiderAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValiderAjout.ForeColor = System.Drawing.Color.White;
+            this.btnValiderAjout.Location = new System.Drawing.Point(316, 306);
+            this.btnValiderAjout.Name = "btnValiderAjout";
+            this.btnValiderAjout.Size = new System.Drawing.Size(75, 27);
+            this.btnValiderAjout.TabIndex = 34;
+            this.btnValiderAjout.Text = "Valider";
+            this.btnValiderAjout.UseVisualStyleBackColor = false;
+            this.btnValiderAjout.Visible = false;
+            this.btnValiderAjout.Click += new System.EventHandler(this.btnValiderAjout_Click);
+            // 
+            // txtTelephone
+            // 
+            this.txtTelephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelephone.Location = new System.Drawing.Point(589, 226);
+            this.txtTelephone.MaxLength = 10;
+            this.txtTelephone.Name = "txtTelephone";
+            this.txtTelephone.Size = new System.Drawing.Size(156, 22);
+            this.txtTelephone.TabIndex = 33;
+            this.txtTelephone.Visible = false;
+            this.txtTelephone.Validating += new System.ComponentModel.CancelEventHandler(this.txtTelephone_Validating);
+            this.txtTelephone.Validated += new System.EventHandler(this.txtTelephone_Validated);
+            // 
+            // txtNbPlaces
+            // 
+            this.txtNbPlaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNbPlaces.Location = new System.Drawing.Point(163, 261);
+            this.txtNbPlaces.Name = "txtNbPlaces";
+            this.txtNbPlaces.Size = new System.Drawing.Size(272, 22);
+            this.txtNbPlaces.TabIndex = 31;
+            this.txtNbPlaces.Visible = false;
+            this.txtNbPlaces.TextChanged += new System.EventHandler(this.txtNbPlaces_TextChanged);
+            this.txtNbPlaces.Validating += new System.ComponentModel.CancelEventHandler(this.txtNbPlaces_Validating);
+            this.txtNbPlaces.Validated += new System.EventHandler(this.txtNbPlaces_Validated);
+            // 
+            // txtPrenom
+            // 
+            this.txtPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrenom.Location = new System.Drawing.Point(89, 226);
+            this.txtPrenom.Name = "txtPrenom";
+            this.txtPrenom.Size = new System.Drawing.Size(346, 22);
+            this.txtPrenom.TabIndex = 30;
+            this.txtPrenom.Visible = false;
+            this.txtPrenom.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrenom_Validating);
+            this.txtPrenom.Validated += new System.EventHandler(this.txtPrenom_Validated);
+            // 
+            // txtNom
+            // 
+            this.txtNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNom.Location = new System.Drawing.Point(70, 196);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.Size = new System.Drawing.Size(365, 22);
+            this.txtNom.TabIndex = 29;
+            this.txtNom.Visible = false;
+            this.txtNom.Validating += new System.ComponentModel.CancelEventHandler(this.txtNom_Validating);
+            this.txtNom.Validated += new System.EventHandler(this.txtNom_Validated);
+            // 
+            // cmbPiece
+            // 
+            this.cmbPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPiece.FormattingEnabled = true;
+            this.cmbPiece.Location = new System.Drawing.Point(70, 29);
+            this.cmbPiece.Name = "cmbPiece";
+            this.cmbPiece.Size = new System.Drawing.Size(365, 24);
+            this.cmbPiece.TabIndex = 27;
+            this.cmbPiece.Visible = false;
+            this.cmbPiece.SelectedIndexChanged += new System.EventHandler(this.cmbPiece_SelectedIndexChanged);
             // 
             // lblLePrixTotal
             // 
@@ -279,7 +462,7 @@
             this.btnModifier.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(285, 306);
+            this.btnModifier.Location = new System.Drawing.Point(316, 306);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(75, 27);
             this.btnModifier.TabIndex = 13;
@@ -443,12 +626,68 @@
             this.btnMenu.UseVisualStyleBackColor = false;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
+            // txtEmail
+            // 
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(604, 605);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(160, 22);
+            this.txtEmail.TabIndex = 32;
+            this.txtEmail.Visible = false;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
+            this.txtEmail.Validated += new System.EventHandler(this.txtEmail_Validated);
+            // 
+            // errNom
+            // 
+            this.errNom.ContainerControl = this;
+            // 
+            // errPrenom
+            // 
+            this.errPrenom.ContainerControl = this;
+            // 
+            // errNbPlaces
+            // 
+            this.errNbPlaces.ContainerControl = this;
+            // 
+            // errEmail
+            // 
+            this.errEmail.ContainerControl = this;
+            // 
+            // errPhone
+            // 
+            this.errPhone.ContainerControl = this;
+            // 
+            // lblPrixReel
+            // 
+            this.lblPrixReel.AutoSize = true;
+            this.lblPrixReel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrixReel.ForeColor = System.Drawing.Color.Black;
+            this.lblPrixReel.Location = new System.Drawing.Point(463, 141);
+            this.lblPrixReel.Name = "lblPrixReel";
+            this.lblPrixReel.Size = new System.Drawing.Size(73, 16);
+            this.lblPrixReel.TabIndex = 41;
+            this.lblPrixReel.Text = "Prix réel :";
+            this.lblPrixReel.Visible = false;
+            this.lblPrixReel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lblLePrixReel
+            // 
+            this.lblLePrixReel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLePrixReel.ForeColor = System.Drawing.Color.Black;
+            this.lblLePrixReel.Location = new System.Drawing.Point(542, 141);
+            this.lblLePrixReel.Name = "lblLePrixReel";
+            this.lblLePrixReel.Size = new System.Drawing.Size(203, 16);
+            this.lblLePrixReel.TabIndex = 42;
+            this.lblLePrixReel.Text = "€";
+            this.lblLePrixReel.Visible = false;
+            // 
             // Reservations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(800, 764);
+            this.ClientSize = new System.Drawing.Size(819, 764);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.grbDetails);
             this.Controls.Add(this.dgvListeReservations);
@@ -459,6 +698,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeReservations)).EndInit();
             this.grbDetails.ResumeLayout(false);
             this.grbDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errNom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPrenom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errNbPlaces)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPhone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,5 +743,25 @@
         private System.Windows.Forms.Label lblLaPiece;
         private System.Windows.Forms.Button btnModifier;
         private System.Windows.Forms.Button btnMenu;
+        private System.Windows.Forms.Button btnAnnulerAjout;
+        private System.Windows.Forms.Button btnValiderAjout;
+        private System.Windows.Forms.TextBox txtTelephone;
+        private System.Windows.Forms.TextBox txtNbPlaces;
+        private System.Windows.Forms.TextBox txtPrenom;
+        private System.Windows.Forms.TextBox txtNom;
+        private System.Windows.Forms.ComboBox cmbPiece;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.ComboBox cmbHeures;
+        private System.Windows.Forms.Label lblHeure;
+        private System.Windows.Forms.ComboBox cmbDates;
+        private System.Windows.Forms.ErrorProvider errNom;
+        private System.Windows.Forms.ErrorProvider errPrenom;
+        private System.Windows.Forms.ErrorProvider errNbPlaces;
+        private System.Windows.Forms.ErrorProvider errEmail;
+        private System.Windows.Forms.ErrorProvider errPhone;
+        private System.Windows.Forms.Label lblLesPlacesRest;
+        private System.Windows.Forms.Label lblPlacesRest;
+        private System.Windows.Forms.Label lblPrixReel;
+        private System.Windows.Forms.Label lblLePrixReel;
     }
 }
