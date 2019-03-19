@@ -115,8 +115,22 @@ namespace TheaterDAL
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = maConnexion;        
-            cmd.CommandText = "INSERT INTO Show(show_dateTime,show_seats,show_priceRate,show_theaterPiece) values('" + uneRepresentation.Show_dateTime + "','" + uneRepresentation.Show_seats + uneRepresentation.Show_theaterPiece + "');";
+            cmd.Connection = maConnexion;           
+            cmd.CommandText = "INSERT INTO Show(show_dateTime,show_seats,show_priceRate,show_theaterPiece) values( @dateRepresentation ,@nbPlacesRepresentation,@priceRateRepresentation, @pieceDeTheatreRepresentation)";
+            //param
+            SqlParameter dateRep = new SqlParameter("@dateRepresentation", SqlDbType.DateTime);
+            dateRep.Value = uneRepresentation.Show_dateTime;
+            cmd.Parameters.Add(dateRep);
+            SqlParameter nbPlaces = new SqlParameter("@nbPlacesRepresentation", SqlDbType.Int);
+            nbPlaces.Value = uneRepresentation.Show_seats;
+            cmd.Parameters.Add(nbPlaces);
+            SqlParameter priceRate = new SqlParameter("@priceRateRepresentation", SqlDbType.Int);
+            priceRate.Value = uneRepresentation.Show_priceRate.PriceRate_id;
+            cmd.Parameters.Add(priceRate);
+            SqlParameter pieceDeTheatre = new SqlParameter("@pieceDeTheatreRepresentation", SqlDbType.Int);
+            pieceDeTheatre.Value = uneRepresentation.Show_theaterPiece.TheaterPiece_id;
+            cmd.Parameters.Add(pieceDeTheatre);
+            //fin param
             nb = cmd.ExecuteNonQuery();
 
             // Fermeture de la connexion
@@ -473,7 +487,6 @@ namespace TheaterDAL
             TimeSpan finHeure;
             float tauxApplique;
             PriceRate leTaux;
-            List<WeekDays> lesJoursTaux = new List<WeekDays>();
             
             cmd.CommandText = "SELECT * from Price_rate";
 
@@ -486,6 +499,7 @@ namespace TheaterDAL
 
             while (monReader.Read())
             {
+                List<WeekDays> lesJoursTaux = new List<WeekDays>();
                 idTaux = Int32.Parse(monReader["priceRate_id"].ToString());
                 nomTaux = monReader["priceRate_name"].ToString();
                 debutHeure = (TimeSpan)monReader["priceRate_startTime"];
@@ -526,7 +540,7 @@ namespace TheaterDAL
             readerConcern.Close();
             monReader.Close();
             // Fermeture de la connexion
-            maConnexion.Close();
+            maConnexion.Close();     
             return lesTaux;
         }
     }

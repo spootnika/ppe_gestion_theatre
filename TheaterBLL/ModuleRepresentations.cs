@@ -42,7 +42,12 @@ namespace TheaterBLL
         {
             return RepresentationsDAO.GetShows();
         }
-
+        //renvoie la liste des taux
+        public static List<PriceRate> GetPriceRate()
+        {
+            List<PriceRate> priceRate = RepresentationsDAO.GetPriceRateWeeksDays();
+            return priceRate;
+        }
         // Récupère la liste des représentations filtrées de la DAO, renvoie la liste
         // GetFilterShows()
 
