@@ -88,7 +88,7 @@ namespace TheaterBO
             this.Show_priceRate = priceRate;
             this.Show_theaterPiece = theaterPiece;
         }
-        public Show( DateTime dateTime, int seats, PriceRate priceRate, TheaterPiece theaterPiece)
+        public Show(DateTime dateTime, int seats, PriceRate priceRate, TheaterPiece theaterPiece)
         {
             this.Show_dateTime = dateTime;
             this.Show_seats = seats;

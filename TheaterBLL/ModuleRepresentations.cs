@@ -29,7 +29,6 @@ namespace TheaterBLL
             string chaine = chset.ConnectionString;
             ConnexionBD.GetConnexionBD().SetchaineConnexion(chaine);
         }
-
         // création d'une nouvelle représentation 
         public static int CreateShow(Show show)
         {
