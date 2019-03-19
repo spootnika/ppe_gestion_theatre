@@ -20,6 +20,7 @@ namespace ppe_gestion_theatre
         private List<Show> lesRepresentations;
         private Show laRepres;
         LoginInfo currentUser;
+        private int nbPlacesRest;
 
         public Reservations(LoginInfo currentUser)
         {
@@ -77,6 +78,7 @@ namespace ppe_gestion_theatre
                 // Ajout du prix fixe
                 lblLePrixFixe.Text = laReserv.Spectator_show.Show_theaterPiece.TheaterPiece_seatsPrice.ToString() + " €";
 
+
                 // Ajout du nom auquel la réservation a été faite
                 lblLeNom.Text = laReserv.Spectator_lastname;
 
@@ -118,6 +120,7 @@ namespace ppe_gestion_theatre
                 lblLaCompagnie.Text = String.Empty;
 
                 lblLePrixFixe.Text = "€";
+                
 
                 lblLeNom.Text = String.Empty;
 
@@ -176,6 +179,8 @@ namespace ppe_gestion_theatre
             lblPlacesRest.Visible = true;
             lblLesPlacesRest.Visible = true;
             lblLesPlacesRest.Text = "";
+            lblLePrixReel.Visible = true;
+            lblPrixReel.Visible = true;
             #endregion Affiche et cache les champs concernés
 
             lblReprésentation.Text = "Dates : ";
@@ -185,7 +190,7 @@ namespace ppe_gestion_theatre
             lblLeType.Text = String.Empty;
             lblLaCompagnie.Text = String.Empty;
             lblLaPiece.Text = String.Empty;
-            lblLaRepresentation.Text = String.Empty; 
+            lblLaRepresentation.Text = String.Empty;
             lblLeNom.Text = String.Empty;
             lblLePrenom.Text = String.Empty;
             lblLeNbPlaces.Text = String.Empty;
@@ -195,14 +200,24 @@ namespace ppe_gestion_theatre
             lblLePrixTotal.Text = "0 €";
 
             List<TheaterPiece> lesPieces = ModulePiecesTheatre.GetTheaterPieces();
-            cmbPiece.DataSource = lesPieces;
-            cmbPiece.DisplayMember = "theaterPiece_name";
 
-            // Récupération de toutes les pièces disponibles et ajout dans la comboBox
-            //foreach (var piece in lesPieces)
-            //{
-            //    cmbPiece.Items.Add(piece.TheaterPiece_name);
-            //}
+            List<Show> lesReps = ModuleRepresentations.GetShows();
+            List<int> idPieces = new List<int>();
+            List<TheaterPiece> lesPiecesTriees = new List<TheaterPiece>();
+            foreach (var uneRep in lesReps)
+            {
+                if (!idPieces.Contains(uneRep.Show_theaterPiece.TheaterPiece_id))
+                    idPieces.Add(uneRep.Show_theaterPiece.TheaterPiece_id);
+            }
+
+            foreach(var unePiece in lesPieces)
+            {
+                if (idPieces.Contains(unePiece.TheaterPiece_id))
+                    lesPiecesTriees.Add(unePiece);
+            }
+
+            cmbPiece.DataSource = lesPiecesTriees;
+            cmbPiece.DisplayMember = "theaterPiece_name";
 
         }
 
@@ -242,6 +257,8 @@ namespace ppe_gestion_theatre
                 lblPlacesRest.Visible = false;
                 lblLesPlacesRest.Visible = false;
                 lblLesPlacesRest.Text = "";
+                lblPrixReel.Visible = false;
+                lblLePrixReel.Visible = false;
 
                 btnModifier.Visible = true;
                 btnSupprimer.Visible = true;
@@ -293,6 +310,8 @@ namespace ppe_gestion_theatre
                 lblPlacesRest.Visible = false;
                 lblLesPlacesRest.Visible = false;
                 lblLesPlacesRest.Text = "";
+                lblLePrixReel.Visible = false;
+                lblPrixReel.Visible = false;
 
                 btnModifier.Visible = true;
                 btnSupprimer.Visible = true;
@@ -326,10 +345,10 @@ namespace ppe_gestion_theatre
                 TheaterPiece laPiece = cmbPiece.SelectedItem as TheaterPiece;
 
                 lblLeTheme.Text = laPiece.TheaterPiece_theme.Theme_name;
-                lblLaDuree.Text = laPiece.TheaterPiece_duration.ToString();
+                lblLaDuree.Text = TimeSpan.FromHours(double.Parse(laPiece.TheaterPiece_duration.ToString())).ToString(@"hh\:mm");
                 lblLeType.Text = laPiece.TheaterPiece_publicType.PublicType_name;
                 lblLaCompagnie.Text = laPiece.TheaterPiece_company.Company_name;
-                lblLePrixFixe.Text = laPiece.TheaterPiece_seatsPrice.ToString()+" €";
+                lblLePrixFixe.Text = laPiece.TheaterPiece_seatsPrice.ToString() + " €";
 
                 lesRepresentations = ModuleRepresentations.GetFilterShows(laPiece.TheaterPiece_id);
 
@@ -385,6 +404,7 @@ namespace ppe_gestion_theatre
                 cmbHeures.Enabled = false;
                 cmbHeures.Items.Add("");
                 cmbHeures.SelectedIndex = 0;
+                lblLesPlacesRest.Text = "";
             }
         }
 
@@ -394,23 +414,37 @@ namespace ppe_gestion_theatre
 
             ChangementPrixTotal();
         }
-        
+
+        // Au changement de sélection de l'heure
         private void cmbHeures_SelectedValueChanged(object sender, EventArgs e)
         {
-
+            TheaterPiece laPiece = cmbPiece.SelectedItem as TheaterPiece;
             foreach (var uneRep in lesRepresentations)
             {
-                if (uneRep.Show_dateTime.ToString("dd/MM/yyyy") == cmbDates.SelectedItem.ToString() && uneRep.Show_dateTime.ToString("HH:mm") == cmbHeures.SelectedItem.ToString())
+                if (uneRep.Show_dateTime.ToString("dd/MM/yyyy") == cmbDates.SelectedItem.ToString() && uneRep.Show_dateTime.ToString("HH:mm") == cmbHeures.SelectedItem.ToString() && uneRep.Show_theaterPiece.TheaterPiece_id == laPiece.TheaterPiece_id)
                 {
                     laRepres = uneRep;
                     taux = uneRep.Show_priceRate.PriceRate_rate;
                     prixPlace = uneRep.Show_theaterPiece.TheaterPiece_seatsPrice;
+
+                    lblLePrixReel.Text = (laPiece.TheaterPiece_seatsPrice + (laPiece.TheaterPiece_seatsPrice * laRepres.Show_priceRate.PriceRate_rate)).ToString() + " €";
+
+                    if (ModuleReservations.GetNbPlacesReservees(uneRep) != -1)
+                    {
+                        nbPlacesRest = uneRep.Show_seats - ModuleReservations.GetNbPlacesReservees(uneRep);
+                        lblLesPlacesRest.Text = nbPlacesRest.ToString();
+                    }
+                    else
+                    {
+                        lblLesPlacesRest.Text = uneRep.Show_seats.ToString();
+                    }
                 }
             }
 
             ChangementPrixTotal();
         }
 
+        // Fonction changement prix total
         private void ChangementPrixTotal()
         {
             if (txtNbPlaces.Text.Length > 0)
@@ -509,7 +543,7 @@ namespace ppe_gestion_theatre
         {
             string errMsg;
 
-            if (!ModuleReservations.ValidChampNb(txtNbPlaces.Text, out errMsg))
+            if (!ModuleReservations.ValidChampNb(txtNbPlaces.Text, nbPlacesRest, out errMsg))
             {
                 e.Cancel = true;
                 txtTelephone.Select(0, txtNbPlaces.Text.Length);
@@ -523,6 +557,7 @@ namespace ppe_gestion_theatre
         }
         #endregion Error Provider
 
+        // Chargement du datagridview
         private void LoadDataGridView()
         {
             // récupération de la liste des réservations
@@ -598,6 +633,11 @@ namespace ppe_gestion_theatre
 
             // La première colonne contenant l'objet ne sera pas visible
             dgvListeReservations.Columns["reservation"].Visible = false;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

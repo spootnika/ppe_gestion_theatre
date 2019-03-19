@@ -34,6 +34,8 @@
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.dgvListeReservations = new System.Windows.Forms.DataGridView();
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.lblLesPlacesRest = new System.Windows.Forms.Label();
+            this.lblPlacesRest = new System.Windows.Forms.Label();
             this.cmbDates = new System.Windows.Forms.ComboBox();
             this.cmbHeures = new System.Windows.Forms.ComboBox();
             this.lblHeure = new System.Windows.Forms.Label();
@@ -78,8 +80,8 @@
             this.errNbPlaces = new System.Windows.Forms.ErrorProvider(this.components);
             this.errEmail = new System.Windows.Forms.ErrorProvider(this.components);
             this.errPhone = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblPlacesRest = new System.Windows.Forms.Label();
-            this.lblLesPlacesRest = new System.Windows.Forms.Label();
+            this.lblPrixReel = new System.Windows.Forms.Label();
+            this.lblLePrixReel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeReservations)).BeginInit();
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errNom)).BeginInit();
@@ -140,6 +142,8 @@
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.lblLePrixReel);
+            this.grbDetails.Controls.Add(this.lblPrixReel);
             this.grbDetails.Controls.Add(this.lblLesPlacesRest);
             this.grbDetails.Controls.Add(this.lblPlacesRest);
             this.grbDetails.Controls.Add(this.cmbDates);
@@ -188,6 +192,28 @@
             this.grbDetails.TabIndex = 4;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la réservation";
+            // 
+            // lblLesPlacesRest
+            // 
+            this.lblLesPlacesRest.AutoSize = true;
+            this.lblLesPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLesPlacesRest.ForeColor = System.Drawing.Color.Black;
+            this.lblLesPlacesRest.Location = new System.Drawing.Point(139, 141);
+            this.lblLesPlacesRest.Name = "lblLesPlacesRest";
+            this.lblLesPlacesRest.Size = new System.Drawing.Size(0, 16);
+            this.lblLesPlacesRest.TabIndex = 40;
+            // 
+            // lblPlacesRest
+            // 
+            this.lblPlacesRest.AutoSize = true;
+            this.lblPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlacesRest.ForeColor = System.Drawing.Color.Black;
+            this.lblPlacesRest.Location = new System.Drawing.Point(13, 141);
+            this.lblPlacesRest.Name = "lblPlacesRest";
+            this.lblPlacesRest.Size = new System.Drawing.Size(132, 16);
+            this.lblPlacesRest.TabIndex = 39;
+            this.lblPlacesRest.Text = "Places restantes :";
+            this.lblPlacesRest.Visible = false;
             // 
             // cmbDates
             // 
@@ -630,27 +656,29 @@
             // 
             this.errPhone.ContainerControl = this;
             // 
-            // lblPlacesRest
+            // lblPrixReel
             // 
-            this.lblPlacesRest.AutoSize = true;
-            this.lblPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlacesRest.ForeColor = System.Drawing.Color.Black;
-            this.lblPlacesRest.Location = new System.Drawing.Point(13, 141);
-            this.lblPlacesRest.Name = "lblPlacesRest";
-            this.lblPlacesRest.Size = new System.Drawing.Size(132, 16);
-            this.lblPlacesRest.TabIndex = 39;
-            this.lblPlacesRest.Text = "Places restantes :";
-            this.lblPlacesRest.Visible = false;
+            this.lblPrixReel.AutoSize = true;
+            this.lblPrixReel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrixReel.ForeColor = System.Drawing.Color.Black;
+            this.lblPrixReel.Location = new System.Drawing.Point(463, 141);
+            this.lblPrixReel.Name = "lblPrixReel";
+            this.lblPrixReel.Size = new System.Drawing.Size(73, 16);
+            this.lblPrixReel.TabIndex = 41;
+            this.lblPrixReel.Text = "Prix réel :";
+            this.lblPrixReel.Visible = false;
+            this.lblPrixReel.Click += new System.EventHandler(this.label1_Click);
             // 
-            // lblLesPlacesRest
+            // lblLePrixReel
             // 
-            this.lblLesPlacesRest.AutoSize = true;
-            this.lblLesPlacesRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLesPlacesRest.ForeColor = System.Drawing.Color.Black;
-            this.lblLesPlacesRest.Location = new System.Drawing.Point(139, 141);
-            this.lblLesPlacesRest.Name = "lblLesPlacesRest";
-            this.lblLesPlacesRest.Size = new System.Drawing.Size(0, 16);
-            this.lblLesPlacesRest.TabIndex = 40;
+            this.lblLePrixReel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLePrixReel.ForeColor = System.Drawing.Color.Black;
+            this.lblLePrixReel.Location = new System.Drawing.Point(542, 141);
+            this.lblLePrixReel.Name = "lblLePrixReel";
+            this.lblLePrixReel.Size = new System.Drawing.Size(203, 16);
+            this.lblLePrixReel.TabIndex = 42;
+            this.lblLePrixReel.Text = "€";
+            this.lblLePrixReel.Visible = false;
             // 
             // Reservations
             // 
@@ -732,5 +760,7 @@
         private System.Windows.Forms.ErrorProvider errPhone;
         private System.Windows.Forms.Label lblLesPlacesRest;
         private System.Windows.Forms.Label lblPlacesRest;
+        private System.Windows.Forms.Label lblPrixReel;
+        private System.Windows.Forms.Label lblLePrixReel;
     }
 }

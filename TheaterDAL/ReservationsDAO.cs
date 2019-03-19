@@ -174,7 +174,42 @@ namespace TheaterDAL
                 //Message box erreur
                 string test = e.ToString();
             }
-            
+
+        }
+
+        // Récupère le nombre de places prises pour une représentation
+        public static int GetNbPlacesReservees(Show laRepresentation)
+        {
+            int nbPlacesReservees = -1;
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+                string reqPlacesRest = "SELECT SUM(seatsBooked) AS 'Nb Places Reservees' FROM To_book, Show WHERE toBook_show = show_id AND show_id = @idShow;";
+
+                SqlCommand commPlacesRest = new SqlCommand(reqPlacesRest, connexion);
+
+                commPlacesRest.Parameters.Add(new SqlParameter("@idShow", System.Data.SqlDbType.Int));
+                commPlacesRest.Parameters["@idShow"].Value = laRepresentation.Show_id;
+
+                SqlDataReader readerPlacesRest = null;
+                readerPlacesRest = commPlacesRest.ExecuteReader();
+
+                if (readerPlacesRest.HasRows)
+                {
+                    while (readerPlacesRest.Read())
+                    {
+                        nbPlacesReservees = Int32.Parse(readerPlacesRest["Nb Places Reservees"].ToString());
+                    }
+                }
+                connexion.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return nbPlacesReservees;
         }
 
     }
