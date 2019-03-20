@@ -167,6 +167,7 @@ namespace TheaterDAL
                 commAddBook.Parameters["@seatsBooked"].Value = uneReservation.Spectator_seatsBooked;
 
                 commAddBook.ExecuteNonQuery();
+
                 connexionBook.Close();
             }
             catch (Exception e)
