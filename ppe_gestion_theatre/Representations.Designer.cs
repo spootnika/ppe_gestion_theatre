@@ -187,6 +187,7 @@
             this.button4.TabIndex = 31;
             this.button4.Text = "Supprimer";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -200,6 +201,7 @@
             this.button3.TabIndex = 30;
             this.button3.Text = "Modifier";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // lblLePrix
             // 

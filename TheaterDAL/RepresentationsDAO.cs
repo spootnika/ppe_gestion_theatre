@@ -139,6 +139,29 @@ namespace TheaterDAL
             return nb;
         }
 
+        //suppression d'un représentation
+        public static int DelShow(int IdRep)
+        {
+            int nb;
+
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "DELETE FROM Show WHERE show_id = @idShow";
+            //param
+            SqlParameter idShow = new SqlParameter("@idShow", SqlDbType.Int);
+            idShow.Value = IdRep;
+            cmd.Parameters.Add(idShow);
+            //fin param
+            nb = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return nb;
+        }
+
         //renvoie le nombre de places réservées pour une représentation
         public static int GetSeatsBooked(int idRepresentation, int nbPlacesTotal)
         {

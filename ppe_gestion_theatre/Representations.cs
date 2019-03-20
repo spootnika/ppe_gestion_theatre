@@ -218,7 +218,7 @@ namespace ppe_gestion_theatre
         {
 
         }
-
+        //affichage des détails de la preprésentation
         private void dgvListeRepresentations_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             dgvListeRepresentations.CurrentRow.Selected = true;
@@ -597,6 +597,39 @@ namespace ppe_gestion_theatre
         }
 
         #endregion errorProvider
+        #region supprimer
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Etes vous sur de vouloir supprimer cette représentation ?", "Suppression de la représentation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                dgvListeRepresentations.CurrentRow.Selected = true;
+                int indexRow = dgvListeRepresentations.CurrentRow.Index;
+                if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+                {
+                    Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
+                    // Appel de la méthode SupprimerUtilisateur de la couche BLL
+                    ModuleRepresentations.DeleteShow(laRepres.Show_id);
+                    MessageBox.Show("La représentation a bien été supprimée.", "Suppression de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    afficherRepresentations();
+                }
+            }
+        }
+        #endregion supprimer
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dgvListeRepresentations.CurrentRow.Selected = true;
+            int indexRow = dgvListeRepresentations.CurrentRow.Index;
+            if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+            {
+                Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
+                // Appel de la méthode ModifierUtilisateur de la couche BLL
+                //ModuleRepresentations.EditShow();
+                MessageBox.Show("La représentation a bien été modifiée.", "Modification de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                afficherRepresentations();
+            }
+        }
     }
 }
 
