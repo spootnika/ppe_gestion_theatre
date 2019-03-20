@@ -176,6 +176,8 @@ namespace ppe_gestion_theatre
             lblLePrixFixe.Visible = false;
             lblLaNationalite.Visible = false;
 
+            dgvListePiecesTheatre.Enabled = false;
+
             textBoxNomPiece.Visible = true;
             textBoxPrixFixe.Visible = true;
             textBoxDuree.Visible = true;
@@ -237,6 +239,8 @@ namespace ppe_gestion_theatre
                 lblLaCompagnie.Visible = true;
                 lblLePrixFixe.Visible = true;
                 lblLaNationalite.Visible = true;
+
+                dgvListePiecesTheatre.Enabled = true;
 
                 textBoxNomPiece.Visible = false;
                 textBoxPrixFixe.Visible = false;
@@ -394,6 +398,9 @@ namespace ppe_gestion_theatre
 
             if (rep == DialogResult.Yes)
             {
+                
+                dgvListePiecesTheatre.Enabled = true;
+
                 grbDetails.Text = "Détails de la pièce de théatre";
 
                 #region Affiche et cache les champs concernés

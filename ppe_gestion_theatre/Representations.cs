@@ -309,6 +309,9 @@ namespace ppe_gestion_theatre
             //quand on clique sur le bouton affichage des cases de saisie
             grbAjoutRepresentation.Visible = true;
 
+            grbFiltres.Enabled = false;
+            dgvListeRepresentations.Enabled = false;
+
             // Remplissable de la comboBox avec les pièces de théâtre
             cbChoixPieceSaisieShow.DataSource = ModulePiecesTheatre.GetTheaterPieces();
             cbChoixPieceSaisieShow.DisplayMember = "theaterPiece_name";
@@ -397,6 +400,10 @@ namespace ppe_gestion_theatre
                         DateTime today = DateTime.Today;
                         saisieDateShow.Text = today.ToString();
                         afficherRepresentations();
+                   
+
+                        grbFiltres.Enabled = true;
+                        dgvListeRepresentations.Enabled = true;
                     }
                 }
 
@@ -407,6 +414,9 @@ namespace ppe_gestion_theatre
         private void btnAnnulerAjout_Click(object sender, EventArgs e)
         {
             grbAjoutRepresentation.Visible = false;
+
+            grbFiltres.Enabled = true;
+            dgvListeRepresentations.Enabled = true;
         }
 
         //change le rpxi réel en fonction de la pièce sélectionnée dans ajoutReprésentation
