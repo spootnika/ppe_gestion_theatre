@@ -87,6 +87,25 @@
             this.errorProviderFormatPlaces = new System.Windows.Forms.ErrorProvider(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.grbModifRepresentation = new System.Windows.Forms.GroupBox();
+            this.lblPrixReelModifRep = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePickerModifDate = new System.Windows.Forms.DateTimePicker();
+            this.lblPrixFixeModifRep = new System.Windows.Forms.Label();
+            this.cbModifPiece = new System.Windows.Forms.ComboBox();
+            this.textBoxModifHeure = new System.Windows.Forms.TextBox();
+            this.textBoxModifPlaces = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.grbDetails.SuspendLayout();
             this.grbAjoutRepresentation.SuspendLayout();
             this.grbFiltres.SuspendLayout();
@@ -94,6 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatHeure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.grbModifRepresentation.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMenu
@@ -138,6 +158,7 @@
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.grbAjoutRepresentation);
             this.grbDetails.Controls.Add(this.lblLesPlacesRest);
             this.grbDetails.Controls.Add(this.button4);
             this.grbDetails.Controls.Add(this.button3);
@@ -390,7 +411,7 @@
             this.grbAjoutRepresentation.Controls.Add(this.label15);
             this.grbAjoutRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbAjoutRepresentation.ForeColor = System.Drawing.Color.SteelBlue;
-            this.grbAjoutRepresentation.Location = new System.Drawing.Point(57, 400);
+            this.grbAjoutRepresentation.Location = new System.Drawing.Point(0, 0);
             this.grbAjoutRepresentation.Name = "grbAjoutRepresentation";
             this.grbAjoutRepresentation.Size = new System.Drawing.Size(743, 206);
             this.grbAjoutRepresentation.TabIndex = 12;
@@ -475,7 +496,7 @@
             this.btnValiderAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnValiderAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValiderAjout.ForeColor = System.Drawing.Color.White;
-            this.btnValiderAjout.Location = new System.Drawing.Point(585, 149);
+            this.btnValiderAjout.Location = new System.Drawing.Point(366, 154);
             this.btnValiderAjout.Name = "btnValiderAjout";
             this.btnValiderAjout.Size = new System.Drawing.Size(75, 27);
             this.btnValiderAjout.TabIndex = 31;
@@ -489,7 +510,7 @@
             this.btnAnnulerAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAnnulerAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnulerAjout.ForeColor = System.Drawing.Color.White;
-            this.btnAnnulerAjout.Location = new System.Drawing.Point(472, 149);
+            this.btnAnnulerAjout.Location = new System.Drawing.Point(272, 154);
             this.btnAnnulerAjout.Name = "btnAnnulerAjout";
             this.btnAnnulerAjout.Size = new System.Drawing.Size(75, 27);
             this.btnAnnulerAjout.TabIndex = 30;
@@ -758,13 +779,231 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // grbModifRepresentation
+            // 
+            this.grbModifRepresentation.BackColor = System.Drawing.Color.White;
+            this.grbModifRepresentation.Controls.Add(this.lblPrixReelModifRep);
+            this.grbModifRepresentation.Controls.Add(this.label2);
+            this.grbModifRepresentation.Controls.Add(this.dateTimePickerModifDate);
+            this.grbModifRepresentation.Controls.Add(this.lblPrixFixeModifRep);
+            this.grbModifRepresentation.Controls.Add(this.cbModifPiece);
+            this.grbModifRepresentation.Controls.Add(this.textBoxModifHeure);
+            this.grbModifRepresentation.Controls.Add(this.textBoxModifPlaces);
+            this.grbModifRepresentation.Controls.Add(this.button5);
+            this.grbModifRepresentation.Controls.Add(this.button6);
+            this.grbModifRepresentation.Controls.Add(this.label4);
+            this.grbModifRepresentation.Controls.Add(this.label7);
+            this.grbModifRepresentation.Controls.Add(this.button9);
+            this.grbModifRepresentation.Controls.Add(this.button10);
+            this.grbModifRepresentation.Controls.Add(this.label8);
+            this.grbModifRepresentation.Controls.Add(this.label9);
+            this.grbModifRepresentation.Controls.Add(this.label13);
+            this.grbModifRepresentation.Controls.Add(this.label16);
+            this.grbModifRepresentation.Controls.Add(this.label17);
+            this.grbModifRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbModifRepresentation.ForeColor = System.Drawing.Color.SteelBlue;
+            this.grbModifRepresentation.Location = new System.Drawing.Point(57, 400);
+            this.grbModifRepresentation.Name = "grbModifRepresentation";
+            this.grbModifRepresentation.Size = new System.Drawing.Size(743, 206);
+            this.grbModifRepresentation.TabIndex = 13;
+            this.grbModifRepresentation.TabStop = false;
+            this.grbModifRepresentation.Text = "Modification de la Représentation";
+            this.grbModifRepresentation.Visible = false;
+            // 
+            // lblPrixReelModifRep
+            // 
+            this.lblPrixReelModifRep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrixReelModifRep.ForeColor = System.Drawing.Color.Black;
+            this.lblPrixReelModifRep.Location = new System.Drawing.Point(518, 119);
+            this.lblPrixReelModifRep.Name = "lblPrixReelModifRep";
+            this.lblPrixReelModifRep.Size = new System.Drawing.Size(210, 16);
+            this.lblPrixReelModifRep.TabIndex = 39;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(447, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 16);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "Prix réel :";
+            // 
+            // dateTimePickerModifDate
+            // 
+            this.dateTimePickerModifDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.dateTimePickerModifDate.Location = new System.Drawing.Point(502, 30);
+            this.dateTimePickerModifDate.Name = "dateTimePickerModifDate";
+            this.dateTimePickerModifDate.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePickerModifDate.TabIndex = 37;
+            // 
+            // lblPrixFixeModifRep
+            // 
+            this.lblPrixFixeModifRep.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrixFixeModifRep.ForeColor = System.Drawing.Color.Black;
+            this.lblPrixFixeModifRep.Location = new System.Drawing.Point(89, 117);
+            this.lblPrixFixeModifRep.Name = "lblPrixFixeModifRep";
+            this.lblPrixFixeModifRep.Size = new System.Drawing.Size(210, 16);
+            this.lblPrixFixeModifRep.TabIndex = 21;
+            // 
+            // cbModifPiece
+            // 
+            this.cbModifPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.cbModifPiece.FormattingEnabled = true;
+            this.cbModifPiece.Location = new System.Drawing.Point(78, 32);
+            this.cbModifPiece.Name = "cbModifPiece";
+            this.cbModifPiece.Size = new System.Drawing.Size(187, 24);
+            this.cbModifPiece.TabIndex = 36;
+            // 
+            // textBoxModifHeure
+            // 
+            this.textBoxModifHeure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.textBoxModifHeure.Location = new System.Drawing.Point(512, 71);
+            this.textBoxModifHeure.Name = "textBoxModifHeure";
+            this.textBoxModifHeure.Size = new System.Drawing.Size(100, 22);
+            this.textBoxModifHeure.TabIndex = 34;
+            // 
+            // textBoxModifPlaces
+            // 
+            this.textBoxModifPlaces.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.textBoxModifPlaces.Location = new System.Drawing.Point(84, 71);
+            this.textBoxModifPlaces.Name = "textBoxModifPlaces";
+            this.textBoxModifPlaces.Size = new System.Drawing.Size(100, 22);
+            this.textBoxModifPlaces.TabIndex = 32;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.SteelBlue;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(366, 154);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 27);
+            this.button5.TabIndex = 31;
+            this.button5.Text = "Valider";
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.SteelBlue;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(272, 154);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 27);
+            this.button6.TabIndex = 30;
+            this.button6.Text = "Annuler";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DarkRed;
+            this.label4.Location = new System.Drawing.Point(582, 264);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(167, 16);
+            this.label4.TabIndex = 26;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(163, 264);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(278, 16);
+            this.label7.TabIndex = 23;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.SteelBlue;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.ForeColor = System.Drawing.Color.White;
+            this.button9.Location = new System.Drawing.Point(285, 306);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 27);
+            this.button9.TabIndex = 13;
+            this.button9.Text = "Modifier";
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.SteelBlue;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.ForeColor = System.Drawing.Color.White;
+            this.button10.Location = new System.Drawing.Point(366, 306);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(88, 27);
+            this.button10.TabIndex = 2;
+            this.button10.Text = "Supprimer";
+            this.button10.UseVisualStyleBackColor = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(13, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 16);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Prix fixe :";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(447, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 16);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Heure :";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(447, 32);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 16);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Date :";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(13, 71);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(64, 16);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Places :";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(13, 32);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(56, 16);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "Pièce :";
+            // 
             // Representations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(873, 630);
-            this.Controls.Add(this.grbAjoutRepresentation);
+            this.Controls.Add(this.grbModifRepresentation);
             this.Controls.Add(this.grbFiltres);
             this.Controls.Add(this.grbDetails);
             this.Controls.Add(this.dgvListeRepresentations);
@@ -783,6 +1022,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatHeure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.grbModifRepresentation.ResumeLayout(false);
+            this.grbModifRepresentation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -848,5 +1089,24 @@
         private System.Windows.Forms.ErrorProvider errorProviderFormatPlaces;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.GroupBox grbModifRepresentation;
+        private System.Windows.Forms.Label lblPrixReelModifRep;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerModifDate;
+        private System.Windows.Forms.Label lblPrixFixeModifRep;
+        private System.Windows.Forms.ComboBox cbModifPiece;
+        private System.Windows.Forms.TextBox textBoxModifHeure;
+        private System.Windows.Forms.TextBox textBoxModifPlaces;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
