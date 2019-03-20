@@ -578,7 +578,7 @@ namespace ppe_gestion_theatre
                 errorProviderFormatPlaces.SetError(saisiePlacesShow, error);
             }
         }
-        #endregion errorProvider
+   
 
         private void saisieDateShow_Validating(object sender, CancelEventArgs e)
         {
@@ -595,6 +595,8 @@ namespace ppe_gestion_theatre
         {
             errorProvider1.SetError(saisieDateShow, "");
         }
+
+        #endregion errorProvider
     }
 }
 
