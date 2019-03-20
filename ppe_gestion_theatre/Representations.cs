@@ -385,6 +385,10 @@ namespace ppe_gestion_theatre
                         ModuleRepresentations.CreateShow(show);
                         MessageBox.Show("La représentation a bien été ajoutée.", "Ajout de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         grbAjoutRepresentation.Visible = false;
+                        saisieHeureShow.Text = "";
+                        saisiePlacesShow.Text= "";
+                        DateTime today = DateTime.Today;
+                        saisieDateShow.Text = today.ToString();
                         afficherRepresentations();
                     }
                 }
