@@ -31,7 +31,7 @@ namespace ppe_gestion_theatre
             {
                 errorMessage = "Veuillez entrer une heure pour la représentation.";
             }
-            else if (maDate.TimeOfDay < HeureDebut.TimeOfDay)
+            else if (maDate.TimeOfDay < HeureDebut.TimeOfDay && retConv==true)
             {
                 errorMessage = "Il ne peut y avoir de représentation avant 14h.";
                 retConv = false;
