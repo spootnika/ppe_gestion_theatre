@@ -449,7 +449,8 @@ namespace ppe_gestion_theatre
                 }
                 if (monTaux != null)
                 {
-                    float prixReel = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text).TheaterPiece_seatsPrice * monTaux.PriceRate_rate;
+                    float seatPrice = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text).TheaterPiece_seatsPrice;
+                    float prixReel = seatPrice + (seatPrice * monTaux.PriceRate_rate);
                     lblPrixrel.Text = prixReel.ToString() + " €";
                 }
 
@@ -500,7 +501,8 @@ namespace ppe_gestion_theatre
                 }
                 if (monTaux != null)
                 {
-                    float prixReel = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text).TheaterPiece_seatsPrice * monTaux.PriceRate_rate;
+                    float seatPrice = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text).TheaterPiece_seatsPrice;
+                    float prixReel = seatPrice + (seatPrice * monTaux.PriceRate_rate);
                     lblPrixrel.Text = prixReel.ToString() + " €";
                 }
             }
