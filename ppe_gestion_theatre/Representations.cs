@@ -473,11 +473,16 @@ namespace ppe_gestion_theatre
                 {
                     TimeSpan debutHeure = unTaux.PriceRate_startTime;
                     TimeSpan finHeure = unTaux.PriceRate_endTime;
-                    TimeSpan monHeure = TimeSpan.Parse(saisieHeureShow.Text.ToString());
-                    if (debutHeure <= monHeure && monHeure <= finHeure)
+                    TimeSpan maSaisie;
+                    if (TimeSpan.TryParse(saisieHeureShow.Text.ToString(), out maSaisie)==true)
                     {
-                        LestauxdansLHeure.Add(unTaux);
+                        TimeSpan monHeure = TimeSpan.Parse(saisieHeureShow.Text.ToString());
+                        if (debutHeure <= monHeure && monHeure <= finHeure)
+                        {
+                            LestauxdansLHeure.Add(unTaux);
+                        }
                     }
+                   
                 }
                 //on vérifie le jour et on a le pricerate !!!!
                 string monJour = parsedDate.ToString("dddd");
