@@ -357,19 +357,26 @@ namespace ppe_gestion_theatre
                 int mesPlaces = int.Parse(saisiePlacesShow.Text.ToString());
                 //on récupère la pièce de théâtre
                 TheaterPiece maPiece = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text);
-
+              float duree=  maPiece.TheaterPiece_duration;
                 // Création de l'objet Show 
                 Show show = new Show(parsedDate, mesPlaces, monTaux, maPiece);
-
+                //TimeSpan madureeShowFin = TimeSpan.FromHours((double)duree) + show.Show_dateTime.TimeOfDay;
                 //récupérer les datetime de toutes représentations 
                 bool trouve = false;
                 List<Show> lesRepresentations = ModuleRepresentations.GetShows();
                 //s'il existe déjà une représentation à la date afficher message d'erreur
                 foreach (Show uneRepresentation in lesRepresentations)
                 {
-                    if (uneRepresentation.Show_dateTime == show.Show_dateTime)
+                    TimeSpan madureeFin = TimeSpan.FromHours((double)duree) + uneRepresentation.Show_dateTime.TimeOfDay;
+                
+                    
+                    if (uneRepresentation.Show_dateTime.Date == show.Show_dateTime.Date)
                     {
-                        trouve = true;
+                        if(uneRepresentation.Show_dateTime.TimeOfDay <= show.Show_dateTime.TimeOfDay && show.Show_dateTime.TimeOfDay < madureeFin)
+                        {
+                            trouve = true;
+                        }
+                       
                     }
                 }
                 if (trouve == true)
