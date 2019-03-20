@@ -86,12 +86,14 @@
             this.errorProviderFormatHeure = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderFormatPlaces = new System.Windows.Forms.ErrorProvider(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails.SuspendLayout();
             this.grbAjoutRepresentation.SuspendLayout();
             this.grbFiltres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeRepresentations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatHeure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatPlaces)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMenu
@@ -422,6 +424,8 @@
             this.saisieDateShow.Size = new System.Drawing.Size(200, 22);
             this.saisieDateShow.TabIndex = 37;
             this.saisieDateShow.ValueChanged += new System.EventHandler(this.saisieDateShow_ValueChanged);
+            this.saisieDateShow.Validating += new System.ComponentModel.CancelEventHandler(this.saisieDateShow_Validating);
+            this.saisieDateShow.Validated += new System.EventHandler(this.saisieDateShow_Validated);
             // 
             // lblPrixFixeAjoutRep
             // 
@@ -748,6 +752,10 @@
             // 
             this.errorProviderFormatPlaces.ContainerControl = this;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Representations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -772,6 +780,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeRepresentations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatHeure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderFormatPlaces)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -836,5 +845,6 @@
         private System.Windows.Forms.ErrorProvider errorProviderFormatHeure;
         private System.Windows.Forms.ErrorProvider errorProviderFormatPlaces;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

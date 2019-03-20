@@ -57,6 +57,21 @@ namespace ppe_gestion_theatre
             }
             return retConv;
         }
+        private bool ValidDate(string dateSai, out string errorMessage)
+        {
+            DateTime maDate;
+            bool retConv=DateTime.TryParse(dateSai, out maDate);
+            if(maDate< DateTime.Today)
+            {
+                errorMessage = "Vous ne pouvez pas ajouter de représentation avant aujourd'hui.";
+                retConv = false;
+            }else
+            {
+                errorMessage = "Vous devez entrer une date.";
+            }
+            return retConv;
+
+        }
         #endregion errorProvider messages
 
         private void afficherRepresentations()
@@ -564,6 +579,22 @@ namespace ppe_gestion_theatre
             }
         }
         #endregion errorProvider
+
+        private void saisieDateShow_Validating(object sender, CancelEventArgs e)
+        {
+            string error = "";
+            if (ValidDate(saisieDateShow.Text, out error) == false)
+            {
+                e.Cancel = true;
+                saisieDateShow.Select();
+                errorProvider1.SetError(saisieDateShow, error);
+            }
+        }
+
+        private void saisieDateShow_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(saisieDateShow, "");
+        }
     }
 }
 
