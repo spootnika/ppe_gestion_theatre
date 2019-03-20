@@ -28,7 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.btnAnnuler = new System.Windows.Forms.Button();
+            this.btnValider = new System.Windows.Forms.Button();
+            this.comboBoxCompagnie = new System.Windows.Forms.ComboBox();
+            this.comboBoxPublic = new System.Windows.Forms.ComboBox();
+            this.comboBoxTheme = new System.Windows.Forms.ComboBox();
+            this.comboBoxAuteur = new System.Windows.Forms.ComboBox();
+            this.textBoxCommentaire = new System.Windows.Forms.TextBox();
+            this.textBoxDuree = new System.Windows.Forms.TextBox();
+            this.textBoxPrixFixe = new System.Windows.Forms.TextBox();
+            this.textBoxNomPiece = new System.Windows.Forms.TextBox();
             this.lblLaNationalite = new System.Windows.Forms.Label();
             this.lblNationalite = new System.Windows.Forms.Label();
             this.lblLaDescription = new System.Windows.Forms.Label();
@@ -53,13 +64,29 @@
             this.btnAjouter = new System.Windows.Forms.Button();
             this.lblTitre = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
+            this.errorProviderNomPiece = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderDuree = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderPrixFixe = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNomPiece)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDuree)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPrixFixe)).BeginInit();
             this.SuspendLayout();
             // 
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.btnAnnuler);
+            this.grbDetails.Controls.Add(this.btnValider);
+            this.grbDetails.Controls.Add(this.comboBoxCompagnie);
+            this.grbDetails.Controls.Add(this.comboBoxPublic);
+            this.grbDetails.Controls.Add(this.comboBoxTheme);
+            this.grbDetails.Controls.Add(this.comboBoxAuteur);
+            this.grbDetails.Controls.Add(this.textBoxCommentaire);
+            this.grbDetails.Controls.Add(this.textBoxDuree);
+            this.grbDetails.Controls.Add(this.textBoxPrixFixe);
+            this.grbDetails.Controls.Add(this.textBoxNomPiece);
             this.grbDetails.Controls.Add(this.lblLaNationalite);
             this.grbDetails.Controls.Add(this.lblNationalite);
             this.grbDetails.Controls.Add(this.lblLaDescription);
@@ -88,6 +115,117 @@
             this.grbDetails.TabIndex = 6;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la pièce de théatre";
+            this.grbDetails.Enter += new System.EventHandler(this.grbDetails_Enter);
+            // 
+            // btnAnnuler
+            // 
+            this.btnAnnuler.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnuler.ForeColor = System.Drawing.Color.White;
+            this.btnAnnuler.Location = new System.Drawing.Point(378, 298);
+            this.btnAnnuler.Name = "btnAnnuler";
+            this.btnAnnuler.Size = new System.Drawing.Size(88, 27);
+            this.btnAnnuler.TabIndex = 37;
+            this.btnAnnuler.Text = "Annuler";
+            this.btnAnnuler.UseVisualStyleBackColor = false;
+            this.btnAnnuler.Visible = false;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
+            // 
+            // btnValider
+            // 
+            this.btnValider.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnValider.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnValider.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValider.ForeColor = System.Drawing.Color.White;
+            this.btnValider.Location = new System.Drawing.Point(297, 298);
+            this.btnValider.Name = "btnValider";
+            this.btnValider.Size = new System.Drawing.Size(75, 27);
+            this.btnValider.TabIndex = 36;
+            this.btnValider.Text = "Valider";
+            this.btnValider.UseVisualStyleBackColor = false;
+            this.btnValider.Visible = false;
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            // 
+            // comboBoxCompagnie
+            // 
+            this.comboBoxCompagnie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.comboBoxCompagnie.FormattingEnabled = true;
+            this.comboBoxCompagnie.Location = new System.Drawing.Point(558, 104);
+            this.comboBoxCompagnie.Name = "comboBoxCompagnie";
+            this.comboBoxCompagnie.Size = new System.Drawing.Size(164, 24);
+            this.comboBoxCompagnie.TabIndex = 35;
+            this.comboBoxCompagnie.Visible = false;
+            // 
+            // comboBoxPublic
+            // 
+            this.comboBoxPublic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.comboBoxPublic.FormattingEnabled = true;
+            this.comboBoxPublic.Location = new System.Drawing.Point(133, 134);
+            this.comboBoxPublic.Name = "comboBoxPublic";
+            this.comboBoxPublic.Size = new System.Drawing.Size(155, 24);
+            this.comboBoxPublic.TabIndex = 34;
+            this.comboBoxPublic.Visible = false;
+            // 
+            // comboBoxTheme
+            // 
+            this.comboBoxTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.comboBoxTheme.FormattingEnabled = true;
+            this.comboBoxTheme.Location = new System.Drawing.Point(133, 71);
+            this.comboBoxTheme.Name = "comboBoxTheme";
+            this.comboBoxTheme.Size = new System.Drawing.Size(155, 24);
+            this.comboBoxTheme.TabIndex = 33;
+            this.comboBoxTheme.Visible = false;
+            // 
+            // comboBoxAuteur
+            // 
+            this.comboBoxAuteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.comboBoxAuteur.FormattingEnabled = true;
+            this.comboBoxAuteur.Location = new System.Drawing.Point(558, 37);
+            this.comboBoxAuteur.Name = "comboBoxAuteur";
+            this.comboBoxAuteur.Size = new System.Drawing.Size(160, 24);
+            this.comboBoxAuteur.TabIndex = 32;
+            this.comboBoxAuteur.Visible = false;
+            // 
+            // textBoxCommentaire
+            // 
+            this.textBoxCommentaire.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCommentaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.textBoxCommentaire.Location = new System.Drawing.Point(115, 184);
+            this.textBoxCommentaire.Multiline = true;
+            this.textBoxCommentaire.Name = "textBoxCommentaire";
+            this.textBoxCommentaire.Size = new System.Drawing.Size(433, 92);
+            this.textBoxCommentaire.TabIndex = 30;
+            this.textBoxCommentaire.Visible = false;
+            // 
+            // textBoxDuree
+            // 
+            this.textBoxDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.textBoxDuree.Location = new System.Drawing.Point(133, 104);
+            this.textBoxDuree.Name = "textBoxDuree";
+            this.textBoxDuree.Size = new System.Drawing.Size(155, 22);
+            this.textBoxDuree.TabIndex = 26;
+            this.textBoxDuree.Visible = false;
+            // 
+            // textBoxPrixFixe
+            // 
+            this.textBoxPrixFixe.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxPrixFixe.Location = new System.Drawing.Point(558, 136);
+            this.textBoxPrixFixe.Name = "textBoxPrixFixe";
+            this.textBoxPrixFixe.Size = new System.Drawing.Size(164, 26);
+            this.textBoxPrixFixe.TabIndex = 25;
+            this.textBoxPrixFixe.Visible = false;
+            // 
+            // textBoxNomPiece
+            // 
+            this.textBoxNomPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNomPiece.Location = new System.Drawing.Point(133, 39);
+            this.textBoxNomPiece.Name = "textBoxNomPiece";
+            this.textBoxNomPiece.Size = new System.Drawing.Size(155, 22);
+            this.textBoxNomPiece.TabIndex = 24;
+            this.textBoxNomPiece.Visible = false;
             // 
             // lblLaNationalite
             // 
@@ -187,7 +325,7 @@
             this.btnModifier.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifier.ForeColor = System.Drawing.Color.White;
-            this.btnModifier.Location = new System.Drawing.Point(285, 306);
+            this.btnModifier.Location = new System.Drawing.Point(297, 298);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(75, 27);
             this.btnModifier.TabIndex = 13;
@@ -200,7 +338,7 @@
             this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
-            this.btnSupprimer.Location = new System.Drawing.Point(366, 306);
+            this.btnSupprimer.Location = new System.Drawing.Point(378, 298);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(88, 27);
             this.btnSupprimer.TabIndex = 2;
@@ -318,6 +456,7 @@
             this.btnAjouter.TabIndex = 8;
             this.btnAjouter.Text = "Ajouter";
             this.btnAjouter.UseVisualStyleBackColor = false;
+            this.btnAjouter.Click += new System.EventHandler(this.btnAjouter_Click);
             // 
             // lblTitre
             // 
@@ -344,10 +483,23 @@
             this.btnMenu.UseVisualStyleBackColor = false;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
+            // errorProviderNomPiece
+            // 
+            this.errorProviderNomPiece.ContainerControl = this;
+            // 
+            // errorProviderDuree
+            // 
+            this.errorProviderDuree.ContainerControl = this;
+            // 
+            // errorProviderPrixFixe
+            // 
+            this.errorProviderPrixFixe.ContainerControl = this;
+            // 
             // PiecesTheatre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(800, 754);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnAjouter);
@@ -357,9 +509,13 @@
             this.Name = "PiecesTheatre";
             this.Text = "PiecesTheatre";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PiecesTheatre_FormClosing);
+            this.Load += new System.EventHandler(this.PiecesTheatre_Load);
             this.grbDetails.ResumeLayout(false);
             this.grbDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNomPiece)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDuree)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPrixFixe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,5 +548,18 @@
         private System.Windows.Forms.Label lblLaNationalite;
         private System.Windows.Forms.Label lblNationalite;
         private System.Windows.Forms.Button btnMenu;
+        private System.Windows.Forms.TextBox textBoxNomPiece;
+        private System.Windows.Forms.TextBox textBoxDuree;
+        private System.Windows.Forms.TextBox textBoxPrixFixe;
+        private System.Windows.Forms.TextBox textBoxCommentaire;
+        private System.Windows.Forms.ComboBox comboBoxCompagnie;
+        private System.Windows.Forms.ComboBox comboBoxPublic;
+        private System.Windows.Forms.ComboBox comboBoxTheme;
+        private System.Windows.Forms.ComboBox comboBoxAuteur;
+        private System.Windows.Forms.Button btnAnnuler;
+        private System.Windows.Forms.Button btnValider;
+        private System.Windows.Forms.ErrorProvider errorProviderNomPiece;
+        private System.Windows.Forms.ErrorProvider errorProviderDuree;
+        private System.Windows.Forms.ErrorProvider errorProviderPrixFixe;
     }
 }

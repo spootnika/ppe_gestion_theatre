@@ -148,6 +148,16 @@ namespace TheaterBO
             this.TheaterPiece_theme = theme;
         }
 
-       
+        public TheaterPiece(string name, string description, float duration, float seatsPrice, Company company, Author author, PublicType publicType, Theme theme)
+        {
+            this.TheaterPiece_name = name;
+            this.TheaterPiece_description = description;
+            this.TheaterPiece_duration = duration;
+            this.TheaterPiece_seatsPrice = seatsPrice;
+            this.TheaterPiece_company = company;
+            this.TheaterPiece_author = author;
+            this.TheaterPiece_publicType = publicType;
+            this.TheaterPiece_theme = theme;
+        }
     }
 }
