@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TheaterBO; // Référence à la couche BO
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace TheaterDAL
 {
@@ -429,6 +430,299 @@ namespace TheaterDAL
 
             return lesTheatres;
               
+        }
+
+        public static List<Author> GetAuthors()
+        {
+            Author leAuteur = null;
+
+            // Connexion à la BD 
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            // Création d'une liste vide d'objet TheaterPiece
+            
+            List<Author> lesAuteurs = new List<Author>();
+
+            // Commande sql qui récupère les informations de la table Theater_piece
+            SqlCommand cmdPiecesTheatre = new SqlCommand();
+            cmdPiecesTheatre.Connection = maConnexion;
+            cmdPiecesTheatre.CommandText = "SELECT * FROM Theater_piece";
+
+            // Commande sql qui récupère les informations de la table Author
+            SqlCommand cmdAuteur = new SqlCommand();
+            cmdAuteur.Connection = maConnexion;
+            cmdAuteur.CommandText = "SELECT * FROM Author";
+
+            // Commande sql qui récupère les informations de la table Nationality
+            SqlCommand cmdNationalites = new SqlCommand();
+            cmdNationalites.Connection = maConnexion;
+            cmdNationalites.CommandText = "SELECT * FROM Nationality";
+
+            // Commande sql qui récupère les informations de la table To_be_of
+            SqlCommand cmdAuteurNationalite = new SqlCommand();
+            cmdAuteurNationalite.Connection = maConnexion;
+            cmdAuteurNationalite.CommandText = "SELECT * FROM To_be_of";
+
+
+            
+
+            // Execution des requetes sql
+            SqlDataReader readerPiecesTheatre = cmdPiecesTheatre.ExecuteReader();
+            SqlDataReader readerAuteur = cmdAuteur.ExecuteReader();
+            SqlDataReader readerNationalites = cmdNationalites.ExecuteReader();
+            SqlDataReader readerAuteurNationalite = cmdAuteurNationalite.ExecuteReader();
+            
+           
+
+            // Author
+            while (readerAuteur.Read())
+            {
+                int idAuteur = Int32.Parse(readerAuteur["author_id"].ToString());
+                
+                    string nomAuteur = readerAuteur["author_lastname"].ToString();
+                    string prenomAuteur = readerAuteur["author_firstname"].ToString();
+
+                    List<int> lesIdsNationalites = new List<int>();
+
+                    while (readerAuteurNationalite.Read())
+                    {
+                        int idComparerAuteur = Int32.Parse(readerAuteurNationalite["toBeOf_author"].ToString());
+                        if (idAuteur == idComparerAuteur)
+                        {
+                            int idNatio = Int32.Parse(readerAuteurNationalite["toBeOf_nationality"].ToString());
+                            lesIdsNationalites.Add(idNatio);
+                        }
+                    }
+                    // Fermerure reader
+                    readerAuteurNationalite.Close();
+                    readerAuteurNationalite = cmdAuteurNationalite.ExecuteReader();
+
+                    List<Nationality> lesNationalites = new List<Nationality>();
+                    foreach (int unIdNatio in lesIdsNationalites)
+                    {
+                        while (readerNationalites.Read())
+                        {
+                            int idNationalite = Int32.Parse(readerNationalites["nationality_id"].ToString());
+                            if (unIdNatio == idNationalite)
+                            {
+                                Nationality laNationalite;
+                                string nomNationalite = readerNationalites["nationality_name"].ToString();
+
+                                laNationalite = new Nationality(idNationalite, nomNationalite);
+                                lesNationalites.Add(laNationalite);
+                            }
+
+                        }
+                        // Fermeture reader
+                        readerNationalites.Close();
+                        readerNationalites = cmdNationalites.ExecuteReader();
+                            
+                    }
+
+                    leAuteur = new Author(idAuteur, nomAuteur, prenomAuteur, lesNationalites);
+                    lesAuteurs.Add(leAuteur);
+                    
+            }
+            // Fermeture reader
+            readerAuteur.Close();
+            readerAuteur = cmdAuteur.ExecuteReader();
+
+                
+                
+
+            // Fermeture reader
+            readerAuteurNationalite.Close();
+            readerNationalites.Close();
+            readerAuteur.Close();
+            readerPiecesTheatre.Close();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return lesAuteurs;
+              
+        }
+
+        public static List<Theme> GetThemes()
+        {
+            Theme leTheme = null;
+
+            // Connexion à la BD 
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            // Création d'une liste vide d'objet TheaterPiece
+
+            List<Theme> lesThemes = new List<Theme>();
+
+            // Commande sql qui récupère les informations de la table Theater_piece
+            SqlCommand cmdTheme = new SqlCommand();
+            cmdTheme.Connection = maConnexion;
+            cmdTheme.CommandText = "SELECT * FROM Theme";
+
+
+
+
+            // Execution des requetes sql
+            SqlDataReader readerTheme = cmdTheme.ExecuteReader();
+
+
+
+            // Theme
+            while (readerTheme.Read())
+            {
+                int idTheme = Int32.Parse(readerTheme["theme_id"].ToString());
+                string nomTheme = readerTheme["theme_name"].ToString();
+
+                leTheme = new Theme(idTheme, nomTheme);
+                lesThemes.Add(leTheme);
+                
+            }
+            // Fermeture reader
+            readerTheme.Close();
+            readerTheme = cmdTheme.ExecuteReader();
+            // Fermeture reader
+            readerTheme.Close();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return lesThemes;
+
+        }
+
+        public static List<PublicType> GetTypesPublic()
+        {
+            PublicType leType = null;
+
+            // Connexion à la BD 
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            // Création d'une liste vide d'objet TheaterPiece
+
+            List<PublicType> lesTypes = new List<PublicType>();
+
+            // Commande sql qui récupère les informations de la table Theater_piece
+            SqlCommand cmdTypePublic = new SqlCommand();
+            cmdTypePublic.Connection = maConnexion;
+            cmdTypePublic.CommandText = "SELECT * FROM Public_Type";
+
+
+
+
+            // Execution des requetes sql
+            SqlDataReader readerTypePublic = cmdTypePublic.ExecuteReader();
+
+
+
+            // Public type
+            while (readerTypePublic.Read())
+            {
+                int idType = Int32.Parse(readerTypePublic["publicType_id"].ToString());
+                
+                string nomType = readerTypePublic["publicType_name"].ToString();
+
+                leType = new PublicType(idType, nomType);
+                lesTypes.Add(leType);
+
+
+            }
+            // Fermeture reader
+            readerTypePublic.Close();
+            readerTypePublic = cmdTypePublic.ExecuteReader();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return lesTypes;
+
+        }
+
+        public static List<Company> GetCompagnies()
+        {
+            Company laCompagnie = null;
+
+            // Connexion à la BD 
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+
+            List<Company> lesCompagnies = new List<Company>();
+
+            SqlCommand cmdCompagnie = new SqlCommand();
+            cmdCompagnie.Connection = maConnexion;
+            cmdCompagnie.CommandText = "SELECT * FROM Company";
+
+
+
+
+            // Execution des requetes sql
+            SqlDataReader readerCompagnie = cmdCompagnie.ExecuteReader();
+
+
+
+            // Company
+            while (readerCompagnie.Read())
+            {
+                int idCompagnie = Int32.Parse(readerCompagnie["company_id"].ToString());
+                
+                string nomCompagnie = readerCompagnie["company_name"].ToString();
+                string villeCompagnie = readerCompagnie["company_city"].ToString();
+                string regionCompagnie = readerCompagnie["company_region"].ToString();
+                string directeurArtistique = readerCompagnie["company_artisticDirector"].ToString();
+
+                laCompagnie = new Company(idCompagnie, nomCompagnie, villeCompagnie, regionCompagnie, directeurArtistique);
+                lesCompagnies.Add(laCompagnie);
+                
+            }
+            // Fermeture reader
+            readerCompagnie.Close();
+            readerCompagnie = cmdCompagnie.ExecuteReader();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return lesCompagnies;
+
+        }
+
+        // Ajout d'une nouvelle réservation
+        public static void AddTheaterPiece(TheaterPiece unePiece)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+                string reqAdd = "INSERT INTO Theater_piece (theaterPiece_name, theaterPiece_description, theaterPiece_duration, theaterPiece_seatsPrice, theaterPiece_company, theaterPiece_author, theaterPiece_publicType, theaterPiece_theme) VALUES (@name, @description, @duration, @seatsPrice, @company, @author, @publicType, @theme);";
+
+                SqlCommand commAddPiece = new SqlCommand(reqAdd, connexion);
+
+                commAddPiece.Parameters.Add(new SqlParameter("@name", System.Data.SqlDbType.VarChar, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@description", System.Data.SqlDbType.VarChar, 255));
+                commAddPiece.Parameters.Add(new SqlParameter("@duration", System.Data.SqlDbType.Float));
+                commAddPiece.Parameters.Add(new SqlParameter("@seatsPrice", System.Data.SqlDbType.Float));
+                commAddPiece.Parameters.Add(new SqlParameter("@company", System.Data.SqlDbType.Int));
+                commAddPiece.Parameters.Add(new SqlParameter("@author", System.Data.SqlDbType.Int));
+                commAddPiece.Parameters.Add(new SqlParameter("@publicType", System.Data.SqlDbType.Int));
+                commAddPiece.Parameters.Add(new SqlParameter("@theme", System.Data.SqlDbType.Int));
+
+                commAddPiece.Parameters["@name"].Value = unePiece.TheaterPiece_name;
+                commAddPiece.Parameters["@description"].Value = unePiece.TheaterPiece_description;
+                commAddPiece.Parameters["@duration"].Value = unePiece.TheaterPiece_duration;
+                commAddPiece.Parameters["@seatsPrice"].Value = unePiece.TheaterPiece_seatsPrice;
+                commAddPiece.Parameters["@company"].Value = unePiece.TheaterPiece_company.Company_id;
+                commAddPiece.Parameters["@author"].Value = unePiece.TheaterPiece_author.Author_id;
+                commAddPiece.Parameters["@publicType"].Value = unePiece.TheaterPiece_publicType.PublicType_id;
+                commAddPiece.Parameters["@theme"].Value = unePiece.TheaterPiece_theme.Theme_id;
+
+                commAddPiece.ExecuteNonQuery();
+
+                connexion.Close();
+
+            }
+            catch (Exception e)
+            {
+                //Message box erreur
+                string test = e.ToString();
+            }
+
         }
     }
 }

@@ -224,7 +224,6 @@ namespace ppe_gestion_theatre
         // Validation de l'ajout 
         private void btnValiderAjout_Click(object sender, EventArgs e)
         {
-
             if (txtNom.Text == null || txtNom.Text == String.Empty || txtPrenom.Text == null || txtPrenom.Text == String.Empty || txtEmail.Text == null || txtEmail.Text == String.Empty || txtTelephone.Text == null || txtTelephone.Text == String.Empty || txtNbPlaces.Text == null || txtNbPlaces.Text == String.Empty)
             {
                 errEmail.SetError(txtEmail, "Ce champ est requis !");

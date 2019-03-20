@@ -12,7 +12,7 @@ namespace TheaterBLL
     public class ModuleRepresentations
     {
         // objet BL
-        private static ModuleRepresentations moduleRepresentations; 
+        private static ModuleRepresentations moduleRepresentations;
 
         // Accesseur en lecture objet BLL
         public static ModuleRepresentations GetModuleRepresentations()
@@ -29,7 +29,11 @@ namespace TheaterBLL
             string chaine = chset.ConnectionString;
             ConnexionBD.GetConnexionBD().SetchaineConnexion(chaine);
         }
-
+        // création d'une nouvelle représentation 
+        public static int CreateShow(Show show)
+        {
+            return RepresentationsDAO.AddShow(show);
+        }
 
         // Récupère la liste des représentations de la DAO, renvoie la liste
         // GetShows()
@@ -37,7 +41,12 @@ namespace TheaterBLL
         {
             return RepresentationsDAO.GetShows();
         }
-
+        //renvoie la liste des taux
+        public static List<PriceRate> GetPriceRate()
+        {
+            List<PriceRate> priceRate = RepresentationsDAO.GetPriceRateWeeksDays();
+            return priceRate;
+        }
         // Récupère la liste des représentations filtrées de la DAO, renvoie la liste
         // GetFilterShows()
 
@@ -48,7 +57,7 @@ namespace TheaterBLL
 
 
             return lesRepresentationsFiltrees;
-            
+
         }
 
         //surcharge s'il n'y a que la piece de choisie
