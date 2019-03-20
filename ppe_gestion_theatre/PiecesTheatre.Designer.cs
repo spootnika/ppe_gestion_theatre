@@ -149,37 +149,41 @@
             // 
             // comboBoxCompagnie
             // 
+            this.comboBoxCompagnie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.comboBoxCompagnie.FormattingEnabled = true;
             this.comboBoxCompagnie.Location = new System.Drawing.Point(558, 104);
             this.comboBoxCompagnie.Name = "comboBoxCompagnie";
-            this.comboBoxCompagnie.Size = new System.Drawing.Size(164, 28);
+            this.comboBoxCompagnie.Size = new System.Drawing.Size(164, 24);
             this.comboBoxCompagnie.TabIndex = 35;
             this.comboBoxCompagnie.Visible = false;
             // 
             // comboBoxPublic
             // 
+            this.comboBoxPublic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.comboBoxPublic.FormattingEnabled = true;
             this.comboBoxPublic.Location = new System.Drawing.Point(133, 134);
             this.comboBoxPublic.Name = "comboBoxPublic";
-            this.comboBoxPublic.Size = new System.Drawing.Size(155, 28);
+            this.comboBoxPublic.Size = new System.Drawing.Size(155, 24);
             this.comboBoxPublic.TabIndex = 34;
             this.comboBoxPublic.Visible = false;
             // 
             // comboBoxTheme
             // 
+            this.comboBoxTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.comboBoxTheme.FormattingEnabled = true;
             this.comboBoxTheme.Location = new System.Drawing.Point(133, 71);
             this.comboBoxTheme.Name = "comboBoxTheme";
-            this.comboBoxTheme.Size = new System.Drawing.Size(155, 28);
+            this.comboBoxTheme.Size = new System.Drawing.Size(155, 24);
             this.comboBoxTheme.TabIndex = 33;
             this.comboBoxTheme.Visible = false;
             // 
             // comboBoxAuteur
             // 
+            this.comboBoxAuteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.comboBoxAuteur.FormattingEnabled = true;
             this.comboBoxAuteur.Location = new System.Drawing.Point(558, 37);
             this.comboBoxAuteur.Name = "comboBoxAuteur";
-            this.comboBoxAuteur.Size = new System.Drawing.Size(160, 28);
+            this.comboBoxAuteur.Size = new System.Drawing.Size(160, 24);
             this.comboBoxAuteur.TabIndex = 32;
             this.comboBoxAuteur.Visible = false;
             // 
@@ -188,6 +192,7 @@
             this.textBoxCommentaire.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCommentaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.textBoxCommentaire.Location = new System.Drawing.Point(115, 184);
             this.textBoxCommentaire.Multiline = true;
             this.textBoxCommentaire.Name = "textBoxCommentaire";
@@ -197,14 +202,16 @@
             // 
             // textBoxDuree
             // 
+            this.textBoxDuree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.textBoxDuree.Location = new System.Drawing.Point(133, 104);
             this.textBoxDuree.Name = "textBoxDuree";
-            this.textBoxDuree.Size = new System.Drawing.Size(155, 26);
+            this.textBoxDuree.Size = new System.Drawing.Size(155, 22);
             this.textBoxDuree.TabIndex = 26;
             this.textBoxDuree.Visible = false;
             // 
             // textBoxPrixFixe
             // 
+            this.textBoxPrixFixe.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxPrixFixe.Location = new System.Drawing.Point(558, 136);
             this.textBoxPrixFixe.Name = "textBoxPrixFixe";
             this.textBoxPrixFixe.Size = new System.Drawing.Size(164, 26);
@@ -213,9 +220,10 @@
             // 
             // textBoxNomPiece
             // 
+            this.textBoxNomPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNomPiece.Location = new System.Drawing.Point(133, 39);
             this.textBoxNomPiece.Name = "textBoxNomPiece";
-            this.textBoxNomPiece.Size = new System.Drawing.Size(155, 26);
+            this.textBoxNomPiece.Size = new System.Drawing.Size(155, 22);
             this.textBoxNomPiece.TabIndex = 24;
             this.textBoxNomPiece.Visible = false;
             // 
@@ -491,6 +499,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(800, 754);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnAjouter);

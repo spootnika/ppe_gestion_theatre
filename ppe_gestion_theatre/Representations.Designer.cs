@@ -416,9 +416,10 @@
             // 
             // saisieDateShow
             // 
+            this.saisieDateShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.saisieDateShow.Location = new System.Drawing.Point(502, 30);
             this.saisieDateShow.Name = "saisieDateShow";
-            this.saisieDateShow.Size = new System.Drawing.Size(200, 26);
+            this.saisieDateShow.Size = new System.Drawing.Size(200, 22);
             this.saisieDateShow.TabIndex = 37;
             this.saisieDateShow.ValueChanged += new System.EventHandler(this.saisieDateShow_ValueChanged);
             // 
@@ -433,7 +434,7 @@
             // 
             // cbChoixPieceSaisieShow
             // 
-            this.cbChoixPieceSaisieShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbChoixPieceSaisieShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.cbChoixPieceSaisieShow.FormattingEnabled = true;
             this.cbChoixPieceSaisieShow.Location = new System.Drawing.Point(78, 32);
             this.cbChoixPieceSaisieShow.Name = "cbChoixPieceSaisieShow";
@@ -443,9 +444,10 @@
             // 
             // saisieHeureShow
             // 
+            this.saisieHeureShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.saisieHeureShow.Location = new System.Drawing.Point(512, 71);
             this.saisieHeureShow.Name = "saisieHeureShow";
-            this.saisieHeureShow.Size = new System.Drawing.Size(100, 26);
+            this.saisieHeureShow.Size = new System.Drawing.Size(100, 22);
             this.saisieHeureShow.TabIndex = 34;
             this.saisieHeureShow.TextChanged += new System.EventHandler(this.saisieHeureShow_TextChanged);
             this.saisieHeureShow.Validating += new System.ComponentModel.CancelEventHandler(this.saisieHeureShow_Validating);
@@ -453,9 +455,10 @@
             // 
             // saisiePlacesShow
             // 
+            this.saisiePlacesShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.saisiePlacesShow.Location = new System.Drawing.Point(84, 71);
             this.saisiePlacesShow.Name = "saisiePlacesShow";
-            this.saisiePlacesShow.Size = new System.Drawing.Size(100, 26);
+            this.saisiePlacesShow.Size = new System.Drawing.Size(100, 22);
             this.saisiePlacesShow.TabIndex = 32;
             this.saisiePlacesShow.Validating += new System.ComponentModel.CancelEventHandler(this.saisiePlacesShow_Validating);
             this.saisiePlacesShow.Validated += new System.EventHandler(this.saisiePlacesShow_Validated);
@@ -626,7 +629,7 @@
             // 
             // cbChoixPiece
             // 
-            this.cbChoixPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbChoixPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.cbChoixPiece.FormattingEnabled = true;
             this.cbChoixPiece.Location = new System.Drawing.Point(100, 32);
             this.cbChoixPiece.Name = "cbChoixPiece";
@@ -635,7 +638,7 @@
             // 
             // dtpDateFin
             // 
-            this.dtpDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.dtpDateFin.Location = new System.Drawing.Point(478, 32);
             this.dtpDateFin.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
             this.dtpDateFin.Name = "dtpDateFin";
@@ -645,7 +648,7 @@
             // 
             // dtpDateDeb
             // 
-            this.dtpDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.dtpDateDeb.Location = new System.Drawing.Point(327, 32);
             this.dtpDateDeb.MinDate = new System.DateTime(2018, 1, 1, 0, 0, 0, 0);
             this.dtpDateDeb.Name = "dtpDateDeb";
@@ -749,6 +752,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(873, 630);
             this.Controls.Add(this.grbAjoutRepresentation);
             this.Controls.Add(this.grbFiltres);
