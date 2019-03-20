@@ -250,7 +250,7 @@ namespace ppe_gestion_theatre
 
                 dt.Rows.Add(uneRepresentation, nomPiece, date, heure, places, duree, prix);
             }
-
+            
 
             // La première colonne contenant l'objet ne sera pas visible
             dgvListeRepresentations.Columns["representation"].Visible = false;
