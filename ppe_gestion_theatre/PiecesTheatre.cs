@@ -230,18 +230,20 @@ namespace ppe_gestion_theatre
                 leTypePublic = comboBoxPublic.SelectedItem as PublicType;
                 leTheme = comboBoxTheme.SelectedItem as Theme;
 
-                
+
                 if (grbDetails.Text == "Modifier cette pièce de théatre")
                 {
-                    TheaterPiece unePiece = new TheaterPiece(int.Parse(lblIdPiece.Text), textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
+                    TimeSpan dureeTS = TimeSpan.FromMinutes(double.Parse(textBoxDuree.Text));
+                    float dureeFl = (float)dureeTS.TotalHours;
+                    TheaterPiece unePiece = new TheaterPiece(int.Parse(lblIdPiece.Text), textBoxNomPiece.Text, textBoxCommentaire.Text, dureeFl, float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
                     ModulePiecesTheatre.EditTheaterPiece(unePiece);
                 }
-                else if(grbDetails.Text == "Ajout d'une pièce de théatre")
+                else if (grbDetails.Text == "Ajout d'une pièce de théatre")
                 {
-                    TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
+                    TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, int.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
                     ModulePiecesTheatre.AddTheaterPiece(unePiece);
                 }
-                
+
 
                 grbDetails.Text = "Détails de la pièce de théatre";
                 lblLaPiece.Visible = true;
@@ -416,7 +418,7 @@ namespace ppe_gestion_theatre
 
             if (rep == DialogResult.Yes)
             {
-                
+
                 dgvListePiecesTheatre.Enabled = true;
 
                 grbDetails.Text = "Détails de la pièce de théatre";
@@ -471,58 +473,136 @@ namespace ppe_gestion_theatre
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            
-            grbDetails.Text = "Modifier cette pièce de théatre";
-            
-            textBoxNomPiece.Text = lblLaPiece.Text;
-            textBoxPrixFixe.Text = lblLePrixFixe.Text;
-            textBoxDuree.Text = lblLaDuree.Text;
-            textBoxCommentaire.Text = lblLaDescription.Text;
 
-            lblLaPiece.Visible = false;
-            lblLeTheme.Visible = false;
-            lblLaDuree.Visible = false;
-            lblLeAuteur.Visible = false;
-            lblLeType.Visible = false;
-            lblLaDescription.Visible = false;
-            lblLaCompagnie.Visible = false;
-            lblLePrixFixe.Visible = false;
-            lblLaNationalite.Visible = false;
+            // Récupération du numéro de la ligne (index)
+            int indexRow = dgvListePiecesTheatre.CurrentRow.Index;
 
-            dgvListePiecesTheatre.Enabled = false;
-
-            btnModifier.Visible = false;
-            btnSupprimer.Visible = false;
-            btnValider.Visible = true;
-            btnAnnuler.Visible = true;
-
-            btnAjouter.Enabled = false;
-
-            textBoxNomPiece.Visible = true;
-            textBoxPrixFixe.Visible = true;
-            textBoxDuree.Visible = true;
-            textBoxCommentaire.Visible = true;
-            comboBoxAuteur.Visible = true;
-            comboBoxCompagnie.Visible = true;
-            comboBoxTheme.Visible = true;
-            comboBoxPublic.Visible = true;
+            // Si la ligne contient bien une valeur, on valorise les labels avec les valeurs correspondantes
+            if (dgvListePiecesTheatre.Rows[indexRow].Cells[0].Value != DBNull.Value)
+            {
+                TheaterPiece maPieceEditee = (TheaterPiece)dgvListePiecesTheatre.Rows[indexRow].Cells[0].Value;
 
 
-            List<Author> lesAuteurs = PiecesTheatreDAO.GetAuthors();
-            comboBoxAuteur.DataSource = lesAuteurs;
-            comboBoxAuteur.DisplayMember = "author_lastname";
+                grbDetails.Text = "Modifier cette pièce de théatre";
 
-            List<Theme> lesThemes = PiecesTheatreDAO.GetThemes();
-            comboBoxTheme.DataSource = lesThemes;
-            comboBoxTheme.DisplayMember = "theme_name";
 
-            List<PublicType> lesTypes = PiecesTheatreDAO.GetTypesPublic();
-            comboBoxPublic.DataSource = lesTypes;
-            comboBoxPublic.DisplayMember = "publicType_name";
+                textBoxNomPiece.Text = lblLaPiece.Text;
+                textBoxPrixFixe.Text = lblLePrixFixe.Text;
+                textBoxDuree.Text = lblLaDuree.Text;
+                textBoxCommentaire.Text = lblLaDescription.Text;
 
-            List<Company> lesCompagnies = PiecesTheatreDAO.GetCompagnies();
-            comboBoxCompagnie.DataSource = lesCompagnies;
-            comboBoxCompagnie.DisplayMember = "company_name";
+
+
+                lblLaPiece.Visible = false;
+                lblLeTheme.Visible = false;
+                lblLaDuree.Visible = false;
+                lblLeAuteur.Visible = false;
+                lblLeType.Visible = false;
+                lblLaDescription.Visible = false;
+                lblLaCompagnie.Visible = false;
+                lblLePrixFixe.Visible = false;
+                lblLaNationalite.Visible = false;
+
+                dgvListePiecesTheatre.Enabled = false;
+
+                btnModifier.Visible = false;
+                btnSupprimer.Visible = false;
+                btnValider.Visible = true;
+                btnAnnuler.Visible = true;
+
+                btnAjouter.Enabled = false;
+
+                textBoxNomPiece.Visible = true;
+                textBoxPrixFixe.Visible = true;
+                textBoxDuree.Visible = true;
+                textBoxCommentaire.Visible = true;
+                comboBoxAuteur.Visible = true;
+                comboBoxCompagnie.Visible = true;
+                comboBoxTheme.Visible = true;
+                comboBoxPublic.Visible = true;
+
+
+                List<Author> lesAuteurs = PiecesTheatreDAO.GetAuthors();
+                comboBoxAuteur.DataSource = lesAuteurs;
+                comboBoxAuteur.DisplayMember = "author_lastname";
+
+                int indAuteur = 0;
+                bool trouveAuteur = false;
+                while (trouveAuteur == false && indAuteur < comboBoxAuteur.Items.Count)
+                {
+                    Author monAuteur = comboBoxAuteur.Items[indAuteur] as Author;
+                    if (monAuteur.Author_id == maPieceEditee.TheaterPiece_author.Author_id)
+                    {
+                        comboBoxAuteur.SelectedIndex = indAuteur;
+                        trouveAuteur = true;
+                    }
+                    else
+                    {
+                        indAuteur++;
+                    }
+                }
+
+
+                List<Theme> lesThemes = PiecesTheatreDAO.GetThemes();
+                comboBoxTheme.DataSource = lesThemes;
+                comboBoxTheme.DisplayMember = "theme_name";
+
+                int indTheme = 0;
+                bool trouveTheme = false;
+                while (trouveTheme == false && indTheme < comboBoxTheme.Items.Count)
+                {
+                    Theme monTheme = comboBoxTheme.Items[indTheme] as Theme;
+                    if (monTheme.Theme_id == maPieceEditee.TheaterPiece_theme.Theme_id)
+                    {
+                        comboBoxTheme.SelectedIndex = indTheme;
+                        trouveTheme = true;
+                    }
+                    else
+                    {
+                        indTheme++;
+                    }
+                }
+
+                List<PublicType> lesTypes = PiecesTheatreDAO.GetTypesPublic();
+                comboBoxPublic.DataSource = lesTypes;
+                comboBoxPublic.DisplayMember = "publicType_name";
+
+                int indType = 0;
+                bool trouveType = false;
+                while (trouveType == false && indType < comboBoxPublic.Items.Count)
+                {
+                    PublicType monType = comboBoxPublic.Items[indType] as PublicType;
+                    if (monType.PublicType_id == maPieceEditee.TheaterPiece_publicType.PublicType_id)
+                    {
+                        comboBoxPublic.SelectedIndex = indType;
+                        trouveType = true;
+                    }
+                    else
+                    {
+                        indType++;
+                    }
+                }
+
+                List<Company> lesCompagnies = PiecesTheatreDAO.GetCompagnies();
+                comboBoxCompagnie.DataSource = lesCompagnies;
+                comboBoxCompagnie.DisplayMember = "company_name";
+
+                int indCompagnie = 0;
+                bool trouveCompagnie = false;
+                while (trouveCompagnie == false && indCompagnie < comboBoxCompagnie.Items.Count)
+                {
+                    Company maCompagnie = comboBoxCompagnie.Items[indCompagnie] as Company;
+                    if (maCompagnie.Company_id == maPieceEditee.TheaterPiece_company.Company_id)
+                    {
+                        comboBoxCompagnie.SelectedIndex = indCompagnie;
+                        trouveCompagnie = true;
+                    }
+                    else
+                    {
+                        indCompagnie++;
+                    }
+                }
+            }
         }
 
         private void btnSupprimer_Click(object sender, EventArgs e)
@@ -536,6 +616,11 @@ namespace ppe_gestion_theatre
             }
 
             ListePiece();
+        }
+
+        private void lblPrixFixe_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

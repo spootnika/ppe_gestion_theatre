@@ -777,7 +777,7 @@ namespace TheaterDAL
                 string reqRemove = "DELETE FROM Theater_piece WHERE theaterPiece_id = @id;";
 
                 SqlCommand commRemovePiece = new SqlCommand(reqRemove, connexion);
-                
+
                 commRemovePiece.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int));
                 
                 commRemovePiece.Parameters["@id"].Value = unePiece.TheaterPiece_id;
