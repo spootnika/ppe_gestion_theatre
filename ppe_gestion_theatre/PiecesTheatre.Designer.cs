@@ -67,6 +67,7 @@
             this.errorProviderNomPiece = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderDuree = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderPrixFixe = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblIdPiece = new System.Windows.Forms.Label();
             this.grbDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListePiecesTheatre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderNomPiece)).BeginInit();
@@ -77,6 +78,7 @@
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.lblIdPiece);
             this.grbDetails.Controls.Add(this.btnAnnuler);
             this.grbDetails.Controls.Add(this.btnValider);
             this.grbDetails.Controls.Add(this.comboBoxCompagnie);
@@ -193,7 +195,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxCommentaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.textBoxCommentaire.Location = new System.Drawing.Point(115, 184);
+            this.textBoxCommentaire.Location = new System.Drawing.Point(133, 187);
             this.textBoxCommentaire.Multiline = true;
             this.textBoxCommentaire.Name = "textBoxCommentaire";
             this.textBoxCommentaire.Size = new System.Drawing.Size(433, 92);
@@ -331,6 +333,7 @@
             this.btnModifier.TabIndex = 13;
             this.btnModifier.Text = "Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
             // 
             // btnSupprimer
             // 
@@ -344,6 +347,7 @@
             this.btnSupprimer.TabIndex = 2;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // lblPrixFixe
             // 
@@ -495,6 +499,15 @@
             // 
             this.errorProviderPrixFixe.ContainerControl = this;
             // 
+            // lblIdPiece
+            // 
+            this.lblIdPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdPiece.ForeColor = System.Drawing.Color.Black;
+            this.lblIdPiece.Location = new System.Drawing.Point(11, 303);
+            this.lblIdPiece.Name = "lblIdPiece";
+            this.lblIdPiece.Size = new System.Drawing.Size(167, 22);
+            this.lblIdPiece.TabIndex = 38;
+            // 
             // PiecesTheatre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -561,5 +574,6 @@
         private System.Windows.Forms.ErrorProvider errorProviderNomPiece;
         private System.Windows.Forms.ErrorProvider errorProviderDuree;
         private System.Windows.Forms.ErrorProvider errorProviderPrixFixe;
+        private System.Windows.Forms.Label lblIdPiece;
     }
 }

@@ -159,5 +159,10 @@ namespace TheaterBO
             this.TheaterPiece_publicType = publicType;
             this.TheaterPiece_theme = theme;
         }
+
+        public TheaterPiece(int id)
+        {
+            this.TheaterPiece_id = id;
+        }
     }
 }

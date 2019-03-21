@@ -63,6 +63,7 @@ namespace ppe_gestion_theatre
             lblLaCompagnie.Visible = true;
             lblLePrixFixe.Visible = true;
             lblLaNationalite.Visible = true;
+            lblIdPiece.Visible = false;
 
             textBoxNomPiece.Visible = false;
             textBoxPrixFixe.Visible = false;
@@ -92,6 +93,9 @@ namespace ppe_gestion_theatre
 
                 // Ajout du nom de la pièce
                 lblLaPiece.Text = laPiece.TheaterPiece_name;
+
+                // Ajout id de la piece
+                lblIdPiece.Text = laPiece.TheaterPiece_id.ToString();
 
 
 
@@ -226,8 +230,18 @@ namespace ppe_gestion_theatre
                 leTypePublic = comboBoxPublic.SelectedItem as PublicType;
                 leTheme = comboBoxTheme.SelectedItem as Theme;
 
-                TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
-                ModulePiecesTheatre.AddTheaterPiece(unePiece);
+                
+                if (grbDetails.Text == "Modifier cette pièce de théatre")
+                {
+                    TheaterPiece unePiece = new TheaterPiece(int.Parse(lblIdPiece.Text), textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
+                    ModulePiecesTheatre.EditTheaterPiece(unePiece);
+                }
+                else if(grbDetails.Text == "Ajout d'une pièce de théatre")
+                {
+                    TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, float.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
+                    ModulePiecesTheatre.AddTheaterPiece(unePiece);
+                }
+                
 
                 grbDetails.Text = "Détails de la pièce de théatre";
                 lblLaPiece.Visible = true;
@@ -294,6 +308,7 @@ namespace ppe_gestion_theatre
 
             // Ajout des colonnes necéssaires au tableau
             dt.Columns.Add(new DataColumn("piece", typeof(TheaterPiece)));
+            dt.Columns.Add(new DataColumn("idPiece", typeof(int)));
 
             dt.Columns.Add(new DataColumn("nom", typeof(string)));
             dgvListePiecesTheatre.Columns["Nom"].HeaderText = "Nom de la pièce";
@@ -358,6 +373,8 @@ namespace ppe_gestion_theatre
             // Pour chaque piece dans la liste lesPiecesTheatres, on affiche les données dans les colonnes 
             foreach (TheaterPiece unePiece in lesPiecesTheatre)
             {
+                int idPiece = unePiece.TheaterPiece_id;
+
                 string nomPiece = unePiece.TheaterPiece_name;
 
                 string nomAuteur = unePiece.TheaterPiece_author.Author_firstname + " " + unePiece.TheaterPiece_author.Author_lastname;
@@ -374,12 +391,13 @@ namespace ppe_gestion_theatre
 
                 float prix = unePiece.TheaterPiece_seatsPrice;
 
-                dt.Rows.Add(unePiece, nomPiece, nomAuteur, typePublic, nomTheme, duree, prix);
+                dt.Rows.Add(unePiece, idPiece, nomPiece, nomAuteur, typePublic, nomTheme, duree, prix);
             }
 
 
             // La première colonne contenant l'objet ne sera pas visible
             dgvListePiecesTheatre.Columns["piece"].Visible = false;
+            // dgvListePiecesTheatre.Columns["idPiece"].Visible = false;
         }
 
         private void PiecesTheatre_Load(object sender, EventArgs e)
@@ -446,7 +464,78 @@ namespace ppe_gestion_theatre
                 lblLePrixFixe.Text = "0 €";
 
                 lblLaNationalite.Text = "";
+
+                btnAjouter.Enabled = true;
             }
+        }
+
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            
+            grbDetails.Text = "Modifier cette pièce de théatre";
+            
+            textBoxNomPiece.Text = lblLaPiece.Text;
+            textBoxPrixFixe.Text = lblLePrixFixe.Text;
+            textBoxDuree.Text = lblLaDuree.Text;
+            textBoxCommentaire.Text = lblLaDescription.Text;
+
+            lblLaPiece.Visible = false;
+            lblLeTheme.Visible = false;
+            lblLaDuree.Visible = false;
+            lblLeAuteur.Visible = false;
+            lblLeType.Visible = false;
+            lblLaDescription.Visible = false;
+            lblLaCompagnie.Visible = false;
+            lblLePrixFixe.Visible = false;
+            lblLaNationalite.Visible = false;
+
+            dgvListePiecesTheatre.Enabled = false;
+
+            btnModifier.Visible = false;
+            btnSupprimer.Visible = false;
+            btnValider.Visible = true;
+            btnAnnuler.Visible = true;
+
+            btnAjouter.Enabled = false;
+
+            textBoxNomPiece.Visible = true;
+            textBoxPrixFixe.Visible = true;
+            textBoxDuree.Visible = true;
+            textBoxCommentaire.Visible = true;
+            comboBoxAuteur.Visible = true;
+            comboBoxCompagnie.Visible = true;
+            comboBoxTheme.Visible = true;
+            comboBoxPublic.Visible = true;
+
+
+            List<Author> lesAuteurs = PiecesTheatreDAO.GetAuthors();
+            comboBoxAuteur.DataSource = lesAuteurs;
+            comboBoxAuteur.DisplayMember = "author_lastname";
+
+            List<Theme> lesThemes = PiecesTheatreDAO.GetThemes();
+            comboBoxTheme.DataSource = lesThemes;
+            comboBoxTheme.DisplayMember = "theme_name";
+
+            List<PublicType> lesTypes = PiecesTheatreDAO.GetTypesPublic();
+            comboBoxPublic.DataSource = lesTypes;
+            comboBoxPublic.DisplayMember = "publicType_name";
+
+            List<Company> lesCompagnies = PiecesTheatreDAO.GetCompagnies();
+            comboBoxCompagnie.DataSource = lesCompagnies;
+            comboBoxCompagnie.DisplayMember = "company_name";
+        }
+
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            var rep = MessageBox.Show("Êtes vous sûr de vouloir supprimer cette pièce de théatre ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (rep == DialogResult.Yes)
+            {
+                TheaterPiece unePiece = new TheaterPiece(int.Parse(lblIdPiece.Text));
+                ModulePiecesTheatre.RemoveTheaterPiece(unePiece);
+            }
+
+            ListePiece();
         }
     }
 }
