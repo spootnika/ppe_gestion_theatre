@@ -34,6 +34,8 @@
             this.btnSupprimer = new System.Windows.Forms.Button();
             this.dgvListeReservations = new System.Windows.Forms.DataGridView();
             this.grbDetails = new System.Windows.Forms.GroupBox();
+            this.btnAnnulerEdition = new System.Windows.Forms.Button();
+            this.btnValiderEdition = new System.Windows.Forms.Button();
             this.lblLePrixReel = new System.Windows.Forms.Label();
             this.lblPrixReel = new System.Windows.Forms.Label();
             this.lblLesPlacesRest = new System.Windows.Forms.Label();
@@ -128,6 +130,7 @@
             this.btnSupprimer.TabIndex = 2;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = false;
+            this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
             // 
             // dgvListeReservations
             // 
@@ -142,6 +145,8 @@
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
+            this.grbDetails.Controls.Add(this.btnAnnulerEdition);
+            this.grbDetails.Controls.Add(this.btnValiderEdition);
             this.grbDetails.Controls.Add(this.lblLePrixReel);
             this.grbDetails.Controls.Add(this.lblPrixReel);
             this.grbDetails.Controls.Add(this.lblLesPlacesRest);
@@ -192,6 +197,36 @@
             this.grbDetails.TabIndex = 4;
             this.grbDetails.TabStop = false;
             this.grbDetails.Text = "Détails de la réservation";
+            // 
+            // btnAnnulerEdition
+            // 
+            this.btnAnnulerEdition.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnAnnulerEdition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAnnulerEdition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnnulerEdition.ForeColor = System.Drawing.Color.White;
+            this.btnAnnulerEdition.Location = new System.Drawing.Point(397, 306);
+            this.btnAnnulerEdition.Name = "btnAnnulerEdition";
+            this.btnAnnulerEdition.Size = new System.Drawing.Size(88, 27);
+            this.btnAnnulerEdition.TabIndex = 44;
+            this.btnAnnulerEdition.Text = "Annuler";
+            this.btnAnnulerEdition.UseVisualStyleBackColor = false;
+            this.btnAnnulerEdition.Visible = false;
+            this.btnAnnulerEdition.Click += new System.EventHandler(this.btnAnnulerEdition_Click);
+            // 
+            // btnValiderEdition
+            // 
+            this.btnValiderEdition.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnValiderEdition.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnValiderEdition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnValiderEdition.ForeColor = System.Drawing.Color.White;
+            this.btnValiderEdition.Location = new System.Drawing.Point(316, 306);
+            this.btnValiderEdition.Name = "btnValiderEdition";
+            this.btnValiderEdition.Size = new System.Drawing.Size(75, 27);
+            this.btnValiderEdition.TabIndex = 43;
+            this.btnValiderEdition.Text = "Valider";
+            this.btnValiderEdition.UseVisualStyleBackColor = false;
+            this.btnValiderEdition.Visible = false;
+            this.btnValiderEdition.Click += new System.EventHandler(this.btnValiderEdition_Click);
             // 
             // lblLePrixReel
             // 
@@ -259,6 +294,7 @@
             this.cmbHeures.Size = new System.Drawing.Size(218, 24);
             this.cmbHeures.TabIndex = 37;
             this.cmbHeures.Visible = false;
+            this.cmbHeures.SelectedIndexChanged += new System.EventHandler(this.cmbHeures_SelectedIndexChanged);
             this.cmbHeures.SelectedValueChanged += new System.EventHandler(this.cmbHeures_SelectedValueChanged);
             // 
             // lblHeure
@@ -491,6 +527,7 @@
             this.btnModifier.TabIndex = 13;
             this.btnModifier.Text = "Modifier";
             this.btnModifier.UseVisualStyleBackColor = false;
+            this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
             // 
             // lblTotalPrix
             // 
@@ -762,5 +799,7 @@
         private System.Windows.Forms.Label lblPlacesRest;
         private System.Windows.Forms.Label lblPrixReel;
         private System.Windows.Forms.Label lblLePrixReel;
+        private System.Windows.Forms.Button btnValiderEdition;
+        private System.Windows.Forms.Button btnAnnulerEdition;
     }
 }
