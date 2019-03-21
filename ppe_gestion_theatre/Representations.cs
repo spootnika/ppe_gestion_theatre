@@ -594,16 +594,10 @@ namespace ppe_gestion_theatre
                 //affichage nb places
                 textBoxModifPlaces.Text = laRepres.Show_seats.ToString();
                 //affichage heure
-                textBoxModifHeure.Text = laRepres.Show_dateTime.Hour.ToString()+":"+laRepres.Show_dateTime.Minute.ToString();
+                textBoxModifHeure.Text = laRepres.Show_dateTime.ToString("HH:mm");
                 //affichage date
                 dateTimePickerModifDate.Text = laRepres.Show_dateTime.Date.ToString();
-                //affichage prix
-                //on affiche le prix
-                //TheaterPiece maPiece = ModulePiecesTheatre.GetOneTheaterPiece(cbModifPiece.Text);
-                //if (maPiece != null)
-                //{
-                //    lblPrixFixeModifRep.Text = maPiece.TheaterPiece_seatsPrice.ToString() + " €";
-                //}
+                
 
             }
         }
@@ -682,8 +676,8 @@ namespace ppe_gestion_theatre
                 {
                     TimeSpan madureeFin = TimeSpan.FromHours((double)duree) + uneRepresentation.Show_dateTime.TimeOfDay;
 
-
-                    if (uneRepresentation.Show_dateTime.Date == show.Show_dateTime.Date)
+                   
+                    if (uneRepresentation.Show_dateTime.Date == show.Show_dateTime.Date && uneRepresentation.Show_id!=idShow)
                     {
                         if (uneRepresentation.Show_dateTime.TimeOfDay <= show.Show_dateTime.TimeOfDay && show.Show_dateTime.TimeOfDay < madureeFin)
                         {
