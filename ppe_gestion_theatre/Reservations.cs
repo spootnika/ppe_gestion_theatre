@@ -18,9 +18,13 @@ namespace ppe_gestion_theatre
         private float taux;
         private float prixPlace;
         private List<Show> lesRepresentations;
+        private Show laRepresAvEdit = null;
         private Show laRepres;
         LoginInfo currentUser;
+        private Spectator editReserv;
         private int nbPlacesRest;
+        private int nbPlacesAvEdit;
+        private bool isEdit;
 
         public Reservations(LoginInfo currentUser)
         {
@@ -28,6 +32,8 @@ namespace ppe_gestion_theatre
             this.currentUser = currentUser;
 
             LoadDataGridView();
+
+            dgvListeReservations.ClearSelection();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -120,7 +126,7 @@ namespace ppe_gestion_theatre
                 lblLaCompagnie.Text = String.Empty;
 
                 lblLePrixFixe.Text = "€";
-                
+
 
                 lblLeNom.Text = String.Empty;
 
@@ -151,6 +157,8 @@ namespace ppe_gestion_theatre
         private void btnAjouter_Click(object sender, EventArgs e)
         {
             grbDetails.Text = "Ajouter une réservation";
+
+            isEdit = false;
 
             #region Affiche et cache les champs concernés
             btnModifier.Visible = false;
@@ -210,7 +218,7 @@ namespace ppe_gestion_theatre
                     idPieces.Add(uneRep.Show_theaterPiece.TheaterPiece_id);
             }
 
-            foreach(var unePiece in lesPieces)
+            foreach (var unePiece in lesPieces)
             {
                 if (idPieces.Contains(unePiece.TheaterPiece_id))
                     lesPiecesTriees.Add(unePiece);
@@ -412,7 +420,7 @@ namespace ppe_gestion_theatre
         // Affichage du prix total en fonction de ce qui est entré dans le champs nbPlaces
         private void txtNbPlaces_TextChanged(object sender, EventArgs e)
         {
-
+            ChangementPlacesRest(laRepresAvEdit);
             ChangementPrixTotal();
         }
 
@@ -430,19 +438,80 @@ namespace ppe_gestion_theatre
 
                     lblLePrixReel.Text = (laPiece.TheaterPiece_seatsPrice + (laPiece.TheaterPiece_seatsPrice * laRepres.Show_priceRate.PriceRate_rate)).ToString() + " €";
 
-                    if (ModuleReservations.GetNbPlacesReservees(uneRep) != -1)
-                    {
-                        nbPlacesRest = uneRep.Show_seats - ModuleReservations.GetNbPlacesReservees(uneRep);
-                        lblLesPlacesRest.Text = nbPlacesRest.ToString();
-                    }
-                    else
-                    {
-                        lblLesPlacesRest.Text = uneRep.Show_seats.ToString();
-                    }
+                    ChangementPlacesRest(laRepresAvEdit);
                 }
             }
 
             ChangementPrixTotal();
+        }
+
+        // Fonction changement places restantes dynamique
+        private void ChangementPlacesRest(Show repAvEdit)
+        {
+            TheaterPiece laPiece;
+            if (cmbPiece.SelectedItem != null)
+            {
+                laPiece = cmbPiece.SelectedItem as TheaterPiece;
+            }
+            else
+            {
+                laPiece = editReserv.Spectator_show.Show_theaterPiece;
+            }
+
+            lesRepresentations = ModuleRepresentations.GetFilterShows(laPiece.TheaterPiece_id);
+            Show uneRep = laRepres;
+
+            if (uneRep == null)
+            {
+                foreach (var rep in lesRepresentations)
+                {
+                    if (cmbDates.SelectedItem != null && cmbHeures.SelectedItem != null && cmbPiece.SelectedItem != null)
+                    {
+                        if (rep.Show_dateTime.ToString("dd/MM/yyyy") == cmbDates.SelectedItem.ToString() && rep.Show_dateTime.ToString("HH:mm") == cmbHeures.SelectedItem.ToString() && rep.Show_theaterPiece.TheaterPiece_id == laPiece.TheaterPiece_id)
+                        {
+                            uneRep = rep;
+                        }
+                    }
+                    else
+                    {
+                        if (rep.Show_dateTime.ToString("dd/MM/yyyy") == editReserv.Spectator_show.Show_dateTime.ToString("dd/MM/yyyy") && rep.Show_dateTime.ToString("HH:mm") == editReserv.Spectator_show.Show_dateTime.ToString("HH:mm") && rep.Show_theaterPiece.TheaterPiece_id == editReserv.Spectator_show.Show_theaterPiece.TheaterPiece_id)
+                        {
+                            uneRep = rep;
+                        }
+                    }
+                }
+            }
+
+            int repPlacesRes = ModuleReservations.GetNbPlacesReservees(laRepres);
+            int bookedPlaces = 0;
+
+            if (repPlacesRes == -1)
+            {
+                repPlacesRes = 0;
+            }
+
+            if (txtNbPlaces.Text != String.Empty)
+            {
+                bookedPlaces = Int32.Parse(txtNbPlaces.Text);
+            }
+
+            if (isEdit && uneRep.Show_id == repAvEdit.Show_id)
+            {
+                nbPlacesRest = uneRep.Show_seats - (repPlacesRes - nbPlacesAvEdit) - bookedPlaces;
+            }
+            else
+            {
+                nbPlacesRest = uneRep.Show_seats - repPlacesRes - bookedPlaces;
+            }
+
+            if (nbPlacesRest < 0)
+            {
+                lblLesPlacesRest.Text = "0";
+            }
+            else
+            {
+                lblLesPlacesRest.Text = nbPlacesRest.ToString();
+            }
         }
 
         // Fonction changement prix total
@@ -604,7 +673,7 @@ namespace ppe_gestion_theatre
                 string piece = uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_name;
 
                 // Date et heure de la représentation
-                string representation = uneReservation.Spectator_show.Show_dateTime.ToString("MM/dd/yyyy à H:mm");
+                string representation = uneReservation.Spectator_show.Show_dateTime.ToString("dd/MM/yyyy à H:mm");
 
                 // Durée de la pièce
                 double doubleConvertDuree = double.Parse(uneReservation.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
@@ -639,6 +708,337 @@ namespace ppe_gestion_theatre
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // Au click sur le bouton supprimer
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            var rep = MessageBox.Show("Êtes vous sûr de vouloir supprimmer cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (rep == DialogResult.Yes)
+            {
+                int indexRow = dgvListeReservations.CurrentRow.Index;
+                Spectator laReserv = (Spectator)dgvListeReservations.Rows[indexRow].Cells[0].Value;
+
+                string message = ModuleReservations.DeleteReservation(laReserv);
+
+                MessageBox.Show(message);
+
+                // On valorise chaque label avec une valeur vide
+                lblLaPiece.Text = String.Empty;
+
+                lblLeTheme.Text = String.Empty;
+
+                lblLaDuree.Text = String.Empty;
+
+                lblLeType.Text = String.Empty;
+
+                lblLaRepresentation.Text = String.Empty;
+
+                lblLaCompagnie.Text = String.Empty;
+
+                lblLePrixFixe.Text = "€";
+
+
+                lblLeNom.Text = String.Empty;
+
+                lblLePrenom.Text = String.Empty;
+
+                lblLeNbPlaces.Text = String.Empty;
+
+                lblLeEmail.Text = String.Empty;
+
+                lblLeTelephone.Text = String.Empty;
+
+                lblLePrixTotal.Text = "0 €";
+
+                LoadDataGridView();
+            }
+
+        }
+
+        private void cmbHeures_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        // clique sur le bouton Edition
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            if (dgvListeReservations.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Veuillez sélectionner une réservation");
+            }
+            else
+            {
+                int indexRow = dgvListeReservations.CurrentRow.Index;
+
+                // Si la ligne contient bien une valeur, on valorise les labels avec les valeurs correspondantes
+                if (dgvListeReservations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+                {
+                    editReserv = (Spectator)dgvListeReservations.Rows[indexRow].Cells[0].Value;
+                    laRepresAvEdit = editReserv.Spectator_show;
+
+                    grbDetails.Text = "Modifier une réservation";
+
+                    isEdit = true;
+                    nbPlacesAvEdit = editReserv.Spectator_seatsBooked;
+
+                    #region Affiche et cache les champs concernés
+                    btnModifier.Visible = false;
+                    btnSupprimer.Visible = false;
+                    lblLaPiece.Visible = false;
+                    lblLaRepresentation.Visible = false;
+                    lblLeNom.Visible = false;
+                    lblLePrenom.Visible = false;
+                    lblLeNbPlaces.Visible = false;
+                    lblLeEmail.Visible = false;
+                    lblLeTelephone.Visible = false;
+                    dgvListeReservations.Enabled = false;
+                    dgvListeReservations.ClearSelection();
+
+                    btnValiderEdition.Visible = true;
+                    btnAnnulerEdition.Visible = true;
+                    cmbPiece.Visible = true;
+                    cmbDates.Visible = true;
+                    cmbHeures.Visible = true;
+                    txtNom.Visible = true;
+                    txtPrenom.Visible = true;
+                    txtNbPlaces.Visible = true;
+                    txtEmail.Visible = true;
+                    txtTelephone.Visible = true;
+                    lblHeure.Visible = true;
+                    lblPlacesRest.Visible = true;
+                    lblLesPlacesRest.Visible = true;
+                    lblLesPlacesRest.Text = "";
+                    lblLePrixReel.Visible = true;
+                    lblPrixReel.Visible = true;
+                    #endregion Affiche et cache les champs concernés
+
+                    lblReprésentation.Text = "Dates : ";
+
+                    lblLeTheme.Text = editReserv.Spectator_show.Show_theaterPiece.TheaterPiece_theme.Theme_name;
+
+                    double doubleConvertDuree = double.Parse(editReserv.Spectator_show.Show_theaterPiece.TheaterPiece_duration.ToString());
+                    TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+                    lblLaDuree.Text = convertDuree.ToString();
+
+                    lblLeType.Text = editReserv.Spectator_show.Show_theaterPiece.TheaterPiece_publicType.PublicType_name;
+                    lblLaCompagnie.Text = editReserv.Spectator_show.Show_theaterPiece.TheaterPiece_company.Company_name;
+
+                    lblLaPiece.Text = String.Empty;
+                    lblLaRepresentation.Text = String.Empty;
+
+                    lblLeNom.Text = String.Empty;
+                    lblLePrenom.Text = String.Empty;
+                    lblLeNbPlaces.Text = String.Empty;
+                    lblLeEmail.Text = String.Empty;
+                    lblLeTelephone.Text = String.Empty;
+
+                    txtEmail.Text = editReserv.Spectator_email;
+                    txtNbPlaces.Text = editReserv.Spectator_seatsBooked.ToString();
+                    txtNom.Text = editReserv.Spectator_lastname;
+                    txtPrenom.Text = editReserv.Spectator_firstname;
+                    txtTelephone.Text = editReserv.Spectator_phone;
+
+
+                    List<TheaterPiece> lesPieces = ModulePiecesTheatre.GetTheaterPieces();
+
+                    List<Show> lesReps = ModuleRepresentations.GetShows();
+                    List<int> idPieces = new List<int>();
+                    List<TheaterPiece> lesPiecesTriees = new List<TheaterPiece>();
+                    foreach (var uneRep in lesReps)
+                    {
+                        if (!idPieces.Contains(uneRep.Show_theaterPiece.TheaterPiece_id))
+                            idPieces.Add(uneRep.Show_theaterPiece.TheaterPiece_id);
+                    }
+
+                    foreach (var unePiece in lesPieces)
+                    {
+                        if (idPieces.Contains(unePiece.TheaterPiece_id))
+                            lesPiecesTriees.Add(unePiece);
+                    }
+
+                    cmbPiece.DataSource = lesPiecesTriees;
+                    cmbPiece.DisplayMember = "theaterPiece_name";
+
+                    int ind = 0;
+                    bool trouve = false;
+                    while (trouve == false && ind <= cmbPiece.Items.Count)
+                    {
+                        TheaterPiece itemPiece = cmbPiece.Items[ind] as TheaterPiece;
+                        if (itemPiece.TheaterPiece_id == editReserv.Spectator_show.Show_theaterPiece.TheaterPiece_id)
+                        {
+                            cmbPiece.SelectedIndex = ind;
+                            trouve = true;
+                        }
+                        else
+                        {
+                            ind++;
+                        }
+                    }
+
+                    string date = editReserv.Spectator_show.Show_dateTime.ToString("dd/MM/yyyy");
+                    ind = 0;
+                    trouve = false;
+                    while (trouve == false && ind <= cmbDates.Items.Count)
+                    {
+                        if (date == cmbDates.Items[ind].ToString())
+                        {
+                            cmbDates.SelectedIndex = ind;
+                            trouve = true;
+                        }
+                        else
+                        {
+                            ind++;
+                        }
+                    }
+
+
+                    string heure = editReserv.Spectator_show.Show_dateTime.ToString("HH:mm");
+                    ind = 0;
+                    trouve = false;
+                    while (trouve == false && ind <= cmbHeures.Items.Count)
+                    {
+                        if (heure == cmbHeures.Items[ind].ToString())
+                        {
+                            cmbHeures.SelectedIndex = ind;
+                            trouve = true;
+                        }
+                        else
+                        {
+                            ind++;
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner une réservation");
+                }
+            }
+        }
+
+        // Clique bouton annuler édition
+        private void btnAnnulerEdition_Click(object sender, EventArgs e)
+        {
+            var rep = MessageBox.Show("Êtes vous sûr de vouloir annuler l'édition de cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (rep == DialogResult.Yes)
+            {
+                grbDetails.Text = "Détails de la réservation";
+                cmbHeures.Items.Clear();
+                cmbDates.Items.Clear();
+                laRepresAvEdit = null;
+
+                #region Affiche et cache les champs concernés
+                btnValiderEdition.Visible = false;
+                btnAnnulerEdition.Visible = false;
+                cmbPiece.Visible = false;
+                cmbDates.Visible = false;
+                cmbHeures.Visible = false;
+                txtNom.Visible = false;
+                txtPrenom.Visible = false;
+                txtNbPlaces.Visible = false;
+                txtEmail.Visible = false;
+                txtTelephone.Visible = false;
+                lblHeure.Visible = false;
+                lblPlacesRest.Visible = false;
+                lblLesPlacesRest.Visible = false;
+                lblLesPlacesRest.Text = "";
+                lblLePrixReel.Visible = false;
+                lblPrixReel.Visible = false;
+
+                btnModifier.Visible = true;
+                btnSupprimer.Visible = true;
+                lblLaPiece.Visible = true;
+                lblLaRepresentation.Visible = true;
+                lblLeNom.Visible = true;
+                lblLePrenom.Visible = true;
+                lblLeNbPlaces.Visible = true;
+                lblLeEmail.Visible = true;
+                lblLeTelephone.Visible = true;
+                dgvListeReservations.Enabled = true;
+                #endregion Affiche et cache les champs concernés
+
+                lblReprésentation.Text = "Représentation :";
+                lblLeTheme.Text = String.Empty;
+                lblLaDuree.Text = String.Empty;
+                lblLeType.Text = String.Empty;
+                lblLaCompagnie.Text = String.Empty;
+                lblLePrixFixe.Text = "€";
+                lblLePrixTotal.Text = "0 €";
+            }
+
+        }
+
+        // Validation de l'édition
+        private void btnValiderEdition_Click(object sender, EventArgs e)
+        {
+
+            if (txtNom.Text == null || txtNom.Text == String.Empty || txtPrenom.Text == null || txtPrenom.Text == String.Empty || txtEmail.Text == null || txtEmail.Text == String.Empty || txtTelephone.Text == null || txtTelephone.Text == String.Empty || txtNbPlaces.Text == null || txtNbPlaces.Text == String.Empty)
+            {
+                errEmail.SetError(txtEmail, "Ce champ est requis !");
+                errNbPlaces.SetError(txtNbPlaces, "Ce champ est requis !");
+                errNom.SetError(txtNom, "Ce champ est requis !");
+                errPrenom.SetError(txtPrenom, "Ce champ est requis !");
+                errPhone.SetError(txtTelephone, "Ce champ est requis !");
+            }
+            else
+            {
+                editReserv.Spectator_lastname = txtNom.Text;
+                editReserv.Spectator_firstname = txtPrenom.Text;
+                editReserv.Spectator_email = txtEmail.Text;
+                editReserv.Spectator_phone = txtTelephone.Text;
+                editReserv.Spectator_show = laRepres;
+                editReserv.Spectator_seatsBooked = int.Parse(txtNbPlaces.Text);
+                ModuleReservations.EditionReservation(editReserv);
+
+
+                grbDetails.Text = "Détails de la réservation";
+                cmbHeures.Items.Clear();
+                cmbDates.Items.Clear();
+                laRepresAvEdit = null;
+
+                #region Affiche et cache les champs concernés
+                btnValiderEdition.Visible = false;
+                btnAnnulerEdition.Visible = false;
+                cmbPiece.Visible = false;
+                cmbDates.Visible = false;
+                cmbHeures.Visible = false;
+                txtNom.Visible = false;
+                txtPrenom.Visible = false;
+                txtNbPlaces.Visible = false;
+                txtEmail.Visible = false;
+                txtTelephone.Visible = false;
+                lblHeure.Visible = false;
+                lblPlacesRest.Visible = false;
+                lblLesPlacesRest.Visible = false;
+                lblLesPlacesRest.Text = "";
+                lblPrixReel.Visible = false;
+                lblLePrixReel.Visible = false;
+
+                btnModifier.Visible = true;
+                btnSupprimer.Visible = true;
+                lblLaPiece.Visible = true;
+                lblLaRepresentation.Visible = true;
+                lblLeNom.Visible = true;
+                lblLePrenom.Visible = true;
+                lblLeNbPlaces.Visible = true;
+                lblLeEmail.Visible = true;
+                lblLeTelephone.Visible = true;
+                dgvListeReservations.Enabled = true;
+                #endregion Affiche et cache les champs concernés
+
+                lblReprésentation.Text = "Représentation :";
+                lblLeTheme.Text = String.Empty;
+                lblLaDuree.Text = String.Empty;
+                lblLeType.Text = String.Empty;
+                lblLaCompagnie.Text = String.Empty;
+                lblLePrixFixe.Text = "€";
+                lblLePrixTotal.Text = "0 €";
+                LoadDataGridView();
+                dgvListeReservations.Refresh();
+            }
         }
     }
 }

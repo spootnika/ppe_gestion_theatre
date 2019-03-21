@@ -492,6 +492,7 @@ namespace TheaterDAL
             float tauxApplique;
             PriceRate leTaux;
 
+
             cmd.CommandText = "SELECT * from Price_rate";
 
             SqlCommand cmdConcern = new SqlCommand();
@@ -499,7 +500,6 @@ namespace TheaterDAL
             cmdConcern.CommandText = "SELECT * FROM To_concern";
 
             SqlDataReader monReader = cmd.ExecuteReader();
-            SqlDataReader readerConcern = cmdConcern.ExecuteReader();
 
             while (monReader.Read())
             {
@@ -510,6 +510,7 @@ namespace TheaterDAL
                 finHeure = (TimeSpan)monReader["priceRate_endTime"];
                 tauxApplique = float.Parse(monReader["priceRate_rate"].ToString());
 
+                SqlDataReader readerConcern = cmdConcern.ExecuteReader();
                 while (readerConcern.Read())
                 {
                     int idConcernTaux = Int32.Parse(readerConcern["toConcern_priceRate"].ToString());
@@ -536,12 +537,10 @@ namespace TheaterDAL
                     }
                 }
                 readerConcern.Close();
-                readerConcern = cmdConcern.ExecuteReader();
 
                 leTaux = new PriceRate(idTaux, nomTaux, debutHeure, finHeure, tauxApplique, lesJoursTaux);
                 lesTaux.Add(leTaux);
             }
-            readerConcern.Close();
             monReader.Close();
             // Fermeture de la connexion
             maConnexion.Close();
