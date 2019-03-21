@@ -58,6 +58,12 @@ namespace TheaterBLL
             return ReservationsDAO.DeleteSpectator(laReservation);
         }
 
+        // Edition d'une réservation
+        public static void EditionReservation(Spectator laReservation)
+        {
+            ReservationsDAO.EditSpectator(laReservation);
+        }
+
         #region Validation Champs
         public static bool ValidChampTxt(string text, out string errMsg)
         {
@@ -110,10 +116,10 @@ namespace TheaterBLL
         {
             if (text.Length > 0)
             {
-                int test;
-                if (int.TryParse(text, out test))
+                int lesPlaces;
+                if (int.TryParse(text, out lesPlaces))
                 {
-                    if(test <= nbPlacesRest)
+                    if(nbPlacesRest >= 0)
                     {
                         errMsg = String.Empty;
                         return true;

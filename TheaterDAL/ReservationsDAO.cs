@@ -252,6 +252,50 @@ namespace TheaterDAL
             }
         }
 
+        // Edition d'une réservation
+        public static string EditSpectator(Spectator laReservation)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+                string reqEditSpec = "UPDATE Spectator SET spectator_lastname = @lastname, spectator_firstname = @firstname, spectator_email = @email, spectator_phone = @phone WHERE spectator_id = @id; UPDATE To_book SET toBook_show = @idShow, seatsBooked = @seatsBooked WHERE toBook_spectator = @id;";
+
+                SqlCommand commeEditSpec = new SqlCommand(reqEditSpec, connexion);
+
+                commeEditSpec.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int));
+                commeEditSpec.Parameters["@id"].Value = laReservation.Spectator_id;
+
+                commeEditSpec.Parameters.Add(new SqlParameter("@lastname", System.Data.SqlDbType.VarChar, 255));
+                commeEditSpec.Parameters["@lastname"].Value = laReservation.Spectator_lastname;
+
+                commeEditSpec.Parameters.Add(new SqlParameter("@firstname", System.Data.SqlDbType.VarChar, 255));
+                commeEditSpec.Parameters["@firstname"].Value = laReservation.Spectator_firstname;
+
+                commeEditSpec.Parameters.Add(new SqlParameter("@email", System.Data.SqlDbType.VarChar, 255));
+                commeEditSpec.Parameters["@email"].Value = laReservation.Spectator_email;
+
+                commeEditSpec.Parameters.Add(new SqlParameter("@phone", System.Data.SqlDbType.VarChar, 255));
+                commeEditSpec.Parameters["@phone"].Value = laReservation.Spectator_phone;
+
+                commeEditSpec.Parameters.Add(new SqlParameter("@idShow", System.Data.SqlDbType.Int));
+                commeEditSpec.Parameters["@idShow"].Value = laReservation.Spectator_show.Show_id;
+
+                commeEditSpec.Parameters.Add(new SqlParameter("@seatsBooked", System.Data.SqlDbType.Int));
+                commeEditSpec.Parameters["@seatsBooked"].Value = laReservation.Spectator_seatsBooked;
+
+                commeEditSpec.ExecuteNonQuery();
+
+                connexion.Close();
+
+                return "Edition effectuée avec succès !";
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
+
     }
 
 }
