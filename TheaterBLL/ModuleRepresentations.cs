@@ -34,7 +34,16 @@ namespace TheaterBLL
         {
             return RepresentationsDAO.AddShow(show);
         }
-
+        //suppression d'une représentation
+        public static int DeleteShow(int idShow)
+        {
+            return RepresentationsDAO.DelShow(idShow);
+        }
+        //modification d'un représentation
+        public static int EditShow(Show show)
+        {
+            return RepresentationsDAO.ModifShow(show);
+        }
         // Récupère la liste des représentations de la DAO, renvoie la liste
         // GetShows()
         public static List<Show> GetShows()

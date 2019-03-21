@@ -139,6 +139,70 @@ namespace TheaterDAL
             return nb;
         }
 
+        //suppression d'un représentation
+        public static int DelShow(int IdRep)
+        {
+            int nb;
+
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "DELETE FROM Show WHERE show_id = @idShow";
+            //param
+            SqlParameter idShow = new SqlParameter("@idShow", SqlDbType.Int);
+            idShow.Value = IdRep;
+            cmd.Parameters.Add(idShow);
+            //fin param
+            nb = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return nb;
+        }
+        //modification d'un représentation
+        public static int ModifShow(Show uneRepresentation)
+        {
+            try
+            {
+                int nb;
+
+                // Connexion à la BD
+                SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = maConnexion;
+                cmd.CommandText = "UPDATE Show SET show_dateTime=@dateRepresentation, show_seats=@nbPlacesRepresentation, show_priceRate=@priceRateRepresentation, show_theaterPiece=@pieceDeTheatreRepresentation WHERE show_id = @idShow";
+                //param
+                SqlParameter idShow = new SqlParameter("@idShow", SqlDbType.Int);
+                idShow.Value = uneRepresentation.Show_id;
+                cmd.Parameters.Add(idShow);
+                SqlParameter dateRep = new SqlParameter("@dateRepresentation", SqlDbType.DateTime);
+                dateRep.Value = uneRepresentation.Show_dateTime;
+                cmd.Parameters.Add(dateRep);
+                SqlParameter nbPlaces = new SqlParameter("@nbPlacesRepresentation", SqlDbType.Int);
+                nbPlaces.Value = uneRepresentation.Show_seats;
+                cmd.Parameters.Add(nbPlaces);
+                SqlParameter priceRate = new SqlParameter("@priceRateRepresentation", SqlDbType.Int);
+                priceRate.Value = uneRepresentation.Show_priceRate.PriceRate_id;
+                cmd.Parameters.Add(priceRate);
+                SqlParameter pieceDeTheatre = new SqlParameter("@pieceDeTheatreRepresentation", SqlDbType.Int);
+                pieceDeTheatre.Value = uneRepresentation.Show_theaterPiece.TheaterPiece_id;
+                cmd.Parameters.Add(pieceDeTheatre);
+                //fin param
+                nb = cmd.ExecuteNonQuery();
+
+                // Fermeture de la connexion
+                maConnexion.Close();
+
+                return nb;
+            }
+            catch(Exception e)
+            {
+                string error = e.Message;
+                return 0;
+            }
+        }
         //renvoie le nombre de places réservées pour une représentation
         public static int GetSeatsBooked(int idRepresentation, int nbPlacesTotal)
         {
