@@ -68,5 +68,15 @@ namespace TheaterBLL
             PiecesTheatreDAO.AddTheaterPiece(unePiece);
         }
 
+        public static void EditTheaterPiece(TheaterPiece unePiece)
+        {
+            PiecesTheatreDAO.EditTheaterPiece(unePiece);
+        }
+
+        public static void RemoveTheaterPiece(TheaterPiece unePiece)
+        {
+            PiecesTheatreDAO.RemoveTheaterPiece(unePiece);
+        }
+
     }
 }

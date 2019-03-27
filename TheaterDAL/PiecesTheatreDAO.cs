@@ -684,7 +684,7 @@ namespace TheaterDAL
 
         }
 
-        // Ajout d'une nouvelle réservation
+        // Ajout d'une nouvelle piece 
         public static void AddTheaterPiece(TheaterPiece unePiece)
         {
             try
@@ -724,5 +724,76 @@ namespace TheaterDAL
             }
 
         }
+
+        // Modification d'une piece 
+        public static void EditTheaterPiece(TheaterPiece unePiece)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+                string reqEdit = "UPDATE Theater_piece SET theaterPiece_name = @name, theaterPiece_description = @description, theaterPiece_duration = @duration, theaterPiece_seatsPrice = @seatsPrice, theaterPiece_company = @company, theaterPiece_author = @author, theaterPiece_publicType = @publicType, theaterPiece_theme = @theme WHERE theaterPiece_id = @id;";
+
+                SqlCommand commEditPiece = new SqlCommand(reqEdit, connexion);
+
+                commEditPiece.Parameters.Add(new SqlParameter("@name", System.Data.SqlDbType.VarChar, 255));
+                commEditPiece.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int));
+                commEditPiece.Parameters.Add(new SqlParameter("@description", System.Data.SqlDbType.VarChar, 255));
+                commEditPiece.Parameters.Add(new SqlParameter("@duration", System.Data.SqlDbType.Float));
+                commEditPiece.Parameters.Add(new SqlParameter("@seatsPrice", System.Data.SqlDbType.Float));
+                commEditPiece.Parameters.Add(new SqlParameter("@company", System.Data.SqlDbType.Int));
+                commEditPiece.Parameters.Add(new SqlParameter("@author", System.Data.SqlDbType.Int));
+                commEditPiece.Parameters.Add(new SqlParameter("@publicType", System.Data.SqlDbType.Int));
+                commEditPiece.Parameters.Add(new SqlParameter("@theme", System.Data.SqlDbType.Int));
+
+                commEditPiece.Parameters["@name"].Value = unePiece.TheaterPiece_name;
+                commEditPiece.Parameters["@id"].Value = unePiece.TheaterPiece_id;
+                commEditPiece.Parameters["@description"].Value = unePiece.TheaterPiece_description;
+                commEditPiece.Parameters["@duration"].Value = unePiece.TheaterPiece_duration;
+                commEditPiece.Parameters["@seatsPrice"].Value = unePiece.TheaterPiece_seatsPrice;
+                commEditPiece.Parameters["@company"].Value = unePiece.TheaterPiece_company.Company_id;
+                commEditPiece.Parameters["@author"].Value = unePiece.TheaterPiece_author.Author_id;
+                commEditPiece.Parameters["@publicType"].Value = unePiece.TheaterPiece_publicType.PublicType_id;
+                commEditPiece.Parameters["@theme"].Value = unePiece.TheaterPiece_theme.Theme_id;
+
+                commEditPiece.ExecuteNonQuery();
+
+                connexion.Close();
+
+            }
+            catch (Exception e)
+            {
+                //Message box erreur
+                string test = e.ToString();
+            }
+
+        }
+
+        // suppression d'une piece 
+        public static void RemoveTheaterPiece(TheaterPiece unePiece)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+                string reqRemove = "DELETE FROM Theater_piece WHERE theaterPiece_id = @id;";
+
+                SqlCommand commRemovePiece = new SqlCommand(reqRemove, connexion);
+
+                commRemovePiece.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int));
+                
+                commRemovePiece.Parameters["@id"].Value = unePiece.TheaterPiece_id;
+
+                commRemovePiece.ExecuteNonQuery();
+
+                connexion.Close();
+
+            }
+            catch (Exception e)
+            {
+                //Message box erreur
+                string test = e.ToString();
+            }
+
+        }
+
     }
 }
