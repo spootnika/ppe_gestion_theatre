@@ -104,9 +104,14 @@ namespace ppe_gestion_theatre
 
                 // Ajout de la durée
 
-                double doubleConvertDuree = double.Parse(laPiece.TheaterPiece_duration.ToString());
+                //TimeSpan dureeTS = TimeSpan.FromMinutes(double.Parse(textBoxDuree.Text));
+                //float dureeFl = (float)dureeTS.TotalHours;
+                //TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, dureeFl, float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
+                //ModulePiecesTheatre.AddTheaterPiece(unePiece);
 
-                TimeSpan convertDuree = TimeSpan.FromHours(doubleConvertDuree);
+                TimeSpan dureeTS = TimeSpan.FromHours(double.Parse(laPiece.TheaterPiece_duration.ToString()));
+
+                float convertDuree = (float)dureeTS.TotalMinutes;
 
                 lblLaDuree.Text = convertDuree.ToString();
 
@@ -240,7 +245,9 @@ namespace ppe_gestion_theatre
                 }
                 else if (grbDetails.Text == "Ajout d'une pièce de théatre")
                 {
-                    TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, int.Parse(textBoxDuree.Text), float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
+                    TimeSpan dureeTS = TimeSpan.FromMinutes(double.Parse(textBoxDuree.Text));
+                    float dureeFl = (float)dureeTS.TotalHours;
+                    TheaterPiece unePiece = new TheaterPiece(textBoxNomPiece.Text, textBoxCommentaire.Text, dureeFl, float.Parse(textBoxPrixFixe.Text), laCompagnie, leAuteur, leTypePublic, leTheme);
                     ModulePiecesTheatre.AddTheaterPiece(unePiece);
                 }
 
@@ -486,10 +493,10 @@ namespace ppe_gestion_theatre
                 grbDetails.Text = "Modifier cette pièce de théatre";
 
 
-                textBoxNomPiece.Text = lblLaPiece.Text;
-                textBoxPrixFixe.Text = lblLePrixFixe.Text;
+                textBoxNomPiece.Text = maPieceEditee.TheaterPiece_name.ToString();
+                textBoxPrixFixe.Text = maPieceEditee.TheaterPiece_seatsPrice.ToString();
                 textBoxDuree.Text = lblLaDuree.Text;
-                textBoxCommentaire.Text = lblLaDescription.Text;
+                textBoxCommentaire.Text = maPieceEditee.TheaterPiece_description.ToString();
 
 
 
