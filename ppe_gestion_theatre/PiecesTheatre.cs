@@ -196,6 +196,12 @@ namespace ppe_gestion_theatre
             comboBoxTheme.Visible = true;
             comboBoxPublic.Visible = true;
 
+            textBoxNomPiece.Text = "";
+            textBoxPrixFixe.Text = "";
+            textBoxDuree.Text = "";
+            textBoxCommentaire.Text = "";
+
+
             btnModifier.Visible = false;
             btnSupprimer.Visible = false;
             btnValider.Visible = true;
@@ -304,7 +310,6 @@ namespace ppe_gestion_theatre
                     lblLaNationalite.Text = "";
 
                     ListePiece();
-                    // MessageBox.Show("zer");
                 }
             }
 
@@ -341,47 +346,7 @@ namespace ppe_gestion_theatre
             dgvListePiecesTheatre.Columns["Prix"].HeaderText = "Prix du siège";
 
             dgvListePiecesTheatre.ReadOnly = true;
-
-            #region test1-dgv
-            // Création d'une en-tête de colonne pour la colonne 1
-            //DataGridViewTextBoxColumn NomColumn = new DataGridViewTextBoxColumn();
-            //NomColumn.DataPropertyName = "Nom";
-            //NomColumn.HeaderText = "Nom de la pièce";
-
-            // Création d'une en-tête de colonne pour la colonne 2
-            //DataGridViewTextBoxColumn AuteurColumn = new DataGridViewTextBoxColumn();
-            //AuteurColumn.DataPropertyName = "Auteur";
-            //AuteurColumn.HeaderText = "Auteur";
-
-            // Création d'une en-tête de colonne pour la colonne 3
-            //DataGridViewTextBoxColumn ThemeColumn = new DataGridViewTextBoxColumn();
-            //ThemeColumn.DataPropertyName = "Thème";
-            //ThemeColumn.HeaderText = "Thème";
-
-            // Création d'une en-tête de colonne pour la colonne 4
-            //DataGridViewTextBoxColumn PublicColumn = new DataGridViewTextBoxColumn();
-            //PublicColumn.DataPropertyName = "Public";
-            //PublicColumn.HeaderText = "Public";
-
-            // Création d'une en-tête de colonne pour la colonne 5
-            //DataGridViewTextBoxColumn DureeColumn = new DataGridViewTextBoxColumn();
-            //DureeColumn.DataPropertyName = "Durée";
-            //DureeColumn.HeaderText = "Durée";
-
-            // Création d'une en-tête de colonne pour la colonne 6
-            //DataGridViewTextBoxColumn PrixColumn = new DataGridViewTextBoxColumn();
-            //PrixColumn.DataPropertyName = "Prix";
-            //PrixColumn.HeaderText = "Prix fixe";
-
-            // Ajout des 6 en-têtes de colonne au datagridview
-            //dgvListePiecesTheatre.Rows.Add(NomColumn);
-            //dgvListePiecesTheatre.Rows.Add(AuteurColumn);
-            //dgvListePiecesTheatre.Rows.Add(ThemeColumn);
-            //dgvListePiecesTheatre.Rows.Add(PublicColumn);
-            //dgvListePiecesTheatre.Rows.Add(DureeColumn);
-            //dgvListePiecesTheatre.Rows.Add(PrixColumn); 
-            #endregion
-
+           
             // Pour chaque piece dans la liste lesPiecesTheatres, on affiche les données dans les colonnes 
             foreach (TheaterPiece unePiece in lesPiecesTheatre)
             {
