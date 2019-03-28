@@ -283,7 +283,7 @@ namespace TheaterDAL
             paramDateFin.Value = dateFinChoisie;
 
             //requête
-            cmd.CommandText = "SELECT * FROM Show WHERE show_dateTime BETWEEN(@dateDeb AND @dateFin)";
+             cmd.CommandText = "SELECT * FROM Show WHERE CAST(show_dateTime as DATE) BETWEEN @dateDeb AND @dateFin";
             //ajout params
             cmd.Parameters.Add(paramDateDeb);
             cmd.Parameters.Add(paramDateFin);
