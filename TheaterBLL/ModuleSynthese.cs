@@ -59,31 +59,89 @@ namespace TheaterBLL
         //  Appel de la requête SQL GetFilterShowsDate(), puis tris de la liste pour en construire une avec seulement les shows concernés par la pièce passée en param et renvoie cette nouvelle liste
         public static int GetNbShows(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin)
         {
-            return SyntheseDAO.GetFilterShowsDate(laPiece, dateDebut, dateFin);
+            List<Show> shows= RepresentationsDAO.GetFilterShowsDate(dateDebut, dateFin);
+            int nbShows = 0;
+            foreach (Show unshow in shows)
+            {
+                if (unshow.Show_theaterPiece.TheaterPiece_id == laPiece.TheaterPiece_id)
+                {
+                    nbShows++;
+                }
+            }
+            return nbShows;
         }
         //- une méthode qui renvoie le nombre total de spectateur pour une pièce    *GetNbSpectators(TheaterPiece laPiece) *
         //  Appel de la requête SQL GetSpectators(), on compte le nombre de spectateurs (addition de tous les seatsBooked) qui sont concernés par la pièce passée en param(spectator.show.piece.id == laPiece.id) et on renvoie ce nombre.
         public static int GetNbSpectators(TheaterPiece laPiece)
         {
-            return SyntheseDAO.GetSpectators(laPiece);
+            List<Spectator> spectators= ReservationsDAO.GetSpectators();
+            int nbSpectators = 0;
+            foreach (Spectator unSpectateur in spectators)
+            {
+                if (unSpectateur.Spectator_show.Show_theaterPiece.TheaterPiece_id == laPiece.TheaterPiece_id)
+                {
+                    nbSpectators = nbSpectators + unSpectateur.Spectator_seatsBooked;
+                }              
+            }
+            return nbSpectators;
+
         }
         //- une méthode qui renvoie le nombre total de spectateur SUR UNE PERIODE pour une pièce* GetNbSpectators(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin)*
         //  Appel de la requête SQL GetSpectators() et appel de la requête SQL GetFilterShowsDate(), on compte le nombre de spectateurs(addition de tous les seatsBooked) qui sont concernés par ces show et on renvoie ce nombre.
         public static int GetNbSpectators(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin)
         {
-            return SyntheseDAO.GetSpectators(laPiece, dateDebut, dateFin);
+            List<Spectator> spectators = ReservationsDAO.GetSpectators(); //liste spectateurs
+            List<Show> shows = RepresentationsDAO.GetFilterShowsDate(dateDebut, dateFin);//listes des shows à une date donnée
+            int nbSpectators = 0;
+            foreach(Show unShow in shows)
+            {
+                foreach(Spectator unSpectateur in spectators)
+                {
+                    if(laPiece.TheaterPiece_id== unSpectateur.Spectator_show.Show_theaterPiece.TheaterPiece_id && laPiece.TheaterPiece_id == unShow.Show_theaterPiece.TheaterPiece_id)
+                    {
+                        nbSpectators = nbSpectators + unSpectateur.Spectator_seatsBooked;
+                    }
+                }
+            }
+            return nbSpectators;
+
         }
         //- une méthode qui renvoie le CA total réalisé pour une pièce* GetCaTotal(TheaterPiece laPiece)*
         //  Appel de la requête SQL GetSpectators(), pour chaque spectator concerné par la pièce passée en param, on calcule le prix qu'il a payé et on l'ajoute à une variable qui récupère le total.On renvoi ce total.
         public static float GetCaTotal(TheaterPiece laPiece)
         {
-            return SyntheseDAO.GetCatotal(laPiece);
+            List<Spectator> spectators = ReservationsDAO.GetSpectators();
+            float prixTotal = 0;
+            foreach(Spectator unSpectateur in spectators)
+            {
+                if(laPiece.TheaterPiece_id == unSpectateur.Spectator_show.Show_theaterPiece.TheaterPiece_id)
+                {
+                    float prixaPayer = unSpectateur.Spectator_seatsBooked * (laPiece.TheaterPiece_seatsPrice + laPiece.TheaterPiece_seatsPrice * unSpectateur.Spectator_show.Show_priceRate.PriceRate_rate);
+                    prixTotal = prixTotal + prixaPayer;
+                }
+            }
+            return prixTotal;
+           
         }
         //- une méthode qui renvoie le CA total réalisé SUR UNE PERIODE pour une pièce   *GetCaTotal(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin) *
         //  Appel de la requête SQL GetSpectators() et appel de la requête SQL GetFilterShowsDate(), pour chaque spectator concerné par un des shows de la période, on calcule le prix qu'il a payé et on l'ajoute à une variable qui récupère le total. On renvoi ce total.
         public static float GetCaTotal(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin)
         {
-            return SyntheseDAO.GetCatotal(laPiece, dateDebut, dateFin);
+            List<Spectator> spectators = ReservationsDAO.GetSpectators(); //liste spectateurs
+            List<Show> shows = RepresentationsDAO.GetFilterShowsDate(dateDebut, dateFin);//listes des shows à une date donnée
+            float prixTotal = 0;
+            foreach (Show unShow in shows)
+            {
+                foreach (Spectator unSpectateur in spectators)
+                {
+                    if (laPiece.TheaterPiece_id == unSpectateur.Spectator_show.Show_theaterPiece.TheaterPiece_id && laPiece.TheaterPiece_id == unShow.Show_theaterPiece.TheaterPiece_id)
+                    {
+                        float prixaPayer = unSpectateur.Spectator_seatsBooked * (laPiece.TheaterPiece_seatsPrice + laPiece.TheaterPiece_seatsPrice * unSpectateur.Spectator_show.Show_priceRate.PriceRate_rate);
+                        prixTotal = prixTotal + prixaPayer;
+                    }
+                }
+            }
+            return prixTotal;
         }
         //Les deux valeurs moyennes dont on a besoin peuvent être calculées en dur dans l'appli :
         //- nb de spectateur moyen = nb de spectateurs / nb de représentations

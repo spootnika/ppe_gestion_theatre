@@ -8,7 +8,7 @@ namespace TheaterDAL
 {
     public class SyntheseDAO
     {
-        // objet ReservationDAO
+        // objet SyntheseDAO
         private static SyntheseDAO uneSyntheseDAO;
 
         // Accesseur en lecture, renvoi une instance
