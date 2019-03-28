@@ -53,6 +53,9 @@ namespace ppe_gestion_theatre
 
         private void dgvListePiecesTheatre_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnModifier.Enabled = true;
+            btnSupprimer.Enabled = true;
+
             grbDetails.Text = "Détails de la pièce de théatre";
             lblLaPiece.Visible = true;
             lblLeTheme.Visible = true;
@@ -201,7 +204,6 @@ namespace ppe_gestion_theatre
             textBoxDuree.Text = "";
             textBoxCommentaire.Text = "";
 
-
             btnModifier.Visible = false;
             btnSupprimer.Visible = false;
             btnValider.Visible = true;
@@ -310,6 +312,8 @@ namespace ppe_gestion_theatre
                     lblLaNationalite.Text = "";
 
                     ListePiece();
+
+                    btnAjouter.Enabled = true;
                 }
             }
 
@@ -394,6 +398,8 @@ namespace ppe_gestion_theatre
 
             if (rep == DialogResult.Yes)
             {
+                btnModifier.Enabled = false;
+                btnSupprimer.Enabled = false;
 
                 dgvListePiecesTheatre.Enabled = true;
 
@@ -449,7 +455,7 @@ namespace ppe_gestion_theatre
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-
+            
             // Récupération du numéro de la ligne (index)
             int indexRow = dgvListePiecesTheatre.CurrentRow.Index;
 
@@ -583,12 +589,18 @@ namespace ppe_gestion_theatre
 
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
+           
             var rep = MessageBox.Show("Êtes vous sûr de vouloir supprimer cette pièce de théatre ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
             if (rep == DialogResult.Yes)
             {
                 TheaterPiece unePiece = new TheaterPiece(int.Parse(lblIdPiece.Text));
                 ModulePiecesTheatre.RemoveTheaterPiece(unePiece);
+            } else
+            {
+                btnSupprimer.Enabled = false;
+                btnModifier.Enabled = false;
+
             }
 
             ListePiece();
