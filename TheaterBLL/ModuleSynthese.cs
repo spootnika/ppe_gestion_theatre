@@ -43,7 +43,16 @@ namespace TheaterBLL
         //  Appel de la requête SQL GetShows(), puis tris de la liste pour en construire une avec seulement les shows concernés par la pièce passée en param et renvoie cette nouvelle liste
         public static int GetNbShows(TheaterPiece laPiece)
         {
-            return SyntheseDAO.GetShows(laPiece); //faire surcharge de getShow(lapice)
+            List<Show> shows= RepresentationsDAO.GetShows();
+            int nbShows = 0;
+            foreach (Show unshow in shows)
+            {
+                if (unshow.Show_theaterPiece.TheaterPiece_id == laPiece.TheaterPiece_id)
+                {
+                    nbShows++;
+                }
+            }
+            return nbShows;
         }
 
         //- une méthode qui renvoie le nombre de représentations SUR UNE PERIODE pour une pièce    *GetNbShows(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin) *
