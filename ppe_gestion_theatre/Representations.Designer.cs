@@ -301,7 +301,7 @@
             this.btnValiderAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnValiderAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValiderAjout.ForeColor = System.Drawing.Color.White;
-            this.btnValiderAjout.Location = new System.Drawing.Point(366, 154);
+            this.btnValiderAjout.Location = new System.Drawing.Point(285, 172);
             this.btnValiderAjout.Name = "btnValiderAjout";
             this.btnValiderAjout.Size = new System.Drawing.Size(75, 27);
             this.btnValiderAjout.TabIndex = 31;
@@ -315,7 +315,7 @@
             this.btnAnnulerAjout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAnnulerAjout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnnulerAjout.ForeColor = System.Drawing.Color.White;
-            this.btnAnnulerAjout.Location = new System.Drawing.Point(272, 154);
+            this.btnAnnulerAjout.Location = new System.Drawing.Point(366, 172);
             this.btnAnnulerAjout.Name = "btnAnnulerAjout";
             this.btnAnnulerAjout.Size = new System.Drawing.Size(75, 27);
             this.btnAnnulerAjout.TabIndex = 30;
@@ -893,7 +893,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(366, 154);
+            this.button5.Location = new System.Drawing.Point(285, 172);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 27);
             this.button5.TabIndex = 31;
@@ -907,7 +907,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(272, 154);
+            this.button6.Location = new System.Drawing.Point(366, 172);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 27);
             this.button6.TabIndex = 30;
