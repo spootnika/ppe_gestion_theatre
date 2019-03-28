@@ -751,6 +751,49 @@ namespace ppe_gestion_theatre
             if (maPiece != null)
             {
                 lblPrixFixeModifRep.Text = maPiece.TheaterPiece_seatsPrice.ToString() + " €";
+                //on récupère date saisie et heure à mettre en datetime         
+                string mesdates = dateTimePickerModifDate.Text.ToString() + " " + textBoxModifHeure.Text.ToString();
+                DateTime parsedDate;
+                bool retConv = DateTime.TryParse(mesdates, out parsedDate);
+                if (retConv == true && dateTimePickerModifDate.Text.Trim() != "" && textBoxModifHeure.Text.Trim() != "")
+                {
+                    //on vérifie l'heure pour voir dans quelle tranche de pricerate on va 
+                    List<PriceRate> Lestaux = new List<PriceRate>();
+                    Lestaux = ModuleRepresentations.GetPriceRate();
+                    List<PriceRate> LestauxdansLHeure = new List<PriceRate>();
+                    PriceRate monTaux = null;
+                    foreach (PriceRate unTaux in Lestaux)
+                    {
+                        TimeSpan debutHeure = unTaux.PriceRate_startTime;
+                        TimeSpan finHeure = unTaux.PriceRate_endTime;
+                        TimeSpan monHeure = TimeSpan.Parse(textBoxModifHeure.Text.ToString());
+                        if (debutHeure <= monHeure && monHeure <= finHeure)
+                        {
+                            LestauxdansLHeure.Add(unTaux);
+                        }
+                    }
+                    //on vérifie le jour et on a le pricerate !!!!
+                    string monJour = parsedDate.ToString("dddd");
+
+                    foreach (PriceRate unTaux in LestauxdansLHeure)
+                    {
+                        foreach (WeekDays unJour in unTaux.PriceRate_weekDays)
+                        {
+                            if (unJour.WeekDays_name == monJour)
+                            {
+                                monTaux = unTaux;
+                            }
+                        }
+
+                    }
+                    if (monTaux != null)
+                    {
+                        float seatPrice = maPiece.TheaterPiece_seatsPrice;
+                        float prixReel = seatPrice + (seatPrice * monTaux.PriceRate_rate);
+                        lblPrixReelModifRep.Text = prixReel.ToString() + " €";
+                    }
+
+                }
             }
         }
 
