@@ -596,6 +596,8 @@ namespace ppe_gestion_theatre
             {
                 TheaterPiece unePiece = new TheaterPiece(int.Parse(lblIdPiece.Text));
                 ModulePiecesTheatre.RemoveTheaterPiece(unePiece);
+                btnSupprimer.Enabled = false;
+                btnModifier.Enabled = false;
             } else
             {
                 btnSupprimer.Enabled = false;
