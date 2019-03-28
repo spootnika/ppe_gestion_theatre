@@ -109,6 +109,7 @@
             this.errorProviderHeureModif = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderDateModif = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderPlacesModif = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderPasDeRep = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbDetails.SuspendLayout();
             this.grbAjoutRepresentation.SuspendLayout();
             this.grbFiltres.SuspendLayout();
@@ -120,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderHeureModif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateModif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderPlacesModif)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPasDeRep)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMenu
@@ -164,7 +166,6 @@
             // grbDetails
             // 
             this.grbDetails.BackColor = System.Drawing.Color.White;
-            this.grbDetails.Controls.Add(this.grbAjoutRepresentation);
             this.grbDetails.Controls.Add(this.lblLesPlacesRest);
             this.grbDetails.Controls.Add(this.button4);
             this.grbDetails.Controls.Add(this.button3);
@@ -216,7 +217,7 @@
             this.grbAjoutRepresentation.Controls.Add(this.label15);
             this.grbAjoutRepresentation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbAjoutRepresentation.ForeColor = System.Drawing.Color.SteelBlue;
-            this.grbAjoutRepresentation.Location = new System.Drawing.Point(0, 0);
+            this.grbAjoutRepresentation.Location = new System.Drawing.Point(57, 400);
             this.grbAjoutRepresentation.Name = "grbAjoutRepresentation";
             this.grbAjoutRepresentation.Size = new System.Drawing.Size(743, 206);
             this.grbAjoutRepresentation.TabIndex = 12;
@@ -444,6 +445,8 @@
             this.button4.Text = "Supprimer";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Validating += new System.ComponentModel.CancelEventHandler(this.button4_Validating);
+            this.button4.Validated += new System.EventHandler(this.button4_Validated);
             // 
             // button3
             // 
@@ -458,6 +461,8 @@
             this.button3.Text = "Modifier";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Validating += new System.ComponentModel.CancelEventHandler(this.button3_Validating);
+            this.button3.Validated += new System.EventHandler(this.button3_Validated);
             // 
             // lblLePrix
             // 
@@ -1026,12 +1031,17 @@
             // 
             this.errorProviderPlacesModif.ContainerControl = this;
             // 
+            // errorProviderPasDeRep
+            // 
+            this.errorProviderPasDeRep.ContainerControl = this;
+            // 
             // Representations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(873, 630);
+            this.Controls.Add(this.grbAjoutRepresentation);
             this.Controls.Add(this.grbModifRepresentation);
             this.Controls.Add(this.grbFiltres);
             this.Controls.Add(this.grbDetails);
@@ -1056,6 +1066,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderHeureModif)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderDateModif)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderPlacesModif)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPasDeRep)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1143,5 +1154,6 @@
         private System.Windows.Forms.ErrorProvider errorProviderHeureModif;
         private System.Windows.Forms.ErrorProvider errorProviderDateModif;
         private System.Windows.Forms.ErrorProvider errorProviderPlacesModif;
+        private System.Windows.Forms.ErrorProvider errorProviderPasDeRep;
     }
 }
