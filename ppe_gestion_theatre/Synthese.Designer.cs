@@ -39,9 +39,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.lblTitre = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
-            this.dgvListeSynthèse = new System.Windows.Forms.DataGridView();
+            this.dgvListeSynthese = new System.Windows.Forms.DataGridView();
             this.grbFiltres.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListeSynthèse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListeSynthese)).BeginInit();
             this.SuspendLayout();
             // 
             // grbFiltres
@@ -184,21 +184,21 @@
             this.btnMenu.Text = "Menu";
             this.btnMenu.UseVisualStyleBackColor = false;
             // 
-            // dgvListeSynthèse
+            // dgvListeSynthese
             // 
-            this.dgvListeSynthèse.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvListeSynthèse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListeSynthèse.Location = new System.Drawing.Point(13, 146);
-            this.dgvListeSynthèse.Name = "dgvListeSynthèse";
-            this.dgvListeSynthèse.Size = new System.Drawing.Size(849, 374);
-            this.dgvListeSynthèse.TabIndex = 16;
+            this.dgvListeSynthese.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvListeSynthese.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListeSynthese.Location = new System.Drawing.Point(13, 146);
+            this.dgvListeSynthese.Name = "dgvListeSynthese";
+            this.dgvListeSynthese.Size = new System.Drawing.Size(849, 374);
+            this.dgvListeSynthese.TabIndex = 16;
             // 
             // Synthese
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 532);
-            this.Controls.Add(this.dgvListeSynthèse);
+            this.Controls.Add(this.dgvListeSynthese);
             this.Controls.Add(this.lblTitre);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.grbFiltres);
@@ -207,7 +207,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Synthese_FormClosing);
             this.grbFiltres.ResumeLayout(false);
             this.grbFiltres.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListeSynthèse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListeSynthese)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,6 +226,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblTitre;
         private System.Windows.Forms.Button btnMenu;
-        private System.Windows.Forms.DataGridView dgvListeSynthèse;
+        private System.Windows.Forms.DataGridView dgvListeSynthese;
     }
 }
