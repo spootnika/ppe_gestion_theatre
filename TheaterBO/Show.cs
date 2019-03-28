@@ -78,7 +78,7 @@ namespace TheaterBO
                 show_theaterPiece = value;
             }
         }
-        
+
 
         public Show(int id, DateTime dateTime, int seats, PriceRate priceRate, TheaterPiece theaterPiece)
         {

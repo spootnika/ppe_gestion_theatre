@@ -81,7 +81,7 @@ namespace TheaterDAL
                         i++;
                     }
                 }
-                bool trouve2= false;
+                bool trouve2 = false;
                 int i2 = 0;
                 while (trouve2 == false && i2 < lesTaux.Count)
                 {
@@ -101,7 +101,7 @@ namespace TheaterDAL
             }
 
             monReader.Close();
-           
+
             // Fermeture de la connexion
             maConnexion.Close();
             return lesRepresentations;
@@ -115,7 +115,7 @@ namespace TheaterDAL
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = maConnexion;           
+            cmd.Connection = maConnexion;
             cmd.CommandText = "INSERT INTO Show(show_dateTime,show_seats,show_priceRate,show_theaterPiece) values( @dateRepresentation ,@nbPlacesRepresentation,@priceRateRepresentation, @pieceDeTheatreRepresentation)";
             //param
             SqlParameter dateRep = new SqlParameter("@dateRepresentation", SqlDbType.DateTime);
@@ -139,6 +139,70 @@ namespace TheaterDAL
             return nb;
         }
 
+        //suppression d'un représentation
+        public static int DelShow(int IdRep)
+        {
+            int nb;
+
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "DELETE FROM Show WHERE show_id = @idShow";
+            //param
+            SqlParameter idShow = new SqlParameter("@idShow", SqlDbType.Int);
+            idShow.Value = IdRep;
+            cmd.Parameters.Add(idShow);
+            //fin param
+            nb = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+
+            return nb;
+        }
+        //modification d'un représentation
+        public static int ModifShow(Show uneRepresentation)
+        {
+            try
+            {
+                int nb;
+
+                // Connexion à la BD
+                SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = maConnexion;
+                cmd.CommandText = "UPDATE Show SET show_dateTime=@dateRepresentation, show_seats=@nbPlacesRepresentation, show_priceRate=@priceRateRepresentation, show_theaterPiece=@pieceDeTheatreRepresentation WHERE show_id = @idShow";
+                //param
+                SqlParameter idShow = new SqlParameter("@idShow", SqlDbType.Int);
+                idShow.Value = uneRepresentation.Show_id;
+                cmd.Parameters.Add(idShow);
+                SqlParameter dateRep = new SqlParameter("@dateRepresentation", SqlDbType.DateTime);
+                dateRep.Value = uneRepresentation.Show_dateTime;
+                cmd.Parameters.Add(dateRep);
+                SqlParameter nbPlaces = new SqlParameter("@nbPlacesRepresentation", SqlDbType.Int);
+                nbPlaces.Value = uneRepresentation.Show_seats;
+                cmd.Parameters.Add(nbPlaces);
+                SqlParameter priceRate = new SqlParameter("@priceRateRepresentation", SqlDbType.Int);
+                priceRate.Value = uneRepresentation.Show_priceRate.PriceRate_id;
+                cmd.Parameters.Add(priceRate);
+                SqlParameter pieceDeTheatre = new SqlParameter("@pieceDeTheatreRepresentation", SqlDbType.Int);
+                pieceDeTheatre.Value = uneRepresentation.Show_theaterPiece.TheaterPiece_id;
+                cmd.Parameters.Add(pieceDeTheatre);
+                //fin param
+                nb = cmd.ExecuteNonQuery();
+
+                // Fermeture de la connexion
+                maConnexion.Close();
+
+                return nb;
+            }
+            catch(Exception e)
+            {
+                string error = e.Message;
+                return 0;
+            }
+        }
         //renvoie le nombre de places réservées pour une représentation
         public static int GetSeatsBooked(int idRepresentation, int nbPlacesTotal)
         {
@@ -197,8 +261,8 @@ namespace TheaterDAL
             int idPiece; //besoin de nomPiece, durée 
             int idtaux; //calcul du prix pour date, heure, semaine
             Show uneRepresentation;
-            PriceRate letaux=null;
-            TheaterPiece laPiece=null;
+            PriceRate letaux = null;
+            TheaterPiece laPiece = null;
             // Création d'une liste vide d'objets lesRepresentations
             List<Show> lesRepresentations = new List<Show>();
             // Récupération de la liste des pièces de théâtre
@@ -219,7 +283,7 @@ namespace TheaterDAL
             paramDateFin.Value = dateFinChoisie;
 
             //requête
-            cmd.CommandText = "SELECT * FROM Show WHERE show_dateTime BETWEEN(@dateDeb AND @dateFin)";
+             cmd.CommandText = "SELECT * FROM Show WHERE CAST(show_dateTime as DATE) BETWEEN @dateDeb AND @dateFin";
             //ajout params
             cmd.Parameters.Add(paramDateDeb);
             cmd.Parameters.Add(paramDateFin);
@@ -233,7 +297,7 @@ namespace TheaterDAL
                 nbPlaces = Int32.Parse(monReader["show_seats"].ToString());
                 idtaux = Convert.ToInt32(monReader["show_priceRate"].ToString());
                 idPiece = Convert.ToInt32(monReader["show_theaterPiece"]);
-              
+
                 // On trouve dans la liste des pièces de théâtres celle correspondant à l'id
                 bool trouve = false;
                 int i = 0;
@@ -285,8 +349,8 @@ namespace TheaterDAL
             int nbPlaces;
             int idTaux;
             int idPiece;
-            TheaterPiece laPiece=null; //besoin de nomPiece, durée 
-            PriceRate letaux=null; //calcul du prix pour date, heure, semaine
+            TheaterPiece laPiece = null; //besoin de nomPiece, durée 
+            PriceRate letaux = null; //calcul du prix pour date, heure, semaine
             Show uneRepresentation;
 
             // Création d'une liste vide d'objets lesRepresentations
@@ -306,7 +370,7 @@ namespace TheaterDAL
             paramIdPiece.Value = idTheaterPiece;
 
             //requête
-            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, To_concern,  WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece ";
+            cmd.CommandText = "SELECT show_id,show_dateTime, show_seats, show_priceRate, show_theaterPiece FROM Show, Theater_piece WHERE show_theaterPiece=theaterPiece_id AND theaterPiece_id=@idPiece ";
             //ajout params
             cmd.Parameters.Add(paramIdPiece);
 
@@ -371,8 +435,8 @@ namespace TheaterDAL
             int nbPlaces;
             int idTaux;
             int idPiece;
-            TheaterPiece laPiece=null; //besoin de nomPiece, durée 
-            PriceRate letaux=null; //calcul du prix pour date, heure, semaine
+            TheaterPiece laPiece = null; //besoin de nomPiece, durée 
+            PriceRate letaux = null; //calcul du prix pour date, heure, semaine
             Show uneRepresentation;
             // Récupération de la liste des pièces de théâtre
             List<TheaterPiece> lesPiecesDeTheatre = PiecesTheatreDAO.GetTheaterPieces();
@@ -462,14 +526,14 @@ namespace TheaterDAL
             List<WeekDays> lesJoursSemaine = new List<WeekDays>();
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
-           //récupération de la liste des semaines
+            //récupération de la liste des semaines
             SqlCommand cmd2 = new SqlCommand();
             cmd2.Connection = maConnexion;
             cmd2.CommandText = "SELECT * FROM Week_days";
             SqlDataReader monReader2 = cmd2.ExecuteReader();
             int idJour;
             string nomJour;
-            WeekDays leJour=null;
+            WeekDays leJour = null;
             // Remplissage de la liste
             while (monReader2.Read())
             {
@@ -491,7 +555,8 @@ namespace TheaterDAL
             TimeSpan finHeure;
             float tauxApplique;
             PriceRate leTaux;
-            
+
+
             cmd.CommandText = "SELECT * from Price_rate";
 
             SqlCommand cmdConcern = new SqlCommand();
@@ -499,7 +564,6 @@ namespace TheaterDAL
             cmdConcern.CommandText = "SELECT * FROM To_concern";
 
             SqlDataReader monReader = cmd.ExecuteReader();
-            SqlDataReader readerConcern = cmdConcern.ExecuteReader();
 
             while (monReader.Read())
             {
@@ -510,10 +574,11 @@ namespace TheaterDAL
                 finHeure = (TimeSpan)monReader["priceRate_endTime"];
                 tauxApplique = float.Parse(monReader["priceRate_rate"].ToString());
 
+                SqlDataReader readerConcern = cmdConcern.ExecuteReader();
                 while (readerConcern.Read())
                 {
                     int idConcernTaux = Int32.Parse(readerConcern["toConcern_priceRate"].ToString());
-                    
+
                     if (idTaux == idConcernTaux)
                     {
                         int idConcernJour = Int32.Parse(readerConcern["toConcern_weekDays"].ToString());
@@ -523,7 +588,7 @@ namespace TheaterDAL
 
                         while (trouve == false && ind < lesJoursSemaine.Count)
                         {
-                            if(lesJoursSemaine[ind].WeekDays_id == idConcernJour)
+                            if (lesJoursSemaine[ind].WeekDays_id == idConcernJour)
                             {
                                 lesJoursTaux.Add(lesJoursSemaine[ind]);
                                 trouve = true;
@@ -536,15 +601,13 @@ namespace TheaterDAL
                     }
                 }
                 readerConcern.Close();
-                readerConcern = cmdConcern.ExecuteReader();
 
                 leTaux = new PriceRate(idTaux, nomTaux, debutHeure, finHeure, tauxApplique, lesJoursTaux);
                 lesTaux.Add(leTaux);
             }
-            readerConcern.Close();
             monReader.Close();
             // Fermeture de la connexion
-            maConnexion.Close();     
+            maConnexion.Close();
             return lesTaux;
         }
     }

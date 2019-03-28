@@ -12,7 +12,7 @@ namespace TheaterBLL
     public class ModuleRepresentations
     {
         // objet BL
-        private static ModuleRepresentations moduleRepresentations; 
+        private static ModuleRepresentations moduleRepresentations;
 
         // Accesseur en lecture objet BLL
         public static ModuleRepresentations GetModuleRepresentations()
@@ -34,7 +34,16 @@ namespace TheaterBLL
         {
             return RepresentationsDAO.AddShow(show);
         }
-
+        //suppression d'une représentation
+        public static int DeleteShow(int idShow)
+        {
+            return RepresentationsDAO.DelShow(idShow);
+        }
+        //modification d'un représentation
+        public static int EditShow(Show show)
+        {
+            return RepresentationsDAO.ModifShow(show);
+        }
         // Récupère la liste des représentations de la DAO, renvoie la liste
         // GetShows()
         public static List<Show> GetShows()
@@ -57,8 +66,9 @@ namespace TheaterBLL
 
 
             return lesRepresentationsFiltrees;
-            
+
         }
+
         //surcharge s'il n'y a que la piece de choisie
         public static List<Show> GetFilterShows(int idPiece)
         {
