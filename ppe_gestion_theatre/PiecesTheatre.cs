@@ -595,7 +595,10 @@ namespace ppe_gestion_theatre
             if (rep == DialogResult.Yes)
             {
                 TheaterPiece unePiece = new TheaterPiece(int.Parse(lblIdPiece.Text));
+
                 ModulePiecesTheatre.RemoveTheaterPiece(unePiece);
+                List<Show> lesShows = ModuleRepresentations.GetShows();
+
                 btnSupprimer.Enabled = false;
                 btnModifier.Enabled = false;
             } else

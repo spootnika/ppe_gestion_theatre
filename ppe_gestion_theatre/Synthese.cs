@@ -56,6 +56,40 @@ namespace ppe_gestion_theatre
             dgvListeSynthese.Columns["caMoyenRealise"].HeaderText = "CA moyen réalisé";
 
             dgvListeSynthese.ReadOnly = true;
+
+            // Liste qui récupère la liste des pieces de théatre dans le ModulePiecesTheatre
+            List<TheaterPiece> lesPiecesTheatre = ModuleSynthese.GetTheaterPieces();
+
+
+            // Pour chaque piece dans la liste lesPiecesTheatres, on affiche les données dans les colonnes 
+            foreach (TheaterPiece unePiece in lesPiecesTheatre)
+            {
+
+                string nomPiece = unePiece.TheaterPiece_name;
+
+                int lesRepresations = ModuleSynthese.GetNbShows(unePiece);
+
+                int lesSpectateurs = ModuleSynthese.GetNbSpectators(unePiece);
+
+                int lesSpectateursMoyen = 0;
+
+                float CA = ModuleSynthese.GetCaTotal(unePiece);
+
+                float CAMoyen = 0;
+
+                if (CA != 0)
+                {
+                    CAMoyen = CA / lesRepresations;
+                }
+
+                if (lesSpectateurs != 0)
+                {
+                    lesSpectateursMoyen = lesSpectateurs / lesRepresations;
+                }
+
+                dt.Rows.Add(nomPiece, lesRepresations, lesSpectateurs, lesSpectateursMoyen, CA, CAMoyen);
+            }
+            
         }
 
         // Chargement de la liste en fonctione des dates pour filtrer
