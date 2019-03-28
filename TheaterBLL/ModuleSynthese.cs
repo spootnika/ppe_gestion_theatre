@@ -59,7 +59,7 @@ namespace TheaterBLL
         //  Appel de la requête SQL GetFilterShowsDate(), puis tris de la liste pour en construire une avec seulement les shows concernés par la pièce passée en param et renvoie cette nouvelle liste
         public static int GetNbShows(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin)
         {
-            List<Show> shows= RepresentationsDAO.GetFilterShowsDate(dateDebut, dateFin);
+            List<Show> shows= RepresentationsDAO.GetFilterShows(laPiece.TheaterPiece_id, dateDebut, dateFin);
             int nbShows = 0;
             foreach (Show unshow in shows)
             {
@@ -91,7 +91,7 @@ namespace TheaterBLL
         public static int GetNbSpectators(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin)
         {
             List<Spectator> spectators = ReservationsDAO.GetSpectators(); //liste spectateurs
-            List<Show> shows = RepresentationsDAO.GetFilterShowsDate(dateDebut, dateFin);//listes des shows à une date donnée
+            List<Show> shows = RepresentationsDAO.GetFilterShows(laPiece.TheaterPiece_id, dateDebut, dateFin);//listes des shows à une date donnée
             int nbSpectators = 0;
             foreach(Show unShow in shows)
             {
@@ -128,7 +128,7 @@ namespace TheaterBLL
         public static float GetCaTotal(TheaterPiece laPiece, DateTime dateDebut, DateTime dateFin)
         {
             List<Spectator> spectators = ReservationsDAO.GetSpectators(); //liste spectateurs
-            List<Show> shows = RepresentationsDAO.GetFilterShowsDate(dateDebut, dateFin);//listes des shows à une date donnée
+            List<Show> shows = RepresentationsDAO.GetFilterShows(laPiece.TheaterPiece_id, dateDebut, dateFin);//listes des shows à une date donnée
             float prixTotal = 0;
             foreach (Show unShow in shows)
             {
