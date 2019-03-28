@@ -70,19 +70,34 @@ namespace ppe_gestion_theatre
             {
                 string nomPiece = unePiece.TheaterPiece_name;
 
-                int nbRepres = ModuleSynthese.GetNbShows(dateDeb, dateFin);
+                int nbRepres = ModuleSynthese.GetNbShows(unePiece, dateDeb, dateFin);
 
-                int nbSpecTotal = ModuleSynthese.GetNbSpectators(unePiece.TheaterPiece_id, dateDeb, dateFin);
+                int nbSpecTotal = ModuleSynthese.GetNbSpectators(unePiece, dateDeb, dateFin);
 
                 int nbSpecMoyen = nbSpecTotal / nbRepres;
 
-                float caRealise = ModuleSynthese.GetCaTotal(unePiece.TheaterPiece_id, dateDeb, dateFin);
+                float caRealise = ModuleSynthese.GetCaTotal(unePiece, dateDeb, dateFin);
 
                 float caMoyenRealise = caRealise / nbRepres;
                 
 
                 dt.Rows.Add(nomPiece, nbRepres, nbSpecTotal, nbSpecMoyen, caRealise, caMoyenRealise);
             }
+        }
+
+        private void btnReinitialiser_Click(object sender, EventArgs e)
+        {
+            LoadDataGridView();
+            dgvListeSynthese.Refresh();
+        }
+
+        private void btnFiltrer_Click(object sender, EventArgs e)
+        {
+            DateTime dateDeb = dtpDateDeb.Value;
+            DateTime dateFin = dtpDateFin.Value;
+
+            LoadDataGridView(dateDeb, dateFin);
+            dgvListeSynthese.Refresh();
         }
     }
 }
