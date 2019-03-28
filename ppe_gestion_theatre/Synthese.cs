@@ -67,15 +67,25 @@ namespace ppe_gestion_theatre
 
                 string nomPiece = unePiece.TheaterPiece_name;
 
-                int lesRepresations = 10; /*ModuleSynthese.GetNbShows(unePiece);*/
+                int lesRepresations = ModuleSynthese.GetNbShows(unePiece);
 
-                int lesSpectateurs = 50; /*ModuleSynthese.GetNbSpectators(unePiece);*/
+                int lesSpectateurs = ModuleSynthese.GetNbSpectators(unePiece);
 
-                int lesSpectateursMoyen = lesSpectateurs / lesRepresations;
+                int lesSpectateursMoyen = 0;
 
                 float CA = ModuleSynthese.GetCaTotal(unePiece);
 
-                float CAMoyen = CA / lesRepresations;
+                float CAMoyen = 0;
+
+                if (CA != 0)
+                {
+                    CAMoyen = CA / lesRepresations;
+                }
+
+                if (lesSpectateurs != 0)
+                {
+                    lesSpectateursMoyen = lesSpectateurs / lesRepresations;
+                }
 
                 dt.Rows.Add(nomPiece, lesRepresations, lesSpectateurs, lesSpectateursMoyen, CA, CAMoyen);
             }
