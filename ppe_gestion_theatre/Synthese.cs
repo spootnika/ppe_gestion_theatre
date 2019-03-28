@@ -98,13 +98,7 @@ namespace ppe_gestion_theatre
 
                 int nbSpecMoyen = 0;
 
-                if (nbSpecTotal == 0)
-                {
-
-                    nbSpecMoyen = 0;
-
-                }
-                else
+                if (nbSpecTotal != 0)
                 {
                     nbSpecMoyen = nbSpecTotal / nbRepres;
                 }
@@ -113,13 +107,7 @@ namespace ppe_gestion_theatre
 
                 float caMoyenRealise = 0;
 
-                if (caRealise == 0)
-                {
-
-                    caMoyenRealise = 0;
-
-                }
-                else
+                if (caRealise != 0)
                 {
                     caMoyenRealise = caRealise / nbRepres;
                 }
@@ -142,6 +130,15 @@ namespace ppe_gestion_theatre
 
             LoadDataGridView(dateDeb, dateFin);
             dgvListeSynthese.Refresh();
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+
+            // Ouverture de la nouvelle fenêtre
+            Menu frmMenu = new Menu(currentUser);
+            this.Hide(); // le formulaire est caché
+            frmMenu.ShowDialog(); // ouverture du formulaire
         }
     }
 }
