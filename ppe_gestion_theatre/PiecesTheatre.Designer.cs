@@ -334,6 +334,7 @@
             // btnModifier
             // 
             this.btnModifier.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnModifier.Enabled = false;
             this.btnModifier.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifier.ForeColor = System.Drawing.Color.White;
@@ -348,6 +349,7 @@
             // btnSupprimer
             // 
             this.btnSupprimer.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnSupprimer.Enabled = false;
             this.btnSupprimer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupprimer.ForeColor = System.Drawing.Color.White;
