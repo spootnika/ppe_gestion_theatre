@@ -77,6 +77,7 @@
             this.btnReinitialiser.TabIndex = 34;
             this.btnReinitialiser.Text = "Réinitialiser";
             this.btnReinitialiser.UseVisualStyleBackColor = false;
+            this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
             // 
             // dtpDateFin
             // 
@@ -111,6 +112,7 @@
             this.btnFiltrer.TabIndex = 30;
             this.btnFiltrer.Text = "Filtrer";
             this.btnFiltrer.UseVisualStyleBackColor = false;
+            this.btnFiltrer.Click += new System.EventHandler(this.btnFiltrer_Click);
             // 
             // lblDateFin
             // 
