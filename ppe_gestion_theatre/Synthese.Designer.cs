@@ -192,7 +192,6 @@
             this.dgvListeSynthese.Name = "dgvListeSynthese";
             this.dgvListeSynthese.Size = new System.Drawing.Size(849, 374);
             this.dgvListeSynthese.TabIndex = 16;
-            this.dgvListeSynthese.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListeSynthese_CellContentClick);
             // 
             // Synthese
             // 
