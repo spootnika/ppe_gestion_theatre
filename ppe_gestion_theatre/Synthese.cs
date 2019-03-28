@@ -34,17 +34,32 @@ namespace ppe_gestion_theatre
         private void LoadDataGridView()
         {
 
+            DataTable dt = new DataTable();
+            dgvListeSynthese.DataSource = dt;
 
+            dt.Columns.Add(new DataColumn("piece", typeof(string)));
+            dgvListeSynthese.Columns["piece"].HeaderText = "Pièce";
 
+            dt.Columns.Add(new DataColumn("nbRepres", typeof(int)));
+            dgvListeSynthese.Columns["nbRepres"].HeaderText = "Nombre représentations";
+
+            dt.Columns.Add(new DataColumn("nbSpecTotal", typeof(int)));
+            dgvListeSynthese.Columns["nbSpecTotal"].HeaderText = "Nombre total de spectateurs";
+
+            dt.Columns.Add(new DataColumn("nbSpecMoyen", typeof(int)));
+            dgvListeSynthese.Columns["nbSpecMoyen"].HeaderText = "Nombre moyen de spectateurs";
+
+            dt.Columns.Add(new DataColumn("caRealise", typeof(float)));
+            dgvListeSynthese.Columns["caRealise"].HeaderText = "CA réalisé";
+
+            dt.Columns.Add(new DataColumn("caMoyenRealise", typeof(float)));
+            dgvListeSynthese.Columns["caMoyenRealise"].HeaderText = "CA moyen réalisé";
+
+            dgvListeSynthese.ReadOnly = true;
         }
 
         // Chargement de la liste en fonctione des dates pour filtrer
         private void LoadDataGridView(DateTime dateDeb, DateTime dateFin)
-        {
-
-        }
-
-        private void dgvListeSynthese_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
