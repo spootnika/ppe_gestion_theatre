@@ -96,12 +96,34 @@ namespace ppe_gestion_theatre
 
                 int nbSpecTotal = ModuleSynthese.GetNbSpectators(unePiece, dateDeb, dateFin);
 
-                int nbSpecMoyen = nbSpecTotal / nbRepres;
+                int nbSpecMoyen = 0;
+
+                if (nbSpecTotal == 0)
+                {
+                    
+                    nbSpecMoyen = 0;
+                    
+                }
+                else
+                {
+                    nbSpecMoyen = nbSpecTotal / nbRepres;
+                }
 
                 float caRealise = ModuleSynthese.GetCaTotal(unePiece, dateDeb, dateFin);
 
-                float caMoyenRealise = caRealise / nbRepres;
-                
+                float caMoyenRealise = 0;
+
+                if (caRealise == 0)
+                {
+
+                    caMoyenRealise = 0;
+
+                }
+                else
+                {
+                    caMoyenRealise = caRealise / nbRepres;
+                }
+
 
                 dt.Rows.Add(nomPiece, nbRepres, nbSpecTotal, nbSpecMoyen, caRealise, caMoyenRealise);
             }
