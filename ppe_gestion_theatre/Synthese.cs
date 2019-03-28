@@ -58,7 +58,7 @@ namespace ppe_gestion_theatre
             dgvListeSynthese.ReadOnly = true;
 
             // Liste qui récupère la liste des pieces de théatre dans le ModulePiecesTheatre
-            List<TheaterPiece> lesPiecesTheatre = ModulePiecesTheatre.GetTheaterPieces();
+            List<TheaterPiece> lesPiecesTheatre = ModuleSynthese.GetTheaterPieces();
 
 
             // Pour chaque piece dans la liste lesPiecesTheatres, on affiche les données dans les colonnes 
@@ -67,15 +67,15 @@ namespace ppe_gestion_theatre
 
                 string nomPiece = unePiece.TheaterPiece_name;
 
-                int lesRepresations = ModuleSynthese.GetNbShows(unePiece);
+                int lesRepresations = 10; /*ModuleSynthese.GetNbShows(unePiece);*/
 
-                int lesSpectateurs = ModuleSynthese.GetNbSpectators(unePiece);
+                int lesSpectateurs = 50; /*ModuleSynthese.GetNbSpectators(unePiece);*/
 
-                int lesSpectateursMoyen = ModuleSynthese.GetNbSpectators(unePiece) / ModuleSynthese.GetNbShows(unePiece);
+                int lesSpectateursMoyen = lesSpectateurs / lesRepresations;
 
                 float CA = ModuleSynthese.GetCaTotal(unePiece);
 
-                float CAMoyen = ModuleSynthese.GetCaTotal(unePiece) / ModuleSynthese.GetNbShows(unePiece);
+                float CAMoyen = CA / lesRepresations;
 
                 dt.Rows.Add(nomPiece, lesRepresations, lesSpectateurs, lesSpectateursMoyen, CA, CAMoyen);
             }
