@@ -34,10 +34,17 @@ namespace ppe_gestion_theatre
         private void LoadDataGridView()
         {
 
+
+
         }
 
         // Chargement de la liste en fonctione des dates pour filtrer
         private void LoadDataGridView(DateTime dateDeb, DateTime dateFin)
+        {
+
+        }
+
+        private void dgvListeSynthese_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
