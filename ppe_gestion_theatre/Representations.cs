@@ -31,7 +31,7 @@ namespace ppe_gestion_theatre
             {
                 errorMessage = "Veuillez entrer une heure pour la représentation.";
             }
-            else if (maDate.TimeOfDay < HeureDebut.TimeOfDay && retConv==true)
+            else if (maDate.TimeOfDay < HeureDebut.TimeOfDay && retConv == true)
             {
                 errorMessage = "Il ne peut y avoir de représentation avant 14h.";
                 retConv = false;
@@ -60,12 +60,13 @@ namespace ppe_gestion_theatre
         private bool ValidDate(string dateSai, out string errorMessage)
         {
             DateTime maDate;
-            bool retConv=DateTime.TryParse(dateSai, out maDate);
-            if(maDate< DateTime.Today)
+            bool retConv = DateTime.TryParse(dateSai, out maDate);
+            if (maDate < DateTime.Today)
             {
                 errorMessage = "Vous ne pouvez pas ajouter de représentation avant aujourd'hui.";
                 retConv = false;
-            }else
+            }
+            else
             {
                 errorMessage = "Vous devez entrer une date.";
             }
@@ -379,7 +380,7 @@ namespace ppe_gestion_theatre
                 int mesPlaces = int.Parse(saisiePlacesShow.Text.ToString());
                 //on récupère la pièce de théâtre
                 TheaterPiece maPiece = ModulePiecesTheatre.GetOneTheaterPiece(cbChoixPieceSaisieShow.Text);
-              float duree=  maPiece.TheaterPiece_duration;
+                float duree = maPiece.TheaterPiece_duration;
                 // Création de l'objet Show 
                 Show show = new Show(parsedDate, mesPlaces, monTaux, maPiece);
                 //TimeSpan madureeShowFin = TimeSpan.FromHours((double)duree) + show.Show_dateTime.TimeOfDay;
@@ -390,15 +391,15 @@ namespace ppe_gestion_theatre
                 foreach (Show uneRepresentation in lesRepresentations)
                 {
                     TimeSpan madureeFin = TimeSpan.FromHours((double)duree) + uneRepresentation.Show_dateTime.TimeOfDay;
-                
-                    
+
+
                     if (uneRepresentation.Show_dateTime.Date == show.Show_dateTime.Date)
                     {
-                        if(uneRepresentation.Show_dateTime.TimeOfDay <= show.Show_dateTime.TimeOfDay && show.Show_dateTime.TimeOfDay < madureeFin)
+                        if (uneRepresentation.Show_dateTime.TimeOfDay <= show.Show_dateTime.TimeOfDay && show.Show_dateTime.TimeOfDay < madureeFin)
                         {
                             trouve = true;
                         }
-                       
+
                     }
                 }
                 if (trouve == true)
@@ -415,11 +416,11 @@ namespace ppe_gestion_theatre
                         MessageBox.Show("La représentation a bien été ajoutée.", "Ajout de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         grbAjoutRepresentation.Visible = false;
                         saisieHeureShow.Text = "";
-                        saisiePlacesShow.Text= "";
+                        saisiePlacesShow.Text = "";
                         DateTime today = DateTime.Today;
                         saisieDateShow.Text = today.ToString();
                         afficherRepresentations();
-                   
+
 
                         grbFiltres.Enabled = true;
                         dgvListeRepresentations.Enabled = true;
@@ -515,7 +516,7 @@ namespace ppe_gestion_theatre
                     TimeSpan debutHeure = unTaux.PriceRate_startTime;
                     TimeSpan finHeure = unTaux.PriceRate_endTime;
                     TimeSpan maSaisie;
-                    if (TimeSpan.TryParse(saisieHeureShow.Text.ToString(), out maSaisie)==true)
+                    if (TimeSpan.TryParse(saisieHeureShow.Text.ToString(), out maSaisie) == true)
                     {
                         TimeSpan monHeure = TimeSpan.Parse(saisieHeureShow.Text.ToString());
                         if (debutHeure <= monHeure && monHeure <= finHeure)
@@ -523,7 +524,7 @@ namespace ppe_gestion_theatre
                             LestauxdansLHeure.Add(unTaux);
                         }
                     }
-                   
+
                 }
                 //on vérifie le jour et on a le pricerate !!!!
                 string monJour = parsedDate.ToString("dddd");
@@ -548,7 +549,7 @@ namespace ppe_gestion_theatre
             }
         }
         #endregion ajout
-      
+
         #region supprimer
         private void button4_Click(object sender, EventArgs e)
         {
@@ -579,10 +580,11 @@ namespace ppe_gestion_theatre
             {
                 Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
 
-              
+
                 //affichage du formulaire
                 //quand on clique sur le bouton affichage des cases de saisie
                 grbModifRepresentation.Visible = true;
+                grbDetails.Visible = false;
 
                 grbFiltres.Enabled = false;
                 dgvListeRepresentations.Enabled = false;
@@ -597,15 +599,16 @@ namespace ppe_gestion_theatre
                 textBoxModifHeure.Text = laRepres.Show_dateTime.ToString("HH:mm");
                 //affichage date
                 dateTimePickerModifDate.Text = laRepres.Show_dateTime.Date.ToString();
-                
+
 
             }
         }
-       
+
         //bouton annuler
         private void button6_Click(object sender, EventArgs e)
         {
             grbModifRepresentation.Visible = false;
+            grbDetails.Visible = true;
 
             grbFiltres.Enabled = true;
             dgvListeRepresentations.Enabled = true;
@@ -663,53 +666,54 @@ namespace ppe_gestion_theatre
                 {
                     Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
                     int idShow = laRepres.Show_id;
-                
+
                     // Création de l'objet Show 
-                    Show show = new Show(idShow,parsedDate, mesPlaces, monTaux, maPiece);
-                
-                //TimeSpan madureeShowFin = TimeSpan.FromHours((double)duree) + show.Show_dateTime.TimeOfDay;
-                //récupérer les datetime de toutes représentations 
-                bool trouve = false;
-                List<Show> lesRepresentations = ModuleRepresentations.GetShows();
-                //s'il existe déjà une représentation à la date afficher message d'erreur
-                foreach (Show uneRepresentation in lesRepresentations)
-                {
-                    TimeSpan madureeFin = TimeSpan.FromHours((double)duree) + uneRepresentation.Show_dateTime.TimeOfDay;
+                    Show show = new Show(idShow, parsedDate, mesPlaces, monTaux, maPiece);
 
-                   
-                    if (uneRepresentation.Show_dateTime.Date == show.Show_dateTime.Date && uneRepresentation.Show_id!=idShow)
+                    //TimeSpan madureeShowFin = TimeSpan.FromHours((double)duree) + show.Show_dateTime.TimeOfDay;
+                    //récupérer les datetime de toutes représentations 
+                    bool trouve = false;
+                    List<Show> lesRepresentations = ModuleRepresentations.GetShows();
+                    //s'il existe déjà une représentation à la date afficher message d'erreur
+                    foreach (Show uneRepresentation in lesRepresentations)
                     {
-                        if (uneRepresentation.Show_dateTime.TimeOfDay <= show.Show_dateTime.TimeOfDay && show.Show_dateTime.TimeOfDay < madureeFin)
+                        TimeSpan madureeFin = TimeSpan.FromHours((double)duree) + uneRepresentation.Show_dateTime.TimeOfDay;
+
+
+                        if (uneRepresentation.Show_dateTime.Date == show.Show_dateTime.Date && uneRepresentation.Show_id != idShow)
                         {
-                            trouve = true;
+                            if (uneRepresentation.Show_dateTime.TimeOfDay <= show.Show_dateTime.TimeOfDay && show.Show_dateTime.TimeOfDay < madureeFin)
+                            {
+                                trouve = true;
+                            }
+
                         }
-
                     }
-                }
-                if (trouve == true)
-                {
-                    MessageBox.Show("Vous ne pouvez pas ajouter 2 représentations au même moment.", "Modification de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    DialogResult result1 = MessageBox.Show("Etes vous sur de vouloir modifier cette représentation ?", "Modification de la représentation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result1 == DialogResult.Yes)
+                    if (trouve == true)
                     {
-                        // Appel de la méthode ModifierUtilisateur de la couche BLL
-                        ModuleRepresentations.EditShow(show);
-                        MessageBox.Show("La représentation a bien été modifiée.", "Modification de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        grbModifRepresentation.Visible = false;
-                        textBoxModifHeure.Text = "";
-                        textBoxModifPlaces.Text = "";
-                        DateTime today = DateTime.Today;
-                        dateTimePickerModifDate.Text = today.ToString();
-                        afficherRepresentations();
-
-
-                        grbFiltres.Enabled = true;
-                        dgvListeRepresentations.Enabled = true;
+                        MessageBox.Show("Vous ne pouvez pas ajouter 2 représentations au même moment.", "Modification de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                }
+                    else
+                    {
+                        DialogResult result1 = MessageBox.Show("Etes vous sur de vouloir modifier cette représentation ?", "Modification de la représentation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result1 == DialogResult.Yes)
+                        {
+                            // Appel de la méthode ModifierUtilisateur de la couche BLL
+                            ModuleRepresentations.EditShow(show);
+                            MessageBox.Show("La représentation a bien été modifiée.", "Modification de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            grbModifRepresentation.Visible = false;
+                            grbDetails.Visible = true;
+                            textBoxModifHeure.Text = "";
+                            textBoxModifPlaces.Text = "";
+                            DateTime today = DateTime.Today;
+                            dateTimePickerModifDate.Text = today.ToString();
+                            afficherRepresentations();
+
+
+                            grbFiltres.Enabled = true;
+                            dgvListeRepresentations.Enabled = true;
+                        }
+                    }
                 }
             }
         }
@@ -871,7 +875,7 @@ namespace ppe_gestion_theatre
         private void saisieDateShow_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(saisieDateShow, "");
-        } 
+        }
 
         private void textBoxModifHeure_Validated(object sender, EventArgs e)
         {

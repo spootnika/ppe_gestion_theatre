@@ -492,7 +492,16 @@ namespace ppe_gestion_theatre
 
             if (txtNbPlaces.Text != String.Empty)
             {
-                bookedPlaces = Int32.Parse(txtNbPlaces.Text);
+                int test;
+                if (int.TryParse(txtNbPlaces.Text, out test))
+                {
+                    bookedPlaces = Int32.Parse(txtNbPlaces.Text);
+                }
+                else
+                {
+                    txtNbPlaces.Text = string.Empty;
+                    errNbPlaces.SetError(txtNbPlaces, "Veuillez saisir un nombre !");
+                }
             }
 
             if (isEdit && uneRep.Show_id == repAvEdit.Show_id)
@@ -713,46 +722,53 @@ namespace ppe_gestion_theatre
         // Au click sur le bouton supprimer
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            var rep = MessageBox.Show("Êtes vous sûr de vouloir supprimmer cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
-            if (rep == DialogResult.Yes)
+            if (dgvListeReservations.SelectedRows.Count <= 0)
             {
-                int indexRow = dgvListeReservations.CurrentRow.Index;
-                Spectator laReserv = (Spectator)dgvListeReservations.Rows[indexRow].Cells[0].Value;
+                MessageBox.Show("Veuillez sélectionner une réservation");
+            }
+            else
+            {
+                var rep = MessageBox.Show("Êtes vous sûr de vouloir supprimmer cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 
-                string message = ModuleReservations.DeleteReservation(laReserv);
+                if (rep == DialogResult.Yes)
+                {
+                    int indexRow = dgvListeReservations.CurrentRow.Index;
+                    Spectator laReserv = (Spectator)dgvListeReservations.Rows[indexRow].Cells[0].Value;
 
-                MessageBox.Show(message);
+                    string message = ModuleReservations.DeleteReservation(laReserv);
 
-                // On valorise chaque label avec une valeur vide
-                lblLaPiece.Text = String.Empty;
+                    MessageBox.Show(message);
 
-                lblLeTheme.Text = String.Empty;
+                    // On valorise chaque label avec une valeur vide
+                    lblLaPiece.Text = String.Empty;
 
-                lblLaDuree.Text = String.Empty;
+                    lblLeTheme.Text = String.Empty;
 
-                lblLeType.Text = String.Empty;
+                    lblLaDuree.Text = String.Empty;
 
-                lblLaRepresentation.Text = String.Empty;
+                    lblLeType.Text = String.Empty;
 
-                lblLaCompagnie.Text = String.Empty;
+                    lblLaRepresentation.Text = String.Empty;
 
-                lblLePrixFixe.Text = "€";
+                    lblLaCompagnie.Text = String.Empty;
+
+                    lblLePrixFixe.Text = "€";
 
 
-                lblLeNom.Text = String.Empty;
+                    lblLeNom.Text = String.Empty;
 
-                lblLePrenom.Text = String.Empty;
+                    lblLePrenom.Text = String.Empty;
 
-                lblLeNbPlaces.Text = String.Empty;
+                    lblLeNbPlaces.Text = String.Empty;
 
-                lblLeEmail.Text = String.Empty;
+                    lblLeEmail.Text = String.Empty;
 
-                lblLeTelephone.Text = String.Empty;
+                    lblLeTelephone.Text = String.Empty;
 
-                lblLePrixTotal.Text = "0 €";
+                    lblLePrixTotal.Text = "0 €";
 
-                LoadDataGridView();
+                    LoadDataGridView();
+                }
             }
 
         }
@@ -795,6 +811,7 @@ namespace ppe_gestion_theatre
                     lblLeTelephone.Visible = false;
                     dgvListeReservations.Enabled = false;
                     dgvListeReservations.ClearSelection();
+                    btnAjouter.Enabled = false;
 
                     btnValiderEdition.Visible = true;
                     btnAnnulerEdition.Visible = true;
@@ -958,6 +975,7 @@ namespace ppe_gestion_theatre
                 lblLeEmail.Visible = true;
                 lblLeTelephone.Visible = true;
                 dgvListeReservations.Enabled = true;
+                btnAjouter.Enabled = true;
                 #endregion Affiche et cache les champs concernés
 
                 lblReprésentation.Text = "Représentation :";
@@ -985,59 +1003,65 @@ namespace ppe_gestion_theatre
             }
             else
             {
-                editReserv.Spectator_lastname = txtNom.Text;
-                editReserv.Spectator_firstname = txtPrenom.Text;
-                editReserv.Spectator_email = txtEmail.Text;
-                editReserv.Spectator_phone = txtTelephone.Text;
-                editReserv.Spectator_show = laRepres;
-                editReserv.Spectator_seatsBooked = int.Parse(txtNbPlaces.Text);
-                ModuleReservations.EditionReservation(editReserv);
+                var rep = MessageBox.Show("Êtes vous sûr de vouloir éditer cette réservation ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+                if (rep == DialogResult.Yes)
+                {
+                    editReserv.Spectator_lastname = txtNom.Text;
+                    editReserv.Spectator_firstname = txtPrenom.Text;
+                    editReserv.Spectator_email = txtEmail.Text;
+                    editReserv.Spectator_phone = txtTelephone.Text;
+                    editReserv.Spectator_show = laRepres;
+                    editReserv.Spectator_seatsBooked = int.Parse(txtNbPlaces.Text);
+                    ModuleReservations.EditionReservation(editReserv);
 
 
-                grbDetails.Text = "Détails de la réservation";
-                cmbHeures.Items.Clear();
-                cmbDates.Items.Clear();
-                laRepresAvEdit = null;
+                    grbDetails.Text = "Détails de la réservation";
+                    cmbHeures.Items.Clear();
+                    cmbDates.Items.Clear();
+                    laRepresAvEdit = null;
 
-                #region Affiche et cache les champs concernés
-                btnValiderEdition.Visible = false;
-                btnAnnulerEdition.Visible = false;
-                cmbPiece.Visible = false;
-                cmbDates.Visible = false;
-                cmbHeures.Visible = false;
-                txtNom.Visible = false;
-                txtPrenom.Visible = false;
-                txtNbPlaces.Visible = false;
-                txtEmail.Visible = false;
-                txtTelephone.Visible = false;
-                lblHeure.Visible = false;
-                lblPlacesRest.Visible = false;
-                lblLesPlacesRest.Visible = false;
-                lblLesPlacesRest.Text = "";
-                lblPrixReel.Visible = false;
-                lblLePrixReel.Visible = false;
+                    #region Affiche et cache les champs concernés
+                    btnValiderEdition.Visible = false;
+                    btnAnnulerEdition.Visible = false;
+                    cmbPiece.Visible = false;
+                    cmbDates.Visible = false;
+                    cmbHeures.Visible = false;
+                    txtNom.Visible = false;
+                    txtPrenom.Visible = false;
+                    txtNbPlaces.Visible = false;
+                    txtEmail.Visible = false;
+                    txtTelephone.Visible = false;
+                    lblHeure.Visible = false;
+                    lblPlacesRest.Visible = false;
+                    lblLesPlacesRest.Visible = false;
+                    lblLesPlacesRest.Text = "";
+                    lblPrixReel.Visible = false;
+                    lblLePrixReel.Visible = false;
 
-                btnModifier.Visible = true;
-                btnSupprimer.Visible = true;
-                lblLaPiece.Visible = true;
-                lblLaRepresentation.Visible = true;
-                lblLeNom.Visible = true;
-                lblLePrenom.Visible = true;
-                lblLeNbPlaces.Visible = true;
-                lblLeEmail.Visible = true;
-                lblLeTelephone.Visible = true;
-                dgvListeReservations.Enabled = true;
-                #endregion Affiche et cache les champs concernés
+                    btnModifier.Visible = true;
+                    btnSupprimer.Visible = true;
+                    lblLaPiece.Visible = true;
+                    lblLaRepresentation.Visible = true;
+                    lblLeNom.Visible = true;
+                    lblLePrenom.Visible = true;
+                    lblLeNbPlaces.Visible = true;
+                    lblLeEmail.Visible = true;
+                    lblLeTelephone.Visible = true;
+                    dgvListeReservations.Enabled = true;
+                    btnAjouter.Enabled = true;
+                    #endregion Affiche et cache les champs concernés
 
-                lblReprésentation.Text = "Représentation :";
-                lblLeTheme.Text = String.Empty;
-                lblLaDuree.Text = String.Empty;
-                lblLeType.Text = String.Empty;
-                lblLaCompagnie.Text = String.Empty;
-                lblLePrixFixe.Text = "€";
-                lblLePrixTotal.Text = "0 €";
-                LoadDataGridView();
-                dgvListeReservations.Refresh();
+                    lblReprésentation.Text = "Représentation :";
+                    lblLeTheme.Text = String.Empty;
+                    lblLaDuree.Text = String.Empty;
+                    lblLeType.Text = String.Empty;
+                    lblLaCompagnie.Text = String.Empty;
+                    lblLePrixFixe.Text = "€";
+                    lblLePrixTotal.Text = "0 €";
+                    LoadDataGridView();
+                    dgvListeReservations.Refresh();
+                }
             }
         }
     }
