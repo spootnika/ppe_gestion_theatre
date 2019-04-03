@@ -252,6 +252,54 @@ namespace TheaterDAL
             }
         }
 
+        // Suppression des réservations en fonction de la pièce
+        public static void RemoveSpectators(TheaterPiece unePiece)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+                string reqDelSpec = "DELETE FROM To_book WHERE toBook_show IN (SELECT show_id FROM Show WHERE show_theaterPiece = @idPiece) ; DELETE FROM Spectator WHERE spectator_id IN (SELECT toBook_spectator FROM To_Book, Show WHERE toBook_show = show_id AND show_theaterPiece = @idPiece ); ";
+
+                SqlCommand commDelSpec = new SqlCommand(reqDelSpec, connexion);
+
+                commDelSpec.Parameters.Add(new SqlParameter("@idPiece", System.Data.SqlDbType.Int));
+                commDelSpec.Parameters["@idPiece"].Value = unePiece.TheaterPiece_id;
+
+                commDelSpec.ExecuteNonQuery();
+
+                connexion.Close();
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+            }
+        }
+
+        // Suppression des réservations en fonction du show
+        public static void RemoveSpectators(int idShow)
+        {
+            try
+            {
+                SqlConnection connexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+                string reqDelSpec = "DELETE FROM To_book WHERE toBook_show = @idShow ; DELETE FROM Spectator WHERE spectator_id IN (SELECT toBook_spectator FROM To_Book WHERE toBook_show =  @idShow ); ";
+
+                SqlCommand commDelSpec = new SqlCommand(reqDelSpec, connexion);
+
+                commDelSpec.Parameters.Add(new SqlParameter("@idShow", System.Data.SqlDbType.Int));
+                commDelSpec.Parameters["@idShow"].Value = idShow;
+
+                commDelSpec.ExecuteNonQuery();
+
+                connexion.Close();
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+            }
+        }
+
         // Edition d'une réservation
         public static string EditSpectator(Spectator laReservation)
         {
