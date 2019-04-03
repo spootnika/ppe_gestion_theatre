@@ -73,6 +73,19 @@ namespace ppe_gestion_theatre
             return retConv;
 
         }
+       private bool ValidRep(bool reprEstSelectionne, out string errorMessage)
+        {
+           
+            if (reprEstSelectionne==false)
+            {
+                errorMessage = "Vous devez sélectionner une représentation.";   
+            }
+            else
+            {
+                errorMessage = "";
+            }
+            return reprEstSelectionne;
+        }
         #endregion errorProvider messages
         #region afficher représentations
         private void afficherRepresentations()
@@ -553,18 +566,25 @@ namespace ppe_gestion_theatre
         #region supprimer
         private void button4_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Etes vous sur de vouloir supprimer cette représentation ?", "Suppression de la représentation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (dgvListeRepresentations.CurrentRow.Selected == false)
             {
-                dgvListeRepresentations.CurrentRow.Selected = true;
-                int indexRow = dgvListeRepresentations.CurrentRow.Index;
-                if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+                MessageBox.Show("Vous devez sélectionner une représentation.", "Suppression de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {    
+                DialogResult result = MessageBox.Show("Etes vous sur de vouloir supprimer cette représentation ?", "Suppression de la représentation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
-                    // Appel de la méthode SupprimerUtilisateur de la couche BLL
-                    ModuleRepresentations.DeleteShow(laRepres.Show_id);
-                    MessageBox.Show("La représentation a bien été supprimée.", "Suppression de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    afficherRepresentations();
+                    dgvListeRepresentations.CurrentRow.Selected = true;
+                    int indexRow = dgvListeRepresentations.CurrentRow.Index;
+                    if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+                    {
+                        Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
+                        // Appel de la méthode SupprimerUtilisateur de la couche BLL
+                        ModuleRepresentations.DeleteShow(laRepres.Show_id);
+                        MessageBox.Show("La représentation a bien été supprimée.", "Suppression de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        afficherRepresentations();
+                    }
                 }
             }
         }
@@ -574,33 +594,38 @@ namespace ppe_gestion_theatre
         //bouton modifier
         private void button3_Click(object sender, EventArgs e)
         {
-            dgvListeRepresentations.CurrentRow.Selected = true;
-            int indexRow = dgvListeRepresentations.CurrentRow.Index;
-            if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+            if (dgvListeRepresentations.CurrentRow.Selected == false)
             {
-                Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
+                MessageBox.Show("Vous devez sélectionner une représentation.", "Modification de la représentation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {           
+                int indexRow = dgvListeRepresentations.CurrentRow.Index;
+                if (dgvListeRepresentations.Rows[indexRow].Cells[0].Value != DBNull.Value)
+                {
+                    Show laRepres = (Show)dgvListeRepresentations.Rows[indexRow].Cells[0].Value;
 
 
-                //affichage du formulaire
-                //quand on clique sur le bouton affichage des cases de saisie
-                grbModifRepresentation.Visible = true;
-                grbDetails.Visible = false;
+                    //affichage du formulaire
+                    //quand on clique sur le bouton affichage des cases de saisie
+                    grbModifRepresentation.Visible = true;
+                    grbDetails.Visible = false;
 
-                grbFiltres.Enabled = false;
-                dgvListeRepresentations.Enabled = false;
+                    grbFiltres.Enabled = false;
+                    dgvListeRepresentations.Enabled = false;
 
-                // affichage des infos de la représentation sélectionnéee
-                cbModifPiece.DataSource = ModulePiecesTheatre.GetTheaterPieces();
-                cbModifPiece.DisplayMember = "theaterPiece_name";
-                cbModifPiece.Text = laRepres.Show_theaterPiece.TheaterPiece_name;
-                //affichage nb places
-                textBoxModifPlaces.Text = laRepres.Show_seats.ToString();
-                //affichage heure
-                textBoxModifHeure.Text = laRepres.Show_dateTime.ToString("HH:mm");
-                //affichage date
-                dateTimePickerModifDate.Text = laRepres.Show_dateTime.Date.ToString();
+                    // affichage des infos de la représentation sélectionnéee
+                    cbModifPiece.DataSource = ModulePiecesTheatre.GetTheaterPieces();
+                    cbModifPiece.DisplayMember = "theaterPiece_name";
+                    cbModifPiece.Text = laRepres.Show_theaterPiece.TheaterPiece_name;
+                    //affichage nb places
+                    textBoxModifPlaces.Text = laRepres.Show_seats.ToString();
+                    //affichage heure
+                    textBoxModifHeure.Text = laRepres.Show_dateTime.ToString("HH:mm");
+                    //affichage date
+                    dateTimePickerModifDate.Text = laRepres.Show_dateTime.Date.ToString();
 
-
+                }
             }
         }
 
@@ -726,6 +751,49 @@ namespace ppe_gestion_theatre
             if (maPiece != null)
             {
                 lblPrixFixeModifRep.Text = maPiece.TheaterPiece_seatsPrice.ToString() + " €";
+                //on récupère date saisie et heure à mettre en datetime         
+                string mesdates = dateTimePickerModifDate.Text.ToString() + " " + textBoxModifHeure.Text.ToString();
+                DateTime parsedDate;
+                bool retConv = DateTime.TryParse(mesdates, out parsedDate);
+                if (retConv == true && dateTimePickerModifDate.Text.Trim() != "" && textBoxModifHeure.Text.Trim() != "")
+                {
+                    //on vérifie l'heure pour voir dans quelle tranche de pricerate on va 
+                    List<PriceRate> Lestaux = new List<PriceRate>();
+                    Lestaux = ModuleRepresentations.GetPriceRate();
+                    List<PriceRate> LestauxdansLHeure = new List<PriceRate>();
+                    PriceRate monTaux = null;
+                    foreach (PriceRate unTaux in Lestaux)
+                    {
+                        TimeSpan debutHeure = unTaux.PriceRate_startTime;
+                        TimeSpan finHeure = unTaux.PriceRate_endTime;
+                        TimeSpan monHeure = TimeSpan.Parse(textBoxModifHeure.Text.ToString());
+                        if (debutHeure <= monHeure && monHeure <= finHeure)
+                        {
+                            LestauxdansLHeure.Add(unTaux);
+                        }
+                    }
+                    //on vérifie le jour et on a le pricerate !!!!
+                    string monJour = parsedDate.ToString("dddd");
+
+                    foreach (PriceRate unTaux in LestauxdansLHeure)
+                    {
+                        foreach (WeekDays unJour in unTaux.PriceRate_weekDays)
+                        {
+                            if (unJour.WeekDays_name == monJour)
+                            {
+                                monTaux = unTaux;
+                            }
+                        }
+
+                    }
+                    if (monTaux != null)
+                    {
+                        float seatPrice = maPiece.TheaterPiece_seatsPrice;
+                        float prixReel = seatPrice + (seatPrice * monTaux.PriceRate_rate);
+                        lblPrixReelModifRep.Text = prixReel.ToString() + " €";
+                    }
+
+                }
             }
         }
 
@@ -924,7 +992,28 @@ namespace ppe_gestion_theatre
                 errorProviderDateModif.SetError(dateTimePickerModifDate, error);
             }
         }
+        //erroProvider bouton modifier
+        private void button3_Validated(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Validating(object sender, CancelEventArgs e)
+        {
+          
+        }
+        //erroProvider bouton supprimer
+        private void button4_Validated(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void button4_Validating(object sender, CancelEventArgs e)
+        {
+            
+        }
         #endregion errorProvider
+
     }
 }
 

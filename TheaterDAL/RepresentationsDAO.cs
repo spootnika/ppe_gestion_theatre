@@ -148,7 +148,8 @@ namespace TheaterDAL
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "DELETE FROM Show WHERE show_id = @idShow";
+            cmd.CommandText = "DELETE FROM To_book WHERE toBook_show = @idShow; DELETE FROM Show WHERE show_id = @idShow;";
+            
             //param
             SqlParameter idShow = new SqlParameter("@idShow", SqlDbType.Int);
             idShow.Value = IdRep;
@@ -158,7 +159,6 @@ namespace TheaterDAL
 
             // Fermeture de la connexion
             maConnexion.Close();
-
             return nb;
         }
         //modification d'un représentation
