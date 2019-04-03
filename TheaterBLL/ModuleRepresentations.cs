@@ -37,6 +37,7 @@ namespace TheaterBLL
         //suppression d'une représentation
         public static int DeleteShow(int idShow)
         {
+            ReservationsDAO.RemoveSpectators(idShow);
             return RepresentationsDAO.DelShow(idShow);
         }
         //modification d'un représentation

@@ -68,13 +68,17 @@ namespace TheaterBLL
             PiecesTheatreDAO.AddTheaterPiece(unePiece);
         }
 
+        // Edition d'une pièce de théatre
         public static void EditTheaterPiece(TheaterPiece unePiece)
         {
             PiecesTheatreDAO.EditTheaterPiece(unePiece);
         }
 
+        // Suppression d'une pièce de théatre
         public static void RemoveTheaterPiece(TheaterPiece unePiece)
         {
+            ReservationsDAO.RemoveSpectators(unePiece);
+            RepresentationsDAO.RemoveShows(unePiece);
             PiecesTheatreDAO.RemoveTheaterPiece(unePiece);
         }
 

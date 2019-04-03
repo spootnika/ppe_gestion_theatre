@@ -148,7 +148,8 @@ namespace TheaterDAL
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "DELETE FROM Show WHERE show_id = @idShow";
+            cmd.CommandText = "DELETE FROM Show WHERE show_id = @idShow;";
+            
             //param
             SqlParameter idShow = new SqlParameter("@idShow", SqlDbType.Int);
             idShow.Value = IdRep;
@@ -158,9 +159,29 @@ namespace TheaterDAL
 
             // Fermeture de la connexion
             maConnexion.Close();
-
             return nb;
         }
+
+        // Suppression de toutes les représentations par rapport à une pièce de théâtre
+        public static void RemoveShows(TheaterPiece unePiece)
+        {
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "DELETE FROM Show WHERE show_theaterPiece = @idPiece;";
+
+            //param
+            SqlParameter idPiece = new SqlParameter("@idPiece", SqlDbType.Int);
+            idPiece.Value = unePiece.TheaterPiece_id;
+            cmd.Parameters.Add(idPiece);
+            //fin param
+            cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+        }
+
         //modification d'un représentation
         public static int ModifShow(Show uneRepresentation)
         {
