@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grbFiltres = new System.Windows.Forms.GroupBox();
             this.btnReinitialiser = new System.Windows.Forms.Button();
             this.dtpDateFin = new System.Windows.Forms.DateTimePicker();
@@ -40,8 +41,10 @@
             this.lblTitre = new System.Windows.Forms.Label();
             this.btnMenu = new System.Windows.Forms.Button();
             this.dgvListeSynthese = new System.Windows.Forms.DataGridView();
+            this.errorProviderDatesFiltres = new System.Windows.Forms.ErrorProvider(this.components);
             this.grbFiltres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeSynthese)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDatesFiltres)).BeginInit();
             this.SuspendLayout();
             // 
             // grbFiltres
@@ -88,6 +91,7 @@
             this.dtpDateFin.Size = new System.Drawing.Size(199, 22);
             this.dtpDateFin.TabIndex = 32;
             this.dtpDateFin.Value = new System.DateTime(2018, 12, 19, 10, 2, 14, 0);
+            this.dtpDateFin.ValueChanged += new System.EventHandler(this.dtpDateFin_ValueChanged);
             // 
             // dtpDateDeb
             // 
@@ -98,6 +102,7 @@
             this.dtpDateDeb.Size = new System.Drawing.Size(199, 22);
             this.dtpDateDeb.TabIndex = 31;
             this.dtpDateDeb.Value = new System.DateTime(2018, 12, 19, 10, 1, 25, 0);
+            this.dtpDateDeb.ValueChanged += new System.EventHandler(this.dtpDateDeb_ValueChanged);
             // 
             // btnFiltrer
             // 
@@ -113,6 +118,8 @@
             this.btnFiltrer.Text = "Filtrer";
             this.btnFiltrer.UseVisualStyleBackColor = false;
             this.btnFiltrer.Click += new System.EventHandler(this.btnFiltrer_Click);
+            this.btnFiltrer.Validating += new System.ComponentModel.CancelEventHandler(this.btnFiltrer_Validating);
+            this.btnFiltrer.Validated += new System.EventHandler(this.btnFiltrer_Validated);
             // 
             // lblDateFin
             // 
@@ -196,6 +203,10 @@
             this.dgvListeSynthese.Size = new System.Drawing.Size(849, 374);
             this.dgvListeSynthese.TabIndex = 16;
             // 
+            // errorProviderDatesFiltres
+            // 
+            this.errorProviderDatesFiltres.ContainerControl = this;
+            // 
             // Synthese
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +222,7 @@
             this.grbFiltres.ResumeLayout(false);
             this.grbFiltres.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListeSynthese)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderDatesFiltres)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,5 +242,6 @@
         private System.Windows.Forms.Label lblTitre;
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.DataGridView dgvListeSynthese;
+        private System.Windows.Forms.ErrorProvider errorProviderDatesFiltres;
     }
 }
