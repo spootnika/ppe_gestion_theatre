@@ -164,9 +164,12 @@ namespace ppe_gestion_theatre
             // La première colonne contenant l'objet ne sera pas visible
             dgvListeRepresentations.Columns["representation"].Visible = false;
         }
+
         public Representations(LoginInfo currentUser)
         {
             InitializeComponent();
+            dtpDateDeb.Value = DateTime.Now;
+            dtpDateFin.Value = DateTime.Now;
             this.currentUser = currentUser;
 
             // Remplissable de la comboBox avec les pièces de théâtre
