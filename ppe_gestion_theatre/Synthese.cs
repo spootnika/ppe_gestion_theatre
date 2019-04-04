@@ -19,6 +19,8 @@ namespace ppe_gestion_theatre
         {
             InitializeComponent();
             this.currentUser = currentUser;
+            dtpDateDeb.Value = DateTime.Now;
+            dtpDateFin.Value = DateTime.Now;
 
             LoadDataGridView();
 
