@@ -19,12 +19,32 @@ namespace ppe_gestion_theatre
         {
             InitializeComponent();
             this.currentUser = currentUser;
+            dtpDateDeb.Value = DateTime.Now;
+            dtpDateFin.Value = DateTime.Now;
 
             LoadDataGridView();
 
             dgvListeSynthese.ClearSelection();
         }
+        private bool ValidDateFiltres(string dateSai1, string dateSai2, out string errorMessage)
+        {
+            DateTime maDate1;
+            DateTime maDate2;
+            bool retConv = true;
+            DateTime.TryParse(dateSai1, out maDate1);
+            DateTime.TryParse(dateSai2, out maDate2);
+            if (maDate1 > maDate2)
+            {
+                errorMessage = "La date de début ne peut pas être antérieure à la date de fin.";
+                retConv = false;
+            }
+            else
+            {
+                errorMessage = "";
+            }
+            return retConv;
 
+        }
         private void Synthese_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
@@ -173,6 +193,47 @@ namespace ppe_gestion_theatre
             Menu frmMenu = new Menu(currentUser);
             this.Hide(); // le formulaire est caché
             frmMenu.ShowDialog(); // ouverture du formulaire
+        }
+
+        private void btnFiltrer_Validated(object sender, EventArgs e)
+        {
+            errorProviderDatesFiltres.SetError(dtpDateFin, "");
+        }
+
+        private void btnFiltrer_Validating(object sender, CancelEventArgs e)
+        {
+            string error = "";
+            if (ValidDateFiltres(dtpDateDeb.Text, dtpDateFin.Text, out error) == false)
+            {
+                e.Cancel = true;
+                errorProviderDatesFiltres.SetError(dtpDateFin, error);
+            }
+        }
+
+        private void dtpDateFin_ValueChanged(object sender, EventArgs e)
+        {
+            string error = "";
+            if (ValidDateFiltres(dtpDateDeb.Text, dtpDateFin.Text, out error) == false)
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, error);
+            }
+            else
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, "");
+            }
+        }
+
+        private void dtpDateDeb_ValueChanged(object sender, EventArgs e)
+        {
+            string error = "";
+            if (ValidDateFiltres(dtpDateDeb.Text, dtpDateFin.Text, out error) == false)
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, error);
+            }
+            else
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, "");
+            }
         }
     }
 }

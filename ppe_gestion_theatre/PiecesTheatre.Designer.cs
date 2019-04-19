@@ -197,6 +197,7 @@
             this.comboBoxAuteur.Size = new System.Drawing.Size(160, 24);
             this.comboBoxAuteur.TabIndex = 32;
             this.comboBoxAuteur.Visible = false;
+            this.comboBoxAuteur.SelectedIndexChanged += new System.EventHandler(this.comboBoxAuteur_SelectedIndexChanged);
             // 
             // textBoxCommentaire
             // 

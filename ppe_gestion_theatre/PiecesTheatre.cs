@@ -65,6 +65,7 @@ namespace ppe_gestion_theatre
             lblLaDescription.Visible = true;
             lblLaCompagnie.Visible = true;
             lblLePrixFixe.Visible = true;
+            lblLaNationalite.Text = string.Empty;
             lblLaNationalite.Visible = true;
             lblIdPiece.Visible = false;
 
@@ -186,7 +187,8 @@ namespace ppe_gestion_theatre
             lblLaDescription.Visible = false;
             lblLaCompagnie.Visible = false;
             lblLePrixFixe.Visible = false;
-            lblLaNationalite.Visible = false;
+            lblLaNationalite.Text = string.Empty;
+            //lblLaNationalite.Visible = false;
 
             dgvListePiecesTheatre.Enabled = false;
 
@@ -272,6 +274,7 @@ namespace ppe_gestion_theatre
                     lblLaDescription.Visible = true;
                     lblLaCompagnie.Visible = true;
                     lblLePrixFixe.Visible = true;
+                    lblLaNationalite.Text = string.Empty;
                     lblLaNationalite.Visible = true;
 
                     dgvListePiecesTheatre.Enabled = true;
@@ -414,6 +417,7 @@ namespace ppe_gestion_theatre
                 lblLaDescription.Visible = true;
                 lblLaCompagnie.Visible = true;
                 lblLePrixFixe.Visible = true;
+                lblLaNationalite.Text = string.Empty;
                 lblLaNationalite.Visible = true;
 
                 textBoxNomPiece.Visible = false;
@@ -483,7 +487,8 @@ namespace ppe_gestion_theatre
                 lblLaDescription.Visible = false;
                 lblLaCompagnie.Visible = false;
                 lblLePrixFixe.Visible = false;
-                lblLaNationalite.Visible = false;
+                lblLaNationalite.Text = string.Empty;
+                //lblLaNationalite.Visible = false;
 
                 dgvListePiecesTheatre.Enabled = false;
 
@@ -614,6 +619,25 @@ namespace ppe_gestion_theatre
         private void lblPrixFixe_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxAuteur_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblLaNationalite.Text = string.Empty;
+            Author auteur = comboBoxAuteur.SelectedItem as Author;
+
+            int indNat = 1;
+            foreach (Nationality laNationalite in auteur.Author_nationalities)
+            {
+                lblLaNationalite.Text += laNationalite.Nationality_name;
+
+                if (indNat < auteur.Author_nationalities.Count)
+                {
+                    indNat++;
+                    // si plusieurs nationalité, les deux nationalités sont séparés d'un ","
+                    lblLaNationalite.Text += ", ";
+                }
+            }
         }
     }
 }

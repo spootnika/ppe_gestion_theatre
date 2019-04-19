@@ -73,7 +73,26 @@ namespace ppe_gestion_theatre
             return retConv;
 
         }
-       private bool ValidRep(bool reprEstSelectionne, out string errorMessage)
+        private bool ValidDateFiltres(string dateSai1, string dateSai2, out string errorMessage)
+        {
+            DateTime maDate1;
+            DateTime maDate2;
+            bool retConv=true;
+            DateTime.TryParse(dateSai1, out maDate1);
+            DateTime.TryParse(dateSai2, out maDate2);
+            if (maDate1 > maDate2)
+            {
+                errorMessage = "La date de début ne peut pas être antérieure à la date de fin.";
+                retConv = false;
+            }
+            else
+            {
+                errorMessage = "";
+            }
+            return retConv;
+
+        }
+        private bool ValidRep(bool reprEstSelectionne, out string errorMessage)
         {
            
             if (reprEstSelectionne==false)
@@ -145,9 +164,12 @@ namespace ppe_gestion_theatre
             // La première colonne contenant l'objet ne sera pas visible
             dgvListeRepresentations.Columns["representation"].Visible = false;
         }
+
         public Representations(LoginInfo currentUser)
         {
             InitializeComponent();
+            dtpDateDeb.Value = DateTime.Now;
+            dtpDateFin.Value = DateTime.Now;
             this.currentUser = currentUser;
 
             // Remplissable de la comboBox avec les pièces de théâtre
@@ -992,28 +1014,46 @@ namespace ppe_gestion_theatre
                 errorProviderDateModif.SetError(dateTimePickerModifDate, error);
             }
         }
-        //erroProvider bouton modifier
-        private void button3_Validated(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button3_Validating(object sender, CancelEventArgs e)
-        {
-          
-        }
-        //erroProvider bouton supprimer
-        private void button4_Validated(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void button4_Validating(object sender, CancelEventArgs e)
-        {
-            
-        }
         #endregion errorProvider
 
+        private void btnFiltrer_Validated(object sender, EventArgs e)
+        {
+            errorProviderDatesFiltres.SetError(dtpDateFin, "");
+        }
+
+        private void btnFiltrer_Validating(object sender, CancelEventArgs e)
+        {
+            string error = "";
+            if (ValidDateFiltres(dtpDateDeb.Text, dtpDateFin.Text, out error) == false)
+            {
+                e.Cancel = true;
+                errorProviderDatesFiltres.SetError(dtpDateFin, error);
+            }
+        }
+
+        private void dtpDateDeb_ValueChanged(object sender, EventArgs e)
+        {
+            string error = "";
+            if (ValidDateFiltres(dtpDateDeb.Text, dtpDateFin.Text, out error) == false)
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, error);
+            }else
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, "");
+            }
+        }
+
+        private void dtpDateFin_ValueChanged(object sender, EventArgs e)
+        {
+            string error = "";
+            if (ValidDateFiltres(dtpDateDeb.Text, dtpDateFin.Text, out error) == false)
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, error);
+            }else
+            {
+                errorProviderDatesFiltres.SetError(dtpDateFin, "");
+            }
+        }
     }
 }
 
